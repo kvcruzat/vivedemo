@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<None Include="..\..\RiversofHanoi.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{95325300-10C1-4DF5-9F1B-06CEB6FFFFB9}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\RiversofHanoi.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\RiversofHanoiEditor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{EC62F57F-7B77-4134-AA73-992E91AD82C0}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultGame.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultInput.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Source\RiversofHanoi">
+			<UniqueIdentifier>{5744397D-0F4D-4ABE-B848-E431F607B1F7}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\RiversofHanoi\RiversofHanoi.Build.cs">
+			<Filter>Source\RiversofHanoi</Filter>
+		</None >
+		<ClCompile Include="..\..\Source\RiversofHanoi\RiversofHanoi.cpp">
+			<Filter>Source\RiversofHanoi</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\RiversofHanoi\RiversofHanoi.h">
+			<Filter>Source\RiversofHanoi</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\RiversofHanoi\RiversofHanoiCharacter.cpp">
+			<Filter>Source\RiversofHanoi</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\RiversofHanoi\RiversofHanoiCharacter.h">
+			<Filter>Source\RiversofHanoi</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\RiversofHanoi\RiversofHanoiGameMode.cpp">
+			<Filter>Source\RiversofHanoi</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\RiversofHanoi\RiversofHanoiGameMode.h">
+			<Filter>Source\RiversofHanoi</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\RiversofHanoi\RiversofHanoiHUD.cpp">
+			<Filter>Source\RiversofHanoi</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\RiversofHanoi\RiversofHanoiHUD.h">
+			<Filter>Source\RiversofHanoi</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\RiversofHanoi\RiversofHanoiProjectile.cpp">
+			<Filter>Source\RiversofHanoi</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\RiversofHanoi\RiversofHanoiProjectile.h">
+			<Filter>Source\RiversofHanoi</Filter>
+		</ClInclude >
+	</ItemGroup>
+</Project>
