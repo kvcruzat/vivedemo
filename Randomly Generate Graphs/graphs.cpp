@@ -18,5 +18,5 @@ int main (int argc, char[] argv*)
 
 void generateConnections()
 {
-	std::vector<std::vector<int>> connections;
+	std::vector<std::vector<int>> connections; 
 }
