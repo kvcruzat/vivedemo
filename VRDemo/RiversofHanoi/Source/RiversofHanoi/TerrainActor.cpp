@@ -8,85 +8,50 @@
 // Sets default values
 ATerrainActor::ATerrainActor()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	/*PrimaryActorTick.bCanEverTick = true;*/
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	PrimaryActorTick.bCanEverTick = true;
 
-	readData("test.m");
+	readData("cube.m");
 
 	USphereComponent* SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("RootComponent"));
 	RootComponent = SphereComponent;
 
 	UProceduralMeshComponent* terrainMesh = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("TerrainMesh"));
 
-	/*vertices.Add(FVector(-100.0, -100.0, -100.0));
-	vertices.Add(FVector(-100.0, 100.0, 100.0));
-	vertices.Add(FVector(100.0, -100.0, 100.0));
-	vertices.Add(FVector(100.0, 100.0, -100.0));
-	Triangles.Add(0);
-	Triangles.Add(1);
-	Triangles.Add(2);
-	Triangles.Add(1);
-	Triangles.Add(0);
-	Triangles.Add(3);
-	Triangles.Add(1);
-	Triangles.Add(3);
-	Triangles.Add(2);
-	Triangles.Add(0);
-	Triangles.Add(2);
-	Triangles.Add(3);*/
-
-	TArray<FVector> normals;
-	normals.Add(FVector(1, 0, 0));
-	normals.Add(FVector(1, 0, 0));
-	normals.Add(FVector(1, 0, 0));
-
-	TArray<FVector2D> UV0;
-	UV0.Add(FVector2D(0, 0));
-	UV0.Add(FVector2D(0, 10));
-	UV0.Add(FVector2D(10, 10));
-
-	TArray<FColor> vertexColors;
-	vertexColors.Add(FColor(10, 100, 100, 100));
-	vertexColors.Add(FColor(100, 50, 100, 100));
-	vertexColors.Add(FColor(0, 100, 20, 100));
-
-	TArray<FProcMeshTangent> tangents;
-	tangents.Add(FProcMeshTangent(1, 1, 1));
-	tangents.Add(FProcMeshTangent(1, 1, 1));
-	tangents.Add(FProcMeshTangent(1, 1, 1));
-
 	UE_LOG(LogTemp, Warning, TEXT("# Vertices: %s"), *FString::FromInt(vertices.Num()));
 	UE_LOG(LogTemp, Warning, TEXT("# Faces: %s"), *FString::FromInt(Triangles.Num() / 3));
+	UE_LOG(LogTemp, Warning, TEXT("# Normals: %s"), *FString::FromInt(normals.Num()));
 
 	//terrainMesh->CreateMeshSection(1, vertices, Triangles, normals, UV0, vertexColors, tangents, true);
-	terrainMesh->CreateMeshSection(1, vertices, Triangles, TArray<FVector>(), TArray<FVector2D>(), TArray<FColor>(), TArray<FProcMeshTangent>(), true);
+	terrainMesh->CreateMeshSection(0, vertices, Triangles, normals, TArray<FVector2D>(), TArray<FColor>(), TArray<FProcMeshTangent>(), true);
 
 	terrainMesh->SetupAttachment(RootComponent);
+
 }
 
 // Called when the game starts or when spawned
 void ATerrainActor::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 // Called every frame
-void ATerrainActor::Tick( float DeltaTime )
+void ATerrainActor::Tick(float DeltaTime)
 {
-	Super::Tick( DeltaTime );
+	Super::Tick(DeltaTime);
 
 }
 
 void ATerrainActor::readData(FString fileName) {
 
 	FString projectDir = FPaths::GameDir();
-	projectDir += "Content/test.m";
+	projectDir += "Content/" + fileName;
 
 	FString data = TEXT("");
 
 	FFileHelper::LoadFileToString(data, *projectDir);
-	UE_LOG(LogTemp, Warning, TEXT("%s"), *data);
+	/*UE_LOG(LogTemp, Warning, TEXT("%s"), *data);*/
 
 	TArray<FString> lines;
 	TArray<FString> splitLines;
@@ -94,10 +59,10 @@ void ATerrainActor::readData(FString fileName) {
 	int32 lineCount = data.ParseIntoArray(lines, _T("\n"), true);
 
 	for (int32 Index = 3; Index < lines.Num(); ++Index) {
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *lines[Index]);
+		/*UE_LOG(LogTemp, Warning, TEXT("%s"), *lines[Index]);*/
 		if (lines[Index].StartsWith("Vertex")) {
 			lines[Index].ParseIntoArray(splitLines, _T(" "), true);
-			vertices.Add(FVector(FCString::Atof(*splitLines[2])*1000, FCString::Atof(*splitLines[3])*1000, FCString::Atof(*splitLines[4])*1000));
+			vertices.Add(FVector(FCString::Atof(*splitLines[2]) * 50, FCString::Atof(*splitLines[4]) * 50, FCString::Atof(*splitLines[3]) * 50));
 		}
 		else if (lines[Index].StartsWith("Face")) {
 			lines[Index].ParseIntoArray(splitLines, _T(" "), true);
@@ -107,49 +72,45 @@ void ATerrainActor::readData(FString fileName) {
 		}
 	}
 
-	//ifstream datafile(filename.c_str());
-	//QString qline;
-	//QStringList splitLines;
-	//size_t numV, numF;
-
-	//if (not datafile.is_open()) {		//check for file
-	//	cerr << "Error: cannot open file!" << endl;
-	//	exit(EXIT_FAILURE);
-	//}
-
-	//string line;
-	//if (datafile.is_open()) {
-	//	for (int i = 0; i < 4; ++i) {
-	//		getline(datafile, line);	// skips first 3 lines of header
-	//	}
-	//	getline(datafile, line);
-	//	qline = QString::fromStdString(line);
-	//	splitLines = qline.split(QRegExp("\\s+"));	// finds number of vertices and faces
-	//	numV = splitLines[splitLines.indexOf(QRegExp("vertices.+"))].split("=")[1].toInt();
-	//	numF = splitLines[splitLines.indexOf(QRegExp("faces.+"))].split("=")[1].toInt();
-	//	getline(datafile, line);
-	//	while (getline(datafile, line)) {
-	//		qline = QString::fromStdString(line);
-	//		splitLines = qline.split(QRegExp("\\s+"));
-	//		if (splitLines[0] == "Vertex") {	// stores vertices
-	//			Point p(splitLines[2].toFloat(),
-	//				splitLines[3].toFloat(),
-	//				splitLines[4].toFloat());
-	//			vertices.push_back(p);
-	//		}
-	//		else if (splitLines[0] == "Face") {		// stores faces
-	//			Vector v(splitLines[2].toFloat(),
-	//				splitLines[3].toFloat(),
-	//				splitLines[4].toFloat());
-	//			faces.push_back(v);
-	//		}
-	//	}
-	//	if (vertices.size() == numV && faces.size() == numF)	// checks size of stored data
-	//		std::cout << "File input successful" << std::endl;
-	//	else std::cout << "Error in reading data" << std::endl;
-
-	//}
-
-	//datafile.close();	// closes file
+	findNormals();
 }
 
+void ATerrainActor::findNormals() {
+	TArray<FVector> tempNorm;
+	tempNorm.Init(FVector(0, 0, 0), vertices.Num());
+
+	for (int i = 0; i < Triangles.Num() / 3; i += 3) {
+
+		FVector u = vertices[Triangles[i + 1]] - vertices[Triangles[i]];
+		FVector v = vertices[Triangles[i + 2]] - vertices[Triangles[i]];
+		tempNorm[Triangles[i]] = tempNorm[Triangles[i]] + FVector::CrossProduct(v, u);
+
+		FVector w = vertices[Triangles[i]] - vertices[Triangles[i + 1]];
+		FVector x = vertices[Triangles[i + 2]] - vertices[Triangles[i + 1]];
+		tempNorm[Triangles[i + 1]] = tempNorm[Triangles[i + 1]] + FVector::CrossProduct(w, x);
+
+		FVector y = vertices[Triangles[i]] - vertices[Triangles[i + 2]];
+		FVector z = vertices[Triangles[i + 1]] - vertices[Triangles[i + 2]];
+		tempNorm[Triangles[i + 2]] = tempNorm[Triangles[i + 2]] + FVector::CrossProduct(z, y);
+	}
+
+	normals = tempNorm;
+
+	//UE_LOG(LogTemp, Warning, TEXT("%s"), *normals[0].ToString());
+	//UE_LOG(LogTemp, Warning, TEXT("%s"), *normals[1].ToString());
+	//UE_LOG(LogTemp, Warning, TEXT("%s"), *normals[2].ToString());
+
+	normalise();
+}
+
+void ATerrainActor::normalise() {
+
+	for (int i = 0; i < normals.Num(); ++i) {
+		float length = normals[i].Size();
+		normals[i] = normals[i] / length;
+	}
+
+	/*UE_LOG(LogTemp, Warning, TEXT("%s"), *normals[0].ToString());
+	UE_LOG(LogTemp, Warning, TEXT("%s"), *normals[1].ToString());
+	UE_LOG(LogTemp, Warning, TEXT("%s"), *normals[2].ToString());*/
+}
