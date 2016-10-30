@@ -1,3 +1,53 @@
+#include <vector>
+#include <math.h>
+#include <string>
+#include <string.h>
+#include <sstream>
+#include <iostream>
+#include <iterator>
+#include <fstream>
+#include <stdlib.h>
+#include <cstdlib>
+#include <algorithm>
+#include <time.h>
+#include <iomanip>
+
+void Utils::removeEmptyStrings(std::vector<std::string>& strings)
+{
+  std::vector<std::string>::iterator it = std::remove_if(strings.begin(), 
+  	strings.end(),std::mem_fun_ref(&std::string::empty));
+  // erase the removed elements
+  strings.erase(it, strings.end());
+}
+
+std::vector<std::string> Utils::split(std::string s, std::string delimiter) {
+	size_t pos = 0;
+	std::string token;
+	std::vector<std::string> returnVector;
+	while ((pos = s.find(delimiter)) != std::string::npos) {
+    	token = s.substr(0, pos);
+    	returnVector.push_back(token);
+    	s.erase(0, pos + delimiter.length());
+	}
+	returnVector.push_back(s);
+
+// 	std::vector<std::string>::iterator i = returnVector.begin();
+// 	while(i != returnVector.end())
+// 	{
+//     	if(i->find('\0', 0) != std::string::npos)
+//     	{
+//         	i = returnVector.erase(i);
+//     	}
+//     	else
+//     	{
+//         	++i;
+//     	}
+// }
+	removeEmptyStrings(returnVector);
+
+	return returnVector;
+}
+
 //Function that reads in a terrain .txt file and outputs it as a model file
 void Utils::readTerrainFileAndOutputM(std::string fileName) {
 	std::string line;
