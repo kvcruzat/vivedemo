@@ -11,7 +11,7 @@ ATerrainActor::ATerrainActor()
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	readData("cube.m");
+	readData("terrain2.m");
 
 	USphereComponent* SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("RootComponent"));
 	RootComponent = SphereComponent;
@@ -46,7 +46,7 @@ void ATerrainActor::Tick(float DeltaTime)
 void ATerrainActor::readData(FString fileName) {
 
 	FString projectDir = FPaths::GameDir();
-	projectDir += "Content/" + fileName;
+	projectDir += "Content/models/" + fileName;
 
 	FString data = TEXT("");
 
@@ -62,7 +62,7 @@ void ATerrainActor::readData(FString fileName) {
 		/*UE_LOG(LogTemp, Warning, TEXT("%s"), *lines[Index]);*/
 		if (lines[Index].StartsWith("Vertex")) {
 			lines[Index].ParseIntoArray(splitLines, _T(" "), true);
-			vertices.Add(FVector(FCString::Atof(*splitLines[2]) * 50, FCString::Atof(*splitLines[4]) * 50, FCString::Atof(*splitLines[3]) * 50));
+			vertices.Add(FVector(FCString::Atof(*splitLines[2]), FCString::Atof(*splitLines[4]), FCString::Atof(*splitLines[3])));
 		}
 		else if (lines[Index].StartsWith("Face")) {
 			lines[Index].ParseIntoArray(splitLines, _T(" "), true);
@@ -79,7 +79,7 @@ void ATerrainActor::findNormals() {
 	TArray<FVector> tempNorm;
 	tempNorm.Init(FVector(0, 0, 0), vertices.Num());
 
-	for (int i = 0; i < Triangles.Num() / 3; i += 3) {
+	for (int i = 0; i < Triangles.Num(); i += 3) {
 
 		FVector u = vertices[Triangles[i + 1]] - vertices[Triangles[i]];
 		FVector v = vertices[Triangles[i + 2]] - vertices[Triangles[i]];

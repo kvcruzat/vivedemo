@@ -12,7 +12,7 @@
 #include <time.h>
 #include <iomanip>
 
-void Utils::removeEmptyStrings(std::vector<std::string>& strings)
+void removeEmptyStrings(std::vector<std::string>& strings)
 {
   std::vector<std::string>::iterator it = std::remove_if(strings.begin(), 
   	strings.end(),std::mem_fun_ref(&std::string::empty));
@@ -20,7 +20,7 @@ void Utils::removeEmptyStrings(std::vector<std::string>& strings)
   strings.erase(it, strings.end());
 }
 
-std::vector<std::string> Utils::split(std::string s, std::string delimiter) {
+std::vector<std::string> split(std::string s, std::string delimiter) {
 	size_t pos = 0;
 	std::string token;
 	std::vector<std::string> returnVector;
@@ -49,12 +49,12 @@ std::vector<std::string> Utils::split(std::string s, std::string delimiter) {
 }
 
 //Function that reads in a terrain .txt file and outputs it as a model file
-void Utils::readTerrainFileAndOutputM(std::string fileName) {
+void readTerrainFileAndOutputM(std::string fileName) {
 	std::string line;
 	//Loads input file from parameters
 	std::ifstream textFile((fileName).c_str());
 	//Create output file
-	std::ofstream modelFile("../models/terrain.m");
+	std::ofstream modelFile("terrain.m");
 
 	//Vector for storing the split line
 	std::vector<std::string> linevector;
@@ -149,4 +149,11 @@ void Utils::readTerrainFileAndOutputM(std::string fileName) {
 			indices[(3 * i) + 1] << " " << indices[(3 * i) + 2]  << std::endl; 
 		} 
 	}
+}
+
+int main (int argc, char *argv[])
+{
+	readTerrainFileAndOutputM(argv[1]);
+
+	return 1;
 }
