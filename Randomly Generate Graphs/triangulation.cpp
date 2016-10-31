@@ -143,21 +143,21 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 	//iF 1 then canal is present
 	std::vector< std::vector<int> > heightMap(SQUARE_SIZE, std::vector<int> (SQUARE_SIZE, 0));
 
-	std::cout << connectionsMatrix.size() << std::endl;
+	// std::cout << connectionsMatrix.size() << std::endl;
 
 	for (unsigned i = 0; i < connectionsMatrix.size(); i++)
 	{
-		std::cout << connectionsMatrix[i].size() << std::endl;
+		// std::cout << connectionsMatrix[i].size() << std::endl;
 		for (unsigned j = 0; j < connectionsMatrix[i].size(); j++)
 		{
 			if ( connectionsMatrix[i][j] != 0)
 			{
 				//Bresenham's Line algorithm
-				std::cout << i << " " << j << std::endl;
+				// std::cout << i << " " << j << std::endl;
 				std::cout << coordinates[i][0] << " " << coordinates[i][1] << std::endl;
-				std::cout << coordinates[j][0] << " " << coordinates[j][1] << std::endl;
+				std::cout << coordinates[j][0] << " " << coordinates[j][1] << std::endl << std::endl;
 				// drawLine(&heightMap, coordinates[i], coordinates[j]);
-				drawLine(&heightMap, coordinates[i][0], coordinates[i][1], coordinates[j][0], coordinates[j][1]);
+				drawLine(&heightMap, coordinates[i][0], coordinates[j][0], coordinates[i][1], coordinates[j][1]);
 			}
 		}
 	}
@@ -200,27 +200,36 @@ void drawLine(std::vector< std::vector<int> > *heightMap, int x1, int x2, int y1
 	float error = dx / 2.0f;
 	const int ystep = (y1 < y2) ? 1 : -1;
 	int y = (int)y1;
+
+	int maxY = (int)y2;
 	 
 	const int maxX = (int)x2;
 	 
 	for(int x=(int)x1; x<maxX; x++)
 	{
-	    if(steep)
-	    {
-	    	(*heightMap)[y][x] = 1;
-	    }
-	    else
-	    {
-	        (*heightMap)[x][y] = 1;
-	    }
-	 
-		error -= dy;
-		if(error < 0)
-		{
-	    	y += ystep;
-	    	error += dx;
+		if(y < y2)
+			{
+			std::cout << x << " " << y << std::endl;
+		    if(steep)
+		    {
+		    	(*heightMap)[y][x] = 1;
+		    }
+		    else
+		    {
+		        (*heightMap)[x][y] = 1;
+		    }
+		 
+			error -= dy;
+			if(error < 0)
+			{
+		    	y += ystep;
+		    	error += dx;
+			}
+		} else {
+			break;
 		}
 	}
+
 	// //Swap around variables to make startPoint be top-left with slow decline to bottom-right
 
 	// //Checks if the gradient is a steep or shallow gradient
