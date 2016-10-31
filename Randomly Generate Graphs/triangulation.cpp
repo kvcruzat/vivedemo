@@ -43,7 +43,8 @@ int main (int argc, char *argv[])
 	findWeightMatrix(triangles, coordinates, &weightMatrix);
 
 	//Picks random points to use as nodes
-	std::vector< std::vector<int> > connections =  findConnections();
+	std::vector< std::vector<int> > connections;
+	findConnections(&connections);
 
 	std::vector< int > usedNodes;
 
@@ -64,11 +65,11 @@ int main (int argc, char *argv[])
 	std::vector< std::vector< std::vector<int> > > shortestPaths = dijkstra(connections, weightMatrix, usedNodes);
 
 	printToFile(triangles, coordinates, weightMatrix);
-	testPrint(shortestPaths, usedNodes);
+	testPrint(shortestPaths, usedNodes, connections);
 	printGraph(shortestPaths, coordinates, connections);
 }
 
-void testPrint(std::vector< std::vector< std::vector<int> > > shortestPaths, std::vector< int > usedNodes)
+void testPrint(std::vector< std::vector< std::vector<int> > > shortestPaths, std::vector< int > usedNodes, std::vector< std::vector<int> > connections)
 {
 	std::ofstream outputHeightMap;
 	outputHeightMap.open("paths.txt");
@@ -87,11 +88,23 @@ void testPrint(std::vector< std::vector< std::vector<int> > > shortestPaths, std
 				outputHeightMap << shortestPaths[i][j][k] << " ";
 			}
 
-			outputHeightMap << std::endl;
+			outputHeightMap << std::endl << std::endl;
 		}
 		// std::cout << "i: " << i << std::endl;
 
 
+	}
+
+
+
+	for ( unsigned i = 0; i < connections.size(); i++)
+	{
+		for ( unsigned j = 0; j < connections[i].size(); j++)
+		{
+			outputHeightMap << usedNodes[i] << " to " << usedNodes[connections[i][j]] << " " << std::endl;
+		}
+
+		outputHeightMap << std::endl << std::endl;
 	}
 }
 
@@ -111,6 +124,7 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 			std::vector<int> *ptrShortPath = &shortestPaths[i][connections[i][j]];
 			for(unsigned k = 0; k < shortestPaths[i][connections[i][j]].size() - 1; k++)
 			{
+				std::cout << (*ptrShortPath)[k] << " to " << (*ptrShortPath)[k+1] << std::endl;
 				connectionsMatrix[(*ptrShortPath)[k]][(*ptrShortPath)[k+1]] = 1;
 			}
 		}
@@ -153,9 +167,9 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 			if ( connectionsMatrix[i][j] != 0)
 			{
 				//Bresenham's Line algorithm
-				// std::cout << i << " " << j << std::endl;
-				std::cout << coordinates[i][0] << " " << coordinates[i][1] << std::endl;
-				std::cout << coordinates[j][0] << " " << coordinates[j][1] << std::endl << std::endl;
+				std::cout << i << " " << j << std::endl;
+				// std::cout << coordinates[i][0] << " " << coordinates[i][1] << std::endl;
+				// std::cout << coordinates[j][0] << " " << coordinates[j][1] << std::endl << std::endl;
 				// drawLine(&heightMap, coordinates[i], coordinates[j]);
 				drawLine(&heightMap, coordinates[i][0], coordinates[j][0], coordinates[i][1], coordinates[j][1]);
 			}
@@ -209,7 +223,7 @@ void drawLine(std::vector< std::vector<int> > *heightMap, int x1, int x2, int y1
 	{
 		if(y < y2)
 			{
-			std::cout << x << " " << y << std::endl;
+			// std::cout << x << " " << y << std::endl;
 		    if(steep)
 		    {
 		    	(*heightMap)[y][x] = 1;
@@ -382,7 +396,7 @@ void printToFile(std::vector< std::vector<int> > triangles, std::vector< std::ve
 			outputHeightMap << weightMatrix[i][j] << " ";
 		}
 
-		outputHeightMap << std::endl;
+		outputHeightMap << std::endl << std::endl;
 	}
 }
 
@@ -434,11 +448,11 @@ void findWeightMatrix(std::vector< std::vector<int> > triangles, std::vector< st
 	}
 }
 
-std::vector< std::vector<int> > findConnections()
+void findConnections(std::vector<std::vector<int> > *connections)
 {
 	//Connect each point to 2 other random points
 	//Then connect a random number of arcs, around numNodes/2
-	std::vector< std::vector<int> > connections;
+	// std::vector< std::vector<int> > connections;
 	std::vector<int> numConnections(NUM_NODES, 0);
 	for ( int i = 0; i < NUM_NODES; i++)
 	{
@@ -459,11 +473,11 @@ std::vector< std::vector<int> > findConnections()
 			}
 		}
 
-		connections.push_back(nodeConnections);
+		(*connections).push_back(nodeConnections);
 
 	}
 
-	return connections;
+	// return connections;
 }
 
 std::vector< std::vector< std::vector<int> > >  dijkstra(std::vector< std::vector<int> > connections, std::vector< std::vector<int> > weightMatrix, std::vector<int> usedNodes)
