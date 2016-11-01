@@ -25,7 +25,7 @@ void findWeightMatrix(std::vector< std::vector<int> >, std::vector< std::vector<
 void findConnections(std::vector<std::vector<int> >*);
 std::vector< std::vector< std::vector<int> > > dijkstra(std::vector< std::vector<int> >, std::vector< std::vector<int> >, std::vector<int>);
 void testPrint(std::vector< std::vector< std::vector<int> > >, std::vector< int >, std::vector< std::vector<int> >);
-void printGraph(std::vector< std::vector< std::vector<int> > >, std::vector<std::vector<int> > , std::vector< std::vector<int> >);
+void printGraph(std::vector< std::vector< std::vector<int> > >, std::vector<std::vector<int> > , std::vector< std::vector<int> >, std::vector< int >);
 void printHeightMap(std::vector< std::vector<int> > , std::vector< std::vector<int> >);
 // void drawLine(std::vector< std::vector<int> >*, std::vector<int>, std::vector<int>);
 void drawLine(std::vector< std::vector<int> >*, int, int, int, int);

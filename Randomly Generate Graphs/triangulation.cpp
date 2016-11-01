@@ -66,7 +66,7 @@ int main (int argc, char *argv[])
 
 	printToFile(triangles, coordinates, weightMatrix);
 	testPrint(shortestPaths, usedNodes, connections);
-	printGraph(shortestPaths, coordinates, connections);
+	printGraph(shortestPaths, coordinates, connections, usedNodes);
 }
 
 void testPrint(std::vector< std::vector< std::vector<int> > > shortestPaths, std::vector< int > usedNodes, std::vector< std::vector<int> > connections)
@@ -108,7 +108,7 @@ void testPrint(std::vector< std::vector< std::vector<int> > > shortestPaths, std
 	}
 }
 
-void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, std::vector<std::vector<int> > coordinates, std::vector< std::vector<int> > connections)
+void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, std::vector<std::vector<int> > coordinates, std::vector< std::vector<int> > connections, std::vector< int > usedNodes)
 {
 	std::ofstream outputGraph;
 	outputGraph.open("graphs.txt");
@@ -121,12 +121,28 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 		for (unsigned j = 0; j < connections[i].size(); j++)
 		{
 			//int lastConnection = shortestPaths[i][j][0];
-			std::vector<int> *ptrShortPath = &shortestPaths[i][connections[i][j]];
-			for(unsigned k = 0; k < shortestPaths[i][connections[i][j]].size() - 1; k++)
+			std::vector<int> *ptrShortPath = &shortestPaths[i][usedNodes[connections[i][j]]];
+			for(unsigned k = 0; k < shortestPaths[i][usedNodes[connections[i][j]]].size() - 1; k++)
 			{
-				std::cout << (*ptrShortPath)[k] << " to " << (*ptrShortPath)[k+1] << std::endl;
-				connectionsMatrix[(*ptrShortPath)[k]][(*ptrShortPath)[k+1]] = 1;
+				if ((*ptrShortPath)[k] != -1)
+				{
+					std::cout << (*ptrShortPath)[k] << " to " << (*ptrShortPath)[k+1] << std::endl;
+					connectionsMatrix[(*ptrShortPath)[k]][(*ptrShortPath)[k+1]] = 1;
+				}
+
 			}
+
+			// std::vector<int> *ptrShortPath2 = &shortestPaths[usedNodes[connections[i][j]]][i];
+			// for(unsigned k = 0; k < (*ptrShortPath2).size() - 1; k++)
+			// {
+			// 	if ((*ptrShortPath2)[k] != -1)
+			// 	{
+			// 		std::cout << (*ptrShortPath2)[k] << " to " << (*ptrShortPath2)[k+1] << std::endl;
+			// 		connectionsMatrix[(*ptrShortPath2)[k]][(*ptrShortPath2)[k+1]] = 1;
+			// 	}
+
+			// }
+
 		}
 	}
 
@@ -167,7 +183,7 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 			if ( connectionsMatrix[i][j] != 0)
 			{
 				//Bresenham's Line algorithm
-				std::cout << i << " " << j << std::endl;
+				// std::cout << i << " " << j << std::endl;
 				// std::cout << coordinates[i][0] << " " << coordinates[i][1] << std::endl;
 				// std::cout << coordinates[j][0] << " " << coordinates[j][1] << std::endl << std::endl;
 				// drawLine(&heightMap, coordinates[i], coordinates[j]);
@@ -222,7 +238,7 @@ void drawLine(std::vector< std::vector<int> > *heightMap, int x1, int x2, int y1
 	for(int x=(int)x1; x<maxX; x++)
 	{
 		if(y < y2)
-			{
+		{
 			// std::cout << x << " " << y << std::endl;
 		    if(steep)
 		    {
@@ -463,7 +479,7 @@ void findConnections(std::vector<std::vector<int> > *connections)
 			if (numConnections[i] < 2)
 			{
 				int randConn = i;
-				while (i == randConn)
+				while (i == randConn || std::find(nodeConnections.begin(), nodeConnections.end(),randConn)!=nodeConnections.end())
 				{
 					randConn = (rand() % NUM_NODES);
 				}
@@ -486,9 +502,10 @@ std::vector< std::vector< std::vector<int> > >  dijkstra(std::vector< std::vecto
 	std::vector< std::vector< std::vector<int> > > shortestPaths(connections.size(), std::vector<std::vector<int> > (weightMatrix.size(), std::vector<int> (1, -1)));
 	for (unsigned i = 0; i < connections.size(); i++)
 	{
-		int startNode = usedNodes[i];
 		for (unsigned j = 0; j < connections[i].size(); j++)
 		{
+			//i to j
+			int startNode = usedNodes[i];
 			int endNode = usedNodes[connections[i][j]];
 
 			// std::cout << startNode << " " << endNode << std::endl;
@@ -533,10 +550,67 @@ std::vector< std::vector< std::vector<int> > >  dijkstra(std::vector< std::vecto
 							// std::cout << "Current: " << startNode << " Y: " << y << std::endl;
 							tempVector.push_back(y);
 							shortestPaths[i][y] = tempVector;
+							// if(std::find(usedNodes.begin(), usedNodes.end(),y)!=usedNodes.end())
+							// {
+							// 	shortestPaths[y][usedNodes[i]] = tempVector;
+							// }
 						}
 					}
 				}
 			}
+
+
+
+
+			// startNode = usedNodes[connections[i][j]];
+			// endNode = usedNodes[i];
+
+			// // std::cout << startNode << " " << endNode << std::endl;
+			// n = weightMatrix.size();
+			// //std::vector<int> shortPath;
+			// //set distance to a value much higher than will be obtained
+			// distance = std::vector<int>(n, 9999999);
+			// visited = std::vector<bool>(n, false);
+
+			// //First node
+			// distance[startNode] = 0;
+			// //Init path to start at i node
+			// shortestPaths[i][startNode] = {startNode};
+
+			// for( int x = 0; x < n; x++)
+			// {
+			// 	int currentNode = -1;
+			// 	for (int y = 0; y < n; y++)
+			// 	{
+			// 		//Only check unvisited nodes
+			// 		if(!visited[y])
+			// 		{
+			// 			//Check to see if there is a current node or if the distance to the next node is lower than the distance to the current node
+			// 			if(currentNode == -1 || distance[y] < distance[currentNode])
+			// 			{
+			// 				currentNode = y;
+			// 			}
+			// 		}
+			// 	}
+
+			// 	visited[currentNode] = true;
+			// 	for (int y = 0; y < n; y++)
+			// 	{
+			// 		if (weightMatrix[currentNode][y] != 0)
+			// 		{
+			// 			int path = distance[currentNode] + weightMatrix[currentNode][y];
+
+			// 			if (path < distance[y])
+			// 			{
+			// 				distance[y] = path;
+			// 				std::vector<int> tempVector = shortestPaths[connections[i][j]][currentNode];
+			// 				// std::cout << "Current: " << startNode << " Y: " << y << std::endl;
+			// 				tempVector.push_back(y);
+			// 				shortestPaths[i][y] = tempVector;
+			// 			}
+			// 		}
+			// 	}
+			// }
 		}
 	}
 
