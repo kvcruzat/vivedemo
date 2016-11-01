@@ -550,10 +550,14 @@ std::vector< std::vector< std::vector<int> > >  dijkstra(std::vector< std::vecto
 							// std::cout << "Current: " << startNode << " Y: " << y << std::endl;
 							tempVector.push_back(y);
 							shortestPaths[i][y] = tempVector;
-							// if(std::find(usedNodes.begin(), usedNodes.end(),y)!=usedNodes.end())
-							// {
-							// 	shortestPaths[y][usedNodes[i]] = tempVector;
-							// }
+							std::vector<int>::iterator iter = std::find(usedNodes.begin(), usedNodes.end(),y);
+
+							if(iter != usedNodes.end())
+							{
+								int index = std::distance(usedNodes.begin(), iter);
+								std::cout << y << std::endl;
+								shortestPaths[index][usedNodes[i]] = tempVector;
+							}
 						}
 					}
 				}
