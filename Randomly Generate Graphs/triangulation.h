@@ -28,4 +28,5 @@ void testPrint(std::vector< std::vector< std::vector<int> > >, std::vector< int 
 void printGraph(std::vector< std::vector< std::vector<int> > >, std::vector<std::vector<int> > , std::vector< std::vector<int> >, std::vector< int >);
 void printHeightMap(std::vector< std::vector<int> > , std::vector< std::vector<int> >);
 // void drawLine(std::vector< std::vector<int> >*, std::vector<int>, std::vector<int>);
-void drawLine(std::vector< std::vector<int> >*, int, int, int, int);
+void drawLine(std::vector< std::vector<float> >*, int, int, int, int);
+void makeDitches(std::vector< std::vector<float> >*);

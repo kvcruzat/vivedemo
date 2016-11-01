@@ -126,7 +126,7 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 			{
 				if ((*ptrShortPath)[k] != -1)
 				{
-					std::cout << (*ptrShortPath)[k] << " to " << (*ptrShortPath)[k+1] << std::endl;
+					// std::cout << (*ptrShortPath)[k] << " to " << (*ptrShortPath)[k+1] << std::endl;
 					connectionsMatrix[(*ptrShortPath)[k]][(*ptrShortPath)[k+1]] = 1;
 				}
 
@@ -171,7 +171,7 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 {
 	//Canal height map
 	//iF 1 then canal is present
-	std::vector< std::vector<int> > heightMap(SQUARE_SIZE, std::vector<int> (SQUARE_SIZE, 0));
+	std::vector< std::vector<float> > heightMap(SQUARE_SIZE, std::vector<float> (SQUARE_SIZE, 1));
 
 	// std::cout << connectionsMatrix.size() << std::endl;
 
@@ -192,6 +192,8 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 		}
 	}
 
+	makeDitches(&heightMap);
+
 	std::ofstream graphHeightMap;
 	graphHeightMap.open("heightmaps/graphHeightMap.txt");
 
@@ -206,8 +208,123 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 	}
 }
 
+void makeDitches(std::vector< std::vector<float> > *oldHeightMap)
+{
+	std::vector< std::vector<float> > heightMap = (*oldHeightMap);
+	for (int i = 0; i < (heightMap).size(); i++)
+	{
+		for (int j = 0; j < (heightMap)[i].size(); j++)
+		{
+			// std::cout << i << " " << j;
+			if ((*oldHeightMap)[i][j] == 0.0f)
+			{
+				for (int k = 0; k < 10; k++)
+				{
+					if (j + k < SQUARE_SIZE)
+					{
+						if (heightMap[i][j + k] > k * (1.0f / (SQUARE_SIZE / 100.0f)))
+						{
+							heightMap[i][j + k] = k * (1.0f / (SQUARE_SIZE / 100.0f));
+						}
+					}
+					if (j - k > 0)
+					{
+						if (heightMap[i][j - k] > k * (1.0f / (SQUARE_SIZE / 100.0f)))
+						{
+							heightMap[i][j - k] = k * (1.0f / (SQUARE_SIZE / 100.0f));
+						}
+					}
+				}
+				// //Check for boundaries
+				// if(j + 1 < SQUARE_SIZE)
+				// {
+				// 	if ((heightMap)[i][j + 1] > 0)
+				// 	{
+				// 		(heightMap)[i][j + 1] = 0;
+				// 	}
+				// }
+				// //Check for boundaries
+				// if(j + 2 < SQUARE_SIZE)
+				// {
+				// 	if ((heightMap)[i][j + 2] > 0.25f)
+				// 	{
+				// 		(heightMap)[i][j+2] = 0.25f;
+				// 	}
+				// }
+				// //Check for boundaries
+				// if(j + 3 < SQUARE_SIZE)
+				// {
+				// 	if ((heightMap)[i][j+3] > 0.5f)
+				// 	{
+				// 		(heightMap)[i][j+3] = 0.5f;
+				// 	}
+				// }
+				// //Check for boundaries
+				// if(j + 4 < SQUARE_SIZE)
+				// {
+				// 	if ((heightMap)[i][j+4] > 0.5f)
+				// 	{
+				// 		(heightMap)[i][j+4] = 0.5f;
+				// 	}
+				// }
+				// //Check for boundaries
+				// if(j + 5 < SQUARE_SIZE)
+				// {
+				// 	if ((heightMap)[i][j+5] > 0.75f)
+				// 	{
+				// 		(heightMap)[i][j+5] = 0.75f;
+				// 	}
+				// }
+				// //Check for boundaries
+				// if(j - 1 >= 0)
+				// {
+				// 	// std::cout << i - 1;
+				// 	if ((heightMap)[i][j-1] > 0)
+				// 	{
+				// 		(heightMap)[i][j-1] = 0;
+				// 	}
+				// }
+				// //Check for boundaries
+				// if(j - 2 >= 0)
+				// {
+				// 	if ((heightMap)[i][j-2] > 0.25f)
+				// 	{
+				// 		(heightMap)[i][j-2] = 0.25f;
+				// 	}
+				// }
+				// //Check for boundaries
+				// if(j - 3 >= 0)
+				// {
+				// 	if ((heightMap)[i][j-3] > 0.5f)
+				// 	{
+				// 		(heightMap)[i][j-3] = 0.5f;
+				// 	}
+				// }
+				// //Check for boundaries
+				// if(j - 4 >= 0)
+				// {
+				// 	if ((heightMap)[i][j-4] > 0.5f)
+				// 	{
+				// 		(heightMap)[i][j-4] = 0.5f;
+				// 	}
+				// }
+				// //Check for boundaries
+				// if(j - 5 >= 0)
+				// {
+				// 	if ((heightMap)[i][j-5] > 0.75f)
+				// 	{
+				// 		(heightMap)[i][j-5] = 0.75f;
+				// 	}
+				// }
+			}
+		}
+	}
+
+	(*oldHeightMap) = heightMap;
+}
+
 // void drawLine(std::vector< std::vector<int> > *heightMap, std::vector<int> startPoint, std::vector<int> endPoint)
-void drawLine(std::vector< std::vector<int> > *heightMap, int x1, int x2, int y1, int y2)
+void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int y1, int y2)
 {
 	//
 	// Bresenham's line algorithm
@@ -231,22 +348,22 @@ void drawLine(std::vector< std::vector<int> > *heightMap, int x1, int x2, int y1
 	const int ystep = (y1 < y2) ? 1 : -1;
 	int y = (int)y1;
 
-	int maxY = (int)y2;
+	int maxY = (int)SQUARE_SIZE;
 	 
 	const int maxX = (int)x2;
 	 
 	for(int x=(int)x1; x<maxX; x++)
 	{
-		if(y < y2)
+		if(y < maxY)
 		{
 			// std::cout << x << " " << y << std::endl;
 		    if(steep)
 		    {
-		    	(*heightMap)[y][x] = 1;
+		    	(*heightMap)[y][x] = 0;
 		    }
 		    else
 		    {
-		        (*heightMap)[x][y] = 1;
+		        (*heightMap)[x][y] = 0;
 		    }
 		 
 			error -= dy;
@@ -555,7 +672,7 @@ std::vector< std::vector< std::vector<int> > >  dijkstra(std::vector< std::vecto
 							if(iter != usedNodes.end())
 							{
 								int index = std::distance(usedNodes.begin(), iter);
-								std::cout << y << std::endl;
+								// std::cout << y << std::endl;
 								shortestPaths[index][usedNodes[i]] = tempVector;
 							}
 						}
