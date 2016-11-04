@@ -25,6 +25,12 @@ ATerrainActor::ATerrainActor()
 	//terrainMesh->CreateMeshSection(1, vertices, Triangles, normals, UV0, vertexColors, tangents, true);
 	terrainMesh->CreateMeshSection(0, vertices, Triangles, normals, TArray<FVector2D>(), TArray<FColor>(), TArray<FProcMeshTangent>(), true);
 
+	static ConstructorHelpers::FObjectFinder<UMaterial> Material(TEXT("Material'/Game/StarterContent/Materials/M_Ground_Grass.M_Ground_Grass'"));
+	if (Material.Object != NULL)
+	{
+		UMaterial* terrainMaterial = (UMaterial*)Material.Object;		terrainMesh->SetMaterial(0, terrainMaterial);
+	}
+
 	terrainMesh->SetupAttachment(RootComponent);
 
 }
