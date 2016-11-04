@@ -20,11 +20,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaSeconds) override;
 
-	virtual void readData(FString fileName);
-
-	virtual void findNormals();
-	virtual void normalise();
-
 	TArray<FVector> vertices;
 	TArray<FVector> normals;
 	TArray<int32> Triangles;
