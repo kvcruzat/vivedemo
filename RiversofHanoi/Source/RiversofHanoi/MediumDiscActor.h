@@ -3,16 +3,19 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
-#include "SmallDiskActor.generated.h"
+#include "MediumDiscActor.generated.h"
 
 UCLASS()
-class RIVERSOFHANOI_API ASmallDiskActor : public AActor
+class RIVERSOFHANOI_API AMediumDiscActor : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ASmallDiskActor();
+	AMediumDiscActor();
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Mesh)
+		UStaticMeshComponent* mediumDiscMesh;
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -20,9 +23,6 @@ public:
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
 
-	TArray<FVector> vertices;
-	TArray<FVector> normals;
-	TArray<int32> Triangles;
 	
 	
 };
