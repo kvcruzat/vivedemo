@@ -8,14 +8,17 @@
 UCLASS()
 class RIVERSOFHANOI_API ARodActor : public AActor
 {
-	GENERATED_BODY()
+	GENERATED_UCLASS_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ARodActor();
+	//ARodActor();
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = collision, meta = (AllowPrivateAccess = "true"))
+		class UBoxComponent* collisionComp;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Mesh)
-		UStaticMeshComponent* rodMesh;
+		class UStaticMeshComponent* rodMesh;
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -23,6 +26,10 @@ public:
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
 
-	
+	TArray<AActor*> ContainedActors;
+	FVector rodLocation;
+
+	UFUNCTION()
+		void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 	
 };
