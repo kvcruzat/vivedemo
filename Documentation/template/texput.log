@@ -1,0 +1,20 @@
+This is LuaTeX, Version beta-0.79.1 (TeX Live 2014) (rev 4971)  (format=lualatex 2014.7.31)  12 MAR 2015 15:56
+ restricted \write18 enabled.
+**dissertation.tex
+
+! Emergency stop.
+<*> dissertation.tex
+                 
+*** (job aborted, file error in nonstop mode)
+
+
+
+Here is how much of LuaTeX's memory you used:
+ 5 strings out of 494694
+ 100000,89155 words of node,token memory allocated 182 words of node memory still in use:
+   31 glue_spec nodes
+   avail lists: 2:12,3:1,6:1
+ 3847 multiletter control sequences out of 65536+600000
+ 14 fonts using 562767 bytes
+ 0i,0n,0p,0b,6s stack positions out of 5000i,500n,10000p,200000b,100000s
+!  ==> Fatal error occurred, no output PDF file produced!
