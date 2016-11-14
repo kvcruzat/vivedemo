@@ -49,11 +49,7 @@ std::vector<std::string> split(std::string s, std::string delimiter) {
 }
 
 //Function that reads in a terrain .txt file and outputs it as a model file
-<<<<<<< HEAD
 int readTerrainFileAndOutputM(std::string fileName) {
-=======
-void readTerrainFileAndOutputM(std::string fileName) {
->>>>>>> 63769324e99b1125701623cd50878b8806ce7b52
 	std::string line;
 	//Loads input file from parameters
 	std::ifstream textFile((fileName).c_str());
@@ -209,11 +205,8 @@ void readTerrainFileAndOutputM(std::string fileName) {
 		// 	indices[(3 * i) + 1] << " " << indices[(3 * i) + 2]  << std::endl; 
 		// } 
 	}
-<<<<<<< HEAD
 
 	return 1;
-=======
->>>>>>> 63769324e99b1125701623cd50878b8806ce7b52
 }
 
 int main (int argc, char *argv[])

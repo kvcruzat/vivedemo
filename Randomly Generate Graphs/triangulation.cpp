@@ -49,14 +49,6 @@ int main (int argc, char *argv[])
 	//Function to find all the weights of connected arcs
 	findWeightMatrix(triangles, coordinates, &weightMatrix);
 
-<<<<<<< HEAD
-=======
-	//Initialise array to be used to keep track of connections in graph
-	std::vector< std::vector<int> > connections;
-	//Picks random points to use as nodes
-	findConnections(&connections);
-
->>>>>>> 63769324e99b1125701623cd50878b8806ce7b52
 	//Initialise vector to store which nodes are used
 	std::vector< int > usedNodes;
 
@@ -78,15 +70,12 @@ int main (int argc, char *argv[])
     	usedNodes.push_back(randNode);
 	}
 
-<<<<<<< HEAD
 	//Initialise array to be used to keep track of connections in graph
 	std::vector< std::vector<int> > connections;
 	//Picks random points to use as nodes
 	findConnections(&connections, usedNodes, coordinates);
 
 
-=======
->>>>>>> 63769324e99b1125701623cd50878b8806ce7b52
 	//Use djikstra to find the shortest paths between each node
 	std::vector< std::vector< std::vector<int> > > shortestPaths = dijkstra(connections, weightMatrix, usedNodes);
 
@@ -244,23 +233,17 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 }
 
 /* Functions that changes the width of the "rivers" in the heightmap
-<<<<<<< HEAD
  * Rivers are made using the graph for x^4
-=======
->>>>>>> 63769324e99b1125701623cd50878b8806ce7b52
  * Input -
  * *oldHeightMap - pointer that points to the heightmap before any changes have been made to it
  */
 void makeDitches(std::vector< std::vector<float> > *oldHeightMap)
 {
-<<<<<<< HEAD
 	//Variables used to make ditches
 	//Increase kmax for wider rivers
 	int kmax = 50;
 	//Increase ksquared with kmax
 	int kMaxSquared = kmax * kmax * kmax * kmax;
-=======
->>>>>>> 63769324e99b1125701623cd50878b8806ce7b52
 	//Initialise the new height map to be the same as the old one.
 	std::vector< std::vector<float> > heightMap = (*oldHeightMap);
 	//Loop through the heightmap
@@ -273,32 +256,21 @@ void makeDitches(std::vector< std::vector<float> > *oldHeightMap)
 			{
 				//Loop through k times and change height on either side of "river"
 				//Could use exponent? smoother curves
-<<<<<<< HEAD
 				for (int k = 0; k < kmax; k++)
-=======
-				for (int k = 0; k < 10; k++)
->>>>>>> 63769324e99b1125701623cd50878b8806ce7b52
 				{
 					//Check so the coordinate is not out of bounds
 					if (j + k < SQUARE_SIZE)
 					{
 						//Adjust height
-<<<<<<< HEAD
 						if (heightMap[i][j + k] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared));
 						{
 							heightMap[i][j + k] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
-=======
-						if (heightMap[i][j + k] > k * (1.0f / (SQUARE_SIZE / 100.0f)))
-						{
-							heightMap[i][j + k] = k * (1.0f / (SQUARE_SIZE / 100.0f));
->>>>>>> 63769324e99b1125701623cd50878b8806ce7b52
 						}
 					}
 					//Check so the coordinate is not out of bounds
 					if (j - k > 0)
 					{
 						//Check so the coordinate is not out of bounds
-<<<<<<< HEAD
 						if (heightMap[i][j - k] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared))
 						{
 							heightMap[i][j - k] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
@@ -320,11 +292,6 @@ void makeDitches(std::vector< std::vector<float> > *oldHeightMap)
 						if (heightMap[i - k][j] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared))
 						{
 							heightMap[i - k][j] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
-=======
-						if (heightMap[i][j - k] > k * (1.0f / (SQUARE_SIZE / 100.0f)))
-						{
-							heightMap[i][j - k] = k * (1.0f / (SQUARE_SIZE / 100.0f));
->>>>>>> 63769324e99b1125701623cd50878b8806ce7b52
 						}
 					}
 				}
@@ -591,16 +558,11 @@ void findWeightMatrix(std::vector< std::vector<int> > triangles, std::vector< st
 /* Function to determine which nodes are connected
  * Input - *connections - pointer to an array that connections whihc main nodes are connected
  */
-<<<<<<< HEAD
 void findConnections(std::vector<std::vector<int> > *connections, std::vector<int> usedNodes, std::vector<std::vector<int> > coordinates)
-=======
-void findConnections(std::vector<std::vector<int> > *connections)
->>>>>>> 63769324e99b1125701623cd50878b8806ce7b52
 {
 	//Connect each point to 2 other random points
 	//Then connect a random number of arcs, around numNodes/2
 	std::vector<int> numConnections(NUM_NODES, 0);
-<<<<<<< HEAD
 
 	std::vector<int> distances;
 	std::vector<int> distancesUnsorted;
@@ -627,25 +589,18 @@ void findConnections(std::vector<std::vector<int> > *connections)
 		}
 	}
 
-=======
->>>>>>> 63769324e99b1125701623cd50878b8806ce7b52
 	//Loop through the amount of nodes you want to add
 	for ( int i = 0; i < NUM_NODES; i++)
 	{
 		//Vector to store connections
 		std::vector<int> nodeConnections;
 		//Loop through a random amount of times, either 2, 3, or 4
-<<<<<<< HEAD
 		for (int j = 0; j < 2; j++)
-=======
-		for (int j = 0; j < (2 + (rand()%2)); j++)
->>>>>>> 63769324e99b1125701623cd50878b8806ce7b52
 		{
 			//can be changed to change graphs
 			//Check so node only has 2 connections
 			if (numConnections[i] < 2)
 			{
-<<<<<<< HEAD
 				// //Find a connection that isn't already used
 				// int randConn = i;
 				// while (i == randConn || std::find(nodeConnections.begin(), nodeConnections.end(),randConn)!=nodeConnections.end())
@@ -654,11 +609,6 @@ void findConnections(std::vector<std::vector<int> > *connections)
 				// }
 
 				for(unsigned k = 0; k < usedNodes.size(); k++)
-=======
-				//Find a connection that isn't already used
-				int randConn = i;
-				while (i == randConn || std::find(nodeConnections.begin(), nodeConnections.end(),randConn)!=nodeConnections.end())
->>>>>>> 63769324e99b1125701623cd50878b8806ce7b52
 				{
 					if (i != order[k] && std::find(nodeConnections.begin(), nodeConnections.end(),order[k])==nodeConnections.end())
 					{
@@ -671,14 +621,9 @@ void findConnections(std::vector<std::vector<int> > *connections)
 						}
 					}
 				}
-<<<<<<< HEAD
 
 				//ADd it to the vector
 				// nodeConnections.push_back(randConn);
-=======
-				//ADd it to the vector
-				nodeConnections.push_back(randConn);
->>>>>>> 63769324e99b1125701623cd50878b8806ce7b52
 
 				numConnections[i]++;
 				// numConnections[randConn]++;
@@ -688,7 +633,6 @@ void findConnections(std::vector<std::vector<int> > *connections)
 		(*connections).push_back(nodeConnections);
 
 	}
-<<<<<<< HEAD
 
 	for (int i = 0; i < (*connections).size(); i++)
 	{
@@ -701,8 +645,6 @@ void findConnections(std::vector<std::vector<int> > *connections)
 
 		std::cout << std::endl;
 	}
-=======
->>>>>>> 63769324e99b1125701623cd50878b8806ce7b52
 }
 
 /* Function to find all the shortest paths from one node to the other nodes

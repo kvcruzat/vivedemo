@@ -1,5 +1,4 @@
 #include "terrainGen.h"
-<<<<<<< HEAD
 #include "DiamondSquare.h"
 #include "utils.h"
 
@@ -23,10 +22,4 @@ int main(int argc, char* argv[])
 		}
 	}
 	utils::outputTerrain(floatGraphCoords);
-=======
-
-int main(int argc, char[] *argv)
-{
-
->>>>>>> 63769324e99b1125701623cd50878b8806ce7b52
 }
