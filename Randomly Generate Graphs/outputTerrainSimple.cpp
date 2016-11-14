@@ -13,7 +13,7 @@
 #include <iomanip>
 
 //NUM OF POINTS
-const int SQUARE_SIZE = 1000;
+const int SQUARE_SIZE = 1025;
 
 // int main(int argc, char* argv[])
 // {
@@ -34,6 +34,28 @@ const int SQUARE_SIZE = 1000;
 // 	}
 // }
 
+<<<<<<< HEAD
+=======
+// int main(int argc, char* argv[])
+// {
+// 	std::ofstream outputHeightMap;
+// 	outputHeightMap.open("heightmaps/terrain.txt");
+
+// 	std::ifstream inputGraphMap;
+// 	inputGraphMap.open
+
+// 	for (int i = 0; i < SQUARE_SIZE; i++)
+// 	{
+// 		for (int j = 0; j < SQUARE_SIZE; j++)
+// 		{
+// 			outputHeightMap << ((2.0f * (float)SQUARE_SIZE) - ((float)i + (float)j)) /  (2.0f *(float)SQUARE_SIZE) << " ";
+// 		}
+
+// 		outputHeightMap << std::endl;
+// 	}
+// }
+
+>>>>>>> 63769324e99b1125701623cd50878b8806ce7b52
 void removeEmptyStrings(std::vector<std::string>& strings)
 {
   std::vector<std::string>::iterator it = std::remove_if(strings.begin(), 
