@@ -13,7 +13,7 @@
 #include <iomanip>
 
 //NUM OF POINTS
-const int SQUARE_SIZE = 1000;
+const int SQUARE_SIZE = 1025;
 
 // int main(int argc, char* argv[])
 // {

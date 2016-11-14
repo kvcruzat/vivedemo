@@ -61,3 +61,7 @@ RiversofHanoi/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+# Terrain File, too big for github
+terrain.m
+RiversofHanoi/Content/models/terrain.m

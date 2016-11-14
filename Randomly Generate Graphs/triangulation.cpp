@@ -49,11 +49,6 @@ int main (int argc, char *argv[])
 	//Function to find all the weights of connected arcs
 	findWeightMatrix(triangles, coordinates, &weightMatrix);
 
-	//Initialise array to be used to keep track of connections in graph
-	std::vector< std::vector<int> > connections;
-	//Picks random points to use as nodes
-	findConnections(&connections);
-
 	//Initialise vector to store which nodes are used
 	std::vector< int > usedNodes;
 
@@ -74,6 +69,12 @@ int main (int argc, char *argv[])
     	//Add the node if it doesn't exist
     	usedNodes.push_back(randNode);
 	}
+
+	//Initialise array to be used to keep track of connections in graph
+	std::vector< std::vector<int> > connections;
+	//Picks random points to use as nodes
+	findConnections(&connections, usedNodes, coordinates);
+
 
 	//Use djikstra to find the shortest paths between each node
 	std::vector< std::vector< std::vector<int> > > shortestPaths = dijkstra(connections, weightMatrix, usedNodes);
@@ -232,11 +233,17 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 }
 
 /* Functions that changes the width of the "rivers" in the heightmap
+ * Rivers are made using the graph for x^4
  * Input -
  * *oldHeightMap - pointer that points to the heightmap before any changes have been made to it
  */
 void makeDitches(std::vector< std::vector<float> > *oldHeightMap)
 {
+	//Variables used to make ditches
+	//Increase kmax for wider rivers
+	int kmax = 50;
+	//Increase ksquared with kmax
+	int kMaxSquared = kmax * kmax * kmax * kmax;
 	//Initialise the new height map to be the same as the old one.
 	std::vector< std::vector<float> > heightMap = (*oldHeightMap);
 	//Loop through the heightmap
@@ -249,24 +256,42 @@ void makeDitches(std::vector< std::vector<float> > *oldHeightMap)
 			{
 				//Loop through k times and change height on either side of "river"
 				//Could use exponent? smoother curves
-				for (int k = 0; k < 10; k++)
+				for (int k = 0; k < kmax; k++)
 				{
 					//Check so the coordinate is not out of bounds
 					if (j + k < SQUARE_SIZE)
 					{
 						//Adjust height
-						if (heightMap[i][j + k] > k * (1.0f / (SQUARE_SIZE / 100.0f)))
+						if (heightMap[i][j + k] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared));
 						{
-							heightMap[i][j + k] = k * (1.0f / (SQUARE_SIZE / 100.0f));
+							heightMap[i][j + k] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
 						}
 					}
 					//Check so the coordinate is not out of bounds
 					if (j - k > 0)
 					{
 						//Check so the coordinate is not out of bounds
-						if (heightMap[i][j - k] > k * (1.0f / (SQUARE_SIZE / 100.0f)))
+						if (heightMap[i][j - k] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared))
 						{
-							heightMap[i][j - k] = k * (1.0f / (SQUARE_SIZE / 100.0f));
+							heightMap[i][j - k] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
+						}
+					}
+					//Check so the coordinate is not out of bounds
+					if (i + k < SQUARE_SIZE)
+					{
+						//Adjust height
+						if (heightMap[i + k][j] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared));
+						{
+							heightMap[i + k][j] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
+						}
+					}
+					//Check so the coordinate is not out of bounds
+					if (i - k > 0)
+					{
+						//Check so the coordinate is not out of bounds
+						if (heightMap[i - k][j] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared))
+						{
+							heightMap[i - k][j] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
 						}
 					}
 				}
@@ -533,38 +558,92 @@ void findWeightMatrix(std::vector< std::vector<int> > triangles, std::vector< st
 /* Function to determine which nodes are connected
  * Input - *connections - pointer to an array that connections whihc main nodes are connected
  */
-void findConnections(std::vector<std::vector<int> > *connections)
+void findConnections(std::vector<std::vector<int> > *connections, std::vector<int> usedNodes, std::vector<std::vector<int> > coordinates)
 {
 	//Connect each point to 2 other random points
 	//Then connect a random number of arcs, around numNodes/2
 	std::vector<int> numConnections(NUM_NODES, 0);
+
+	std::vector<int> distances;
+	std::vector<int> distancesUnsorted;
+	std::vector<int> order;
+
+	for (unsigned i = 0; i < usedNodes.size(); i++)
+	{
+		distances.push_back(coordinates[usedNodes[i]][0] + coordinates[usedNodes[i]][1]);
+		distancesUnsorted.push_back(coordinates[usedNodes[i]][0] + coordinates[usedNodes[i]][1]);
+	}
+
+	std::sort(distances.begin(), distances.end());
+
+	for (unsigned i  = 0; i < usedNodes.size(); i++)
+	{
+		for (unsigned j = 0; j < usedNodes.size(); j++)
+		{
+			if (distances[i] == distancesUnsorted[j])
+			{
+				order.push_back(j);
+				std::cout << distances[i] << " " << j << std::endl;
+				break;
+			}
+		}
+	}
+
 	//Loop through the amount of nodes you want to add
 	for ( int i = 0; i < NUM_NODES; i++)
 	{
 		//Vector to store connections
 		std::vector<int> nodeConnections;
 		//Loop through a random amount of times, either 2, 3, or 4
-		for (int j = 0; j < (2 + (rand()%2)); j++)
+		for (int j = 0; j < 2; j++)
 		{
 			//can be changed to change graphs
 			//Check so node only has 2 connections
 			if (numConnections[i] < 2)
 			{
-				//Find a connection that isn't already used
-				int randConn = i;
-				while (i == randConn || std::find(nodeConnections.begin(), nodeConnections.end(),randConn)!=nodeConnections.end())
+				// //Find a connection that isn't already used
+				// int randConn = i;
+				// while (i == randConn || std::find(nodeConnections.begin(), nodeConnections.end(),randConn)!=nodeConnections.end())
+				// {
+				// 	randConn = (rand() % NUM_NODES);
+				// }
+
+				for(unsigned k = 0; k < usedNodes.size(); k++)
 				{
-					randConn = (rand() % NUM_NODES);
+					if (i != order[k] && std::find(nodeConnections.begin(), nodeConnections.end(),order[k])==nodeConnections.end())
+					{
+						if (distances[k] > distancesUnsorted[i])
+						{
+							std::cout << distances[k] << " > " << distancesUnsorted[i] << " " << order[k] << " > " << i << std::endl;;
+							nodeConnections.push_back(order[k]);
+							// numConnections[order[k]]++;
+							break;
+						}
+					}
 				}
+
 				//ADd it to the vector
-				nodeConnections.push_back(randConn);
+				// nodeConnections.push_back(randConn);
 
 				numConnections[i]++;
+				// numConnections[randConn]++;
 			}
 		}
 		//ADd the new connections to the total vector
 		(*connections).push_back(nodeConnections);
 
+	}
+
+	for (int i = 0; i < (*connections).size(); i++)
+	{
+		std::cout << i << " to: ";
+
+		for (int j = 0; j < (*connections)[i].size(); j++)
+		{
+			std::cout << (*connections)[i][j] << " ";
+		}
+
+		std::cout << std::endl;
 	}
 }
 
@@ -593,7 +672,7 @@ std::vector< std::vector< std::vector<int> > >  dijkstra(std::vector< std::vecto
 			int n = weightMatrix.size();
 			std::vector<int> shortPath;
 			//set distance to a value much higher than will be obtained
-			std::vector<int> distance(n, 9999999);
+			std::vector<int> distance(n, 99999999);
 			std::vector<bool> visited(n, false);
 
 			//First node

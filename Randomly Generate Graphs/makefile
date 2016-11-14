@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-c -Wall -std=c++11 -g
 LDFLAGS= 
-SOURCES=triangulation.cpp
+SOURCES=triangulation.cpp triangulation.h
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=graph
 

@@ -17,9 +17,10 @@
 
 //Global variables, change if needed
 //SQUARE SIZE = number of coordiantes in each axis
-const int SQUARE_SIZE = 1000;
+//Needs to be (2^n)+1
+const int SQUARE_SIZE = 2049;
 //Num of nodes inserted into graph, increase for morecomplex rivers
-const int NUM_INSERT_POINTS = 100;
+const int NUM_INSERT_POINTS = 50;
 //Number of nodes used in end graph, increase to make game more challenging
 const int NUM_NODES = 10;
 
@@ -29,7 +30,7 @@ bool pointInTriangle(int, int, int, int, int, int, int, int);
 void connectTriangle(std::vector< std::vector<int> >*, std::vector< std::vector<int> >*, int);
 void printToFile(std::vector< std::vector<int> >, std::vector< std::vector<int> >, std::vector< std::vector<int> >);
 void findWeightMatrix(std::vector< std::vector<int> >, std::vector< std::vector<int> >, std::vector< std::vector<int> >*);
-void findConnections(std::vector<std::vector<int> >*);
+void findConnections(std::vector<std::vector<int> >*, std::vector<int>, std::vector<std::vector<int> >);
 std::vector< std::vector< std::vector<int> > > dijkstra(std::vector< std::vector<int> >, std::vector< std::vector<int> >, std::vector<int>);
 void testPrint(std::vector< std::vector< std::vector<int> > >, std::vector< int >, std::vector< std::vector<int> >);
 void printGraph(std::vector< std::vector< std::vector<int> > >, std::vector<std::vector<int> > , std::vector< std::vector<int> >, std::vector< int >);
