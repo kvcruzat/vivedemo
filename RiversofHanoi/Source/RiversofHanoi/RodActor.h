@@ -26,7 +26,7 @@ public:
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
 
-	TArray<AActor*> ContainedActors;
+	TArray<AActor*> containedActors;
 	FVector rodLocation;
 
 	UFUNCTION()

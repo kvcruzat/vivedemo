@@ -27,7 +27,7 @@ void ARodActor::BeginPlay()
 	
 	rodLocation = this->GetActorLocation();
 	UE_LOG(LogTemp, Warning, TEXT("Location: %s"), *rodLocation.ToString());
-	rodLocation.Z += 50.0f;
+	rodLocation.Z += 70.0f;
 	
 }
 
@@ -40,10 +40,21 @@ void ARodActor::Tick( float DeltaTime )
 
 void ARodActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (!OtherActor->GetFName().ToString().Contains(TEXT("BP_MotionController"))) {
-		UE_LOG(LogTemp, Warning, TEXT("HIT %s"), *OtherActor->GetFName().ToString());
-		UE_LOG(LogTemp, Warning, TEXT("HIT %s"), *OtherComponent->GetFName().ToString());
+	FString collidedActor = OtherActor->GetFName().ToString();
+
+	if (!collidedActor.Contains(TEXT("BP_MotionController")) && !containedActors.Contains(OtherActor)) {
+		/*UE_LOG(LogTemp, Warning, TEXT("HIT %s"), *OtherActor->GetFName().ToString());
+		UE_LOG(LogTemp, Warning, TEXT("HIT %s"), *OtherComponent->GetFName().ToString());*/
 		OtherActor->SetActorLocation(rodLocation, false);
+
+		if (containedActors.Num() != 0) {
+			for (int i = 0; i < containedActors.Num(); ++i) {
+				UE_LOG(LogTemp, Warning, TEXT("contained: %s"), *containedActors[i]->GetFName().ToString());
+			}
+		}
+
+		containedActors.Add(OtherActor);
+
 	}
 	
 
