@@ -3,6 +3,8 @@
 #include "RiversofHanoi.h"
 #include "RodActor.h"
 
+#include "SmallDiscActor.h"
+#include "MediumDiscActor.h"
 
 // Sets default values
 ARodActor::ARodActor(const FObjectInitializer& ObjectInitializer)
@@ -61,11 +63,42 @@ void ARodActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Othe
 	if (!collidedActor.Contains(TEXT("BP_MotionController")) && !collidedActor.Contains(TEXT("BP_Rod"))) {
 		if (collidedComp == TEXT("ColComp2") && containedActors.Contains(OtherActor)) {
 			containedActors.Remove(OtherActor);
+
+			if (containedActors.Num() > 0) {
+				FString topActorName = containedActors.Top()->GetFName().ToString();
+				if (topActorName.Contains(TEXT("Small"))) {
+					ASmallDiscActor *actor = Cast<ASmallDiscActor>(containedActors.Top());
+					actor->canPickUp = true;
+
+				}
+				else if (topActorName.Contains(TEXT("Medium"))) {
+					AMediumDiscActor* actor = Cast<AMediumDiscActor>(containedActors.Top());
+					actor->canPickUp = true;
+				}
+			}
 		}
 		else if (collidedComp == TEXT("ColComp")) {
 			if (sizeCheck(OtherActor, containedActors)) {
-				OtherActor->SetActorLocation(rodLocation, false);
-				if (!containedActors.Contains(OtherActor)) { containedActors.Add(OtherActor); }
+				if (!containedActors.Contains(OtherActor)) { 
+					OtherActor->SetActorLocation(rodLocation, false);
+					containedActors.Add(OtherActor);
+
+					if (containedActors.Num() > 1) {
+						for (int32 i = 0; i < containedActors.Num() - 1; ++i) {
+							FString currentActorName = containedActors[i]->GetFName().ToString();
+							if (currentActorName.Contains(TEXT("Small"))) {
+								ASmallDiscActor* actor = Cast<ASmallDiscActor>(containedActors[i]);
+								actor->canPickUp = false;
+							}
+							else if (currentActorName.Contains(TEXT("Medium"))) {
+								AMediumDiscActor* actor = Cast<AMediumDiscActor>(containedActors[i]);
+								actor->canPickUp = false;
+							}
+
+
+						}
+					}
+				}
 
 				OverlappedComp->SetCollisionProfileName(FName(TEXT("OverlapAll")));
 			}
@@ -86,8 +119,27 @@ void ARodActor::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimiti
 	if (!collidedActor.Contains(TEXT("BP_MotionController")) && !collidedActor.Contains(TEXT("BP_Rod"))) {
 		if (collidedComp == TEXT("ColComp")   ){
 			if (sizeCheck(OtherActor, containedActors)) {
-				OtherActor->SetActorLocation(rodLocation, false);
-				if (!containedActors.Contains(OtherActor)) { containedActors.Add(OtherActor); }
+				if (!containedActors.Contains(OtherActor)) { 
+					OtherActor->SetActorLocation(rodLocation, false);
+					containedActors.Add(OtherActor);
+
+					if (containedActors.Num() > 1) {
+						for (int32 i = 0; i < containedActors.Num() - 1; ++i) {
+							FString currentActorName = containedActors[i]->GetFName().ToString();
+							if (currentActorName.Contains(TEXT("Small"))) {
+								ASmallDiscActor* actor = Cast<ASmallDiscActor>(containedActors[i]);
+								actor->canPickUp = false;
+							}
+							else if (currentActorName.Contains(TEXT("Medium"))) {
+								AMediumDiscActor* actor = Cast<AMediumDiscActor>(containedActors[i]);
+								actor->canPickUp = false;
+							}
+
+							
+						}
+					}
+					
+				}
 				
 				HitComp->SetCollisionProfileName(FName(TEXT("OverlapAll")));
 

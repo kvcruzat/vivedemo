@@ -17,7 +17,7 @@ AMediumDiscActor::AMediumDiscActor()
 void AMediumDiscActor::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 // Called every frame

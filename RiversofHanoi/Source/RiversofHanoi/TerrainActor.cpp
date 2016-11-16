@@ -10,9 +10,9 @@
 ATerrainActor::ATerrainActor()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	//PrimaryActorTick.bCanEverTick = true;
 
-	Util *util = new Util();;
+	Util *util = new Util();
 	util->readData("terrain.m", vertices, normals, Triangles);
 	vertices = util->verts;
 	normals = util->norms;
@@ -45,6 +45,8 @@ ATerrainActor::ATerrainActor()
 void ATerrainActor::BeginPlay()
 {
 	Super::BeginPlay();
+
+	
 
 }
 
