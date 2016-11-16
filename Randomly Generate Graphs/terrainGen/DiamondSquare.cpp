@@ -25,7 +25,7 @@ DiamondSquare::DiamondSquare(int power, float p0, float p1, float p2, float p3)
 	//Set scale, higher scale, less smooth terrain
 	//Ideally less than 1.0f
 	//But can go as high as you please
-	scale = 0.1f;
+	scale = 0.3f;
 
 	//Run diamond square
 	runDiamondSquare(maxValue);

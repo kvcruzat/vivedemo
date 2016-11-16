@@ -6,6 +6,8 @@
 //Picks 4 maxima points/4 minima points / 2 others
 //Generates the graph
 
+//Another wya to do this would be to tesselate the swauare, find intersections then use random intersections find 2 connections from each point.
+
 int main (int argc, char *argv[])
 {
 	srand (time(NULL));
@@ -15,59 +17,45 @@ int main (int argc, char *argv[])
 	//Coordinates are stored as indexes to coordinates array
 	std::vector<std::vector<int> > triangles;
 	//Coordinates are stored in this array as an x point and y point
-	std::vector<std::vector<int> > coordinates;
+	std::vector<std::vector<int> > coordinates = findNodes();
 
-	//start with corners
-	// (0,0) is top left
-	//Add to coordinates list
-	coordinates.push_back(std::vector<int>{0, 0});
-	coordinates.push_back(std::vector<int>{0, SQUARE_SIZE});
-	coordinates.push_back(std::vector<int>{SQUARE_SIZE, 0});
-	coordinates.push_back(std::vector<int>{SQUARE_SIZE, SQUARE_SIZE});
+	std::vector<std::vector<int> > graphConnections = addLinesToGraph();
 
 	//Add first two triangles to array. Like this
 	//0 - 0
 	//| \ |
 	//0 - 0
-	triangles.push_back(std::vector<int>{0, 1, 3});
-	triangles.push_back(std::vector<int>{0, 2, 3});
-
-
-	//For loop to insert points
-	for (int i = 0; i < NUM_INSERT_POINTS; i++)
-	{
-		//Insert the new point and find what triangle it is in
-		//Returns the index of triangle it is in
-		int triangle = insertPointAndFindTriangle(&coordinates, triangles);
-		//Delete the old tirangle and reattach the new one
-		connectTriangle(&triangles, &coordinates, triangle);
-	}
+	// triangles.push_back(std::vector<int>{0, 1, 3});
+	// triangles.push_back(std::vector<int>{0, 2, 3});
 
 	//Initialise matrix for weights of each arc
-	std::vector<std::vector<int> > weightMatrix(coordinates.size(), std::vector<int> (coordinates.size(), 0));
+	std::vector<std::vector<float> > weightMatrix(coordinates.size(), std::vector<float> (NUM_POINTS * NUM_POINTS, 0));
 
 	//Function to find all the weights of connected arcs
-	findWeightMatrix(triangles, coordinates, &weightMatrix);
-
+	findWeightMatrix(&graphConnections, coordinates, &weightMatrix);
 	//Initialise vector to store which nodes are used
 	std::vector< int > usedNodes;
 
 	//Use top left and bottom right always.
 	usedNodes.push_back(0);
-	usedNodes.push_back(3);
+	usedNodes.push_back((NUM_POINTS * NUM_POINTS) - 1);
+
+	
 
 	//For loop to insert which nodes are used into the used nodes array
 	for (int i = 0; i < NUM_NODES - 2; i++)
 	{
 		//Get a random node
-		int randNode = (rand() % (NUM_INSERT_POINTS + 4));
+		//Exluding guaranteed nodes
+		int randNode = (rand() % (NUM_POINTS * NUM_POINTS));
 		//While the node doesn't exist in the usedNodes array
 		while(std::find(usedNodes.begin(), usedNodes.end(), randNode) != usedNodes.end()) {
 			//Find a new random node
-    		randNode = (rand() % (NUM_INSERT_POINTS + 4));
+    		randNode = (rand() % (NUM_POINTS * NUM_POINTS));
     	}
     	//Add the node if it doesn't exist
     	usedNodes.push_back(randNode);
+    	// std::cout << randNode << std::endl;
 	}
 
 	//Initialise array to be used to keep track of connections in graph
@@ -75,13 +63,17 @@ int main (int argc, char *argv[])
 	//Picks random points to use as nodes
 	findConnections(&connections, usedNodes, coordinates);
 
+	//TODO: CARRY ON HERE TOMORROW
 
 	//Use djikstra to find the shortest paths between each node
 	std::vector< std::vector< std::vector<int> > > shortestPaths = dijkstra(connections, weightMatrix, usedNodes);
 
+	//Change coordinates to match the grid size
+	updateCoordinates(&coordinates);
+
 	//Output all information
-	printToFile(triangles, coordinates, weightMatrix);
-	testPrint(shortestPaths, usedNodes, connections);
+	// printToFile(triangles, coordinates, weightMatrix);
+	// testPrint(shortestPaths, usedNodes, connections);
 	printGraph(shortestPaths, coordinates, connections, usedNodes);
 }
 
@@ -242,6 +234,8 @@ void makeDitches(std::vector< std::vector<float> > *oldHeightMap)
 	//Variables used to make ditches
 	//Increase kmax for wider rivers
 	int kmax = 50;
+	int interval = kmax/3;
+	float ditchHeight = 0.33f;
 	//Increase ksquared with kmax
 	int kMaxSquared = kmax * kmax * kmax * kmax;
 	//Initialise the new height map to be the same as the old one.
@@ -262,37 +256,109 @@ void makeDitches(std::vector< std::vector<float> > *oldHeightMap)
 					if (j + k < SQUARE_SIZE)
 					{
 						//Adjust height
-						if (heightMap[i][j + k] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared));
+						// if (heightMap[i][j + k] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared));
+						// {
+						// 	heightMap[i][j + k] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
+						// }
+						if ( k < interval)
 						{
-							heightMap[i][j + k] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
+							if (heightMap[i][j+k] > 0)
+							{
+								heightMap[i][j+k] = 0;
+							}
+						} else if ( k < 2*interval)
+						{
+							if (heightMap[i][j+k] > ditchHeight)
+							{
+								heightMap[i][j+k] = ditchHeight;
+							}
+						} else {
+							if (heightMap[i][j+k] > 2*ditchHeight)
+							{
+								heightMap[i][j+k] = 2*ditchHeight;
+							}
 						}
 					}
 					//Check so the coordinate is not out of bounds
 					if (j - k > 0)
 					{
-						//Check so the coordinate is not out of bounds
-						if (heightMap[i][j - k] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared))
+						if ( k < interval)
 						{
-							heightMap[i][j - k] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
+							if (heightMap[i][j-k] > 0)
+							{
+								heightMap[i][j-k] = 0;
+							}
+						} else if ( k < 2*interval)
+						{
+							if (heightMap[i][j-k] > ditchHeight)
+							{
+								heightMap[i][j-k] = ditchHeight;
+							}
+						} else {
+							if (heightMap[i][j-k] > 2*ditchHeight)
+							{
+								heightMap[i][j-k] = 2*ditchHeight;
+							}
 						}
+						//Check so the coordinate is not out of bounds
+						// if (heightMap[i][j - k] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared))
+						// {
+						// 	heightMap[i][j - k] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
+						// }
 					}
 					//Check so the coordinate is not out of bounds
 					if (i + k < SQUARE_SIZE)
 					{
-						//Adjust height
-						if (heightMap[i + k][j] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared));
+						if ( k < interval)
 						{
-							heightMap[i + k][j] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
+							if (heightMap[i+k][j] > 0)
+							{
+								heightMap[i+k][j] = 0;
+							}
+						} else if ( k < 2*interval)
+						{
+							if (heightMap[i+k][j] > ditchHeight)
+							{
+								heightMap[i+k][j] = ditchHeight;
+							}
+						} else {
+							if (heightMap[i+k][j] > 2*ditchHeight)
+							{
+								heightMap[i+k][j] = 2*ditchHeight;
+							}
 						}
+						//Adjust height
+						// if (heightMap[i + k][j] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared));
+						// {
+						// 	heightMap[i + k][j] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
+						// }
 					}
 					//Check so the coordinate is not out of bounds
 					if (i - k > 0)
 					{
-						//Check so the coordinate is not out of bounds
-						if (heightMap[i - k][j] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared))
+						if ( k < interval)
 						{
-							heightMap[i - k][j] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
+							if (heightMap[i-k][j] > 0)
+							{
+								heightMap[i-k][j] = 0;
+							}
+						} else if ( k < 2*interval)
+						{
+							if (heightMap[i-k][j] > ditchHeight)
+							{
+								heightMap[i-k][j] = ditchHeight;
+							}
+						} else {
+							if (heightMap[i-k][j] > 2*ditchHeight)
+							{
+								heightMap[i-k][j] = 2*ditchHeight;
+							}
 						}
+						// //Check so the coordinate is not out of bounds
+						// if (heightMap[i - k][j] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared))
+						// {
+						// 	heightMap[i - k][j] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
+						// }
 					}
 				}
 			}
@@ -469,7 +535,7 @@ void connectTriangle(std::vector< std::vector<int> > *triangles, std::vector< st
  * coordinates - array containing the coordinates of each point
  * weightMatrix - a matrix containing all the weights of each arc
  */
-void printToFile(std::vector< std::vector<int> > triangles, std::vector< std::vector<int> > coordinates, std::vector< std::vector<int> > weightMatrix)
+void printToFile(std::vector< std::vector<int> > triangles, std::vector< std::vector<int> > coordinates, std::vector< std::vector<float> > weightMatrix)
 {
 	//Open an output stream pointing to the right file
 	std::ofstream outputHeightMap;
@@ -506,50 +572,38 @@ void printToFile(std::vector< std::vector<int> > triangles, std::vector< std::ve
  * coordinates - array containing the coordinates of each point
  * weightMatrix - pointer to a matrix containing all the weights of each arc
  */
-void findWeightMatrix(std::vector< std::vector<int> > triangles, std::vector< std::vector<int> > coordinates, std::vector< std::vector<int> > *weightMatrix)
+void findWeightMatrix(std::vector< std::vector<int> > *graphConnections, std::vector< std::vector<int> > coordinates, std::vector< std::vector<float> > *weightMatrix)
 {
 	//loop trhough triangles
 	//weight = distance between coordinates
 	//fill weight matrix
 
 	//Loop through each triangle
-	for (unsigned i = 0; i < triangles.size(); i++)
+	for (unsigned i = 0; i < (*graphConnections).size(); i++)
 	{
-		//Get the points of the triangle
-		int *point0 = &triangles[i][0];
-		int *point1 = &triangles[i][1];
-		int *point2 = &triangles[i][2];
+		for (unsigned j = 0; j < (*graphConnections)[i].size(); j++)
+		{
+			int connectionPoint = (*graphConnections)[i][j];
 
-		//Find manhattan distance between the points
-		float distance01 = (coordinates[*point0][0] - coordinates[*point1][0]) + (coordinates[*point0][0] - coordinates[*point1][1]);
-		float distance12 = (coordinates[*point1][0] - coordinates[*point2][0]) + (coordinates[*point1][0] - coordinates[*point2][1]);
-		float distance20 = (coordinates[*point2][0] - coordinates[*point0][0]) + (coordinates[*point2][0] - coordinates[*point0][1]);
+			// std::cout << (*connections)[99][0] << " " << (i * NUM_POINTS) + j << std::endl;
+			// std::cout << i << " connected to: " << (*connections)[99][0] << std::endl;
+			//Find manhattan distance between the points
+			int xSquared = (coordinates[i][0] - coordinates[connectionPoint][0]) * (coordinates[i][0] - coordinates[connectionPoint][0]);
+			int ySquared = (coordinates[i][1] - coordinates[connectionPoint][1]) * (coordinates[i][1] - coordinates[connectionPoint][1]);
+			float distance = std::sqrt(float(xSquared) + float(ySquared));
 
-		//Set the weights in the matrix
-		//Opposite weights set to 0 as the graph does not flow backwards.
-		if (distance01 < 0)
-		{
-			(*weightMatrix)[*point1][*point0] = 0;
-			(*weightMatrix)[*point0][*point1] = -distance01;
-		} else {
-			(*weightMatrix)[*point1][*point0] = distance01;
-			(*weightMatrix)[*point0][*point1] = 0;
-		}
-		if (distance12 < 0)
-		{
-			(*weightMatrix)[*point2][*point1] = 0;
-			(*weightMatrix)[*point1][*point2] = -distance12;
-		} else {
-			(*weightMatrix)[*point2][*point1] = distance12;
-			(*weightMatrix)[*point1][*point2] = 0;
-		}
-		if (distance20 < 0)
-		{
-			(*weightMatrix)[*point0][*point2] = 0;
-			(*weightMatrix)[*point2][*point0] = -distance20;
-		} else {
-			(*weightMatrix)[*point0][*point2] = distance20;
-			(*weightMatrix)[*point2][*point0] = 0;
+			float manhattanDist = (coordinates[i][0] - coordinates[connectionPoint][0]) + (coordinates[i][1] - coordinates[connectionPoint][1]);
+
+			//Set the weights in the matrix
+			//Opposite weights set to 0 as the graph does not flow backwards.
+			if (manhattanDist < 0)
+			{
+				(*weightMatrix)[connectionPoint][i] = 0;
+				(*weightMatrix)[i][connectionPoint] = -distance;
+			} else {
+				(*weightMatrix)[connectionPoint][i] = distance;
+				(*weightMatrix)[i][connectionPoint] = 0;
+			}
 		}
 
 	}
@@ -572,6 +626,7 @@ void findConnections(std::vector<std::vector<int> > *connections, std::vector<in
 	{
 		distances.push_back(coordinates[usedNodes[i]][0] + coordinates[usedNodes[i]][1]);
 		distancesUnsorted.push_back(coordinates[usedNodes[i]][0] + coordinates[usedNodes[i]][1]);
+		// std::cout << usedNodes[i] << std::endl;
 	}
 
 	std::sort(distances.begin(), distances.end());
@@ -580,7 +635,7 @@ void findConnections(std::vector<std::vector<int> > *connections, std::vector<in
 	{
 		for (unsigned j = 0; j < usedNodes.size(); j++)
 		{
-			if (distances[i] == distancesUnsorted[j])
+			if (distances[i] == distancesUnsorted[j] && std::find(order.begin(), order.end(),j)==order.end())
 			{
 				order.push_back(j);
 				std::cout << distances[i] << " " << j << std::endl;
@@ -655,7 +710,7 @@ void findConnections(std::vector<std::vector<int> > *connections, std::vector<in
  * Output -
  * shortest path from the nodes to other nodes
  */
-std::vector< std::vector< std::vector<int> > >  dijkstra(std::vector< std::vector<int> > connections, std::vector< std::vector<int> > weightMatrix, std::vector<int> usedNodes)
+std::vector< std::vector< std::vector<int> > >  dijkstra(std::vector< std::vector<int> > connections, std::vector< std::vector<float> > weightMatrix, std::vector<int> usedNodes)
 {
 	//Make a matrix filled with vectors
 	std::vector< std::vector< std::vector<int> > > shortestPaths(connections.size(), std::vector<std::vector<int> > (weightMatrix.size(), std::vector<int> (1, -1)));
@@ -736,4 +791,91 @@ std::vector< std::vector< std::vector<int> > >  dijkstra(std::vector< std::vecto
 	}
 
 	return shortestPaths;
+}
+
+std::vector< std::vector<int> > addLinesToGraph()
+{
+	std::vector < std::vector <int> > connections;
+	for (int i = 0; i < NUM_POINTS; i++)
+	{
+		for (int j = 0; j < NUM_POINTS; j++)
+		{
+			std::vector<int> connectedness;
+			int currentPoint = (i * NUM_POINTS) + j;
+			//Find 8 connectedness
+			//Left
+			if (!(j - 1 < 0))
+			{
+				connectedness.push_back(currentPoint - 1);
+			}
+			//Right
+			if (!(j + 1 >= NUM_POINTS))
+			{
+				connectedness.push_back(currentPoint + 1);
+			}
+			//Up
+			if (!(i - 1 < 0))
+			{
+				connectedness.push_back(currentPoint - (NUM_POINTS));
+			}
+			//Down
+			if (!(i + 1 >= NUM_POINTS))
+			{
+				connectedness.push_back(currentPoint + (NUM_POINTS));
+			}
+			//Up-Right
+			if (!(i - 1 < 0 || j + 1 >= NUM_POINTS))
+			{
+				connectedness.push_back(currentPoint + 1 - (NUM_POINTS));
+			}
+			//Down-Right
+			if (!(i + 1 >= NUM_POINTS || j + 1 >= NUM_POINTS))
+			{
+				connectedness.push_back(currentPoint + 1 + (NUM_POINTS));
+			}
+			//Down-Left
+			if (!(i + 1 >= NUM_POINTS || j - 1 < 0))
+			{
+				connectedness.push_back(currentPoint - 1 + (NUM_POINTS));
+			}
+			//Up-Left
+			if (!(i - 1 < 0 || j - 1 < 0))
+			{
+				connectedness.push_back(currentPoint - 1 - (NUM_POINTS));
+			}
+
+			connections.push_back(connectedness);
+		}
+	}
+
+	return connections;
+}
+
+std::vector<std::vector<int> > findNodes()
+{
+	std::vector< std::vector<int> > coordinates;
+	for (int i = 0; i < (NUM_POINTS); i++)
+	{
+		for (int j = 0; j < (NUM_POINTS); j++)
+		{
+			coordinates.push_back(std::vector<int>{i, j});
+		}
+	}
+
+	return coordinates;
+}
+
+void updateCoordinates(std::vector< std::vector<int> > *coordinates)
+{
+	//int to hold the scale factor
+	int scale = SQUARE_SIZE / NUM_POINTS;
+
+	for (int i = 0; i < coordinates->size() - 1; i++)
+	{
+		(*coordinates)[i][0] = (*coordinates)[i][0] * scale;
+		(*coordinates)[i][1] = (*coordinates)[i][1] * scale;
+	}
+
+	(*coordinates)[(coordinates->size()) - 1][0] = SQUARE_SIZE;
+	(*coordinates)[(coordinates->size()) - 1][1] = SQUARE_SIZE;
 }
