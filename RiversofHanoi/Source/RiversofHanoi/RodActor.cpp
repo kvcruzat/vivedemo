@@ -5,6 +5,7 @@
 
 #include "SmallDiscActor.h"
 #include "MediumDiscActor.h"
+#include "LargeDiscActor.h"
 
 // Sets default values
 ARodActor::ARodActor(const FObjectInitializer& ObjectInitializer)
@@ -33,6 +34,9 @@ void ARodActor::BeginPlay()
 	
 	rodLocation = this->GetActorLocation();
 	rodLocation.Z += 60.0f;
+
+	discRot.Pitch = 0.f;
+	discRot.Roll = 0.f;
 	
 }
 
@@ -80,7 +84,25 @@ void ARodActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Othe
 		else if (collidedComp == TEXT("ColComp")) {
 			if (sizeCheck(OtherActor, containedActors)) {
 				if (!containedActors.Contains(OtherActor)) { 
-					OtherActor->SetActorLocation(rodLocation, false);
+					bool isPickingUp;
+					if (collidedActor.Contains(TEXT("Small"))) {
+						ASmallDiscActor *actor = Cast<ASmallDiscActor>(OtherActor);
+						isPickingUp = actor->isPickingUp;
+
+					}
+					else if (collidedActor.Contains(TEXT("Medium"))) {
+						AMediumDiscActor* actor = Cast<AMediumDiscActor>(OtherActor);
+						isPickingUp = actor->isPickingUp;
+					}
+					else if (collidedActor.Contains(TEXT("Large"))) {
+						ALargeDiscActor* actor = Cast<ALargeDiscActor>(OtherActor);
+						isPickingUp = actor->isPickingUp;
+					}
+					if (!isPickingUp) {
+						OtherActor->SetActorRotation(discRot);
+						OtherActor->SetActorLocation(rodLocation, false);
+					}
+					
 					containedActors.Add(OtherActor);
 
 					if (containedActors.Num() > 1) {
@@ -120,7 +142,23 @@ void ARodActor::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimiti
 		if (collidedComp == TEXT("ColComp")   ){
 			if (sizeCheck(OtherActor, containedActors)) {
 				if (!containedActors.Contains(OtherActor)) { 
-					OtherActor->SetActorLocation(rodLocation, false);
+					bool isPickingUp;
+					if (collidedActor.Contains(TEXT("Small"))) {
+						ASmallDiscActor *actor = Cast<ASmallDiscActor>(OtherActor);
+						isPickingUp = actor->isPickingUp;
+					}
+					else if (collidedActor.Contains(TEXT("Medium"))) {
+						AMediumDiscActor* actor = Cast<AMediumDiscActor>(OtherActor);
+						isPickingUp = actor->isPickingUp;
+					}
+					else if (collidedActor.Contains(TEXT("Large"))) {
+						ALargeDiscActor* actor = Cast<ALargeDiscActor>(OtherActor);
+						isPickingUp = actor->isPickingUp;
+					}
+					if (!isPickingUp) {
+						OtherActor->SetActorRotation(discRot);
+						OtherActor->SetActorLocation(rodLocation, false);
+					}
 					containedActors.Add(OtherActor);
 
 					if (containedActors.Num() > 1) {
