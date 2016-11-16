@@ -622,6 +622,24 @@ void findConnections(std::vector<std::vector<int> > *connections, std::vector<in
 	std::vector<int> distancesUnsorted;
 	std::vector<int> order;
 
+	//Don't let it connect to nodes on the edge
+	std::vector<int> disallowedNodes;
+
+	for (int i  = 0; i < NUM_POINTS; i++)
+	{
+		for (int j = 0; j < NUM_POINTS; j++)
+		{
+			if ( j == 0 || i == 0)
+			{
+				int currentPoint = (i * NUM_POINTS) + j;
+				if (!(currentPoint == 0 || currentPoint == (NUM_POINTS * NUM_POINTS) - 1))
+				{
+					disallowedNodes.push_back(currentPoint);
+				}
+			}
+		}
+	}
+
 	for (unsigned i = 0; i < usedNodes.size(); i++)
 	{
 		distances.push_back(coordinates[usedNodes[i]][0] + coordinates[usedNodes[i]][1]);
@@ -665,7 +683,7 @@ void findConnections(std::vector<std::vector<int> > *connections, std::vector<in
 
 				for(unsigned k = 0; k < usedNodes.size(); k++)
 				{
-					if (i != order[k] && std::find(nodeConnections.begin(), nodeConnections.end(),order[k])==nodeConnections.end())
+					if (i != order[k] && std::find(nodeConnections.begin(), nodeConnections.end(),order[k])==nodeConnections.end() && std::find(disallowedNodes.begin(), disallowedNodes.end(),order[k])==disallowedNodes.end())
 					{
 						if (distances[k] > distancesUnsorted[i])
 						{

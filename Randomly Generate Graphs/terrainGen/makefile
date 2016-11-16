@@ -1,9 +1,9 @@
 CC=g++
 CFLAGS=-c -Wall -std=c++11 -g
 LDFLAGS= 
-SOURCES=terrainGen.cpp utils.cpp DiamondSquare.cpp terrainGen.h utils.h DiamondSquare.h
+SOURCES=triangulation.cpp terrainGen.cpp utils.cpp DiamondSquare.cpp readTerrain.cpp terrainGen.h utils.h DiamondSquare.h triangulation.h readTerrain.h
 OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=terrainGen
+EXECUTABLE=graphGen
 
 all: $(SOURCES) $(EXECUTABLE)
     

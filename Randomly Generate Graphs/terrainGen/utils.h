@@ -21,10 +21,9 @@ public:
 	utils();
 	static std::vector< std::vector< std::string > > readTerrainFile(std::string);
 	static void outputTerrain(std::vector< std::vector<float> > terraincoords);
-
-private:
 	static void removeEmptyStrings(std::vector<std::string>& strings);
 	static std::vector<std::string> split(std::string s, std::string delimiter);
+private:
 };
 
 #endif
