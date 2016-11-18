@@ -18,7 +18,6 @@ ALargeDiscActor::ALargeDiscActor()
 void ALargeDiscActor::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame

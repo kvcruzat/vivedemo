@@ -17,6 +17,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Mesh)
 		UStaticMeshComponent* mediumDiscMesh;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		bool canPickUp = true;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		bool isPickingUp = false;
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
