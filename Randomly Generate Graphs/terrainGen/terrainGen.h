@@ -13,8 +13,9 @@ class terrainGen
 {
 public:
 	terrainGen();
-	static void generateTerrain(std::vector< std::vector<float> >*);
+	static void generateTerrain(std::vector< std::vector<float> >* graphCoords, std::vector<int> *usedNodes, std::vector<std::vector<int> > *coordinates);
 private:
+	static void outputNodes(std::vector<int> usedNodes, std::vector<std::vector<int> > coordinates, std::vector<std::vector<float> > terrainCoords);
 
 };
 

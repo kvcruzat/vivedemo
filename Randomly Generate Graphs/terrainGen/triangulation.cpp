@@ -75,7 +75,7 @@ int main (int argc, char *argv[])
 	// testPrint(shortestPaths, usedNodes, connections);
 	printGraph(shortestPaths, coordinates, connections, usedNodes);
 
-	outputNodes(usedNodes, coordinates);
+	// outputNodes(usedNodes, coordinates);
 }
 
 
@@ -176,7 +176,7 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 	// }
 
 	//Print the height map
-	printHeightMap(connectionsMatrix, coordinates);
+	printHeightMap(connectionsMatrix, coordinates, usedNodes);
 }
 
 /* Function that outputs the heightmap of the graph to a file
@@ -184,7 +184,7 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
  * connectionsMatrix -  Matrix that contains the information about which nodes are connected
  * coordinates - a vector that stores every nodes coordinates
  */
-void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vector< std::vector<int> > coordinates)
+void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vector< std::vector<int> > coordinates, std::vector<int> usedNodes)
 {
 	//Canal height map
 	//If 1 then canal is present
@@ -224,7 +224,7 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 		graphHeightMap << std::endl;
 	}
 
-	terrainGen::generateTerrain(&heightMap);
+	terrainGen::generateTerrain(&heightMap, &usedNodes, &coordinates);
 }
 
 /* Functions that changes the width of the "rivers" in the heightmap
@@ -899,8 +899,8 @@ void updateCoordinates(std::vector< std::vector<int> > *coordinates)
 		(*coordinates)[i][1] = (*coordinates)[i][1] * scale;
 	}
 
-	(*coordinates)[(coordinates->size()) - 1][0] = SQUARE_SIZE;
-	(*coordinates)[(coordinates->size()) - 1][1] = SQUARE_SIZE;
+	(*coordinates)[(coordinates->size()) - 1][0] = SQUARE_SIZE - 1;
+	(*coordinates)[(coordinates->size()) - 1][1] = SQUARE_SIZE - 1;
 }
 
 void outputNodes(std::vector<int> usedNodes, std::vector<std::vector<int> > coordinates)
