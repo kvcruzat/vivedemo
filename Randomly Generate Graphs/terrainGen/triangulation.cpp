@@ -75,7 +75,7 @@ int main (int argc, char *argv[])
 	// testPrint(shortestPaths, usedNodes, connections);
 	printGraph(shortestPaths, coordinates, connections, usedNodes);
 
-	
+	outputNodes(usedNodes, coordinates);
 }
 
 
@@ -901,4 +901,16 @@ void updateCoordinates(std::vector< std::vector<int> > *coordinates)
 
 	(*coordinates)[(coordinates->size()) - 1][0] = SQUARE_SIZE;
 	(*coordinates)[(coordinates->size()) - 1][1] = SQUARE_SIZE;
+}
+
+void outputNodes(std::vector<int> usedNodes, std::vector<std::vector<int> > coordinates)
+{
+	std::ofstream nodeFile;
+	//Temporary Value
+	nodeFile.open("../../RiversofHanoi/Content/models/nodes.txt");
+
+	for (int i = 0; i < usedNodes.size(); i++)
+	{
+		nodeFile << coordinates[usedNodes[i]][0] << "," << coordinates[usedNodes[i]][1] << std::endl;
+	}
 }

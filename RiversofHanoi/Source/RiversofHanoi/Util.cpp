@@ -71,3 +71,27 @@ void Util::readData(FString fileName, TArray<FVector> vertices, TArray<FVector> 
 	findNormals(vertices, normals, Triangles);
 }
 
+void Util::readNodeData(FString fileName, TArray<FVector> nodeData)
+{
+    FString projectDir = FPaths::GameDir();
+    projectDir += "Content/models/" + fileName;
+
+    FString data = TEXT("");
+
+    FFileHelper::LoadFileToString(data, *projectDir);
+
+    TArray<FString> lines;
+    TArray<FString> splitLines;
+
+    int32 lineCount = data.ParseIntoArray(lines, _T("\n"), true);
+
+    UE_LOG(LogTemp, Warning, TEXT("# Lines: %s"), *FString::FromInt(lines.Num()));
+
+    for (int32 Index = 0; Index < lines.Num(); ++Index) {
+        lines[Index].ParseIntoArray(splitLines, _T(","), true);
+        nodeData.Add(FVector(FCString::Atof(*splitLines[0]), FCString::Atof(*splitLines[0]), FCString::Atof(*splitLines[1])));
+    }
+
+    nodes = nodeData;
+}
+

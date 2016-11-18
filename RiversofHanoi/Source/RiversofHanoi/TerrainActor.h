@@ -3,6 +3,7 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
+#include "RodActor.h"
 #include "TerrainActor.generated.h"
 
 UCLASS()
@@ -20,8 +21,15 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaSeconds) override;
 
+    //Called after components are initialised
+    virtual void PostInitializeComponents() override;
+
 	TArray<FVector> vertices;
 	TArray<FVector> normals;
 	TArray<int32> Triangles;
+    TArray<FVector> nodes;
+    TArray<ARodActor*> rods;
+
+    virtual void addRods();
 
 };

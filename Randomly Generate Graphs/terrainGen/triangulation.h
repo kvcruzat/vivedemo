@@ -54,4 +54,6 @@ std::vector< std::vector<int> > addLinesToGraph();
 void findWeightMatrix(std::vector< std::vector<int> >*, std::vector< std::vector<int> >, std::vector< std::vector<float> >*);
 void updateCoordinates(std::vector< std::vector<int> >*);
 
+void outputNodes(std::vector<int>, std::vector<std::vector<int> >);
+
 #endif

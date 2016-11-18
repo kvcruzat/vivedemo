@@ -39,6 +39,7 @@ ATerrainActor::ATerrainActor()
 
 	terrainMesh->SetupAttachment(RootComponent);
 
+    addRods();
 }
 
 // Called when the game starts or when spawned
@@ -53,6 +54,37 @@ void ATerrainActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void ATerrainActor::addRods()
+{
+    Util *util = new Util();
+    util->readNodeData("nodes.txt", nodes);
+
+    nodes = util->nodes;
+
+    UE_LOG(LogTemp, Warning, TEXT("# Nodes: %s"), *FString::FromInt(nodes.Num()));
+
+    UWorld* const World = GetWorld();
+    //for (int32 Index = 0; Index < nodes.Num(); ++Index)
+    //{
+        if (World)
+        {
+            FActorSpawnParameters SpawnParams;
+            SpawnParams.Owner = this;
+            SpawnParams.Instigator = Instigator;
+            ARodActor* Rod = World->SpawnActor<ARodActor>(ARodActor::StaticClass(), FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
+            Rod->SetActorLocation(this->GetActorLocation(), false);
+            Rod->SetOwner(this);
+        }
+        //rods.Add(NewObject<ARodActor>(*this, *ARodActor));
+        //rods[Index]->SetActorLocation(FVector(0, 0, 0), false);
+    //}
+}
+
+void ATerrainActor::PostInitializeComponents()
+{
+    //addRods();
 }
 
 

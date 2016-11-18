@@ -11,6 +11,9 @@ ARodActor::ARodActor(const FObjectInitializer& ObjectInitializer)
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+    UBoxComponent* BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("RootComponent"));
+    RootComponent = BoxComponent;
+
 	collisionComp = ObjectInitializer.CreateDefaultSubobject<UBoxComponent>(this, TEXT("ColComp"));
 	collisionComp->OnComponentHit.AddDynamic(this, &ARodActor::OnHit);
 
