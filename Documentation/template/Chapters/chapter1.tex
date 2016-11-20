@@ -1,20 +1,78 @@
 \chapter{Introduction}
 \label{chapter1}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Project Statement
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Problem Statement}
+The goal of the project is to produce a technical demo for the HTC Vive to be used by the university to showcase development skills for virtual reality. This demo would be used in the School of Computing open days.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Client Background
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Client Background}
-\lipsum[1-1] \cite{parikh1980adaptive}
+The client for this project is the School of Computing in the University of Leeds.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem Background
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem Background}
-\lipsum[1-1] \cite{parikh1980adaptive}
+The School of Computing wanted this project to be done as currently they own virtual reality hardware, however they do not have any software made by University of Leeds students to show to potential students. They are currently using software bought online in order to show the capabilities of the virtual reality hardware. They would prefer it if the software that they used is made by students from the School of Computing.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Project Aim
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Project Aim}
-\lipsum[1-1] \cite{parikh1980adaptive}
+The aim of this project is to create a technical demo for the School of Computing, using the HTC Vive. This demo should appeal to prospective students, as well as appealing to people in the industry. This means that the project has to be both technical, for the industry, and interesting, for the prospective students.\\
+To make it technical enough for the people in the industry features have been added that are not trivial to implement in Unreal Engine 4.\\
+To make it interesting for the prospective students, the demo has to have good gameplay and an interesting concept behind it.\\
 
-\section{Possible Solution}
-\lipsum[1-1] \cite{parikh1980adaptive}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Possible Demo Idea
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Possible Demo Idea}
+One possible idea for the demo would be to combine the Towers of Hanoi with graph flow. These could be combined by having a generated landscape with a randomly generated graph on it, matching the flow of the terrain. This graph's edges would be rivers, or ditches with water running through them, and the nodes would be either river intersections or pools of water. This would be merged with the Towers of Hanoi by using the Towers of Hanoi system as a dam, to block off flow to a certain river, or by moving the disks you could control the amount of flow. This would work by having the disks stack upside down, with the smallest disk at the bottom. This is done in order to accommodate the shape of the ditch. The less disks that are blocking the river, then the more flow it would have. \\
+The goal of this demo would be to keep all the plants at each node alive. The plants would be considered alive if they got the right amount of water. Too much water they would die and too little water they would die too. \\
+This would be a possible demo idea as it implements several features that are non-trivial in Unreal Engine. Tasks are classified as non-trivial if they cannot be done in engine. It also demonstrates two aspects that are covered in the computer science course, which are the Towers of Hanoi, and Graph Flow.\\ 
+These features are: \\
+\begin{itemize}
+	\item Running water
+	\item Water Collision
+	\item Having the plants be affected by the amount of water
+	\item Randomly generated river "graphs"
+	\item Towers of Hanoi logic for flow control
+\end{itemize}
+The trivial tasks, that are done in-engine, would be:
+\begin{itemize}
+	\item Generating terrain and landscapes
+	\item Simple Gesture Controls
+	\item Simple virtual reality gameplay (including teleport mechanic)
+	\item Physics
+	\item Flowers on the terrain
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Objectives
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Objectives}
-\lipsum[1-1] \cite{parikh1980adaptive}
+% Maybe not needed?
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Deliverables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Deliverables}
-\lipsum[1-1] \cite{parikh1980adaptive}
+\begin{enumerate}
+	\item A link to the full code repository on GitHub
+	\item An instruction manual, detailing how to compile the code, the objectives of the technical demo, and how to control the technical demo
+	\item Project Report
+\end{enumerate}
+
+The reasoning behind these deliverables are:\\
+The code is needed so that the assessors can see what has been for the project, and this will show all the progress that has been made on the software over the course of the project, and how each feature was implemented. This will be on the version control site that is being used for the project, which is GitHub. The Version Control page will be delivered so that the software engineering project management side of the project can be assessed.\\
+An instruction manual was decided on so that the assessors know how to compile the code properly, so that they can test the software, and it will also detail the controls and the objective behind the game.\\
+
+The project report should be delivered as it provides insight into the inner workings of the project. It also shows the knowledge that the authors gained from doing the project.\\
+These will be the only deliverables as they fully encompass all the work done during the project.\\
