@@ -8,6 +8,8 @@
 \usepackage{epsfig,graphics}
 \usepackage{graphicx}
 \usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{etoolbox}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -104,3 +106,13 @@
 			\textbf{Summary}
 		\end{center}}%
 	{\vfill \null }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Change page numbering
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\fancyhf{}
+ 
+\cfoot{\thepage}
+
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}

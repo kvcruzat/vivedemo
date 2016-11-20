@@ -22,7 +22,8 @@ void terrainGen::generateTerrain(std::vector<std::vector<float> > *graphCoords, 
 	{
 		for (unsigned j  = 0; j < graphCoords->size(); j++)
 		{
-			floatGraphCoords[i][j] = (*graphCoords)[i][j] - (1 - dsCoords[i][j]);
+			//floatGraphCoords[i][j] = (*graphCoords)[i][j] - (1 - dsCoords[i][j]);
+			floatGraphCoords[i][j] = dsCoords[i][j] - (0.05 * (1 - (*graphCoords)[i][j]));
 		}
 	}
 	// utils::outputTerrain(floatGraphCoords);

@@ -1,13 +1,13 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.11.6)  13 NOV 2016 20:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.11.18)  19 NOV 2016 17:37
 entering extended mode
 **./fyp.tex
 (fyp.tex
 LaTeX2e <2016/03/31> patch level 3
 Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
-(D:\Programs\MimTex\tex\latex\base\book.cls
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\book.cls"
 Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
-(D:\Programs\MimTex\tex\latex\base\bk12.clo
-File: bk12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\bk10.clo"
+File: bk10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@chapter=\count80
@@ -22,24 +22,24 @@ File: bk12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 ) (config.tex
-(D:\Programs\MimTex\tex\latex\setspace\setspace.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\setspace\setspace.sty"
 Package: setspace 2011/12/19 v6.7a set line spacing
 )
-(D:\Programs\MimTex\tex\latex\geometry\geometry.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
-(D:\Programs\MimTex\tex\latex\graphics\keyval.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-(D:\Programs\MimTex\tex\generic\oberdiek\ifpdf.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
 Package: ifpdf 2016/05/14 v3.1 Provides the ifpdf switch
 )
-(D:\Programs\MimTex\tex\generic\oberdiek\ifvtex.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.sty"
 Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
-(D:\Programs\MimTex\tex\generic\ifxetex\ifxetex.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
 \Gm@cnth=\count88
@@ -55,59 +55,59 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layoutvoffset=\dimen110
 \Gm@dimlist=\toks15
 
-(D:\Programs\MimTex\tex\latex\geometry\geometry.cfg))
-(D:\Programs\MimTex\tex\latex\appendix\appendix.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
+("C:\Program Files\MiKTeX 2.9\tex\latex\appendix\appendix.sty"
 Package: appendix 2009/09/02 v1.2b extra appendix facilities
 \c@@pps=\count91
 \c@@ppsavesec=\count92
 \c@@ppsaveapp=\count93
 )
-(D:\Programs\MimTex\tex\latex\lipsum\lipsum.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\lipsum\lipsum.sty"
 Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
 \c@lips@count=\count94
 )
-(D:\Programs\MimTex\tex\latex\adjustbox\adjustbox.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\adjustbox\adjustbox.sty"
 Package: adjustbox 2012/05/21 v1.0 Adjusting TeX boxes (trim, clip, ...)
 
-(D:\Programs\MimTex\tex\latex\xkeyval\xkeyval.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty"
 Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
-(D:\Programs\MimTex\tex\generic\xkeyval\xkeyval.tex
-(D:\Programs\MimTex\tex\generic\xkeyval\xkvutils.tex
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkvutils.tex"
 \XKV@toks=\toks16
 \XKV@tempa@toks=\toks17
 )
 \XKV@depth=\count95
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-(D:\Programs\MimTex\tex\latex\adjustbox\adjcalc.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\adjustbox\adjcalc.sty"
 Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
 -ends (calc, etex, pgfmath)
 )
-(D:\Programs\MimTex\tex\latex\adjustbox\trimclip.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\adjustbox\trimclip.sty"
 Package: trimclip 2012/05/16 v1.0 Trim and clip general TeX material
 
-(D:\Programs\MimTex\tex\latex\graphics\graphicx.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
-(D:\Programs\MimTex\tex\latex\graphics\graphics.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
 Package: graphics 2016/07/10 v1.0t Standard LaTeX Graphics (DPC,SPQR)
 
-(D:\Programs\MimTex\tex\latex\graphics\trig.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(D:\Programs\MimTex\tex\latex\00miktex\graphics.cfg
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg"
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
 
-(D:\Programs\MimTex\tex\latex\graphics-def\pdftex.def
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-def\pdftex.def"
 File: pdftex.def 2016/07/10 v0.06j Graphics/color for pdfTeX
 
-(D:\Programs\MimTex\tex\generic\oberdiek\infwarerr.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
 Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
 )
-(D:\Programs\MimTex\tex\generic\oberdiek\ltxcmds.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
 Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count96
@@ -115,7 +115,7 @@ Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen111
 \Gin@req@width=\dimen112
 )
-(D:\Programs\MimTex\tex\latex\collectbox\collectbox.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\collectbox\collectbox.sty"
 Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
 \collectedbox=\box26
 )
@@ -125,7 +125,7 @@ Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
 \tc@ury=\dimen116
 Package trimclip Info: Using driver 'tc-pdftex.def'.
 
-(D:\Programs\MimTex\tex\latex\adjustbox\tc-pdftex.def
+("C:\Program Files\MiKTeX 2.9\tex\latex\adjustbox\tc-pdftex.def"
 File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
 ))
 \adjbox@Width=\dimen117
@@ -133,25 +133,25 @@ File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
 \adjbox@Depth=\dimen119
 \adjbox@Totalheight=\dimen120
 
-(D:\Programs\MimTex\tex\latex\ifoddpage\ifoddpage.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ifoddpage\ifoddpage.sty"
 Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
 \c@checkoddpage=\count97
 )
-(D:\Programs\MimTex\tex\latex\ltxmisc\varwidth.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\varwidth.sty"
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box27
 \sift@deathcycles=\count98
 \@vwid@loff=\dimen121
 \@vwid@roff=\dimen122
 ))
-(D:\Programs\MimTex\tex\latex\base\fontenc.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
 Package: fontenc 2016/06/19 v1.99m Standard LaTeX package
 
-(D:\Programs\MimTex\tex\latex\base\t1enc.def
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
 File: t1enc.def 2016/06/19 v1.99m Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
-(D:\Programs\MimTex\tex\latex\base\textcomp.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\textcomp.sty"
 Package: textcomp 2016/06/19 v1.99m Standard LaTeX package
 Package textcomp Info: Sub-encoding information:
 (textcomp)               5 = only ISO-Adobe without \textcurrency
@@ -166,7 +166,7 @@ Package textcomp Info: Sub-encoding information:
 (textcomp)             See the documentation for details.
 Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
 
-(D:\Programs\MimTex\tex\latex\base\ts1enc.def
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1enc.def"
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 )
 LaTeX Info: Redefining \oldstylenums on input line 334.
@@ -233,12 +233,12 @@ Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
 Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
 )
-(D:\Programs\MimTex\tex\latex\graphics\epsfig.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\epsfig.sty"
 Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
 \epsfxsize=\dimen123
 \epsfysize=\dimen124
 )
-(D:\Programs\MimTex\tex\latex\titlesec\titlesec.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\titlesec\titlesec.sty"
 Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
 \ttl@box=\box28
 \beforetitleunit=\skip43
@@ -249,6 +249,22 @@ Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
 \titlewidth=\dimen127
 \titlewidthlast=\dimen128
 \titlewidthfirst=\dimen129
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty"
+Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
+\fancy@headwidth=\skip45
+\f@ncyO@elh=\skip46
+\f@ncyO@erh=\skip47
+\f@ncyO@olh=\skip48
+\f@ncyO@orh=\skip49
+\f@ncyO@elf=\skip50
+\f@ncyO@erf=\skip51
+\f@ncyO@olf=\skip52
+\f@ncyO@orf=\skip53
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.sty"
+Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count99
 )
 
 Package geometry Warning: Over-specification in `h'-direction.
@@ -278,7 +294,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
 LaTeX Font Info:    ... okay on input line 7.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 7.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 7.
- (D:\Programs\MimTex\tex\latex\base\ts1cmr.fd
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 7.
@@ -299,15 +315,15 @@ LaTeX Font Info:    ... okay on input line 7.
 * \textheight=717.00946pt
 * \oddsidemargin=-1.1381pt
 * \evensidemargin=-1.1381pt
-* \topmargin=-33.0119pt
+* \topmargin=-31.2056pt
 * \headheight=12.0pt
-* \headsep=19.8738pt
-* \topskip=12.0pt
-* \footskip=30.0pt
-* \marginparwidth=88.0pt
+* \headsep=18.06749pt
+* \topskip=10.0pt
+* \footskip=25.29494pt
+* \marginparwidth=115.0pt
 * \marginparsep=7.0pt
 * \columnsep=10.0pt
-* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -317,24 +333,24 @@ LaTeX Font Info:    ... okay on input line 7.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(D:\Programs\MimTex\tex\context\base\supp-pdf.mkii
+("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count99
+\scratchcounter=\count100
 \scratchdimen=\dimen130
 \scratchbox=\box29
-\nofMPsegments=\count100
-\nofMParguments=\count101
+\nofMPsegments=\count101
+\nofMParguments=\count102
 \everyMPshowfont=\toks19
-\MPscratchCnt=\count102
+\MPscratchCnt=\count103
 \MPscratchDim=\dimen131
-\MPnumerator=\count103
-\makeMPintoPDFobject=\count104
+\MPnumerator=\count104
+\makeMPintoPDFobject=\count105
 \everyMPtoPDFconversion=\toks20
-) (D:\Programs\MimTex\tex\generic\oberdiek\pdftexcmds.sty
+) ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty"
 Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(D:\Programs\MimTex\tex\generic\oberdiek\ifluatex.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty"
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )
@@ -343,22 +359,22 @@ Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-(D:\Programs\MimTex\tex\latex\oberdiek\epstopdf-base.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
-(D:\Programs\MimTex\tex\latex\oberdiek\grfext.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\grfext.sty"
 Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
 
-(D:\Programs\MimTex\tex\generic\oberdiek\kvdefinekeys.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvdefinekeys.sty"
 Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
 ))
-(D:\Programs\MimTex\tex\latex\oberdiek\kvoptions.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 
-(D:\Programs\MimTex\tex\generic\oberdiek\kvsetkeys.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvsetkeys.sty"
 Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
 
-(D:\Programs\MimTex\tex\generic\oberdiek\etexcmds.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\etexcmds.sty"
 Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
@@ -374,7 +390,8 @@ G,.JBIG2,.JB2,.eps]
 )
 \openout2 = `prelude.aux'.
 
- (prelude.tex
+
+(prelude.tex
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: a4paper
@@ -389,15 +406,15 @@ G,.JBIG2,.JB2,.eps]
 * \textheight=714.164pt
 * \oddsidemargin=-1.1381pt
 * \evensidemargin=-1.1381pt
-* \topmargin=23.89362pt
+* \topmargin=25.69992pt
 * \headheight=12.0pt
-* \headsep=19.8738pt
-* \topskip=12.0pt
-* \footskip=30.0pt
-* \marginparwidth=88.0pt
+* \headsep=18.06749pt
+* \topskip=10.0pt
+* \footskip=25.29494pt
+* \marginparwidth=115.0pt
 * \marginparsep=7.0pt
 * \columnsep=10.0pt
-* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -408,8 +425,7 @@ G,.JBIG2,.JB2,.eps]
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 LaTeX Font Info:    Try loading font information for T1+ptm on input line 2.
-
-(D:\Programs\MimTex\tex\latex\psnfss\t1ptm.fd
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1ptm.fd"
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
 <logo_black.png, id=1, 770.88pt x 219.82124pt>
@@ -424,19 +440,17 @@ Package pdftex.def Info: logo_black.png used on input line 2.
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <./logo_black.png>]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 8.
+(Font)              <7> on input line 8.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 8.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 8.
+(Font)              <5> on input line 8.
 
 Underfull \hbox (badness 10000) in paragraph at lines 16--17
-[]\T1/cmr/m/n/12 Supervisor, As-ses-sor
+[]\T1/cmr/m/n/10 Supervisor, As-ses-sor
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 18--19
-[]\T1/cmr/m/n/12 Client, Su-per-vi-sor
+[]\T1/cmr/m/n/10 Client, Su-per-vi-sor
  []
 
 [2
@@ -462,118 +476,131 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--19
 
 ]
 Chapter 1.
-[3]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [4])
-[5]
+[3]) [4]
 \openout2 = `./Chapters/chapter2.aux'.
 
- (Chapters/chapter2.tex [6
-
-
-
-]
+ (Chapters/chapter2.tex
 Chapter 2.
-[7] [8]) [9]
+
+Underfull \vbox (badness 2165) has occurred while \output is active []
+
+ [5
+
+
+
+])
+[6]
 \openout2 = `./Chapters/chapter3.aux'.
 
- (Chapters/chapter3.tex [10
+ (Chapters/chapter3.tex
+Chapter 3.
+) [7
 
 
 
 ]
-Chapter 3.
-) [11]
 \openout2 = `./Chapters/chapter4.aux'.
 
- (Chapters/chapter4.tex [12
+ (Chapters/chapter4.tex [8
 
 
 
 ]
 Chapter 4.
-[13]) [14]
+
+Underfull \vbox (badness 2165) has occurred while \output is active []
+
+ [9])
+[10]
 \openout2 = `./Chapters/chapter5.aux'.
 
  (Chapters/chapter5.tex
 Chapter 5.
-[15
+
+Underfull \vbox (badness 2165) has occurred while \output is active []
+
+ [11
 
 
 
-]) [16]
+])
+[12]
 \openout2 = `./Chapters/chapter6.aux'.
 
  (Chapters/chapter6.tex
 Chapter 6.
-[17
+[13
 
 
 
-] [18]) [19]
+]) [14]
 \openout2 = `./Chapters/chapter7.aux'.
 
- (Chapters/chapter7.tex [20
-
-
-
-]
+ (Chapters/chapter7.tex
 Chapter 7.
-[21]) [22]
+
+Underfull \vbox (badness 2165) has occurred while \output is active []
+
+ [15
+
+
+
+])
+[16]
 \openout2 = `./Chapters/chapter8.aux'.
 
  (Chapters/chapter8.tex
 Chapter 8.
-[23
+) [17
 
 
 
-]) [24] (fyp.bbl) [25
+] (fyp.bbl [18
 
 
-]
+]) [19]
 \openout2 = `appendix.aux'.
 
- (appendix.tex [26
+ (appendix.tex [20
 
 
-] [27
+] [21
 
-] [28]
+] [22]
 Appendix A.
-[29
+[23
 
-] [30
+] [24
 
 ]
 Appendix B.
-) [31] (fyp.aux (prelude.aux) (Chapters/chapter1.aux) (Chapters/chapter2.aux)
+) [25] (fyp.aux (prelude.aux) (Chapters/chapter1.aux) (Chapters/chapter2.aux)
 (Chapters/chapter3.aux) (Chapters/chapter4.aux) (Chapters/chapter5.aux)
 (Chapters/chapter6.aux) (Chapters/chapter7.aux) (Chapters/chapter8.aux)
 (appendix.aux)) ) 
 Here is how much of TeX's memory you used:
- 4185 strings out of 493334
- 58067 string characters out of 3143155
- 225853 words of memory out of 3000000
- 7546 multiletter control sequences out of 15000+200000
- 17114 words of font info for 36 fonts, out of 3000000 for 9000
+ 4595 strings out of 493333
+ 63799 string characters out of 3139181
+ 236314 words of memory out of 3000000
+ 7955 multiletter control sequences out of 15000+200000
+ 14329 words of font info for 27 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,10n,64p,379b,403s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappe
-n\ec\dpi600\ecti1200.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\
-jknappen\ec\dpi600\ecsl1200.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\
-ljfour\jknappen\ec\dpi600\ecbx2488.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fo
-nts\pk\ljfour\jknappen\ec\dpi600\tcrm1200.pk> <C:\Users\KV\AppData\Local\MiKTeX
-\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\KV\AppData\Local
-\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk> <C:\Users\KV\AppDat
-a\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk>{D:/Programs/
-MimTex/fonts/enc/dvips/base/8r.enc} <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts
-\pk\ljfour\jknappen\ec\dpi600\ecbx1728.pk><D:/Programs/MimTex/fonts/type1/urw/t
-imes/utmr8a.pfb>
-Output written on fyp.pdf (36 pages, 173953 bytes).
+ 42i,11n,64p,834b,403s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\
+jknappen\ec\dpi600\ecti1000.pk> <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fo
+nts\pk\ljfour\jknappen\ec\dpi600\ecbx2488.pk> <C:\Users\Flippisen\AppData\Local
+\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2074.pk> <C:\Users\Flippisen
+\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk> <C:\U
+sers\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm
+1000.pk> <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
+ec\dpi600\ecbx1000.pk> <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\lj
+four\jknappen\ec\dpi600\ecbx1200.pk>{C:/Program Files/MiKTeX 2.9/fonts/enc/dvip
+s/base/8r.enc} <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jkn
+appen\ec\dpi600\ecbx1440.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/
+utmr8a.pfb>
+Output written on fyp.pdf (30 pages, 158594 bytes).
 PDF statistics:
- 467 PDF objects out of 1000 (max. 8388607)
+ 432 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
