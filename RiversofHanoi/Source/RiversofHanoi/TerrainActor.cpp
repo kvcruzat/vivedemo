@@ -59,7 +59,7 @@ void ATerrainActor::PostActorCreated()
 {	
 	Super::PostActorCreated();
 	if (!this->IsTemplate(RF_Transient)) {
-		this->SetActorScale3D(FVector(700, 700, 200));
+		this->SetActorScale3D(FVector(700, 700, 400));
 		this->SetActorLocation(FVector(0, 0, 0));
 		addRods();
 		setRodLocations();
@@ -111,23 +111,38 @@ void ATerrainActor::setRodLocations()
 															//Extents
 	const FVector BoxExtents = EachActorBounds.GetExtent();
 
-	FVector topLeftCorner = BoxCenter + (BoundsPointMapping[2] * BoxExtents);
-	FVector bottomRighCorner = BoxCenter + (BoundsPointMapping[3] * BoxExtents);
-	float floorHeight = ((BoxCenter + (BoundsPointMapping[0] * BoxExtents)).Z + (BoxCenter + (BoundsPointMapping[1] * BoxExtents)).Z) / 2.0;
+	FVector bottomLeftCorner = BoxCenter + (BoundsPointMapping[2] * BoxExtents);
+	FVector topRightCorner = BoxCenter + (BoundsPointMapping[3] * BoxExtents);
 
-	for (uint8 BoundsPointItr = 0; BoundsPointItr < 8; BoundsPointItr++)
-	{
-		const FVector EachVertex = BoxCenter + (BoundsPointMapping[BoundsPointItr] * BoxExtents);
+	for (int i = 0; i < 8; ++i) {
+		FVector vertex = BoxCenter + (BoundsPointMapping[i] * BoxExtents);
+		UE_LOG(LogTemp, Warning, TEXT("# Vertex%s: %s"), *FString::FromInt(i), *vertex.ToString());
 	}
+
+	const FBox rodBounds = rodArray[0]->GetComponentsBoundingBox(false); //All Components 
+
+	const FVector rodCenter = rodBounds.GetCenter();	//Center
+
+															//Extents
+	const FVector rodExtents = rodBounds.GetExtent();
+
+	
+
+	float maxHeight = (BoxCenter + (BoundsPointMapping[0] * BoxExtents)).Z;
+	float minHeight = (BoxCenter + (BoundsPointMapping[1] * BoxExtents)).Z;
+	float height = maxHeight + minHeight;
 	float terrainMax = nodes[1].X;
-	float coordMax = topLeftCorner.X * 2.0;
+	float coordMax = bottomLeftCorner.X * 2.0;
+
 	float scale = coordMax / terrainMax;
 	float offset = terrainMax / 2.0;
+	float zScale = height / nodes[0].Z;
+	float zOffset = 1 - nodes[0].Z;
 
 	for (int i = 2; i < nodes.Num(); i++) {
 		nodes[i].X = (nodes[i].X - offset) * scale;
 		nodes[i].Y = (nodes[i].Y - offset) * scale;
-		nodes[i].Z = floorHeight;
+		nodes[i].Z = ((nodes[i].Z - zOffset) * zScale) + rodExtents.Z;
 	}
 
 	for (int i = 0; i < rodArray.Num(); i++) {
