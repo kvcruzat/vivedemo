@@ -21,15 +21,19 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaSeconds) override;
 
+	virtual void PostActorCreated() override;
+
     //Called after components are initialised
-    virtual void PostInitializeComponents() override;
 
 	TArray<FVector> vertices;
 	TArray<FVector> normals;
 	TArray<int32> Triangles;
     TArray<FVector> nodes;
-    TArray<ARodActor*> rods;
+	TArray<ARodActor*> rodArray;
+	TSubclassOf<class ARodActor> RodActor;
 
     virtual void addRods();
+
+	virtual void setRodLocations();
 
 };

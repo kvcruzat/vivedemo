@@ -89,7 +89,7 @@ void Util::readNodeData(FString fileName, TArray<FVector> nodeData)
 
     for (int32 Index = 0; Index < lines.Num(); ++Index) {
         lines[Index].ParseIntoArray(splitLines, _T(","), true);
-        nodeData.Add(FVector(FCString::Atof(*splitLines[0]), FCString::Atof(*splitLines[0]), FCString::Atof(*splitLines[1])));
+        nodeData.Add(FVector(FCString::Atof(*splitLines[1]), FCString::Atof(*splitLines[0]), FCString::Atof(*splitLines[2])));
     }
 
     nodes = nodeData;
