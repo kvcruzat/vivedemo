@@ -1,9 +1,19 @@
 \begin{thebibliography}{1}
 
+\bibitem{cardboarddev}
+Google.
+\newblock Google vr sdk for unity.
+
 \bibitem{parikh1980adaptive}
 D.~Parikh, N.~Ahmed, and S.~Stearns.
 \newblock An adaptive lattice algorithm for recursive filters.
 \newblock {\em Acoustics, Speech and Signal Processing, IEEE Transactions on},
   28(1):110--111, 1980.
+
+\bibitem{stereoscopy}
+C.~Wheatstone.
+\newblock Contributions to the physiology of vision. part the frist. on some
+  remarkable, and hitherto unobserved, phenonmena of binocolur vision.
+\newblock {\em Philosophical Transactions}, 128:371--394, 1838.
 
 \end{thebibliography}

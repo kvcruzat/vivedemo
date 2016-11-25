@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.11.18)  19 NOV 2016 17:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.11.18)  24 NOV 2016 16:33
 entering extended mode
 **./fyp.tex
 (fyp.tex
@@ -266,6 +266,14 @@ Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
 Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count99
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count100
+\float@exts=\toks19
+\float@box=\box29
+\@float@everytoks=\toks20
+\@floatcapt=\box30
+)
 
 Package geometry Warning: Over-specification in `h'-direction.
     `width' (597.50787pt) is ignored.
@@ -280,24 +288,24 @@ Package geometry Warning: Over-specification in `v'-direction.
 (appendix.aux))
 \openout1 = `fyp.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 7.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 7.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 9.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 9.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    ... okay on input line 9.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -335,17 +343,17 @@ LaTeX Font Info:    ... okay on input line 7.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count100
+\scratchcounter=\count101
 \scratchdimen=\dimen130
-\scratchbox=\box29
-\nofMPsegments=\count101
-\nofMParguments=\count102
-\everyMPshowfont=\toks19
-\MPscratchCnt=\count103
+\scratchbox=\box31
+\nofMPsegments=\count102
+\nofMParguments=\count103
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count104
 \MPscratchDim=\dimen131
-\MPnumerator=\count104
-\makeMPintoPDFobject=\count105
-\everyMPtoPDFconversion=\toks20
+\MPnumerator=\count105
+\makeMPintoPDFobject=\count106
+\everyMPtoPDFconversion=\toks22
 ) ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty"
 Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -481,27 +489,63 @@ Chapter 1.
 
  (Chapters/chapter2.tex
 Chapter 2.
+<images/stereoscope.jpg, id=41, 20.06767pt x 20.03273pt>
+File: images/stereoscope.jpg Graphic file (type jpg)
 
-Underfull \vbox (badness 2165) has occurred while \output is active []
+<use images/stereoscope.jpg>
+Package pdftex.def Info: images/stereoscope.jpg used on input line 12.
+(pdftex.def)             Requested size: 284.52756pt x 284.10414pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5
 
 
 
-])
-[6]
+]
+<images/cardboardscreen.png, id=45, 1927.2pt x 1084.05pt>
+File: images/cardboardscreen.png Graphic file (type png)
+
+<use images/cardboardscreen.png>
+Package pdftex.def Info: images/cardboardscreen.png used on input line 29.
+(pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6 <./images/stereoscope.jpg>] <images/gearscreen.jpg, id=49, 1204.5pt x 658.4
+6pt>
+File: images/gearscreen.jpg Graphic file (type jpg)
+
+<use images/gearscreen.jpg>
+Package pdftex.def Info: images/gearscreen.jpg used on input line 48.
+(pdftex.def)             Requested size: 455.24411pt x 248.87106pt.
+
+Underfull \vbox (badness 5359) has occurred while \output is active []
+
+ [7 <./images/cardboardscreen.png>]
+<images/gearcontrols.png, id=53, 1226.5825pt x 653.44125pt>
+File: images/gearcontrols.png Graphic file (type png)
+
+<use images/gearcontrols.png>
+Package pdftex.def Info: images/gearcontrols.png used on input line 65.
+(pdftex.def)             Requested size: 455.24411pt x 242.51727pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8 <./images/gearscreen.jpg>] [9 <./images/gearcontrols.png>] [10]) [11]
 \openout2 = `./Chapters/chapter3.aux'.
 
- (Chapters/chapter3.tex
-Chapter 3.
-) [7
+
+(Chapters/chapter3.tex [12
 
 
 
 ]
+Chapter 3.
+) [13]
 \openout2 = `./Chapters/chapter4.aux'.
 
- (Chapters/chapter4.tex [8
+ (Chapters/chapter4.tex [14
 
 
 
@@ -510,8 +554,8 @@ Chapter 4.
 
 Underfull \vbox (badness 2165) has occurred while \output is active []
 
- [9])
-[10]
+ [15])
+[16]
 \openout2 = `./Chapters/chapter5.aux'.
 
  (Chapters/chapter5.tex
@@ -519,21 +563,21 @@ Chapter 5.
 
 Underfull \vbox (badness 2165) has occurred while \output is active []
 
- [11
+ [17
 
 
 
 ])
-[12]
+[18]
 \openout2 = `./Chapters/chapter6.aux'.
 
  (Chapters/chapter6.tex
 Chapter 6.
-[13
+[19
 
 
 
-]) [14]
+]) [20]
 \openout2 = `./Chapters/chapter7.aux'.
 
  (Chapters/chapter7.tex
@@ -541,51 +585,51 @@ Chapter 7.
 
 Underfull \vbox (badness 2165) has occurred while \output is active []
 
- [15
+ [21
 
 
 
 ])
-[16]
+[22]
 \openout2 = `./Chapters/chapter8.aux'.
 
  (Chapters/chapter8.tex
 Chapter 8.
-) [17
+) [23
 
 
 
-] (fyp.bbl [18
+] (fyp.bbl [24
 
 
-]) [19]
+]) [25]
 \openout2 = `appendix.aux'.
 
- (appendix.tex [20
+ (appendix.tex [26
 
 
-] [21
+] [27
 
-] [22]
+] [28]
 Appendix A.
-[23
+[29
 
-] [24
+] [30
 
 ]
 Appendix B.
-) [25] (fyp.aux (prelude.aux) (Chapters/chapter1.aux) (Chapters/chapter2.aux)
+) [31] (fyp.aux (prelude.aux) (Chapters/chapter1.aux) (Chapters/chapter2.aux)
 (Chapters/chapter3.aux) (Chapters/chapter4.aux) (Chapters/chapter5.aux)
 (Chapters/chapter6.aux) (Chapters/chapter7.aux) (Chapters/chapter8.aux)
 (appendix.aux)) ) 
 Here is how much of TeX's memory you used:
- 4595 strings out of 493333
- 63799 string characters out of 3139181
- 236314 words of memory out of 3000000
- 7955 multiletter control sequences out of 15000+200000
+ 4687 strings out of 493333
+ 65276 string characters out of 3139181
+ 237914 words of memory out of 3000000
+ 8037 multiletter control sequences out of 15000+200000
  14329 words of font info for 27 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,11n,64p,834b,403s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,11n,64p,834b,404s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\
 jknappen\ec\dpi600\ecti1000.pk> <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fo
 nts\pk\ljfour\jknappen\ec\dpi600\ecbx2488.pk> <C:\Users\Flippisen\AppData\Local
@@ -598,9 +642,9 @@ four\jknappen\ec\dpi600\ecbx1200.pk>{C:/Program Files/MiKTeX 2.9/fonts/enc/dvip
 s/base/8r.enc} <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jkn
 appen\ec\dpi600\ecbx1440.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/
 utmr8a.pfb>
-Output written on fyp.pdf (30 pages, 158594 bytes).
+Output written on fyp.pdf (36 pages, 3284807 bytes).
 PDF statistics:
- 432 PDF objects out of 1000 (max. 8388607)
+ 459 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
