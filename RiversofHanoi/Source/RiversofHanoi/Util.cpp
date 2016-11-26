@@ -95,3 +95,58 @@ void Util::readNodeData(FString fileName, TArray<FVector> nodeData)
     nodes = nodeData;
 }
 
+void Util::readRodData(FString fileName, TArray<FVector> rodData)
+{
+	FString projectDir = FPaths::GameDir();
+	projectDir += "Content/models/" + fileName;
+
+	FString data = TEXT("");
+
+	FFileHelper::LoadFileToString(data, *projectDir);
+
+	TArray<FString> lines;
+	TArray<FString> rodsInNode;
+	TArray<FString> rodCoord;
+
+	int32 lineCount = data.ParseIntoArray(lines, _T("\n"), true);
+
+	UE_LOG(LogTemp, Warning, TEXT("# Lines: %s"), *FString::FromInt(lines.Num()));
+
+	for (int32 Index = 0; Index < lines.Num(); ++Index) {
+		if (lines[Index].TrimTrailing().IsEmpty()){ rodData.Add(FVector(-1, -1, -1)); }
+		else {
+			lines[Index].ParseIntoArray(rodsInNode, _T(" "), true);
+			for (int32 rodIndex = 0; rodIndex < rodsInNode.Num(); ++rodIndex) {
+					rodsInNode[rodIndex].ParseIntoArray(rodCoord, _T(","), true);
+					rodData.Add(FVector(FCString::Atof(*rodCoord[1]), FCString::Atof(*rodCoord[0]), FCString::Atof(*rodCoord[2])));				
+			}
+
+		}
+		
+	}
+	rods = rodData;
+}
+
+void Util::readRiverData(FString fileName, TArray<FVector> riverData)
+{
+	FString projectDir = FPaths::GameDir();
+	projectDir += "Content/models/" + fileName;
+
+	FString data = TEXT("");
+
+	FFileHelper::LoadFileToString(data, *projectDir);
+
+	TArray<FString> lines;
+	TArray<FString> splitLines;
+
+	int32 lineCount = data.ParseIntoArray(lines, _T("\n"), true);
+
+	UE_LOG(LogTemp, Warning, TEXT("# Lines: %s"), *FString::FromInt(lines.Num()));
+
+	for (int32 Index = 0; Index < lines.Num(); ++Index) {
+		lines[Index].ParseIntoArray(splitLines, _T(","), true);
+		riverData.Add(FVector(FCString::Atof(*splitLines[1]), FCString::Atof(*splitLines[0]), FCString::Atof(*splitLines[2])));
+	}
+
+	rivers = riverData;
+}

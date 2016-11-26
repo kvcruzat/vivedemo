@@ -31,6 +31,7 @@ public:
 	TArray<FVector> normals;
 	TArray<int32> Triangles;
     TArray<FVector> nodes;
+	TArray<FVector> rods;
 	TArray<ARodActor*> rodArray;
 	TSubclassOf<class ARodActor> RodActor;
 

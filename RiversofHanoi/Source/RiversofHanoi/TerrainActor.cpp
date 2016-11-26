@@ -67,21 +67,37 @@ void ATerrainActor::PostActorCreated()
 void ATerrainActor::addRods()
 {
     Util *util = new Util();
-    util->readNodeData("nodes.txt", nodes);
+	util->readNodeData("nodes.txt", nodes);
+	nodes = util->nodes;
+	util->readRodData("rods.txt", rods);
+    rods = util->rods;
 
-    nodes = util->nodes;
+	UE_LOG(LogTemp, Warning, TEXT("# RodNum: %s"), *FString::FromInt(rods.Num()));
+	UE_LOG(LogTemp, Warning, TEXT("# Rod0: %s"), *rods[0].ToString());
+	UE_LOG(LogTemp, Warning, TEXT("# Rod2: %s"), *rods[2].ToString());
 
     UWorld* const World = GetWorld();
-	for (int32 Index = 2; Index < nodes.Num(); ++Index)
+	int nodeNum = 0;
+	int rodNum = 0;
+	for (int32 Index = 0; Index < rods.Num(); ++Index)
 	{
-		if (World)
-		{
-			FActorSpawnParameters SpawnParams;
-			SpawnParams.Owner = this;
-			SpawnParams.Instigator = Instigator;
-			ARodActor* Rod = World->SpawnActor<ARodActor>(RodActor, nodes[0], FRotator(0, 0, 0), SpawnParams);
-			Rod->SetOwner(this);
-			rodArray.Add(Rod);
+		if (rods[Index] != FVector(-1,-1,-1) ) {
+			if (World)
+			{
+				FActorSpawnParameters SpawnParams;
+				SpawnParams.Owner = this;
+				SpawnParams.Instigator = Instigator;
+				FString actorName = FString(TEXT("N")) + FString::FromInt(nodeNum) + FString(TEXT("_R")) + FString::FromInt(rodNum);
+				ARodActor* Rod = World->SpawnActor<ARodActor>(RodActor, FVector(0,0,0), FRotator(0, 0, 0), SpawnParams);
+				Rod->rodID = actorName;
+				Rod->SetOwner(this);
+				rodArray.Add(Rod);
+				rodNum++;
+			}
+		}
+		else {
+			nodeNum++;
+			rodNum = 0;
 		}
 	}
 }
@@ -137,14 +153,18 @@ void ATerrainActor::setRodLocations()
 	float zScale = height / nodes[0].Z;
 	float zOffset = 1 - nodes[0].Z;
 
-	for (int i = 2; i < nodes.Num(); i++) {
-		nodes[i].X = (nodes[i].X - offset) * scale;
-		nodes[i].Y = (nodes[i].Y - offset) * scale;
-		nodes[i].Z = ((nodes[i].Z - zOffset) * zScale) + rodExtents.Z;
-	}
+	UE_LOG(LogTemp, Warning, TEXT("# %s, %s, %s, %s"), *FString::SanitizeFloat(terrainMax), *FString::SanitizeFloat(coordMax), *FString::SanitizeFloat(scale), *FString::SanitizeFloat(offset));
 
-	for (int i = 0; i < rodArray.Num(); i++) {
-		rodArray[i]->SetActorLocation(nodes[i + 2], false);
+	int rodIndex = 0;
+	for (int i = 0; i < rods.Num(); i++) {
+		if (rods[i] != FVector(-1, -1, -1)) {
+			rods[i].X = (rods[i].X - offset) * scale;
+			rods[i].Y = (rods[i].Y - offset) * scale;
+			rods[i].Z = ((rods[i].Z - zOffset) * zScale) + rodExtents.Z;
+			rodArray[rodIndex]->SetActorLocation(rods[i], false);
+			rodIndex++;
+		}
+		
 	}
 	
 }

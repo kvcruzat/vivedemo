@@ -34,6 +34,7 @@ public:
 	TArray<AActor*> containedActors;
 	FVector rodLocation;
 	FRotator discRot;
+	FString rodID;
 
 	UFUNCTION()
 		void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
