@@ -30,6 +30,8 @@ const int NUM_INSERT_POINTS = 100;
 //Number of nodes used in end graph, increase to make game more challenging
 const int NUM_NODES = 10;
 
+const int RIVER_WIDTH = 50;
+
 //Variables for 2nd method
 const int NUM_POINTS = 10;
 
@@ -45,7 +47,7 @@ void testPrint(std::vector< std::vector< std::vector<int> > >, std::vector< int 
 void printGraph(std::vector< std::vector< std::vector<int> > >, std::vector<std::vector<int> > , std::vector< std::vector<int> >, std::vector< int >);
 void printHeightMap(std::vector< std::vector<int> > , std::vector< std::vector<int> >, std::vector<int>);
 // void drawLine(std::vector< std::vector<int> >*, std::vector<int>, std::vector<int>);
-void drawLine(std::vector< std::vector<float> >*, int, int, int, int);
+void drawLine(std::vector< std::vector<float> >*, int, int, int, int, int, std::vector< std::vector<float> >*, std::vector< std::vector<int> >*);
 void makeDitches(std::vector< std::vector<float> >*);
 
 //Functions for 2nd method

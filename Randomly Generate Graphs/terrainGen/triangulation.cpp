@@ -190,6 +190,9 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 	//If 1 then canal is present
 	std::vector< std::vector<float> > heightMap(SQUARE_SIZE, std::vector<float> (SQUARE_SIZE, 1));
 
+	std::vector< std::vector<float> > rodLocations(usedNodes.size(), std::vector<float> (0, 0));
+	std::vector< std::vector<int> > riverLocations;
+
 	//Loop through the connections matrix
 	for (unsigned i = 0; i < connectionsMatrix.size(); i++)
 	{
@@ -200,8 +203,15 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 			//The "river" connecting them
 			if ( connectionsMatrix[i][j] != 0)
 			{
+				//Check if it is a node, if it is we place rod
+				int nodeIndex = -1;
+				if(std::find(usedNodes.begin(), usedNodes.end(), i) != usedNodes.end())
+				{
+					nodeIndex = std::find(usedNodes.begin(), usedNodes.end(), i) - usedNodes.begin();
+				}
+
 				//Bresenham's Line algorithm
-				drawLine(&heightMap, coordinates[i][0], coordinates[j][0], coordinates[i][1], coordinates[j][1]);
+				drawLine(&heightMap, coordinates[i][0], coordinates[j][0], coordinates[i][1], coordinates[j][1], nodeIndex, &rodLocations, &riverLocations);
 			}
 		}
 	}
@@ -224,7 +234,7 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 		graphHeightMap << std::endl;
 	}
 
-	terrainGen::generateTerrain(&heightMap, &usedNodes, &coordinates);
+	terrainGen::generateTerrain(&heightMap, &usedNodes, &coordinates, &rodLocations, &riverLocations, SQUARE_SIZE);
 }
 
 /* Functions that changes the width of the "rivers" in the heightmap
@@ -236,11 +246,11 @@ void makeDitches(std::vector< std::vector<float> > *oldHeightMap)
 {
 	//Variables used to make ditches
 	//Increase kmax for wider rivers
-	int kmax = 50;
-	int interval = kmax/3;
+	// int RIVER_WIDTH = 50;
+	int interval = RIVER_WIDTH/3;
 	float ditchHeight = 0.33f;
-	//Increase ksquared with kmax
-	int kMaxSquared = kmax * kmax * kmax * kmax;
+	//Increase ksquared with RIVER_WIDTH
+	// int RIVER_WIDTHSquared = RIVER_WIDTH * RIVER_WIDTH * RIVER_WIDTH * RIVER_WIDTH;
 	//Initialise the new height map to be the same as the old one.
 	std::vector< std::vector<float> > heightMap = (*oldHeightMap);
 	//Loop through the heightmap
@@ -253,7 +263,7 @@ void makeDitches(std::vector< std::vector<float> > *oldHeightMap)
 			{
 				//Loop through k times and change height on either side of "river"
 				//Could use exponent? smoother curves
-				for (int k = 0; k < kmax; k++)
+				for (int k = 0; k < RIVER_WIDTH; k++)
 				{
 					//Check so the coordinate is not out of bounds
 					if (j + k < SQUARE_SIZE)
@@ -380,7 +390,7 @@ void makeDitches(std::vector< std::vector<float> > *oldHeightMap)
  * y1 - y coordinate of first point
  * y2 - y coordinate of second point
  */
-void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int y1, int y2)
+void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int y1, int y2, int nodeIndex, std::vector< std::vector< float> >* rodLocations, std::vector< std::vector<int> >* riverLocations)
 {
 	// Bresenham's line algorithm only works in one octant of a graph
 	//Change variables to match this
@@ -414,8 +424,11 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 	int maxY = (int)SQUARE_SIZE;
 	//Set max x so it doesn't go past the last x
 	const int maxX = (int)x2;
+
+	std::vector<int> riverLocation;
 	 
 	//Loop over x
+	int i = 0;
 	for(int x=(int)x1; x<maxX; x++)
 	{
 		//Check so y isn't out of bounds
@@ -424,10 +437,58 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		    if(steep)
 		    {
 		    	(*heightMap)[y][x] = 0;
+		    	if(i == 0)
+		    	{
+		    		riverLocation.push_back(y - RIVER_WIDTH);
+		    		riverLocation.push_back(x);
+
+		    		riverLocation.push_back(y);
+		    		riverLocation.push_back(x - RIVER_WIDTH);
+		    	}
+		    	if(x == maxX - 1)
+		    	{
+		    		riverLocation.push_back(y + RIVER_WIDTH);
+		    		riverLocation.push_back(x);
+
+		    		riverLocation.push_back(y);
+		    		riverLocation.push_back(x + RIVER_WIDTH);
+		    	}
+		    	if(i == 50)
+		    	{
+		    		if (nodeIndex != -1)
+		    		{
+		    			(*rodLocations)[nodeIndex].push_back(y);
+		    			(*rodLocations)[nodeIndex].push_back(x);
+		    		}
+		    	}
 		    }
 		    else
 		    {
 		        (*heightMap)[x][y] = 0;
+		    	if(i == 0)
+		    	{
+		    		riverLocation.push_back(x - RIVER_WIDTH);
+		    		riverLocation.push_back(y);
+
+		    		riverLocation.push_back(x);
+		    		riverLocation.push_back(y - RIVER_WIDTH);
+		    	}
+		    	if(x == maxX - 1)
+		    	{
+		    		riverLocation.push_back(x + RIVER_WIDTH);
+		    		riverLocation.push_back(y);
+
+		    		riverLocation.push_back(x);
+		    		riverLocation.push_back(y + RIVER_WIDTH);
+		    	}
+		    	if(i == 50)
+		    	{
+		    		if (nodeIndex != -1)
+		    		{
+		    			(*rodLocations)[nodeIndex].push_back(x);
+		    			(*rodLocations)[nodeIndex].push_back(y);
+		    		}
+		    	}
 		    }
 		 
 			error -= dy;
@@ -440,7 +501,10 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		} else {
 			break;
 		}
+		i++;
 	}
+
+	(*riverLocations).push_back(riverLocation);
 }
 
 /* Function to generate a random point and find what triangle that point is in
