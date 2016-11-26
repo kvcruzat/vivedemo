@@ -19,6 +19,7 @@ ARodActor::ARodActor(const FObjectInitializer& ObjectInitializer)
 
 	collisionComp2 = ObjectInitializer.CreateDefaultSubobject<UBoxComponent>(this, TEXT("ColComp2"));
 	collisionComp2->OnComponentBeginOverlap.AddDynamic(this, &ARodActor::OnOverlapBegin);
+	collisionComp2->OnComponentEndOverlap.AddDynamic(this, &ARodActor::OnOverlapEnd);
 
 	rodMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("RodMesh"));
 
@@ -33,7 +34,7 @@ void ARodActor::BeginPlay()
 	Super::BeginPlay();
 	
 	rodLocation = this->GetActorLocation();
-	rodLocation.Z += 60.0f;
+	rodLocation.Z += 40.0f;
 
 	discRot.Pitch = 0.f;
 	discRot.Roll = 0.f;
@@ -64,46 +65,18 @@ void ARodActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Othe
 	FString collidedActor = OtherActor->GetFName().ToString();
 	FString collidedComp = OverlappedComp->GetFName().ToString();
 
-	if (!collidedActor.Contains(TEXT("BP_MotionController")) && !collidedActor.Contains(TEXT("BP_Rod"))) {
-		if (collidedComp == TEXT("ColComp2") && containedActors.Contains(OtherActor)) {
-			containedActors.Remove(OtherActor);
-
-			if (containedActors.Num() > 0) {
-				FString topActorName = containedActors.Top()->GetFName().ToString();
-				if (topActorName.Contains(TEXT("Small"))) {
-					ASmallDiscActor *actor = Cast<ASmallDiscActor>(containedActors.Top());
-					actor->canPickUp = true;
-
-				}
-				else if (topActorName.Contains(TEXT("Medium"))) {
-					AMediumDiscActor* actor = Cast<AMediumDiscActor>(containedActors.Top());
-					actor->canPickUp = true;
-				}
-			}
-		}
-		else if (collidedComp == TEXT("ColComp")) {
-			if (sizeCheck(OtherActor, containedActors)) {
-				if (!containedActors.Contains(OtherActor)) { 
-					bool isPickingUp;
-					if (collidedActor.Contains(TEXT("Small"))) {
-						ASmallDiscActor *actor = Cast<ASmallDiscActor>(OtherActor);
-						isPickingUp = actor->isPickingUp;
-
-					}
-					else if (collidedActor.Contains(TEXT("Medium"))) {
-						AMediumDiscActor* actor = Cast<AMediumDiscActor>(OtherActor);
-						isPickingUp = actor->isPickingUp;
-					}
-					else if (collidedActor.Contains(TEXT("Large"))) {
-						ALargeDiscActor* actor = Cast<ALargeDiscActor>(OtherActor);
-						isPickingUp = actor->isPickingUp;
-					}
-					if (!isPickingUp) {
-						OtherActor->SetActorRotation(discRot);
-						OtherActor->SetActorLocation(rodLocation, false);
-					}
-					
+	if (!collidedActor.Contains(TEXT("BP_MotionController")) && !collidedActor.Contains(TEXT("BP_Rod")) && !collidedActor.Contains(TEXT("TerrainActor")) ) {
+		if (collidedComp == TEXT("ColComp2")) {
+			if (sizeCheck(OtherActor, containedActors)){
+				collisionComp->SetCollisionProfileName(FName(TEXT("OverlapAllDynamic")));
+				if (!containedActors.Contains(OtherActor)) {
 					containedActors.Add(OtherActor);
+
+					UE_LOG(LogTemp, Warning, TEXT("#%s containedNUM: %s"), *FString::FromInt(FMath::RandRange(1, 10)), *FString::FromInt(containedActors.Num()));
+					UE_LOG(LogTemp, Warning, TEXT("# contained: "));
+					for (int32 i = 0; i < containedActors.Num(); ++i) {
+						UE_LOG(LogTemp, Warning, TEXT("# %s"), *containedActors[i]->GetFName().ToString());
+					}
 
 					if (containedActors.Num() > 1) {
 						for (int32 i = 0; i < containedActors.Num() - 1; ++i) {
@@ -116,20 +89,53 @@ void ARodActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Othe
 								AMediumDiscActor* actor = Cast<AMediumDiscActor>(containedActors[i]);
 								actor->canPickUp = false;
 							}
-
-
 						}
 					}
 				}
-
-				OverlappedComp->SetCollisionProfileName(FName(TEXT("OverlapAll")));
+			}
+		}
+		else if (collidedComp == TEXT("ColComp")) {
+			if (sizeCheck(OtherActor, containedActors)) {
+				OverlappedComp->SetCollisionProfileName(FName(TEXT("OverlapAllDynamic")));
 			}
 			else {
 				OverlappedComp->SetCollisionProfileName(FName(TEXT("BlockAll")));
 			}
 		}
 	}
+	
+	
+}
 
+void ARodActor::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex) {
+	FString collidedActor = OtherActor->GetFName().ToString();
+	FString collidedComp = OverlappedComp->GetFName().ToString();
+
+	if (!collidedActor.Contains(TEXT("BP_MotionController")) && !collidedActor.Contains(TEXT("BP_Rod")) && !collidedActor.Contains(TEXT("TerrainActor")) ){
+		if (collidedComp == TEXT("ColComp2") && containedActors.Contains(OtherActor)) {
+			containedActors.Pop(true);
+			collisionComp->SetCollisionProfileName(FName(TEXT("BlockAll")));
+			if (containedActors.Num() > 0) {
+				FString topActorName = containedActors.Top()->GetFName().ToString();
+				if (topActorName.Contains(TEXT("Small"))) {
+					ASmallDiscActor *actor = Cast<ASmallDiscActor>(containedActors.Top());
+					actor->canPickUp = true;
+				}
+				else if (topActorName.Contains(TEXT("Medium"))) {
+					AMediumDiscActor* actor = Cast<AMediumDiscActor>(containedActors.Top());
+					actor->canPickUp = true;
+				}
+			}
+			UE_LOG(LogTemp, Warning, TEXT("#%s containedNUM: %s"), *FString::FromInt(FMath::RandRange(1, 10)), *FString::FromInt(containedActors.Num()));
+			UE_LOG(LogTemp, Warning, TEXT("# contained: "));
+			for (int32 i = 0; i < containedActors.Num(); ++i) {
+				UE_LOG(LogTemp, Warning, TEXT("# %s"), *containedActors[i]->GetFName().ToString());
+			}
+		}
+		else if (collidedComp == TEXT("ColComp")) {
+			OverlappedComp->SetCollisionProfileName(FName(TEXT("BlockAll")));
+		}
+	}
 	
 }
 
@@ -138,9 +144,10 @@ void ARodActor::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimiti
 	FString collidedActor = OtherActor->GetFName().ToString();
 	FString collidedComp = HitComp->GetFName().ToString();
 
-	if (!collidedActor.Contains(TEXT("BP_MotionController")) && !collidedActor.Contains(TEXT("BP_Rod"))) {
+	if (!collidedActor.Contains(TEXT("BP_MotionController")) && !collidedActor.Contains(TEXT("BP_Rod")) && !collidedActor.Contains(TEXT("TerrainActor"))) {
 		if (collidedComp == TEXT("ColComp")   ){
 			if (sizeCheck(OtherActor, containedActors)) {
+				HitComp->SetCollisionProfileName(FName(TEXT("OverlapAllDynamic")));
 				if (!containedActors.Contains(OtherActor)) { 
 					bool isPickingUp;
 					if (collidedActor.Contains(TEXT("Small"))) {
@@ -157,33 +164,33 @@ void ARodActor::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimiti
 					}
 					if (!isPickingUp) {
 						OtherActor->SetActorRotation(discRot);
-						OtherActor->SetActorLocation(rodLocation, false);
+						FHitResult HitResult;
+						OtherActor->SetActorLocation(rodLocation, false, &HitResult, ETeleportType::None);
 					}
-					containedActors.Add(OtherActor);
-
-					if (containedActors.Num() > 1) {
-						for (int32 i = 0; i < containedActors.Num() - 1; ++i) {
-							FString currentActorName = containedActors[i]->GetFName().ToString();
-							if (currentActorName.Contains(TEXT("Small"))) {
-								ASmallDiscActor* actor = Cast<ASmallDiscActor>(containedActors[i]);
-								actor->canPickUp = false;
-							}
-							else if (currentActorName.Contains(TEXT("Medium"))) {
-								AMediumDiscActor* actor = Cast<AMediumDiscActor>(containedActors[i]);
-								actor->canPickUp = false;
-							}
-
-							
-						}
-					}
-					
 				}
-				
-				HitComp->SetCollisionProfileName(FName(TEXT("OverlapAll")));
-
 			}
 			else {
 				HitComp->SetCollisionProfileName(FName(TEXT("BlockAll")));
+				bool isPickingUp;
+				if (collidedActor.Contains(TEXT("Small"))) {
+					ASmallDiscActor *actor = Cast<ASmallDiscActor>(OtherActor);
+					isPickingUp = actor->isPickingUp;
+				}
+				else if (collidedActor.Contains(TEXT("Medium"))) {
+					AMediumDiscActor* actor = Cast<AMediumDiscActor>(OtherActor);
+					isPickingUp = actor->isPickingUp;
+				}
+				else if (collidedActor.Contains(TEXT("Large"))) {
+					ALargeDiscActor* actor = Cast<ALargeDiscActor>(OtherActor);
+					isPickingUp = actor->isPickingUp;
+				}
+				if (!isPickingUp) {
+					OtherActor->SetActorRotation(discRot);
+					rodLocation.X += 40.0f;
+					FHitResult HitResult;
+					OtherActor->SetActorLocation(rodLocation, false, &HitResult, ETeleportType::None);
+					rodLocation.X -= 40.0f;
+				}
 			}
 		}
 	}

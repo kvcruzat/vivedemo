@@ -4,8 +4,6 @@
 #include "TerrainActor.h"
 #include "Util.h"
 
-#include "ProceduralMeshComponent.h"
-
 // Sets default values
 ATerrainActor::ATerrainActor()
 {
@@ -18,7 +16,7 @@ ATerrainActor::ATerrainActor()
 	normals = util->norms;
 	Triangles = util->triangs;
 
-	UProceduralMeshComponent* terrainMesh = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("TerrainMesh"));
+	terrainMesh = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("TerrainMesh"));
 
 	UE_LOG(LogTemp, Warning, TEXT("# Vertices: %s"), *FString::FromInt(vertices.Num()));
 	UE_LOG(LogTemp, Warning, TEXT("# Faces: %s"), *FString::FromInt(Triangles.Num() / 3));
@@ -37,7 +35,7 @@ ATerrainActor::ATerrainActor()
 	if (rodBlueprint.Object) {
 		RodActor = (UClass*)rodBlueprint.Object->GeneratedClass;
 	}
-	RootComponent = terrainMesh;
+	//RootComponent = terrainMesh;
 
 }
 

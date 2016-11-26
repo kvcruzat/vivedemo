@@ -4,7 +4,9 @@
 
 #include "GameFramework/Actor.h"
 #include "RodActor.h"
+#include "ProceduralMeshComponent.h"
 #include "TerrainActor.generated.h"
+
 
 UCLASS()
 class RIVERSOFHANOI_API ATerrainActor : public AActor
@@ -31,6 +33,9 @@ public:
     TArray<FVector> nodes;
 	TArray<ARodActor*> rodArray;
 	TSubclassOf<class ARodActor> RodActor;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Mesh)
+		UProceduralMeshComponent* terrainMesh;
 
     virtual void addRods();
 
