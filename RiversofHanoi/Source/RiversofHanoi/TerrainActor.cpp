@@ -11,7 +11,7 @@ ATerrainActor::ATerrainActor()
 	//PrimaryActorTick.bCanEverTick = true;
 
 	Util *util = new Util();
-	util->readData("terrain.m", vertices, normals, Triangles);
+	util->readData("terrain.m", vertices, Triangles);
 	vertices = util->verts;
 	normals = util->norms;
 	Triangles = util->triangs;
@@ -59,19 +59,22 @@ void ATerrainActor::PostActorCreated()
 	if (!this->IsTemplate(RF_Transient)) {
 		this->SetActorScale3D(FVector(700, 700, 400));
 		this->SetActorLocation(FVector(0, 0, 0));
+
+		Util *util = new Util();
+		util->readNodeData("nodes.txt", nodes);
+		nodes = util->nodes;
+		util->readRodData("rods.txt", rods);
+		rods = util->rods;
+
+		calculateScale();
 		addRods();
 		setRodLocations();
+		addRivers();
 	}
 }
 
 void ATerrainActor::addRods()
 {
-    Util *util = new Util();
-	util->readNodeData("nodes.txt", nodes);
-	nodes = util->nodes;
-	util->readRodData("rods.txt", rods);
-    rods = util->rods;
-
 	UE_LOG(LogTemp, Warning, TEXT("# RodNum: %s"), *FString::FromInt(rods.Num()));
 	UE_LOG(LogTemp, Warning, TEXT("# Rod0: %s"), *rods[0].ToString());
 	UE_LOG(LogTemp, Warning, TEXT("# Rod2: %s"), *rods[2].ToString());
@@ -102,8 +105,7 @@ void ATerrainActor::addRods()
 	}
 }
 
-void ATerrainActor::setRodLocations()
-{
+void ATerrainActor::calculateScale() {
 	//The Actor Bounds Point Mapping
 	const FVector BoundsPointMapping[8] =
 	{
@@ -133,14 +135,6 @@ void ATerrainActor::setRodLocations()
 		UE_LOG(LogTemp, Warning, TEXT("# Vertex%s: %s"), *FString::FromInt(i), *vertex.ToString());
 	}
 
-	const FBox rodBounds = rodArray[0]->GetComponentsBoundingBox(false); //All Components 
-
-	const FVector rodCenter = rodBounds.GetCenter();	//Center
-
-															//Extents
-	const FVector rodExtents = rodBounds.GetExtent();
-
-	
 
 	float maxHeight = (BoxCenter + (BoundsPointMapping[0] * BoxExtents)).Z;
 	float minHeight = (BoxCenter + (BoundsPointMapping[1] * BoxExtents)).Z;
@@ -148,12 +142,19 @@ void ATerrainActor::setRodLocations()
 	float terrainMax = nodes[1].X;
 	float coordMax = bottomLeftCorner.X * 2.0;
 
-	float scale = coordMax / terrainMax;
-	float offset = terrainMax / 2.0;
-	float zScale = height / nodes[0].Z;
-	float zOffset = 1 - nodes[0].Z;
+	scale = coordMax / terrainMax;
+	offset = terrainMax / 2.0;
+	zScale = height / nodes[0].Z;
+	zOffset = 1 - nodes[0].Z;
+}
 
-	UE_LOG(LogTemp, Warning, TEXT("# %s, %s, %s, %s"), *FString::SanitizeFloat(terrainMax), *FString::SanitizeFloat(coordMax), *FString::SanitizeFloat(scale), *FString::SanitizeFloat(offset));
+void ATerrainActor::setRodLocations() {
+	const FBox rodBounds = rodArray[0]->GetComponentsBoundingBox(false); //All Components 
+
+	const FVector rodCenter = rodBounds.GetCenter();	//Center
+
+														//Extents
+	const FVector rodExtents = rodBounds.GetExtent();
 
 	int rodIndex = 0;
 	for (int i = 0; i < rods.Num(); i++) {
@@ -167,4 +168,51 @@ void ATerrainActor::setRodLocations()
 		
 	}
 	
+}
+
+void ATerrainActor::addRivers() {
+
+	Util *util = new Util();
+	util->readRiverData("rivers.txt", rivers);
+	rivers = util->rivers;
+	riverNorms = util->riverNorms;
+
+	UE_LOG(LogTemp, Warning, TEXT("# riverNum: %s"), *FString::FromInt(rivers.Num()));
+	UE_LOG(LogTemp, Warning, TEXT("# River0: %s"), *rivers[0].ToString());
+	UE_LOG(LogTemp, Warning, TEXT("# River2: %s"), *rivers[2].ToString());
+
+	for (int i = 0; i < rivers.Num(); i++) {
+		rivers[i].X = (rivers[i].X - offset) * scale;
+		rivers[i].Y = (rivers[i].Y - offset) * scale;
+		rivers[i].Z = ((rivers[i].Z - zOffset) * zScale) + 25.0f;
+	}
+
+
+	UWorld* const World = GetWorld();
+	for (int32 Index = 0; Index < rivers.Num() / 4; ++Index)
+	{
+		if (World)
+		{
+			FActorSpawnParameters SpawnParams;
+			SpawnParams.Owner = this;
+			SpawnParams.Instigator = Instigator;
+			ARiverActor* River = World->SpawnActor<ARiverActor>(FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
+
+			TArray<FVector> riverVertices;
+			riverVertices.Add(rivers[(Index * 4)]);
+			riverVertices.Add(rivers[(Index * 4) + 1]);
+			riverVertices.Add(rivers[(Index * 4) + 2]);
+			riverVertices.Add(rivers[(Index * 4) + 3]);
+
+			TArray<FVector> riverNormal;
+			riverNormal.Add(riverNorms[(Index * 4)]);
+			riverNormal.Add(riverNorms[(Index * 4) + 1]);
+			riverNormal.Add(riverNorms[(Index * 4) + 2]);
+			riverNormal.Add(riverNorms[(Index * 4) + 3]);
+
+			River->createMesh(riverVertices, riverNormal);
+			River->SetOwner(this);
+		}
+	}
+
 }

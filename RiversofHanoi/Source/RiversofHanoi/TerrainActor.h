@@ -4,6 +4,7 @@
 
 #include "GameFramework/Actor.h"
 #include "RodActor.h"
+#include "RiverActor.h"
 #include "ProceduralMeshComponent.h"
 #include "TerrainActor.generated.h"
 
@@ -32,14 +33,21 @@ public:
 	TArray<int32> Triangles;
     TArray<FVector> nodes;
 	TArray<FVector> rods;
+	TArray<FVector> rivers;
+	TArray<FVector> riverNorms;
+	TArray<ARiverActor*> riverArray;
 	TArray<ARodActor*> rodArray;
 	TSubclassOf<class ARodActor> RodActor;
+	float offset, scale, zOffset, zScale;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Mesh)
 		UProceduralMeshComponent* terrainMesh;
 
-    virtual void addRods();
+	virtual void calculateScale();
 
+    virtual void addRods();
 	virtual void setRodLocations();
+
+	virtual void addRivers();
 
 };

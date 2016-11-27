@@ -6,16 +6,16 @@
 Util::Util(){
 }
 
-void Util::normalise(TArray<FVector> normals) {
+TArray<FVector> Util::normalise(TArray<FVector> normals) {
 
 	for (int i = 0; i < normals.Num(); ++i) {
 		float length = normals[i].Size();
 		normals[i] = normals[i] / length;
 	}
-	norms = normals;
+	return normals;
 }
 
-void Util::findNormals(TArray<FVector> vertices, TArray<FVector> normals, TArray<int32> Triangles) {
+TArray<FVector> Util::findNormals(TArray<FVector> vertices, TArray<int32> Triangles) {
 	TArray<FVector> tempNorm;
 	tempNorm.Init(FVector(0, 0, 0), vertices.Num());
 
@@ -34,12 +34,12 @@ void Util::findNormals(TArray<FVector> vertices, TArray<FVector> normals, TArray
 		tempNorm[Triangles[i + 2]] = tempNorm[Triangles[i + 2]] + FVector::CrossProduct(z, y);
 	}
 
-	normals = tempNorm;
+	tempNorm;
 
-	normalise(normals);
+	return normalise(tempNorm);
 }
 
-void Util::readData(FString fileName, TArray<FVector> vertices, TArray<FVector> normals, TArray<int32> Triangles){
+void Util::readData(FString fileName, TArray<FVector> vertices, TArray<int32> Triangles){
 	FString projectDir = FPaths::GameDir();
 	projectDir += "Content/models/" + fileName;
 
@@ -68,7 +68,7 @@ void Util::readData(FString fileName, TArray<FVector> vertices, TArray<FVector> 
 	verts = vertices;
 	triangs = Triangles;
 
-	findNormals(vertices, normals, Triangles);
+	norms = findNormals(vertices, Triangles);
 }
 
 void Util::readNodeData(FString fileName, TArray<FVector> nodeData)
@@ -137,15 +137,34 @@ void Util::readRiverData(FString fileName, TArray<FVector> riverData)
 	FFileHelper::LoadFileToString(data, *projectDir);
 
 	TArray<FString> lines;
-	TArray<FString> splitLines;
+	TArray<FString> riverVertices;
+	TArray<FString> riverCoords;
+
+	TArray<int32> triangles;
+	triangles.Add(0);
+	triangles.Add(1);
+	triangles.Add(2);
+	triangles.Add(2);
+	triangles.Add(3);
+	triangles.Add(0);
 
 	int32 lineCount = data.ParseIntoArray(lines, _T("\n"), true);
 
-	UE_LOG(LogTemp, Warning, TEXT("# Lines: %s"), *FString::FromInt(lines.Num()));
-
 	for (int32 Index = 0; Index < lines.Num(); ++Index) {
-		lines[Index].ParseIntoArray(splitLines, _T(","), true);
-		riverData.Add(FVector(FCString::Atof(*splitLines[1]), FCString::Atof(*splitLines[0]), FCString::Atof(*splitLines[2])));
+		lines[Index] = lines[Index].TrimTrailing();
+		lines[Index].ParseIntoArray(riverVertices, _T(" "), true);
+		for (int32 vertex = 0; vertex < riverVertices.Num(); ++vertex) {
+			riverVertices[vertex].ParseIntoArray(riverCoords, _T(","), true);
+			riverData.Add(FVector(FCString::Atof(*riverCoords[1]), FCString::Atof(*riverCoords[0]), FCString::Atof(*riverCoords[2])));
+		}
+		TArray<FVector> vertices;
+		vertices.Add(riverData[(Index * 4)]);
+		vertices.Add(riverData[(Index * 4) + 1]);
+		vertices.Add(riverData[(Index * 4) + 2]);
+		vertices.Add(riverData[(Index * 4) + 3]);
+
+		riverNorms += findNormals(vertices, triangles);
+
 	}
 
 	rivers = riverData;
