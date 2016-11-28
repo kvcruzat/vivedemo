@@ -35,12 +35,12 @@ void ARiverActor::Tick( float DeltaTime )
 
 void ARiverActor::createMesh(TArray<FVector> vertexData, TArray<FVector> normals) {
 	TArray<int32> triangles;
-	triangles.Add(0);
-	triangles.Add(1);
-	triangles.Add(2);
-	triangles.Add(2);
-	triangles.Add(3);
-	triangles.Add(0);
+	triangles.Add(2); //0
+	triangles.Add(1); //1
+	triangles.Add(0); //2
+	triangles.Add(0); //2
+	triangles.Add(3); //3
+	triangles.Add(2); //0
 
 	riverMesh->CreateMeshSection(0, vertexData, triangles, normals, TArray<FVector2D>(), TArray<FColor>(), TArray<FProcMeshTangent>(), true);
 

@@ -439,19 +439,23 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		    	(*heightMap)[y][x] = 0;
 		    	if(i == 0)
 		    	{
-		    		riverLocation.push_back(y - RIVER_WIDTH);
-		    		riverLocation.push_back(x);
-
-		    		riverLocation.push_back(y);
+		    		riverLocation.push_back(y + RIVER_WIDTH);
 		    		riverLocation.push_back(x - RIVER_WIDTH);
+
+		    		riverLocation.push_back(y - RIVER_WIDTH);
+		    		riverLocation.push_back(x - RIVER_WIDTH);
+
 		    	}
 		    	if(x == maxX - 1)
 		    	{
-		    		riverLocation.push_back(y + RIVER_WIDTH);
-		    		riverLocation.push_back(x);
 
-		    		riverLocation.push_back(y);
+		    		riverLocation.push_back(y - RIVER_WIDTH);
 		    		riverLocation.push_back(x + RIVER_WIDTH);
+
+		    		riverLocation.push_back(y + RIVER_WIDTH);
+		    		riverLocation.push_back(x + RIVER_WIDTH);
+
+
 		    	}
 		    	if(i == 50)
 		    	{
@@ -468,18 +472,18 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		    	if(i == 0)
 		    	{
 		    		riverLocation.push_back(x - RIVER_WIDTH);
-		    		riverLocation.push_back(y);
-
-		    		riverLocation.push_back(x);
 		    		riverLocation.push_back(y - RIVER_WIDTH);
+
+		    		riverLocation.push_back(x - RIVER_WIDTH);
+		    		riverLocation.push_back(y + RIVER_WIDTH);
 		    	}
 		    	if(x == maxX - 1)
 		    	{
 		    		riverLocation.push_back(x + RIVER_WIDTH);
-		    		riverLocation.push_back(y);
-
-		    		riverLocation.push_back(x);
 		    		riverLocation.push_back(y + RIVER_WIDTH);
+
+		    		riverLocation.push_back(x + RIVER_WIDTH);
+		    		riverLocation.push_back(y - RIVER_WIDTH);
 		    	}
 		    	if(i == 50)
 		    	{
@@ -504,7 +508,11 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		i++;
 	}
 
-	(*riverLocations).push_back(riverLocation);
+	if (riverLocation.size() != 0 )
+	{
+		(*riverLocations).push_back(riverLocation);	
+	}
+	
 }
 
 /* Function to generate a random point and find what triangle that point is in
