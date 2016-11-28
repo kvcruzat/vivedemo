@@ -140,14 +140,6 @@ void Util::readRiverData(FString fileName, TArray<FVector> riverData)
 	TArray<FString> riverVertices;
 	TArray<FString> riverCoords;
 
-	TArray<int32> triangles;
-	triangles.Add(0);
-	triangles.Add(1);
-	triangles.Add(2);
-	triangles.Add(2);
-	triangles.Add(3);
-	triangles.Add(0);
-
 	int32 lineCount = data.ParseIntoArray(lines, _T("\n"), true);
 
 	for (int32 Index = 0; Index < lines.Num(); ++Index) {
@@ -162,8 +154,6 @@ void Util::readRiverData(FString fileName, TArray<FVector> riverData)
 		vertices.Add(riverData[(Index * 4) + 1]);
 		vertices.Add(riverData[(Index * 4) + 2]);
 		vertices.Add(riverData[(Index * 4) + 3]);
-
-		riverNorms += findNormals(vertices, triangles);
 
 	}
 

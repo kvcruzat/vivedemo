@@ -44,6 +44,7 @@ public:
 		UProceduralMeshComponent* terrainMesh;
 
 	virtual void calculateScale();
+	FVector transformCoord(FVector coord);
 
     virtual void addRods();
 	virtual void setRodLocations();

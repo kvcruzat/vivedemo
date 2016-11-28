@@ -29,5 +29,5 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Mesh)
 		UProceduralMeshComponent* riverMesh;
 	
-	virtual void ARiverActor::createMesh(TArray<FVector> vertexData, TArray<FVector> normals);
+	virtual void ARiverActor::createMesh(TArray<FVector> vertexData);
 };
