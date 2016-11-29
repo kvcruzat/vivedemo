@@ -1,14 +1,34 @@
 \begin{thebibliography}{1}
 
+\bibitem{unrealfeatures}
+{Epic Games}.
+\newblock About unreal engine 4.
+
+\bibitem{unrealfeaturelist}
+{Epic Games}.
+\newblock Engine features.
+
 \bibitem{cardboarddev}
 Google.
 \newblock Google vr sdk for unity.
+
+\bibitem{vivenolinux}
+C.~Hoffman.
+\newblock The htc vive and valve's steamvr don't yet support linux and steamos.
 
 \bibitem{parikh1980adaptive}
 D.~Parikh, N.~Ahmed, and S.~Stearns.
 \newblock An adaptive lattice algorithm for recursive filters.
 \newblock {\em Acoustics, Speech and Signal Processing, IEEE Transactions on},
   28(1):110--111, 1980.
+
+\bibitem{vivehardware}
+{Valve Corp.}
+\newblock Htc vive.
+
+\bibitem{vivetechnology}
+{Valve Corp.}
+\newblock Steamvr tracking.
 
 \bibitem{stereoscopy}
 C.~Wheatstone.

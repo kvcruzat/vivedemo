@@ -1,8 +1,8 @@
 \chapter{Background Research}
 \label{chapter2}
 
-\section{Problem Overview}
-\lipsum[1-1] \cite{parikh1980adaptive}
+% \section{Problem Overview}
+% \lipsum[1-1] \cite{parikh1980adaptive}
 
 \section{Virtual Reality}
 	Virtual Reality is a technology that has been around since the early 19th century, although in a primitive form through the use of stereoscopic photos \cite{stereoscopy}. Stereoscopic photos work by using two photos that are taken of the same place but are slightly offset from each other, as can be seen in \ref{fig:stereoscope1}. This creates an illusion of depth for the person viewing the images, when viewed through a stereoscope. A stereoscope is a viewing device that only allows one eye to see one of the two images, so each eye sees a similar, yet different image, and this gives the illusion of depth. Stereoscopic vision is the same technology used in current Virtual Reality headsets although now the images are moving.\\
@@ -15,7 +15,9 @@
 	\label{fig:stereoscope1}
 \end{figure}
 
-	In the past couple of years the amount of consumer Virtual Reality products has increased significantly, and now there are several consumer products on the market. Examples of some are the HTC Vive, Oculus Rift, Samsung Gear VR and the Google Cardboard.
+Virtual reality platforms have been released aiming to provide an immersive experience to consumers. There are many varieties currently available and they can be simply separated in to the two categories: mobile and desktop. Mobile experiences such as the Google Cardboard and Samsung's Gear VR target the audience which already own a compatible mobile device thus eliminating the cost of hardware found in higher end platforms. Through the use of the phone's built in gyroscope and accelerometer, crude head tracking can be achieved to emulate a virtual world.
+
+High end virtual reality platforms target enthusiasts and early adopters of cutting edge technology due to its premium price and high computer hardware requirements in order to run it. Currently there are two virtual reality headsets that are seen as the devices that give highest immersion and these are Facebook's Oculus Rift and HTC's Vive. These will be discussed later in this chapter.
 
 \subsection{Mobile VR}
 On the market right now there are two different Mobile Virtual Reality hardware. There is the Samsung Gear VR and the Google Cardboard.
@@ -75,19 +77,79 @@ The other mobile Virtual Reality headset on the market is the Samsung Gear VR. T
 
 
 \subsection{Oculus Rift}
-\lipsum[1-1] \cite{parikh1980adaptive}
+	The Oculus Rift was the first of the two to be released and is inferior in terms of the level of immersion that can be achieved, as currently Oculus only supports interfacing with the virtual world through a third party traditional controller that simply uses buttons and joysticks.
+The Oculus Rift tracks by using the single camera to pick up infrared light that is emitted by points on the headset. These can be used to track the headset as they blink in a specific pattern, which the sensor knows, and it then uses that to determine the position the headset is in.
 
 \subsection{HTC Vive}
-\lipsum[1-1] \cite{parikh1980adaptive}
+The HTC Vive works using two base-stations. These emit lasers in an alternating pattern, between vertical and horizontal. If these lasers hit a sensor on the headset or controllers, they emit a pulse. By tracking the timings of the laser sweeps and the emitted pulses, the tracking system can use trigonometry to find the position of the location of every sensor on the devices \cite{vivetechnology}.
+	The HTC Vive has two settings, either a sitting or a standing mode. in the sitting mode, it works similar to the oculus Rift, in that a console controller is used to control the game, where as in the standing mode, it uses it's own controllers, which are tracked by the base stations and provide a more immersive experience as you can interact with objects in the game by using these controllers to pick things up by moving your hands to where the object is in game.
 
-\section{Gaming}
-\lipsum[1-1] \cite{parikh1980adaptive}
+% \section{Gaming}
+% \lipsum[1-1] \cite{parikh1980adaptive}
 
 \section{Development Environments}
-\lipsum[1-1] \cite{parikh1980adaptive}
+To develop on the HTC Vive there are two options which are currently supported and these are the Unity engine and the Unreal 4 engine. These game engines has native support for SteamVR which is the platform developed by Valve that powers the Vive. Both are free to be installed and just requires a simple registration to their respective websites.
 
-\subsection{HTC Vive}
-\lipsum[1-1]
+Unity supports the C\# programming language for development whereas Unreal Engine uses C++ on its current version of the software. Another aspect where it differs is Unity is mainly used to develop games for mobile devices such 2D platformer games. Unreal Engine is mainly used for desktop, AAA games which makes it more suitable for virtual reality with games running on Unreal generally looking better.
 
-\subsection{Oculus Rift}
-\lipsum[1-1]
+Unreal Engine includes many features built in such as particle effects simulation, terrain, lighting and shading \cite{unrealfeatures}. With SteamVR being natively supported, simple virtual reality features such as gesture recognition and teleportation movement mechanic can be easily implemented in to a game.
+
+For this project Unreal Engine will be used as the development environment. This is because the group is more comfortable with using C++ so development will be quicker with Unreal rather than trying to use a language with little familiarity.
+
+\subsection{Unreal Engine 4}
+The Unreal Engine offers many features for people with little to no programming experience, these will not be used however, as they do not demonstrate any Computer Science expertise, one of the many features that will not be used is the drag and drop interface that is packaged in Unreal Engine to develop simple software quickly, along with the basic templates for various types of games. These are templates for popular genres, for example First Person Shooter and Sidescroller. For this project the group will implement their own features and backend for the genre that is picked, in order to demonstrate their ability to code for the HTC Vive. A select list of the features that Unreal Engine implements already are as follows:
+
+\subsubsection{Unreal Engine 4 Features}
+\begin{itemize}
+
+	\item Particle Effects Simulation (Visual Effects)
+	\item Procedural Foliage
+	\item Landscaping/Terrain
+	\item Lighting
+
+	\begin{itemize}
+		\item Directional
+		\item Point
+		\item Spot
+		\item Sky
+		\item Shadow Casting
+	\end{itemize}
+
+	\item Shading
+	\item Post Process Effects
+
+	\begin{itemize}
+		\item Bloom
+		\item Ambient Occlusion
+		\item Colour Grading
+		\item Depth of Field
+		\item Lens Flares
+	\end{itemize}
+
+	\item Material Effects
+	\item Fog Effects
+	\item View Distance Culling
+	\item Distance Dependent Level of Detail Models
+	\item Physics Simulation
+	\item Level Streaming (Ability load and unload map files into memory and toggle their visibility)
+	\item Basic Templates
+
+	\begin{itemize}
+		\item First-Person
+		\item Third Person
+		\item Side Scroller
+		\item Vehicle
+	\end{itemize}
+
+	\item Artificial Intelligence System
+	\item Audio System
+	\item DirectX 11 \& 12 Features
+
+	\begin{itemize}
+		\item Full-scene HDR reflections
+		\item Per Scene Dynamic Lights
+		\item Physically Based Shading
+	\end{itemize}
+\end{itemize}
+
+Unreal Engine's full list of features can be found on their documentation site \cite{unrealfeaturelist}
