@@ -2,6 +2,7 @@
 
 #include "RiversofHanoi.h"
 #include "RiverActor.h"
+#include "Util.h"
 
 
 // Sets default values
@@ -33,8 +34,15 @@ void ARiverActor::Tick( float DeltaTime )
 
 }
 
-void ARiverActor::createMesh(TArray<FVector> vertexData, TArray<FVector> normals) {
+void ARiverActor::createMesh(TArray<FVector> vertexData) {
 	TArray<int32> triangles;
+	triangles.Add(0); //0
+	triangles.Add(1); //1
+	triangles.Add(2); //2
+	triangles.Add(2); //2
+	triangles.Add(3); //3
+	triangles.Add(0); //0
+
 	triangles.Add(2); //0
 	triangles.Add(1); //1
 	triangles.Add(0); //2
@@ -42,7 +50,10 @@ void ARiverActor::createMesh(TArray<FVector> vertexData, TArray<FVector> normals
 	triangles.Add(3); //3
 	triangles.Add(2); //0
 
-	riverMesh->CreateMeshSection(0, vertexData, triangles, normals, TArray<FVector2D>(), TArray<FColor>(), TArray<FProcMeshTangent>(), true);
+	Util *util = new Util();
+	normals = util->findNormals(vertexData, triangles);
+
+	riverMesh->CreateMeshSection(0, vertexData, triangles, normals, TArray<FVector2D>(), TArray<FColor>(), TArray<FProcMeshTangent>(), false);
 
 	riverMesh->SetMaterial(0, riverMaterial);
 }

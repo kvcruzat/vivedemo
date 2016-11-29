@@ -148,6 +148,13 @@ void ATerrainActor::calculateScale() {
 	zOffset = 1 - nodes[0].Z;
 }
 
+FVector ATerrainActor::transformCoord(FVector coord) {
+	coord.X = (coord.X - offset) * scale;
+	coord.Y = (coord.Y - offset) * scale;
+	coord.Z = (coord.Z - zOffset) * zScale;
+	return coord;
+}
+
 void ATerrainActor::setRodLocations() {
 	const FBox rodBounds = rodArray[0]->GetComponentsBoundingBox(false); //All Components 
 
@@ -175,16 +182,14 @@ void ATerrainActor::addRivers() {
 	Util *util = new Util();
 	util->readRiverData("rivers.txt", rivers);
 	rivers = util->rivers;
-	riverNorms = util->riverNorms;
 
 	UE_LOG(LogTemp, Warning, TEXT("# riverNum: %s"), *FString::FromInt(rivers.Num()));
 	UE_LOG(LogTemp, Warning, TEXT("# River0: %s"), *rivers[0].ToString());
 	UE_LOG(LogTemp, Warning, TEXT("# River2: %s"), *rivers[2].ToString());
 
 	for (int i = 0; i < rivers.Num(); i++) {
-		rivers[i].X = (rivers[i].X - offset) * scale;
-		rivers[i].Y = (rivers[i].Y - offset) * scale;
-		rivers[i].Z = ((rivers[i].Z - zOffset) * zScale) + 25.0f;
+		rivers[i] = transformCoord(rivers[i]);
+		rivers[i].Z += 25.0f;
 	}
 
 
@@ -204,13 +209,7 @@ void ATerrainActor::addRivers() {
 			riverVertices.Add(rivers[(Index * 4) + 2]);
 			riverVertices.Add(rivers[(Index * 4) + 3]);
 
-			TArray<FVector> riverNormal;
-			riverNormal.Add(riverNorms[(Index * 4)]);
-			riverNormal.Add(riverNorms[(Index * 4) + 1]);
-			riverNormal.Add(riverNorms[(Index * 4) + 2]);
-			riverNormal.Add(riverNorms[(Index * 4) + 3]);
-
-			River->createMesh(riverVertices, riverNormal);
+			River->createMesh(riverVertices);
 			River->SetOwner(this);
 		}
 	}
