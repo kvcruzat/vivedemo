@@ -440,20 +440,20 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		    	if(i == 0)
 		    	{
 		    		riverLocation.push_back(y + RIVER_WIDTH);
-		    		riverLocation.push_back(x - RIVER_WIDTH);
+		    		riverLocation.push_back(x); //- RIVER_WIDTH);
 
 		    		riverLocation.push_back(y - RIVER_WIDTH);
-		    		riverLocation.push_back(x - RIVER_WIDTH);
+		    		riverLocation.push_back(x); // - RIVER_WIDTH);
 
 		    	}
 		    	if(x == maxX - 1)
 		    	{
 
 		    		riverLocation.push_back(y - RIVER_WIDTH);
-		    		riverLocation.push_back(x + RIVER_WIDTH);
+		    		riverLocation.push_back(x); // + RIVER_WIDTH);
 
 		    		riverLocation.push_back(y + RIVER_WIDTH);
-		    		riverLocation.push_back(x + RIVER_WIDTH);
+		    		riverLocation.push_back(x); // + RIVER_WIDTH);
 
 
 		    	}
@@ -471,18 +471,18 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		        (*heightMap)[x][y] = 0;
 		    	if(i == 0)
 		    	{
-		    		riverLocation.push_back(x - RIVER_WIDTH);
+		    		riverLocation.push_back(x);  //- RIVER_WIDTH);
 		    		riverLocation.push_back(y - RIVER_WIDTH);
 
-		    		riverLocation.push_back(x - RIVER_WIDTH);
+		    		riverLocation.push_back(x); //- RIVER_WIDTH);
 		    		riverLocation.push_back(y + RIVER_WIDTH);
 		    	}
 		    	if(x == maxX - 1)
 		    	{
-		    		riverLocation.push_back(x + RIVER_WIDTH);
+		    		riverLocation.push_back(x); //+ RIVER_WIDTH);
 		    		riverLocation.push_back(y + RIVER_WIDTH);
 
-		    		riverLocation.push_back(x + RIVER_WIDTH);
+		    		riverLocation.push_back(x);// + RIVER_WIDTH);
 		    		riverLocation.push_back(y - RIVER_WIDTH);
 		    	}
 		    	if(i == 50)

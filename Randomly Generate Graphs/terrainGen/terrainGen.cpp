@@ -32,7 +32,7 @@ void terrainGen::generateTerrain(std::vector<std::vector<float> > *graphCoords, 
 
 	outputRods(*usedNodes, *rodLocations, floatGraphCoords);
 
-	outputRivers(*usedNodes, *riverLocations, floatGraphCoords, SQUARE_SIZE);
+	outputRivers(*usedNodes, *riverLocations, dsCoords, SQUARE_SIZE);
 
 	readTerrain::readTerrainFileAndOutputM(floatGraphCoords);
 }
@@ -71,7 +71,7 @@ void terrainGen::outputRods(std::vector<int> usedNodes, std::vector<std::vector<
 	}
 }
 
-void terrainGen::outputRivers(std::vector<int> usedNodes, std::vector<std::vector<int> > riverLocations, std::vector<std::vector<float> > terrainCoords, int SQUARE_SIZE)
+void terrainGen::outputRivers(std::vector<int> usedNodes, std::vector<std::vector<int> > riverLocations, float** terrainCoords, int SQUARE_SIZE)
 {
 	std::ofstream riverFile;
 	riverFile.open("../../RiversofHanoi/Content/models/rivers.txt");
@@ -81,6 +81,8 @@ void terrainGen::outputRivers(std::vector<int> usedNodes, std::vector<std::vecto
 
 	for (int i = 0; i < riverLocations.size(); i++)
 	{
+		float maxZTop = -1;
+		float maxZBot = -1;
 		for (int j = 0; j < riverLocations[i].size(); j+=2)
 		{
 			int x = riverLocations[i][j];
@@ -101,6 +103,60 @@ void terrainGen::outputRivers(std::vector<int> usedNodes, std::vector<std::vecto
 				y = SQUARE_SIZE - 1;
 			}
 			float z = terrainCoords[x][y];
+
+			if (j < 4)
+			{
+				if (maxZTop < z)
+				{
+					maxZTop = z;
+					// std::cout << maxZ << std::endl;
+				}
+			} else{
+				if (maxZBot < z)
+				{
+					maxZBot = z;
+					// std::cout << maxZ << std::endl;
+				}
+			}
+
+		}
+		for (int j = 0; j < riverLocations[i].size(); j+=2)
+		{
+			int x = riverLocations[i][j];
+			int y = riverLocations[i][j+1];
+
+			float z;
+
+			if (x < 0)
+			{
+				x = 0;
+			} else if (x > (SQUARE_SIZE - 1))
+			{
+				x = SQUARE_SIZE - 1;
+			}
+			if (y < 0)
+			{
+				y = 0;
+			} else if (y > (SQUARE_SIZE - 1))
+			{
+				y = SQUARE_SIZE - 1;
+			}
+			if(x == 0 || x == SQUARE_SIZE-1 || y ==0 || y == SQUARE_SIZE-1)
+			{
+				if (j < 4)
+				{
+					z = maxZTop;
+				} else {
+					z = maxZBot;
+				}
+				// z = maxZ;
+
+				// std::cout << maxZ << std::endl;
+				// std::cout << "z = " << z << std::endl;
+
+			} else {
+				z = terrainCoords[x][y];
+			}
 			riverFile << x << "," << y << "," << z << " ";
 		}
 

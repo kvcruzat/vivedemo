@@ -146,6 +146,7 @@ void ATerrainActor::calculateScale() {
 	offset = terrainMax / 2.0;
 	zScale = height / nodes[0].Z;
 	zOffset = 1 - nodes[0].Z;
+
 }
 
 FVector ATerrainActor::transformCoord(FVector coord) {

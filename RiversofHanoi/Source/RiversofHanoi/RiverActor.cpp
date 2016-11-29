@@ -36,12 +36,6 @@ void ARiverActor::Tick( float DeltaTime )
 
 void ARiverActor::createMesh(TArray<FVector> vertexData) {
 	TArray<int32> triangles;
-	triangles.Add(0); //0
-	triangles.Add(1); //1
-	triangles.Add(2); //2
-	triangles.Add(2); //2
-	triangles.Add(3); //3
-	triangles.Add(0); //0
 
 	triangles.Add(2); //0
 	triangles.Add(1); //1
