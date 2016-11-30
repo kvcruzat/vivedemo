@@ -37,8 +37,9 @@ public:
 	FVector rodLocation;
 	FRotator discRot;
 	FString rodID;
-	
 
+	virtual void arrayChange(bool add, FString discName);
+	
 	UPROPERTY(VisibleAnywhere)
 	FString riverConnection;
 

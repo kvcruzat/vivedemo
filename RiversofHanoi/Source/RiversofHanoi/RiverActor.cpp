@@ -24,6 +24,8 @@ ARiverActor::ARiverActor()
 void ARiverActor::BeginPlay()
 {
 	Super::BeginPlay();
+
+	flow = 10;
 	
 }
 
@@ -52,3 +54,18 @@ void ARiverActor::createMesh(TArray<FVector> vertexData) {
 	riverMesh->SetMaterial(0, riverMaterial);
 }
 
+void ARiverActor::changeFlow(int32 value) {
+	if (value == 0) { flow = 0; }
+	else {
+		flow += value;
+	}
+	for (int Index = 0; Index < connectedRivers.Num(); Index++) {
+		if (value == 0) {
+			connectedRivers[Index]->flow = 0;
+		}
+		else {
+			connectedRivers[Index]->flow += value;
+		}
+	}
+
+}

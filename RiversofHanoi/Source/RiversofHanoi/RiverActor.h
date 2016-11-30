@@ -26,6 +26,8 @@ public:
 	TArray<int32> Triangles;
 	UMaterial* riverMaterial;
 
+	int32 flow;
+
 	UPROPERTY(VisibleAnywhere)
 	FString riverID;
 
@@ -37,5 +39,6 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Mesh)
 		UProceduralMeshComponent* riverMesh;
 	
-	virtual void ARiverActor::createMesh(TArray<FVector> vertexData);
+	virtual void createMesh(TArray<FVector> vertexData);
+	virtual void changeFlow(int32 value);
 };
