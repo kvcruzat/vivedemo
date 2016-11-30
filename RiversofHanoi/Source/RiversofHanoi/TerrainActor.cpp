@@ -79,6 +79,11 @@ void ATerrainActor::addRods()
 	UE_LOG(LogTemp, Warning, TEXT("# Rod0: %s"), *rods[0].ToString());
 	UE_LOG(LogTemp, Warning, TEXT("# Rod2: %s"), *rods[2].ToString());
 
+	Util *util = new Util();
+	util->readRodRiverData("rodIndex.txt");
+
+	TArray<FString> rodRiverConnection = util->rodRiverConnection;
+
     UWorld* const World = GetWorld();
 	int nodeNum = 0;
 	int rodNum = 0;
@@ -93,6 +98,7 @@ void ATerrainActor::addRods()
 				FString actorName = FString(TEXT("N")) + FString::FromInt(nodeNum) + FString(TEXT("_R")) + FString::FromInt(rodNum);
 				ARodActor* Rod = World->SpawnActor<ARodActor>(RodActor, FVector(0,0,0), FRotator(0, 0, 0), SpawnParams);
 				Rod->rodID = actorName;
+				Rod->riverConnection = rodRiverConnection[Index];
 				Rod->SetOwner(this);
 				rodArray.Add(Rod);
 				rodNum++;
@@ -183,6 +189,9 @@ void ATerrainActor::addRivers() {
 	Util *util = new Util();
 	util->readRiverData("rivers.txt", rivers);
 	rivers = util->rivers;
+	util->readRiverConnectionsData("connections.txt");
+	TArray<FString> connections = util->riverConnections;
+	TArray<FString> riverIDs = util->riverIDs;
 
 	UE_LOG(LogTemp, Warning, TEXT("# riverNum: %s"), *FString::FromInt(rivers.Num()));
 	UE_LOG(LogTemp, Warning, TEXT("# River0: %s"), *rivers[0].ToString());
@@ -203,6 +212,30 @@ void ATerrainActor::addRivers() {
 			SpawnParams.Owner = this;
 			SpawnParams.Instigator = Instigator;
 			ARiverActor* River = World->SpawnActor<ARiverActor>(FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
+
+			River->riverID = riverIDs[Index];
+			bool addNextRiver = false;
+			bool newConnection = true;
+			bool connectionFound = false;
+			for (int river = 0; river < connections.Num(); river++) {
+				if ((addNextRiver || connectionFound) && !connections[river].Contains(TEXT("-1"))) {
+					River->riverConnections.Add(connections[river]);
+					connectionFound = true;
+				}
+				else { connectionFound = false; }
+
+				if (newConnection && riverIDs[Index].Contains(connections[river]) ) {
+					addNextRiver = true;
+				}
+				else {
+					addNextRiver = false;
+				}
+				
+
+				if (connections[river].Contains(TEXT("-1"))) { newConnection = true; }
+				else { newConnection = false; }
+			}
+			UE_LOG(LogTemp, Warning, TEXT("# %s connectionNum: %s"), *River->riverID, *FString::FromInt(River->riverConnections.Num()));
 
 			TArray<FVector> riverVertices;
 			riverVertices.Add(rivers[(Index * 4)]);

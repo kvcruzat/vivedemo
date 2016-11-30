@@ -19,6 +19,9 @@ public:
 
 	TArray<FVector> rivers;
 	TArray<FVector> riverNorms;
+	TArray<FString> riverIDs;
+	TArray<FString> riverConnections;
+	TArray<FString> rodRiverConnection;
 	
 	void readData(FString fileName, TArray<FVector> vertices, TArray<int32> Triangles);
 	TArray<FVector> findNormals(TArray<FVector> vertices, TArray<int32> Triangles);
@@ -26,4 +29,6 @@ public:
     void readNodeData(FString fileName, TArray<FVector> nodeData);
 	void readRodData(FString fileName, TArray<FVector> rodData);
 	void readRiverData(FString fileName, TArray<FVector> riverData);
+	void readRiverConnectionsData(FString fileName);
+	void readRodRiverData(FString fileName);
 };

@@ -130,7 +130,7 @@ void Util::readRodData(FString fileName, TArray<FVector> rodData)
 void Util::readRiverData(FString fileName, TArray<FVector> riverData)
 {
 	FString projectDir = FPaths::GameDir();
-	projectDir += "Content/models/" + fileName;
+	projectDir += "Content/models/" + fileName;;
 
 	FString data = TEXT("");
 
@@ -143,8 +143,9 @@ void Util::readRiverData(FString fileName, TArray<FVector> riverData)
 	int32 lineCount = data.ParseIntoArray(lines, _T("\n"), true);
 
 	for (int32 Index = 0; Index < lines.Num(); ++Index) {
-		lines[Index] = lines[Index].TrimTrailing();
 		lines[Index].ParseIntoArray(riverVertices, _T(" "), true);
+		riverIDs.Add(riverVertices[4]);
+		riverVertices.Pop();
 		for (int32 vertex = 0; vertex < riverVertices.Num(); ++vertex) {
 			riverVertices[vertex].ParseIntoArray(riverCoords, _T(","), true);
 			riverData.Add(FVector(FCString::Atof(*riverCoords[1]), FCString::Atof(*riverCoords[0]), FCString::Atof(*riverCoords[2])));
@@ -158,4 +159,58 @@ void Util::readRiverData(FString fileName, TArray<FVector> riverData)
 	}
 
 	rivers = riverData;
+}
+
+void Util::readRiverConnectionsData(FString fileName) {
+	FString projectDir = FPaths::GameDir();
+	projectDir += "Content/models/" + fileName;
+
+	FString data = TEXT("");
+
+	FFileHelper::LoadFileToString(data, *projectDir);
+
+	TArray<FString> lines;
+	TArray<FString> splitLines;
+
+	data.ParseIntoArray(lines, _T("\n"), true);
+
+	for (int32 Index = 0; Index < lines.Num(); ++Index) {
+		lines[Index] = lines[Index].TrimTrailing();
+		lines[Index].ParseIntoArray(splitLines, _T(" "), true);
+		for (int32 river = 0; river < splitLines.Num(); ++river) {
+			riverConnections.Add(splitLines[river]);
+		}
+		riverConnections.Add(TEXT("-1"));
+
+	}
+}
+
+void Util::readRodRiverData(FString fileName) {
+
+	FString projectDir = FPaths::GameDir();
+	projectDir += "Content/models/" + fileName;
+
+	FString data = TEXT("");
+
+	FFileHelper::LoadFileToString(data, *projectDir);
+
+	TArray<FString> lines;
+	TArray<FString> riverInRod;
+
+	int32 lineCount = data.ParseIntoArray(lines, _T("\n"), true);
+
+	UE_LOG(LogTemp, Warning, TEXT("# Lines: %s"), *FString::FromInt(lines.Num()));
+
+	for (int32 Index = 0; Index < lines.Num(); ++Index) {
+		lines[Index] = lines[Index].TrimTrailing();
+		if (lines[Index].IsEmpty()) { rodRiverConnection.Add(TEXT("-1")); }
+		else {
+			lines[Index].ParseIntoArray(riverInRod, _T(" "), true);
+			for (int32 rodIndex = 0; rodIndex < riverInRod.Num(); ++rodIndex) {
+				rodRiverConnection.Add(riverInRod[rodIndex]);
+			}
+
+		}
+
+	}
 }

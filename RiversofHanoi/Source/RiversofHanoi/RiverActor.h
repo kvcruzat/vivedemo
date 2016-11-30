@@ -26,6 +26,12 @@ public:
 	TArray<int32> Triangles;
 	UMaterial* riverMaterial;
 
+	UPROPERTY(VisibleAnywhere)
+	FString riverID;
+
+	UPROPERTY(VisibleAnywhere)
+	TArray<FString> riverConnections;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Mesh)
 		UProceduralMeshComponent* riverMesh;
 	
