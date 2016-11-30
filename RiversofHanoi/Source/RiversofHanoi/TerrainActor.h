@@ -48,7 +48,7 @@ public:
 
     virtual void addRods();
 	virtual void setRodLocations();
-
 	virtual void addRivers();
+	virtual void assignConnectionActors();
 
 };

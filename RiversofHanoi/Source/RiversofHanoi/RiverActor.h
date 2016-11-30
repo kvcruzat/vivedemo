@@ -32,6 +32,8 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	TArray<FString> riverConnections;
 
+	TArray<ARiverActor*> connectedRivers;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Mesh)
 		UProceduralMeshComponent* riverMesh;
 	

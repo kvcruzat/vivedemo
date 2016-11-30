@@ -143,6 +143,7 @@ void Util::readRiverData(FString fileName, TArray<FVector> riverData)
 	int32 lineCount = data.ParseIntoArray(lines, _T("\n"), true);
 
 	for (int32 Index = 0; Index < lines.Num(); ++Index) {
+		lines[Index] = lines[Index].TrimTrailing();
 		lines[Index].ParseIntoArray(riverVertices, _T(" "), true);
 		riverIDs.Add(riverVertices[4]);
 		riverVertices.Pop();

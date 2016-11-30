@@ -70,6 +70,7 @@ void ATerrainActor::PostActorCreated()
 		addRods();
 		setRodLocations();
 		addRivers();
+		assignConnectionActors();
 	}
 }
 
@@ -231,11 +232,9 @@ void ATerrainActor::addRivers() {
 					addNextRiver = false;
 				}
 				
-
 				if (connections[river].Contains(TEXT("-1"))) { newConnection = true; }
 				else { newConnection = false; }
 			}
-			UE_LOG(LogTemp, Warning, TEXT("# %s connectionNum: %s"), *River->riverID, *FString::FromInt(River->riverConnections.Num()));
 
 			TArray<FVector> riverVertices;
 			riverVertices.Add(rivers[(Index * 4)]);
@@ -245,7 +244,35 @@ void ATerrainActor::addRivers() {
 
 			River->createMesh(riverVertices);
 			River->SetOwner(this);
+			riverArray.Add(River);
 		}
 	}
 
+}
+
+
+void ATerrainActor::assignConnectionActors() {
+	for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
+		FString connectedRiver = rodArray[rodIndex]->riverConnection;
+		for (int riverIndex = 0; riverIndex < riverArray.Num(); riverIndex++) {
+			FString riverID = riverArray[riverIndex]->riverID;
+			if (connectedRiver.Contains(riverID)) {
+				rodArray[rodIndex]->connectedRiver = riverArray[riverIndex];
+				break;
+			}
+		}
+	}
+
+	for (int riverIndex = 0; riverIndex < riverArray.Num(); riverIndex++) {
+		TArray<FString> riverConnections = riverArray[riverIndex]->riverConnections;
+		for (int connection = 0; connection < riverConnections.Num(); connection++) {
+			for (int riverIndex2 = 0; riverIndex2 < riverArray.Num(); riverIndex2++) {
+				FString riverID = riverArray[riverIndex2]->riverID;
+				if (riverConnections[connection].Contains(riverID)) {
+					riverArray[riverIndex]->connectedRivers.Add(riverArray[riverIndex2]);
+					break;
+				}
+			}
+		}
+	}
 }
