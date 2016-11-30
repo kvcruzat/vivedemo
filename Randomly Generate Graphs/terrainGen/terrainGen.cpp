@@ -6,7 +6,7 @@ terrainGen::terrainGen()
 
 }
 
-void terrainGen::generateTerrain(std::vector<std::vector<float> > *graphCoords, std::vector<int> *usedNodes, std::vector<std::vector<int> > *coordinates, std::vector<std::vector<float> > *rodLocations, std::vector<std::vector<int> > *riverLocations, int SQUARE_SIZE)
+void terrainGen::generateTerrain(std::vector<std::vector<float> > *graphCoords, std::vector<int> *usedNodes, std::vector<std::vector<int> > *coordinates, std::vector<std::vector<float> > *rodLocations, std::vector<std::vector<int> > *riverLocations, int SQUARE_SIZE, std::vector< std::vector<std::string> > *rodIndex, std::vector<std::string> *riverNames)
 {
 	// std::vector<std::vector<std::string> > graphCoords = utils::readTerrainFile("graphHeightMap.txt");
 
@@ -32,7 +32,9 @@ void terrainGen::generateTerrain(std::vector<std::vector<float> > *graphCoords, 
 
 	outputRods(*usedNodes, *rodLocations, floatGraphCoords);
 
-	outputRivers(*usedNodes, *riverLocations, dsCoords, SQUARE_SIZE);
+	outputRivers(*usedNodes, *riverLocations, dsCoords, SQUARE_SIZE, *riverNames);
+
+	outputRodIndex(*rodIndex);
 
 	readTerrain::readTerrainFileAndOutputM(floatGraphCoords);
 }
@@ -71,7 +73,7 @@ void terrainGen::outputRods(std::vector<int> usedNodes, std::vector<std::vector<
 	}
 }
 
-void terrainGen::outputRivers(std::vector<int> usedNodes, std::vector<std::vector<int> > riverLocations, float** terrainCoords, int SQUARE_SIZE)
+void terrainGen::outputRivers(std::vector<int> usedNodes, std::vector<std::vector<int> > riverLocations, float** terrainCoords, int SQUARE_SIZE, std::vector<std::string> riverNames)
 {
 	std::ofstream riverFile;
 	riverFile.open("../../RiversofHanoi/Content/models/rivers.txt");
@@ -120,7 +122,7 @@ void terrainGen::outputRivers(std::vector<int> usedNodes, std::vector<std::vecto
 			}
 
 		}
-		for (int j = 0; j < riverLocations[i].size(); j+=2)
+		for (int j = 0; j < riverLocations[i].size() - 1; j+=2)
 		{
 			int x = riverLocations[i][j];
 			int y = riverLocations[i][j+1];
@@ -160,6 +162,24 @@ void terrainGen::outputRivers(std::vector<int> usedNodes, std::vector<std::vecto
 			riverFile << x << "," << y << "," << z << " ";
 		}
 
+		riverFile << riverNames[i];
+
 		riverFile << std::endl;
+	}
+}
+
+void terrainGen::outputRodIndex(std::vector<std::vector<std::string> > rodIndex)
+{
+	std::ofstream rodIndexFile;
+	rodIndexFile.open("../../RiversofHanoi/Content/models/rodIndex.txt");
+
+	for (int i = 0; i < rodIndex.size(); i++)
+	{
+		for (int j = 0; j < rodIndex[i].size(); j++)
+		{
+			rodIndexFile << rodIndex[i][j] << " ";
+		}
+
+		rodIndexFile << std::endl;
 	}
 }

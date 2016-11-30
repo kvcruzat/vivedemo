@@ -13,11 +13,12 @@ class terrainGen
 {
 public:
 	terrainGen();
-	static void generateTerrain(std::vector< std::vector<float> >* graphCoords, std::vector<int> *usedNodes, std::vector<std::vector<int> > *coordinates, std::vector<std::vector<float> > *rodLocations, std::vector<std::vector<int> > *riverLocations, int SQUARE_SIZE);
+	static void generateTerrain(std::vector< std::vector<float> >* graphCoords, std::vector<int> *usedNodes, std::vector<std::vector<int> > *coordinates, std::vector<std::vector<float> > *rodLocations, std::vector<std::vector<int> > *riverLocations, int SQUARE_SIZE, std::vector<std::vector<std::string> > *rodIndex, std::vector<std::string> *riverNames);
 private:
 	static void outputNodes(std::vector<int> usedNodes, std::vector<std::vector<int> > coordinates, std::vector<std::vector<float> > terrainCoords);
 	static void outputRods(std::vector<int> usedNodes, std::vector<std::vector<float> > rodLocations, std::vector<std::vector<float> > terrainCoords);
-	static void outputRivers(std::vector<int> usedNodes, std::vector<std::vector<int> > riverLocations, float** terrainCoords, int SQUARE_SIZE);
+	static void outputRivers(std::vector<int> usedNodes, std::vector<std::vector<int> > riverLocations, float** terrainCoords, int SQUARE_SIZE, std::vector<std::string> riverNames);
+	static void outputRodIndex(std::vector<std::vector<std::string> > rodIndex);
 
 };
 

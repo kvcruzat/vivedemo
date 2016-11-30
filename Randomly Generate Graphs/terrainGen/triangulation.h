@@ -43,11 +43,11 @@ void printToFile(std::vector< std::vector<int> >, std::vector< std::vector<int> 
 
 void findConnections(std::vector<std::vector<int> >*, std::vector<int>, std::vector<std::vector<int> >);
 std::vector< std::vector< std::vector<int> > > dijkstra(std::vector< std::vector<int> >, std::vector< std::vector<float> >, std::vector<int>);
-void testPrint(std::vector< std::vector< std::vector<int> > >, std::vector< int >, std::vector< std::vector<int> >);
+void connectionsPrint(std::vector< std::vector< std::vector<int> > >, std::vector< int >, std::vector< std::vector<int> >);
 void printGraph(std::vector< std::vector< std::vector<int> > >, std::vector<std::vector<int> > , std::vector< std::vector<int> >, std::vector< int >);
 void printHeightMap(std::vector< std::vector<int> > , std::vector< std::vector<int> >, std::vector<int>);
 // void drawLine(std::vector< std::vector<int> >*, std::vector<int>, std::vector<int>);
-void drawLine(std::vector< std::vector<float> >*, int, int, int, int, int, std::vector< std::vector<float> >*, std::vector< std::vector<int> >*);
+void drawLine(std::vector< std::vector<float> >*, int, int, int, int, int, std::vector< std::vector<float> >*, std::vector< std::vector<int> >*, std::vector<std::vector<std::string> >*, int , int, std::vector<std::string>*);
 void makeDitches(std::vector< std::vector<float> >*);
 
 //Functions for 2nd method

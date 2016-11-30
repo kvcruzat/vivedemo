@@ -72,7 +72,7 @@ int main (int argc, char *argv[])
 
 	//Output all information
 	// printToFile(triangles, coordinates, weightMatrix);
-	// testPrint(shortestPaths, usedNodes, connections);
+	// connectionsPrint(shortestPaths, usedNodes, connections);
 	printGraph(shortestPaths, coordinates, connections, usedNodes);
 
 	// outputNodes(usedNodes, coordinates);
@@ -85,11 +85,11 @@ int main (int argc, char *argv[])
  * usedNodes - vector that contains the indices of the nodes used in the main graph
  * connections - matrix that shows which nodes are connected to the other nodes
  */
-void testPrint(std::vector< std::vector< std::vector<int> > > shortestPaths, std::vector< int > usedNodes, std::vector< std::vector<int> > connections)
+void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPaths, std::vector< int > usedNodes, std::vector< std::vector<int> > connections)
 {
 	//Open an output file stream and direct it to the correct file
 	std::ofstream outputHeightMap;
-	outputHeightMap.open("paths.txt");
+	outputHeightMap.open("../../RiversofHanoi/Content/models/connections.txt");
 
 	//Loop through every used node and all its possible connections
 	for ( unsigned i = 0; i < shortestPaths.size(); i++)
@@ -97,7 +97,7 @@ void testPrint(std::vector< std::vector< std::vector<int> > > shortestPaths, std
 		for ( unsigned j = 0; j < shortestPaths[i].size(); j++)
 		{
 			//Output the start node and which node it'll go to
-			outputHeightMap << usedNodes[i] << " to " << j << " : ";
+			// outputHeightMap << usedNodes[i] << " to " << j << " : ";
 			//Loop through the path
 			for (unsigned k = 0; k < shortestPaths[i][j].size(); k++)
 			{
@@ -110,7 +110,7 @@ void testPrint(std::vector< std::vector< std::vector<int> > > shortestPaths, std
 	}
 
 
-	//For loop to print which nodes are connected
+	// For loop to print which nodes are connected
 	for ( unsigned i = 0; i < connections.size(); i++)
 	{
 		for ( unsigned j = 0; j < connections[i].size(); j++)
@@ -136,6 +136,9 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 	// std::ofstream outputGraph;
 	// outputGraph.open("graphs.txt");
 
+	std::ofstream connectionsFile;
+	connectionsFile.open("../../RiversofHanoi/Content/models/connections.txt");
+
 	//Initialise a matrix to be used to store all connections
 	std::vector<std::vector<int> > connectionsMatrix( shortestPaths[0].size(), std::vector<int> (shortestPaths[0].size(), 0));
 	//Loop through each node in the input connections
@@ -146,14 +149,36 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 			//Create a pointer so that it is easier to read
 			std::vector<int> *ptrShortPath = &shortestPaths[i][usedNodes[connections[i][j]]];
 			//Loop through each shortest path
+			bool newLineNeeded = false;
+
 			for(unsigned k = 0; k < shortestPaths[i][usedNodes[connections[i][j]]].size() - 1; k++)
 			{
 				//If the two nodes are connected then set the connection matrix to show that they are
 				if ((*ptrShortPath)[k] != -1)
 				{
 					connectionsMatrix[(*ptrShortPath)[k]][(*ptrShortPath)[k+1]] = 1;
+					std::string point1 = std::to_string((*ptrShortPath)[k]);
+					std::string point2 = std::to_string((*ptrShortPath)[k+1]);
+
+					if (point1.length() == 1)
+					{
+						point1 = "0" + point1;
+					}
+					if (point2.length() == 1)
+					{
+						point2 = "0" + point2;
+					}
+
+					connectionsFile << point1 <<  point2 << " ";
+
+					newLineNeeded = true;
 				}
 			}
+
+			if (newLineNeeded)
+			{
+				connectionsFile << std::endl; //(*ptrShortPath)[(*ptrShortPath).size() - 1] << std::endl;	
+			}		
 		}
 	}
 
@@ -192,6 +217,8 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 
 	std::vector< std::vector<float> > rodLocations(usedNodes.size(), std::vector<float> (0, 0));
 	std::vector< std::vector<int> > riverLocations;
+	std::vector< std::vector<std::string> > rodIndex(usedNodes.size(), std::vector<std::string>(0, ""));
+	std::vector< std::string> riverNames;
 
 	//Loop through the connections matrix
 	for (unsigned i = 0; i < connectionsMatrix.size(); i++)
@@ -211,7 +238,7 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 				}
 
 				//Bresenham's Line algorithm
-				drawLine(&heightMap, coordinates[i][0], coordinates[j][0], coordinates[i][1], coordinates[j][1], nodeIndex, &rodLocations, &riverLocations);
+				drawLine(&heightMap, coordinates[i][0], coordinates[j][0], coordinates[i][1], coordinates[j][1], nodeIndex, &rodLocations, &riverLocations, &rodIndex, i, j, &riverNames);
 			}
 		}
 	}
@@ -234,7 +261,7 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 		graphHeightMap << std::endl;
 	}
 
-	terrainGen::generateTerrain(&heightMap, &usedNodes, &coordinates, &rodLocations, &riverLocations, SQUARE_SIZE);
+	terrainGen::generateTerrain(&heightMap, &usedNodes, &coordinates, &rodLocations, &riverLocations, SQUARE_SIZE, &rodIndex, &riverNames);
 }
 
 /* Functions that changes the width of the "rivers" in the heightmap
@@ -390,8 +417,22 @@ void makeDitches(std::vector< std::vector<float> > *oldHeightMap)
  * y1 - y coordinate of first point
  * y2 - y coordinate of second point
  */
-void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int y1, int y2, int nodeIndex, std::vector< std::vector< float> >* rodLocations, std::vector< std::vector<int> >* riverLocations)
+void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int y1, int y2, int nodeIndex, std::vector< std::vector< float> >* rodLocations, std::vector< std::vector<int> >* riverLocations, std::vector<std::vector<std::string> >* rodIndex, int node1, int node2, std::vector<std::string> *riverNames)
 {
+	std::string rodIndexString1 = std::to_string(node1); // + std::to_string(node2);
+	std::string rodIndexString2 = std::to_string(node2);
+
+	if (rodIndexString1.length() == 1)
+	{
+		rodIndexString1 = "0" + rodIndexString1;
+	}
+	if (rodIndexString2.length() == 1)
+	{
+		rodIndexString2 = "0" + rodIndexString2;
+	}
+
+	std::string rodIndexString = rodIndexString1 + rodIndexString2;
+
 	// Bresenham's line algorithm only works in one octant of a graph
 	//Change variables to match this
 
@@ -455,6 +496,8 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		    		riverLocation.push_back(y + RIVER_WIDTH);
 		    		riverLocation.push_back(x); // + RIVER_WIDTH);
 
+		    		(*riverNames).push_back(rodIndexString);
+
 
 		    	}
 		    	if(i == 50)
@@ -463,6 +506,9 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		    		{
 		    			(*rodLocations)[nodeIndex].push_back(y);
 		    			(*rodLocations)[nodeIndex].push_back(x);
+
+	    				(*rodIndex)[nodeIndex].push_back(rodIndexString);
+
 		    		}
 		    	}
 		    }
@@ -484,6 +530,8 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 
 		    		riverLocation.push_back(x);// + RIVER_WIDTH);
 		    		riverLocation.push_back(y - RIVER_WIDTH);
+
+		    		(*riverNames).push_back(rodIndexString);
 		    	}
 		    	if(i == 50)
 		    	{
@@ -491,6 +539,8 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		    		{
 		    			(*rodLocations)[nodeIndex].push_back(x);
 		    			(*rodLocations)[nodeIndex].push_back(y);
+
+	    				(*rodIndex)[nodeIndex].push_back(rodIndexString);
 		    		}
 		    	}
 		    }
