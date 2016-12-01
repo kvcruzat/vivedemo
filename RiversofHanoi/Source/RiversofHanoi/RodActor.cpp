@@ -73,8 +73,6 @@ void ARodActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Othe
 					containedActors.Add(OtherActor);
 					arrayChange(true, collidedActor);
 
-					UE_LOG(LogTemp, Warning, TEXT("#%s containedNUM: %s"), *FString::FromInt(FMath::RandRange(1, 10)), *FString::FromInt(containedActors.Num()));
-					UE_LOG(LogTemp, Warning, TEXT("# contained: "));
 					for (int32 i = 0; i < containedActors.Num(); ++i) {
 						UE_LOG(LogTemp, Warning, TEXT("# %s"), *containedActors[i]->GetFName().ToString());
 					}
@@ -204,13 +202,13 @@ void ARodActor::arrayChange(bool add, FString discName) {
 
 	if (add) {
 		if (containedSize == 3) { connectedRiver->changeFlow(0); }
-		else if (discName.Contains(TEXT("Small"))) { connectedRiver->changeFlow(-1); }
-		else if (discName.Contains(TEXT("Medium"))) { connectedRiver->changeFlow(-2); }
-		else if (discName.Contains(TEXT("Large"))) { connectedRiver->changeFlow(-3); }
+		else if (discName.Contains(TEXT("Small"))) { this->connectedRiver->changeFlow(-1); }
+		else if (discName.Contains(TEXT("Medium"))) { this->connectedRiver->changeFlow(-2); }
+		else if (discName.Contains(TEXT("Large"))) { this->connectedRiver->changeFlow(-3); }
 	}
 	else {
 		if (discName.Contains(TEXT("Small"))) { connectedRiver->changeFlow(1); }
-		else if (discName.Contains(TEXT("Medium"))) { connectedRiver->changeFlow(2); }
-		else if (discName.Contains(TEXT("Large"))) { connectedRiver->changeFlow(3); }
+		else if (discName.Contains(TEXT("Medium"))) { this->connectedRiver->changeFlow(2); }
+		else if (discName.Contains(TEXT("Large"))) { this->connectedRiver->changeFlow(3); }
 	}
 }

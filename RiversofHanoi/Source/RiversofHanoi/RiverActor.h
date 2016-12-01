@@ -24,19 +24,25 @@ public:
 	TArray<FVector> vertices;
 	TArray<FVector> normals;
 	TArray<int32> Triangles;
+
+	UPROPERTY(EditAnywhere)
 	UMaterial* riverMaterial;
 
+	UPROPERTY(EditAnywhere)
+	UMaterialInstanceDynamic* riverMaterialInstance;
+
+	UPROPERTY(EditAnywhere)
 	int32 flow;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(EditAnywhere)
 	FString riverID;
 
-	UPROPERTY(VisibleAnywhere)
 	TArray<FString> riverConnections;
 
+	UPROPERTY(EditAnywhere)
 	TArray<ARiverActor*> connectedRivers;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Mesh)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Mesh)
 		UProceduralMeshComponent* riverMesh;
 	
 	virtual void createMesh(TArray<FVector> vertexData);

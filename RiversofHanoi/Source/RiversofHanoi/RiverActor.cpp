@@ -52,6 +52,8 @@ void ARiverActor::createMesh(TArray<FVector> vertexData) {
 	riverMesh->CreateMeshSection(0, vertexData, triangles, normals, TArray<FVector2D>(), TArray<FColor>(), TArray<FProcMeshTangent>(), false);
 
 	riverMesh->SetMaterial(0, riverMaterial);
+	riverMaterialInstance = riverMesh->CreateDynamicMaterialInstance(0);
+	
 }
 
 void ARiverActor::changeFlow(int32 value) {
@@ -61,11 +63,50 @@ void ARiverActor::changeFlow(int32 value) {
 	}
 	for (int Index = 0; Index < connectedRivers.Num(); Index++) {
 		if (value == 0) {
-			connectedRivers[Index]->flow = 0;
+			connectedRivers[Index]->changeFlow(0);
 		}
 		else {
-			connectedRivers[Index]->flow += value;
+			connectedRivers[Index]->changeFlow(value);
 		}
 	}
+
+
+	if (flow > 9) {
+		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.9);
+	}
+	else if (flow > 8) {
+		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.8);
+	}
+	else if (flow > 7) {
+		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.7);
+	}
+	else if (flow > 6) {
+		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.6);
+	}
+	else if (flow > 5) {
+		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.5);
+	}
+	else if (flow > 4) {
+		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.4);
+	}
+	else if (flow > 3) {
+		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.3);
+	}
+	else if (flow > 2) {
+		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.2);
+	}
+	else if (flow > 1) {
+		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.1);
+	}
+	else {
+		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.0);
+	}
+	
+	riverMesh->SetMaterial(0, riverMaterialInstance);
+
+	float opacity;
+	riverMaterialInstance->GetScalarParameterValue(TEXT("Opacity"), opacity);
+	
+	UE_LOG(LogTemp, Warning, TEXT("# river%s: %s, %s"), *riverID, *FString::FromInt(flow), *FString::SanitizeFloat(opacity));
 
 }

@@ -33,14 +33,16 @@ public:
 	virtual bool sizeCheck(AActor* actor, TArray<AActor*> actorArray);
 
 	TArray<AActor*> containedActors;
+
+	UPROPERTY(EditAnywhere)
 	ARiverActor* connectedRiver;
+
 	FVector rodLocation;
 	FRotator discRot;
 	FString rodID;
 
 	virtual void arrayChange(bool add, FString discName);
 	
-	UPROPERTY(VisibleAnywhere)
 	FString riverConnection;
 
 	UFUNCTION()

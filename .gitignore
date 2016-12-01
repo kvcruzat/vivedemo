@@ -65,3 +65,5 @@ DerivedDataCache/*
 # Terrain File, too big for github
 terrain.m
 RiversofHanoi/Content/models/terrain.m
+
+RiversofHanoi/Content/VirtualRealityBP/Maps/TerrainLevel.umap
