@@ -3,6 +3,7 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
+#include "RiverActor.h"
 #include "RodActor.generated.h"
 
 UCLASS()
@@ -32,9 +33,15 @@ public:
 	virtual bool sizeCheck(AActor* actor, TArray<AActor*> actorArray);
 
 	TArray<AActor*> containedActors;
+	ARiverActor* connectedRiver;
 	FVector rodLocation;
 	FRotator discRot;
 	FString rodID;
+
+	virtual void arrayChange(bool add, FString discName);
+	
+	UPROPERTY(VisibleAnywhere)
+	FString riverConnection;
 
 	UFUNCTION()
 		void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);

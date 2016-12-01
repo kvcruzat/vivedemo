@@ -71,6 +71,7 @@ void ARodActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Othe
 				collisionComp->SetCollisionProfileName(FName(TEXT("OverlapAllDynamic")));
 				if (!containedActors.Contains(OtherActor)) {
 					containedActors.Add(OtherActor);
+					arrayChange(true, collidedActor);
 
 					UE_LOG(LogTemp, Warning, TEXT("#%s containedNUM: %s"), *FString::FromInt(FMath::RandRange(1, 10)), *FString::FromInt(containedActors.Num()));
 					UE_LOG(LogTemp, Warning, TEXT("# contained: "));
@@ -114,6 +115,7 @@ void ARodActor::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherA
 	if (!collidedActor.Contains(TEXT("BP_MotionController")) && !collidedActor.Contains(TEXT("BP_Rod")) && !collidedActor.Contains(TEXT("TerrainActor")) ){
 		if (collidedComp == TEXT("ColComp2") && containedActors.Contains(OtherActor)) {
 			containedActors.Pop(true);
+			arrayChange(false, collidedActor);
 			collisionComp->SetCollisionProfileName(FName(TEXT("BlockAll")));
 			if (containedActors.Num() > 0) {
 				FString topActorName = containedActors.Top()->GetFName().ToString();
@@ -195,5 +197,20 @@ void ARodActor::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimiti
 		}
 	}
 
+}
 
+void ARodActor::arrayChange(bool add, FString discName) {
+	int32 containedSize = containedActors.Num();
+
+	if (add) {
+		if (containedSize == 3) { connectedRiver->changeFlow(0); }
+		else if (discName.Contains(TEXT("Small"))) { connectedRiver->changeFlow(-1); }
+		else if (discName.Contains(TEXT("Medium"))) { connectedRiver->changeFlow(-2); }
+		else if (discName.Contains(TEXT("Large"))) { connectedRiver->changeFlow(-3); }
+	}
+	else {
+		if (discName.Contains(TEXT("Small"))) { connectedRiver->changeFlow(1); }
+		else if (discName.Contains(TEXT("Medium"))) { connectedRiver->changeFlow(2); }
+		else if (discName.Contains(TEXT("Large"))) { connectedRiver->changeFlow(3); }
+	}
 }

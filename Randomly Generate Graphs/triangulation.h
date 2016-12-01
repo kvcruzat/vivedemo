@@ -12,6 +12,7 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
+#include <string>
 
 #include <math.h>
 #include <utility>
