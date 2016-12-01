@@ -189,6 +189,12 @@ void terrainGen::outputRodIndex(std::vector<std::vector<std::string> > rodIndex)
 	std::ofstream rodIndexFile;
 	rodIndexFile.open("../../RiversofHanoi/Content/models/rodIndex.txt");
 
+	//add two blank rows for the first two fake nodes
+	for (int i = 0; i < 2; i++)
+	{
+		rodFile << std::endl;
+	}
+
 	for (int i = 0; i < rodIndex.size(); i++)
 	{
 		for (int j = 0; j < rodIndex[i].size(); j++)
