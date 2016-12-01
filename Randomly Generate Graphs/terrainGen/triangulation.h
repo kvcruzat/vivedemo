@@ -16,6 +16,7 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
+#include <string>
 
 #include <math.h>
 #include <utility>
@@ -43,9 +44,9 @@ void printToFile(std::vector< std::vector<int> >, std::vector< std::vector<int> 
 
 void findConnections(std::vector<std::vector<int> >*, std::vector<int>, std::vector<std::vector<int> >);
 std::vector< std::vector< std::vector<int> > > dijkstra(std::vector< std::vector<int> >, std::vector< std::vector<float> >, std::vector<int>);
-void connectionsPrint(std::vector< std::vector< std::vector<int> > >, std::vector< int >, std::vector< std::vector<int> >);
-void printGraph(std::vector< std::vector< std::vector<int> > >, std::vector<std::vector<int> > , std::vector< std::vector<int> >, std::vector< int >);
-void printHeightMap(std::vector< std::vector<int> > , std::vector< std::vector<int> >, std::vector<int>);
+void connectionsPrint(std::vector< std::vector< std::vector<int> > >, std::vector< int >, std::vector< std::vector<std::string> >, std::vector< std::vector<std::string> >);
+void printGraph(std::vector< std::vector< std::vector<int> > >, std::vector<std::vector<int> > , std::vector< std::vector<int> >, std::vector< int >, std::vector<std::vector<float> >*);
+void printHeightMap(std::vector< std::vector<int> > , std::vector< std::vector<int> >, std::vector<int>, std::vector<std::vector< std::vector<int > > >);
 // void drawLine(std::vector< std::vector<int> >*, std::vector<int>, std::vector<int>);
 void drawLine(std::vector< std::vector<float> >*, int, int, int, int, int, std::vector< std::vector<float> >*, std::vector< std::vector<int> >*, std::vector<std::vector<std::string> >*, int , int, std::vector<std::string>*);
 void makeDitches(std::vector< std::vector<float> >*);
@@ -57,5 +58,7 @@ void findWeightMatrix(std::vector< std::vector<int> >*, std::vector< std::vector
 void updateCoordinates(std::vector< std::vector<int> >*);
 
 void outputNodes(std::vector<int>, std::vector<std::vector<int> >);
+
+std::vector<std::string> greedyShortestPath(std::string startRiver, std::vector<int> nodes, std::vector<std::string> riverNames, std::vector<std::string> startNodes, std::vector<std::string> endNodes);
 
 #endif

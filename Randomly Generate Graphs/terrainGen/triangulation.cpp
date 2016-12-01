@@ -73,7 +73,7 @@ int main (int argc, char *argv[])
 	//Output all information
 	// printToFile(triangles, coordinates, weightMatrix);
 	// connectionsPrint(shortestPaths, usedNodes, connections);
-	printGraph(shortestPaths, coordinates, connections, usedNodes);
+	printGraph(shortestPaths, coordinates, connections, usedNodes, &weightMatrix);
 
 	// outputNodes(usedNodes, coordinates);
 }
@@ -85,41 +85,353 @@ int main (int argc, char *argv[])
  * usedNodes - vector that contains the indices of the nodes used in the main graph
  * connections - matrix that shows which nodes are connected to the other nodes
  */
-void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPaths, std::vector< int > usedNodes, std::vector< std::vector<int> > connections)
+void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPaths, std::vector< int > usedNodes, std::vector< std::vector<std::string> > rodIndex, std::vector< std::string> riverNames)
 {
-	//Open an output file stream and direct it to the correct file
-	std::ofstream outputHeightMap;
-	outputHeightMap.open("../../RiversofHanoi/Content/models/connections.txt");
+	std::ofstream connectionsFile;
+	connectionsFile.open("../../RiversofHanoi/Content/models/connections.txt");
 
-	//Loop through every used node and all its possible connections
-	for ( unsigned i = 0; i < shortestPaths.size(); i++)
+	//new strategy, loop trhough rodIndex array. Connection starts with rodIndex value. From second point find shortestPath to each other node, including bottom-left
+	//Then find shortest path of the paths found
+
+	// std::cout << usedNodes.size() << std::endl;
+
+	int rodIndexSize;
+
+	std::vector<std::string> startNodes;
+	std::vector<std::string> endNodes;
+
+	for (unsigned i = 0; i < riverNames.size(); i++)
 	{
-		for ( unsigned j = 0; j < shortestPaths[i].size(); j++)
-		{
-			//Output the start node and which node it'll go to
-			// outputHeightMap << usedNodes[i] << " to " << j << " : ";
-			//Loop through the path
-			for (unsigned k = 0; k < shortestPaths[i][j].size(); k++)
-			{
-				//Print the path
-				outputHeightMap << shortestPaths[i][j][k] << " ";
-			}
+		startNodes.push_back(riverNames[i].substr(0,2));
+		endNodes.push_back(riverNames[i].substr(2,2));
+	}
 
-			outputHeightMap << std::endl << std::endl;
+	std::vector<std::vector<std::string> > newShortestPaths;
+
+	for(unsigned i = 0; i < rodIndex.size(); i++)
+	{
+		for(unsigned j = 0; j < rodIndex[i].size(); j++)
+		{
+			newShortestPaths.push_back(greedyShortestPath(rodIndex[i][j], usedNodes, riverNames, startNodes, endNodes));
 		}
 	}
 
-
-	// For loop to print which nodes are connected
-	for ( unsigned i = 0; i < connections.size(); i++)
+	for (unsigned i = 0; i < newShortestPaths.size(); i++)
 	{
-		for ( unsigned j = 0; j < connections[i].size(); j++)
+		for (unsigned j = 0; j < newShortestPaths[i].size(); j++)
 		{
-			outputHeightMap << usedNodes[i] << " to " << usedNodes[connections[i][j]] << " " << std::endl;
+			connectionsFile << newShortestPaths[i][j] << " ";
 		}
-
-		outputHeightMap << std::endl << std::endl;
+		connectionsFile << std::endl;
 	}
+		
+
+	// for (unsigned i  = 0; i < rodIndex.size(); i++)
+	// {
+	// 	for (unsigned j = 0; j < rodIndex[i].size(); j++)
+	// 	{
+	// 		rodIndexSize++;
+	// 	}
+	// }
+
+	// int currentIndex = 0;
+
+	// std::vector< std::vector< std::vector < std::string > > > paths(rodIndexSize, std::vector<std::vector<std::string> >(usedNodes.size() + 1, std::vector<std::string>(0, "")));
+
+	// for (unsigned i = 0; i < rodIndex.size(); i++)
+	// {
+	// 	for(unsigned x = 0; x < rodIndex[i].size(); x++)
+	// 	{
+	// 		int startNode = std::stoi(rodIndex[i][x].substr(2,2));
+
+	// 		for (unsigned j = 0; j < usedNodes.size(); j++)
+	// 		{
+	// 			//Begins by moving down river that rod is on
+	// 			// std::cout << startNode << std::endl;
+	// 			paths[currentIndex][j].push_back(rodIndex[i][x]);
+	// 			//Set up a pointer
+	// 			// std::cout << rodIndex[i][x] << std::endl;
+	// 			// std::cout << startNode << " to " << usedNodes[j] << std::endl;
+	// 			std::vector<int> *ptrShortPath = &shortestPaths[startNode][usedNodes[j]];
+
+	// 			for (unsigned k = 0; k < (*ptrShortPath).size() - 1; k++)
+	// 			{
+	// 				if ((*ptrShortPath)[k] != -1)
+	// 				{
+	// 					// std::cout << "Hello";
+	// 					std::string point1 = std::to_string((*ptrShortPath)[k]);
+	// 					std::string point2 = std::to_string((*ptrShortPath)[k+1]);
+
+	// 					if (point1.length() == 1)
+	// 					{
+	// 						point1 = "0" + point1;
+	// 					}
+	// 					if (point2.length() == 1)
+	// 					{
+	// 						point2 = "0" + point2;
+	// 					}
+
+	// 					std::string connection = point1 + point2;
+
+	// 					// std::cout << connection << " ";
+
+	// 					paths[currentIndex][j].push_back(connection);
+	// 				}
+	// 			}
+
+	// 			// std::cout << std::endl;
+	// 		}
+
+	// 		for (unsigned k  = 0; k <  shortestPaths[startNode][usedNodes[99]].size() - 1; k++) 
+	// 		{
+	// 			paths[currentIndex][usedNodes.size()].push_back(rodIndex[i][x]);
+	// 			if (shortestPaths[startNode][usedNodes[99]][k] != -1)
+	// 			{
+	// 				std::string point1 = std::to_string(shortestPaths[startNode][usedNodes[99]][k]);
+	// 				std::string point2 = std::to_string(shortestPaths[startNode][usedNodes[99]][k+1]);
+
+	// 				if (point1.length() == 1)
+	// 				{
+	// 					point1 = "0" + point1;
+	// 				}
+	// 				if (point2.length() == 1)
+	// 				{
+	// 					point2 = "0" + point2;
+	// 				}
+
+	// 				std::string connection = point1 + point2;
+
+	// 				// std::cout << connection << " ";
+
+	// 				paths[currentIndex][usedNodes.size()].push_back(connection);
+	// 			}
+	// 		}
+
+	// 		currentIndex++;
+	// 	}
+	// }
+
+
+	// //Find shortest path and only use that one
+	// for (unsigned i = 0; i < rodIndexSize; i++)
+	// {
+	// 	int minLength = -1;
+	// 	int index = 0;
+
+	// 	for (unsigned j = 0; j < usedNodes.size() + 1; j++)
+	// 	{
+	// 		if (minLength == -1 && paths[i][j].size() > 1)
+	// 		{
+	// 			minLength = paths[i][j].size();
+	// 			index = j;
+	// 		}
+
+	// 		else if(paths[i][j].size() > 1)
+	// 		{
+	// 			std::cout << paths[i][j].size() << " " << minLength <<std::endl;
+	// 			if(paths[i][j].size() < minLength)
+	// 			{
+					
+	// 				minLength = paths[i][j].size();
+	// 				index = j;
+	// 			}
+	// 		}
+	// 	}
+
+
+	// 	// std::cout << "Crash After" << std::endl;
+
+	// 	for (unsigned k = 0; k < paths[i][index].size(); k++)
+	// 	{
+	// 		// std::cout << index << std::endl;
+	// 		connectionsFile << paths[i][index][k] << " ";
+	// 	}
+
+	// 	// std::cout << "Crash before" << std::endl;
+
+	// 	connectionsFile << std::endl;
+	// }
+
+
+
+
+	//Loop through each node in the input connections
+	// for (unsigned i = 0; i < usedNodes.size(); i++)
+	// {
+		
+	// 	for (unsigned j = 0; j < usedNodes.size(); j++)
+	// 	{
+	// 		//Create a pointer so that it is easier to read
+			
+	// 		std::vector<int> *ptrShortPath = &shortestPaths[usedNodes[i]][usedNodes[j]];
+	// 		// std::cout << "After";
+	// 		//Loop through each shortest path
+	// 		bool newLineNeeded = false;
+
+
+	// 		std::cout << usedNodes[i] << " " << usedNodes[j] << std::endl;
+
+	// 		// std::cout << "Break before?" << std::endl;
+	// 		for(unsigned k = 0; k < shortestPaths[usedNodes[i]][usedNodes[j]].size() - 1; k++)
+	// 		{
+	// 			//If the two nodes are connected then set the connection matrix to show that they are
+	// 			if ((*ptrShortPath)[k] != -1)
+	// 			{
+	// 				// connectionsMatrix[(*ptrShortPath)[k]][(*ptrShortPath)[k+1]] = 1;
+	// 				std::string point1 = std::to_string((*ptrShortPath)[k]);
+	// 				std::string point2 = std::to_string((*ptrShortPath)[k+1]);
+
+	// 				if (point1.length() == 1)
+	// 				{
+	// 					point1 = "0" + point1;
+	// 				}
+	// 				if (point2.length() == 1)
+	// 				{
+	// 					point2 = "0" + point2;
+	// 				}
+
+	// 				std::string connection = point1 + point2;
+
+	// 				// connectionsFile << connection << " ";
+
+	// 				std::cout << connection << " ";
+
+	// 				paths[i][j].push_back(connection);
+
+	// 				newLineNeeded = true;
+
+	// 				// for ( unsigned x = 0; x < connectionsUsed.size(); x++)
+	// 				// {
+	// 				// 	std::string node1Connect = connectionsUsed[x].substr(0, 2);
+	// 				// 	std::string node2Connect = connectionsUsed[x].substr(2, 2);
+
+	// 				// 	if (point1.compare(node1Connect) == 0 && point2.compare(node2Connect) != 0)
+	// 				// 	{	
+	// 				// 		std::cout << "Found" << std::endl;
+	// 				// 		if (std::find(newNodes.begin(), newNodes.end(), (*ptrShortPath)[k]) == newNodes.end())
+	// 				// 		{
+	// 				// 			newNodes.push_back((*ptrShortPath)[k]);
+	// 				// 		}
+	// 				// 	} // else {
+	// 				// 	// 	connectionsUsed.push_back(connection);
+	// 				// 	// }
+	// 				// }
+
+
+	// 				// if (std::find(connectionsUsed.begin(), connectionsUsed.end(), connection) == connectionsUsed.end())
+	// 				// {
+	// 				// 	std::cout << "Here";
+	// 				// 	connectionsUsed.push_back(connection);
+	// 				// }
+	// 				// 	newNodes.push_back((*ptrShortPath)[k]);
+	// 				// }
+	// 			}
+	// 		}
+
+	// 		if (newLineNeeded)
+	// 		{
+	// 			// connectionsFile << std::endl; //(*ptrShortPath)[(*ptrShortPath).size() - 1] << std::endl;
+	// 			std::cout << std::endl;	
+	// 		}
+	// 		// std::cout << "Break after?" << std::endl;		
+	// 	}
+	// }
+
+	//Check path to last node
+	// for (unsigned i = 0; i < usedNodes.size(); i++)
+	// {
+	// 	for (unsigned j = 0; j < shortestPaths[usedNodes[i]][99].size() - 1; j++)
+	// 	{
+	// 		if (shortestPaths[usedNodes[i]][99][j] != -1)
+	// 			{
+	// 				// connectionsMatrix[(*ptrShortPath)[k]][(*ptrShortPath)[k+1]] = 1;
+	// 				std::string point1 = std::to_string(shortestPaths[usedNodes[i]][99][j]);
+	// 				std::string point2 = std::to_string(shortestPaths[usedNodes[i]][99][j+1]);
+
+	// 				if (point1.length() == 1)
+	// 				{
+	// 					point1 = "0" + point1;
+	// 				}
+	// 				if (point2.length() == 1)
+	// 				{
+	// 					point2 = "0" + point2;
+	// 				}
+
+	// 				std::string connection = point1 + point2;
+
+	// 				// connectionsFile << connection << " ";
+
+	// 				paths[i][usedNodes.size()].push_back(connection);
+	// 			}
+	// 	}
+	// }
+
+	// //Find shortest path and only use that one
+	// for (unsigned i = 0; i < usedNodes.size(); i++)
+	// {
+	// 	int minLength = -1;
+	// 	int index = -1;
+
+	// 	for (unsigned j = 0; j < usedNodes.size() + 1; j++)
+	// 	{
+	// 		if (minLength == -1 && paths[i][j].size() != 0)
+	// 		{
+	// 			minLength = paths[i][j].size();
+	// 			index = j;
+	// 		}
+
+	// 		else if(paths[i][j].size() != 0)
+	// 		{
+	// 			std::cout << paths[i][j].size() << " " << minLength <<std::endl;
+	// 			if(paths[i][j].size() < minLength)
+	// 			{
+					
+	// 				minLength = paths[i][j].size();
+	// 				index = j;
+	// 			}
+	// 		}
+	// 	}
+
+	// 	for (unsigned k = 0; k < paths[i][index].size(); k++)
+	// 	{
+	// 		connectionsFile << paths[i][index][k] << " ";
+	// 	}
+
+	// 	connectionsFile << std::endl;
+	// }
+	// //Open an output file stream and direct it to the correct file
+	// std::ofstream outputHeightMap;
+	// outputHeightMap.open("../../RiversofHanoi/Content/models/connections.txt");
+
+	// //Loop through every used node and all its possible connections
+	// for ( unsigned i = 0; i < shortestPaths.size(); i++)
+	// {
+	// 	for ( unsigned j = 0; j < shortestPaths[i].size(); j++)
+	// 	{
+	// 		//Output the start node and which node it'll go to
+	// 		// outputHeightMap << usedNodes[i] << " to " << j << " : ";
+	// 		//Loop through the path
+	// 		for (unsigned k = 0; k < shortestPaths[i][j].size(); k++)
+	// 		{
+	// 			//Print the path
+	// 			outputHeightMap << shortestPaths[i][j][k] << " ";
+	// 		}
+
+	// 		outputHeightMap << std::endl << std::endl;
+	// 	}
+	// }
+
+
+	// // For loop to print which nodes are connected
+	// for ( unsigned i = 0; i < connections.size(); i++)
+	// {
+	// 	for ( unsigned j = 0; j < connections[i].size(); j++)
+	// 	{
+	// 		outputHeightMap << usedNodes[i] << " to " << usedNodes[connections[i][j]] << " " << std::endl;
+	// 	}
+
+	// 	outputHeightMap << std::endl << std::endl;
+	// }
 }
 
 /* Function that prints the connection matrix and the coordinates of each point
@@ -130,28 +442,32 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
  * connections - matrix that shows which nodes are connected to the other nodes
  * usedNodes - vector that contains the indices of the nodes used in the main graph
  */
-void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, std::vector<std::vector<int> > coordinates, std::vector< std::vector<int> > connections, std::vector< int > usedNodes)
+void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, std::vector<std::vector<int> > coordinates, std::vector< std::vector<int> > connections, std::vector< int > usedNodes, std::vector<std::vector<float> >* weightMatrix)
 {
 	//Open output file stream and direct it to correct file
 	// std::ofstream outputGraph;
 	// outputGraph.open("graphs.txt");
 
-	std::ofstream connectionsFile;
-	connectionsFile.open("../../RiversofHanoi/Content/models/connections.txt");
+	// std::ofstream connectionsFile;
+	// connectionsFile.open("../../RiversofHanoi/Content/models/connections.txt");
 
 	//Initialise a matrix to be used to store all connections
 	std::vector<std::vector<int> > connectionsMatrix( shortestPaths[0].size(), std::vector<int> (shortestPaths[0].size(), 0));
+
+	std::vector<int> newNodes;
+	std::vector<std::string> connectionsUsed;
+
 	//Loop through each node in the input connections
 	for (unsigned i = 0; i < connections.size(); i++)
 	{
 		for (unsigned j = 0; j < connections[i].size(); j++)
 		{
 			//Create a pointer so that it is easier to read
-			std::vector<int> *ptrShortPath = &shortestPaths[i][usedNodes[connections[i][j]]];
+			std::vector<int> *ptrShortPath = &shortestPaths[usedNodes[i]][usedNodes[connections[i][j]]];
 			//Loop through each shortest path
 			bool newLineNeeded = false;
 
-			for(unsigned k = 0; k < shortestPaths[i][usedNodes[connections[i][j]]].size() - 1; k++)
+			for(unsigned k = 0; k < shortestPaths[usedNodes[i]][usedNodes[connections[i][j]]].size() - 1; k++)
 			{
 				//If the two nodes are connected then set the connection matrix to show that they are
 				if ((*ptrShortPath)[k] != -1)
@@ -169,18 +485,113 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 						point2 = "0" + point2;
 					}
 
-					connectionsFile << point1 <<  point2 << " ";
+					std::string connection = point1 + point2;
+
+					// connectionsFile << connection << " ";
 
 					newLineNeeded = true;
+
+					for ( unsigned x = 0; x < connectionsUsed.size(); x++)
+					{
+						std::string node1Connect = connectionsUsed[x].substr(0, 2);
+						std::string node2Connect = connectionsUsed[x].substr(2, 2);
+
+						if (point1.compare(node1Connect) == 0 && point2.compare(node2Connect) != 0)
+						{	
+							// std::cout << "Found" << std::endl;
+							if (std::find(newNodes.begin(), newNodes.end(), (*ptrShortPath)[k]) == newNodes.end())
+							{
+								newNodes.push_back((*ptrShortPath)[k]);
+							}
+						} // else {
+						// 	connectionsUsed.push_back(connection);
+						// }
+					}
+
+
+					if (std::find(connectionsUsed.begin(), connectionsUsed.end(), connection) == connectionsUsed.end())
+					{
+						// std::cout << "Here";
+						connectionsUsed.push_back(connection);
+					}
+					// 	newNodes.push_back((*ptrShortPath)[k]);
+					// }
 				}
 			}
 
 			if (newLineNeeded)
 			{
-				connectionsFile << std::endl; //(*ptrShortPath)[(*ptrShortPath).size() - 1] << std::endl;	
+				// connectionsFile << std::endl; //(*ptrShortPath)[(*ptrShortPath).size() - 1] << std::endl;	
 			}		
 		}
 	}
+
+	// std::cout <<"Before";
+
+	// std::cout << newNodes.size() << std::endl;
+
+	
+
+	// std::cout <<"After";
+
+	// std::cout << "Before";
+
+	// //Shortest Paths for new Nodes
+	// std::vector< std::vector< std::vector<int> > > shortestPathsNew = dijkstra(connections, *weightMatrix, newNodes);
+
+	// std::cout << "After";
+	// //Loop through each node in the input connections
+	// for (unsigned i = 0; i < connections.size(); i++)
+	// {
+	// 	for (unsigned j = 0; j < connections[i].size(); j++)
+	// 	{
+	// 		//Create a pointer so that it is easier to read
+	// 		std::vector<int> *ptrShortPath = &shortestPaths[i][usedNodes[connections[i][j]]];
+	// 		//Loop through each shortest path
+	// 		bool newLineNeeded = false;
+
+	// 		for(unsigned k = 0; k < shortestPaths[i][usedNodes[connections[i][j]]].size() - 1; k++)
+	// 		{
+	// 			//If the two nodes are connected then set the connection matrix to show that they are
+	// 			if ((*ptrShortPath)[k] != -1)
+	// 			{
+	// 				std::string point1 = std::to_string((*ptrShortPath)[k]);
+	// 				std::string point2 = std::to_string((*ptrShortPath)[k+1]);
+
+	// 				if (point1.length() == 1)
+	// 				{
+	// 					point1 = "0" + point1;
+	// 				}
+	// 				if (point2.length() == 1)
+	// 				{
+	// 					point2 = "0" + point2;
+	// 				}
+
+	// 				std::string connection = point1 + point2;
+
+	// 				connectionsFile << connection << " ";
+
+	// 				newLineNeeded = true;
+	// 			}
+	// 		}
+
+	// 		if (newLineNeeded)
+	// 		{
+	// 			connectionsFile << std::endl;
+	// 		}
+	// 	}
+	// }
+
+	// std::cout << "New Nodes" << std::endl;
+	// for (unsigned i = 0; i < newNodes.size(); i++)
+	// {
+	// 	std::cout << newNodes[i] << std::endl;
+	// }
+	// std::cout << "Old Nodes" << std::endl;
+	// for (unsigned i = 0; i < usedNodes.size(); i++)
+	// {
+	// 	std::cout << usedNodes[i] << std::endl;
+	// }
 
 	//For loop to print the connection matrix
 	// for (unsigned i = 0; i < connectionsMatrix.size(); i++)
@@ -201,7 +612,7 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 	// }
 
 	//Print the height map
-	printHeightMap(connectionsMatrix, coordinates, usedNodes);
+	printHeightMap(connectionsMatrix, coordinates, newNodes, shortestPaths);//usedNodes);
 }
 
 /* Function that outputs the heightmap of the graph to a file
@@ -209,7 +620,7 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
  * connectionsMatrix -  Matrix that contains the information about which nodes are connected
  * coordinates - a vector that stores every nodes coordinates
  */
-void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vector< std::vector<int> > coordinates, std::vector<int> usedNodes)
+void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vector< std::vector<int> > coordinates, std::vector<int> usedNodes, std::vector<std::vector< std::vector<int > > > shortestPaths)
 {
 	//Canal height map
 	//If 1 then canal is present
@@ -260,6 +671,8 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 
 		graphHeightMap << std::endl;
 	}
+
+	connectionsPrint(shortestPaths, usedNodes, rodIndex, riverNames);
 
 	terrainGen::generateTerrain(&heightMap, &usedNodes, &coordinates, &rodLocations, &riverLocations, SQUARE_SIZE, &rodIndex, &riverNames);
 }
@@ -782,7 +1195,7 @@ void findConnections(std::vector<std::vector<int> > *connections, std::vector<in
 			if (distances[i] == distancesUnsorted[j] && std::find(order.begin(), order.end(),j)==order.end())
 			{
 				order.push_back(j);
-				std::cout << distances[i] << " " << j << std::endl;
+				// std::cout << distances[i] << " " << j << std::endl;
 				break;
 			}
 		}
@@ -814,7 +1227,7 @@ void findConnections(std::vector<std::vector<int> > *connections, std::vector<in
 					{
 						if (distances[k] > distancesUnsorted[i])
 						{
-							std::cout << distances[k] << " > " << distancesUnsorted[i] << " " << order[k] << " > " << i << std::endl;;
+							// std::cout << distances[k] << " > " << distancesUnsorted[i] << " " << order[k] << " > " << i << std::endl;;
 							nodeConnections.push_back(order[k]);
 							// numConnections[order[k]]++;
 							break;
@@ -834,17 +1247,17 @@ void findConnections(std::vector<std::vector<int> > *connections, std::vector<in
 
 	}
 
-	for (int i = 0; i < (*connections).size(); i++)
-	{
-		std::cout << i << " to: ";
+	// for (int i = 0; i < (*connections).size(); i++)
+	// {
+	// 	std::cout << i << " to: ";
 
-		for (int j = 0; j < (*connections)[i].size(); j++)
-		{
-			std::cout << (*connections)[i][j] << " ";
-		}
+	// 	for (int j = 0; j < (*connections)[i].size(); j++)
+	// 	{
+	// 		std::cout << (*connections)[i][j] << " ";
+	// 	}
 
-		std::cout << std::endl;
-	}
+	// 	std::cout << std::endl;
+	// }
 }
 
 /* Function to find all the shortest paths from one node to the other nodes
@@ -858,15 +1271,17 @@ void findConnections(std::vector<std::vector<int> > *connections, std::vector<in
 std::vector< std::vector< std::vector<int> > >  dijkstra(std::vector< std::vector<int> > connections, std::vector< std::vector<float> > weightMatrix, std::vector<int> usedNodes)
 {
 	//Make a matrix filled with vectors
-	std::vector< std::vector< std::vector<int> > > shortestPaths(connections.size(), std::vector<std::vector<int> > (weightMatrix.size(), std::vector<int> (1, -1)));
+	std::vector< std::vector< std::vector<int> > > shortestPaths(weightMatrix.size(), std::vector<std::vector<int> > (weightMatrix.size(), std::vector<int> (1, -1)));
 	//loop through the entire connections matrix
-	for (unsigned i = 0; i < connections.size(); i++)
+	for (unsigned i = 0; i < weightMatrix.size(); i++)
 	{
-		for (unsigned j = 0; j < connections[i].size(); j++)
+		for (unsigned j = 0; j < weightMatrix[i].size(); j++)
 		{
 			//Find shortest path from i to j
-			int startNode = usedNodes[i];
-			int endNode = usedNodes[connections[i][j]];
+			int startNode = i; //usedNodes[i];
+			int endNode = j; //usedNodes[connections[i][j]];
+
+				// std::cout << i << " " << j << std::endl;
 
 			//initialise variables
 			int n = weightMatrix.size();
@@ -879,7 +1294,7 @@ std::vector< std::vector< std::vector<int> > >  dijkstra(std::vector< std::vecto
 			//Distance to first node is always 0 from itself
 			distance[startNode] = 0;
 			//Init path to start at i node
-			shortestPaths[i][startNode] = {startNode};
+			shortestPaths[startNode][endNode] = {startNode};
 
 			//Loop through each node
 			for( int x = 0; x < n; x++)
@@ -912,6 +1327,7 @@ std::vector< std::vector< std::vector<int> > >  dijkstra(std::vector< std::vecto
 						//Check to see if the new path is shorter than the one already found
 						if (path < distance[y])
 						{
+
 							//Set distance to the new distance
 							distance[y] = path;
 							//Vector to hold the shortest path
@@ -919,18 +1335,31 @@ std::vector< std::vector< std::vector<int> > >  dijkstra(std::vector< std::vecto
 							tempVector.push_back(y);
 							//Set the shortest path to the path found
 							shortestPaths[i][y] = tempVector;
+							std::vector<int> testvector(1, -1);
 							//Check to see if the backwards path has a path found already
-							std::vector<int>::iterator iter = std::find(usedNodes.begin(), usedNodes.end(),y);
-							if(iter != usedNodes.end())
+							if (shortestPaths[y][i] == testvector)
 							{
-								//If no path found then set path to the one found
-								int index = std::distance(usedNodes.begin(), iter);
-								// std::cout << y << std::endl;
-								shortestPaths[index][usedNodes[i]] = tempVector;
+								shortestPaths[y][i] = tempVector;
 							}
+							// std::vector<int>::iterator iter = std::find(usedNodes.begin(), usedNodes.end(),y);
+
+							// if(iter != usedNodes.end())
+							// {
+								
+							// 	//If no path found then set path to the one found
+							// 	int index = std::distance(usedNodes.begin(), iter);
+							// 	// std::cout << "break before?" << std::endl;
+							// 	// std::cout << y << std::endl;
+							// 	// std::cout << index << " "<< usedNodes[i]<< std::endl;
+							// 	//shortestPaths[index][usedNodes[i]] = tempVector;
+							// 	shortestPaths[i][j] = tempVector;
+							// 	// std::cout << "break after?" << std::endl;
+							// }
+							
 						}
 					}
 				}
+				
 			}
 		}
 	}
@@ -1035,4 +1464,52 @@ void outputNodes(std::vector<int> usedNodes, std::vector<std::vector<int> > coor
 	{
 		nodeFile << coordinates[usedNodes[i]][0] << "," << coordinates[usedNodes[i]][1] << std::endl;
 	}
+}
+
+
+//Starts at 2nd node in connection
+std::vector<std::string> greedyShortestPath(std::string startRiver, std::vector<int> nodes, std::vector<std::string> riverNames, std::vector<std::string> startNodes, std::vector<std::string> endNodes)
+{
+	bool endNodeReached = false;
+
+	std::vector<std::string> shortPath;
+
+	//Add first river to path
+	shortPath.push_back(startRiver);
+
+	std::string currentConnection;
+	//Start with end node of the first river
+	std::string currentNode = startRiver.substr(2,2);
+	//Find end node in list of start nodes to find connection
+	std::vector<std::string>::iterator iter = std::find(startNodes.begin(), startNodes.end(),currentNode);
+	int index = std::distance(startNodes.begin(), iter);
+
+	while(!endNodeReached)
+	{
+		std::cout << riverNames[index] << std::endl;
+		std::cout << currentNode << std::endl;
+		if(std::find(nodes.begin(), nodes.end(),std::stoi(currentNode)) != nodes.end() || std::stoi(currentNode) == 99)
+		{
+			// std::cout << "Found " << shortPath.size() << std::endl;
+			// std::cout << currentNode << std::endl;	
+			endNodeReached = true;
+			break;
+		}
+
+		// std::cout << "Crash Before?" << std::endl;
+		currentConnection = riverNames[index];
+		currentNode = endNodes[index];
+		shortPath.push_back(currentConnection);
+		std::vector<std::string>::iterator iter = std::find(startNodes.begin(), startNodes.end(),currentNode);
+		if (iter != startNodes.end())
+		{
+			index = std::distance(startNodes.begin(), iter);
+			// std::cout << "Crash After?" << std::endl;
+			currentNode = startNodes[index];
+		} else {
+			currentNode = "99";
+		}
+	}
+
+	return shortPath;
 }

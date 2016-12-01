@@ -12,7 +12,7 @@ void terrainGen::generateTerrain(std::vector<std::vector<float> > *graphCoords, 
 
 	int power = log2(graphCoords->size());
 
-	DiamondSquare ds = DiamondSquare(power, 1.0f, 0.5f, 0.5f, 0.0f);
+	DiamondSquare ds = DiamondSquare(power, 1.0f, 0.6f, 0.4f, 0.0f);
 
 	float** dsCoords = ds.getOutputValues();
 
@@ -28,7 +28,7 @@ void terrainGen::generateTerrain(std::vector<std::vector<float> > *graphCoords, 
 	}
 	// utils::outputTerrain(floatGraphCoords);
 
-	outputNodes(*usedNodes, *coordinates, floatGraphCoords);
+	outputNodes(*usedNodes, *coordinates, floatGraphCoords, SQUARE_SIZE);
 
 	outputRods(*usedNodes, *rodLocations, floatGraphCoords);
 
@@ -39,10 +39,20 @@ void terrainGen::generateTerrain(std::vector<std::vector<float> > *graphCoords, 
 	readTerrain::readTerrainFileAndOutputM(floatGraphCoords);
 }
 
-void terrainGen::outputNodes(std::vector<int> usedNodes, std::vector<std::vector<int> > coordinates, std::vector<std::vector<float> > terrainCoords)
+void terrainGen::outputNodes(std::vector<int> usedNodes, std::vector<std::vector<int> > coordinates, std::vector<std::vector<float> > terrainCoords, int SQUARE_SIZE)
 {
 	std::ofstream nodeFile;
 	nodeFile.open("../../RiversofHanoi/Content/models/nodes.txt");
+
+	for(int i = 0; i < 2; i++)
+	{
+		int x = i * (SQUARE_SIZE - 1);
+		int y = i * (SQUARE_SIZE - 1);
+		float z = terrainCoords[x][y];
+		nodeFile << x << "," << y << "," << z << std::endl;
+	}
+
+	// std::cout << usedNodes.size() << std::endl;
 
 	for (int i = 0; i < usedNodes.size(); i++)
 	{
@@ -58,6 +68,12 @@ void terrainGen::outputRods(std::vector<int> usedNodes, std::vector<std::vector<
 {
 	std::ofstream rodFile;
 	rodFile.open("../../RiversofHanoi/Content/models/rods.txt");
+
+	//add two blank rows for the first two fake nodes
+	for (int i = 0; i < 2; i++)
+	{
+		rodFile << std::endl;
+	}
 
 	for (int i = 0; i < rodLocations.size(); i++)
 	{
