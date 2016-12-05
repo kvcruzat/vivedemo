@@ -11,6 +11,10 @@ ARiverActor::ARiverActor()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	flow = 0;
+
+	outputNode = TEXT("");
+
 	riverMesh = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("RiverMesh"));
 
 	static ConstructorHelpers::FObjectFinder<UMaterial> Material(TEXT("Material'/Game/StarterContent/Materials/M_Water_Lake.M_Water_Lake'"));
@@ -24,8 +28,6 @@ ARiverActor::ARiverActor()
 void ARiverActor::BeginPlay()
 {
 	Super::BeginPlay();
-
-	flow = 10;
 	
 }
 
@@ -56,46 +58,57 @@ void ARiverActor::createMesh(TArray<FVector> vertexData) {
 	
 }
 
-void ARiverActor::changeFlow(int32 value) {
-	if (value == 0) { flow = 0; }
-	else {
-		flow += value;
-	}
+void ARiverActor::changeFlow(float value) {
+
+	flow += value;
+
 	for (int Index = 0; Index < connectedRivers.Num(); Index++) {
-		if (value == 0) {
-			connectedRivers[Index]->changeFlow(0);
-		}
-		else {
-			connectedRivers[Index]->changeFlow(value);
+		
+		connectedRivers[Index]->changeFlow(value);
+
+		if (Index == connectedRivers.Num() - 1 && !connectedRivers[Index]->outputNode.IsEmpty()) {
+			float totalFlow = connectedRivers[Index]->flow;
+
+			for (int river = 0; river < connectedRivers[Index]->overlappedRivers.Num(); river++) {
+				totalFlow += connectedRivers[Index]->overlappedRivers[river]->flow;
+			}
+
+			totalFlow = totalFlow / 2;
+
+			for (int river = 0; river < connectedRivers[Index]->outputRivers.Num(); river++) {
+				float flowDiff = totalFlow - connectedRivers[Index]->outputRivers[river]->flow;
+				connectedRivers[Index]->outputRivers[river]->changeFlow(flowDiff);
+			}
 		}
 	}
 
+	float startFlow = 24;
 
-	if (flow > 9) {
+	if (flow > startFlow * 0.9) {
 		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.9);
 	}
-	else if (flow > 8) {
+	else if (flow > startFlow * 0.8) {
 		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.8);
 	}
-	else if (flow > 7) {
+	else if (flow > startFlow * 0.7) {
 		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.7);
 	}
-	else if (flow > 6) {
+	else if (flow > startFlow * 0.6) {
 		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.6);
 	}
-	else if (flow > 5) {
+	else if (flow > startFlow * 0.5) {
 		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.5);
 	}
-	else if (flow > 4) {
+	else if (flow > startFlow * 0.4) {
 		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.4);
 	}
-	else if (flow > 3) {
+	else if (flow > startFlow * 0.3) {
 		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.3);
 	}
-	else if (flow > 2) {
+	else if (flow > startFlow * 0.2) {
 		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.2);
 	}
-	else if (flow > 1) {
+	else if (flow > startFlow * 0.1) {
 		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.1);
 	}
 	else {
@@ -107,6 +120,33 @@ void ARiverActor::changeFlow(int32 value) {
 	float opacity;
 	riverMaterialInstance->GetScalarParameterValue(TEXT("Opacity"), opacity);
 	
-	UE_LOG(LogTemp, Warning, TEXT("# river%s: %s, %s"), *riverID, *FString::FromInt(flow), *FString::SanitizeFloat(opacity));
+	UE_LOG(LogTemp, Warning, TEXT("# river%s: %s, %s"), *riverID, *FString::SanitizeFloat(flow), *FString::SanitizeFloat(opacity));
 
 }
+
+//void ARiverActor::computeFlows() {
+//
+//	int nodeFlow = outputNode->flow;
+//
+//	if (outputNode->nodeID.Contains(TEXT("00"))) {
+//		nodeFlow = 24;
+//		if (outputNode->connectedRods.Num() == 0) {
+//			outputNode->outputRiver->changeFlow(nodeFlow);
+//		}
+//	}
+//	else {
+//		for (int river = 0; river < outputNode->inputRivers.Num(); river++) {
+//			nodeFlow += outputNode->inputRivers[river]->flow;
+//		}
+//	}	
+//
+//	if (outputNode->connectedRods.Num() == 2) {
+//		nodeFlow = nodeFlow / 2;
+//
+//		for (int rodIndex = 0; rodIndex < outputNode->connectedRods.Num(); rodIndex++) {
+//			int flowDiff = nodeFlow - outputNode->connectedRods[rodIndex]->connectedRiver->flow;
+//			outputNode->connectedRods[rodIndex]->connectedRiver->changeFlow(flowDiff);
+//		}
+//	}
+//	
+//}

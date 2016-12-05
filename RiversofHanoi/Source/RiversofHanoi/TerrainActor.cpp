@@ -71,6 +71,7 @@ void ATerrainActor::PostActorCreated()
 		setRodLocations();
 		addRivers();
 		assignConnectionActors();
+		setFlows();
 	}
 }
 
@@ -86,7 +87,6 @@ void ATerrainActor::addRods()
 	TArray<FString> rodRiverConnection = util->rodRiverConnection;
 
     UWorld* const World = GetWorld();
-	int nodeNum = 0;
 	int rodNum = 0;
 	for (int32 Index = 0; Index < rods.Num(); ++Index)
 	{
@@ -96,7 +96,7 @@ void ATerrainActor::addRods()
 				FActorSpawnParameters SpawnParams;
 				SpawnParams.Owner = this;
 				SpawnParams.Instigator = Instigator;
-				FString actorName = FString(TEXT("N")) + FString::FromInt(nodeNum) + FString(TEXT("_R")) + FString::FromInt(rodNum);
+				FString actorName = FString::FromInt(rodNum);
 				ARodActor* Rod = World->SpawnActor<ARodActor>(RodActor, FVector(0,0,0), FRotator(0, 0, 0), SpawnParams);
 				Rod->rodID = actorName;
 				Rod->riverConnection = rodRiverConnection[Index];
@@ -106,7 +106,6 @@ void ATerrainActor::addRods()
 			}
 		}
 		else {
-			nodeNum++;
 			rodNum = 0;
 		}
 	}
@@ -258,7 +257,76 @@ void ATerrainActor::assignConnectionActors() {
 			FString riverID = riverArray[riverIndex]->riverID;
 			if (connectedRiver.Contains(riverID)) {
 				rodArray[rodIndex]->connectedRiver = riverArray[riverIndex];
+				rodArray[rodIndex]->nodeID = riverArray[riverIndex]->riverID.Mid(0, 2);
+				riverArray[riverIndex]->nodeID = riverArray[riverIndex]->riverID.Mid(0, 2);
 				break;
+			}
+		}
+	}
+
+	UWorld* const World = GetWorld();
+
+	for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
+		FString rodNode = rodArray[rodIndex]->nodeID;
+		if (!nodeIDs.Contains(rodNode)) {
+			nodeIDs.Add(rodNode);
+		}
+	}
+
+	nodeIDs.Sort();
+
+	/*for (int nodeIndex = 0; nodeIndex < nodeIDs.Num(); nodeIndex++) {
+		if (World)
+		{
+			FActorSpawnParameters SpawnParams;
+			SpawnParams.Owner = this;
+			SpawnParams.Instigator = Instigator;
+			ANodeActor* Node = World->SpawnActor<ANodeActor>(FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
+			Node->SetOwner(this);
+			Node->nodeID = nodeIDs[nodeIndex];
+			nodeArray.Add(Node);
+		}
+	}*/
+
+	if (!nodeIDs.Contains(TEXT("00"))) {
+		/*if (World)
+		{
+			FActorSpawnParameters SpawnParams;
+			SpawnParams.Owner = this;
+			SpawnParams.Instigator = Instigator;
+			ANodeActor* Node = World->SpawnActor<ANodeActor>(FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
+			Node->SetOwner(this);
+			Node->nodeID = TEXT("00");
+			nodeArray.Insert(Node, 0);*/
+			nodeIDs.Insert(TEXT("00"),0);
+			for (int riverIndex = 0; riverIndex < riverArray.Num(); riverIndex++) {
+				if (riverArray[riverIndex]->riverID.Mid(0, 2).Contains(TEXT("00")) ) {
+					riverArray[riverIndex]->nodeID = TEXT("00");
+					break;
+				}
+			}
+		//}
+	}
+	else if (!nodeIDs.Contains(TEXT("99"))) {
+		/*if (World)
+		{
+			FActorSpawnParameters SpawnParams;
+			SpawnParams.Owner = this;
+			SpawnParams.Instigator = Instigator;
+			ANodeActor* Node = World->SpawnActor<ANodeActor>(FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
+			Node->SetOwner(this);
+			Node->nodeID = TEXT("99");
+			nodeArray.Add(Node);*/
+			nodeIDs.Add(TEXT("99"));
+		//}
+	}
+
+	for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
+		for (int rodIndex2 = 0; rodIndex2 < rodArray.Num(); rodIndex2++) {
+			if (rodArray[rodIndex]->nodeID.Contains(rodArray[rodIndex2]->nodeID) && rodArray[rodIndex] != rodArray[rodIndex2]
+				&& !rodArray[rodIndex]->OtherRod->IsValidLowLevel() && !rodArray[rodIndex2]->OtherRod->IsValidLowLevel()) {
+				rodArray[rodIndex]->OtherRod = rodArray[rodIndex2];
+				rodArray[rodIndex2]->OtherRod = rodArray[rodIndex];
 			}
 		}
 	}
@@ -273,6 +341,107 @@ void ATerrainActor::assignConnectionActors() {
 					break;
 				}
 			}
+			if (connection == riverConnections.Num() - 1) {
+				for (int nodeIndex = 0; nodeIndex < nodeIDs.Num(); nodeIndex++) {
+					if (riverArray[riverIndex]->connectedRivers[connection]->riverID.Mid(2, 2).Contains(nodeIDs[nodeIndex])) {
+						riverArray[riverIndex]->connectedRivers[connection]->outputNode = nodeIDs[nodeIndex];
+						for (int river = 0; river < riverArray.Num(); river++) {
+							if (riverArray[riverIndex]->connectedRivers[connection]->outputNode.Contains(riverArray[river]->nodeID)) {
+								riverArray[riverIndex]->connectedRivers[connection]->outputRivers.Add(riverArray[river]);
+							}
+						}
+					}
+				}
+				for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
+					if (riverArray[riverIndex]->connectedRivers[connection]->outputNode.Contains(rodArray[rodIndex]->nodeID)) {
+						rodArray[rodIndex]->inputRivers.Add(riverArray[riverIndex]->connectedRivers[connection]);
+					}
+				}
+			}
 		}
 	}
+
+	for (int riverIndex = 0; riverIndex < riverArray.Num(); riverIndex++) {
+		for (int riverIndex2 = 0; riverIndex2 < riverArray.Num(); riverIndex2++) {
+			if (riverArray[riverIndex]->outputNode.Contains(riverArray[riverIndex2]->outputNode) && riverArray[riverIndex] != riverArray[riverIndex2]
+				&& !riverArray[riverIndex]->overlappedRivers.Contains(riverArray[riverIndex2]) ) {
+				riverArray[riverIndex]->overlappedRivers.Add(riverArray[riverIndex2]);
+			}
+		}
+	}
+
+
+	//for (int nodeIndex = 0; nodeIndex < nodeArray.Num(); nodeIndex++) {
+	//	for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
+	//		if (nodeArray[nodeIndex]->nodeID.Contains(rodArray[rodIndex]->nodeID)) {
+	//			nodeArray[nodeIndex]->connectedRods.Add(rodArray[rodIndex]);
+	//		}
+	//	}
+	//}
+	
+}
+
+void ATerrainActor::setFlows() {
+
+	/*for (int nodeIndex = 0; nodeIndex < nodeIDs.Num(); nodeIndex++) {*/
+		float flow = 0;
+		int numRods = 0;
+		for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
+			if (nodeIDs[0].Contains(rodArray[rodIndex]->nodeID)) {
+				++numRods;
+			}
+		}
+
+		for (int riverIndex = 0; riverIndex < riverArray.Num(); riverIndex++) {
+			if (nodeIDs[0].Contains(riverArray[riverIndex]->nodeID)) {
+				flow = 24;
+				if (numRods == 0) {
+					riverArray[riverIndex]->changeFlow(flow);
+				}
+
+				if (numRods == 2) {
+					flow = flow / 2;
+
+					for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
+						if (nodeIDs[0].Contains(rodArray[rodIndex]->nodeID)) {
+							float flowDiff = flow - rodArray[rodIndex]->connectedRiver->flow;
+							rodArray[rodIndex]->connectedRiver->changeFlow(flowDiff);
+						}
+					}
+				}
+				break;
+			}
+		}
+	//}
+
+	
+
+	/*for (int nodeIndex = 0; nodeIndex < nodeArray.Num(); nodeIndex++) {
+		nodeArray[nodeIndex]->computeFlows();
+	}*/
+
+	/*for (int nodeIndex = 0; nodeIndex < nodeArray.Num(); nodeIndex++) {
+		int flow = 0;
+
+		if (nodeIndex == 0) {
+			flow = 24;
+			if (nodeArray[nodeIndex]->connectedRods.Num() == 0) {
+				nodeArray[nodeIndex]->outputRiver->changeFlow(flow);
+			}
+		}
+		else {
+			for (int river = 0; river < nodeArray[nodeIndex]->inputRivers.Num(); river++) {
+				flow += nodeArray[nodeIndex]->inputRivers[river]->flow;
+			}
+		}	
+	
+		if (nodeArray[nodeIndex]->connectedRods.Num() == 2) {
+			flow = flow / 2;
+	
+			for (int rodIndex = 0; rodIndex < nodeArray[nodeIndex]->connectedRods.Num(); rodIndex++) {
+				int flowDiff = flow - nodeArray[nodeIndex]->connectedRods[rodIndex]->connectedRiver->flow;
+				nodeArray[nodeIndex]->connectedRods[rodIndex]->connectedRiver->changeFlow(flowDiff);
+			}
+		}
+	}*/
 }

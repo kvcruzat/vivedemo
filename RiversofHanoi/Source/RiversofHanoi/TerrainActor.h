@@ -37,6 +37,8 @@ public:
 	TArray<FVector> riverNorms;
 	TArray<ARiverActor*> riverArray;
 	TArray<ARodActor*> rodArray;
+	//TArray<ANodeActor*> nodeArray;
+	TArray<FString>nodeIDs;
 	TSubclassOf<class ARodActor> RodActor;
 	float offset, scale, zOffset, zScale;
 
@@ -50,5 +52,6 @@ public:
 	virtual void setRodLocations();
 	virtual void addRivers();
 	virtual void assignConnectionActors();
+	virtual void setFlows();
 
 };

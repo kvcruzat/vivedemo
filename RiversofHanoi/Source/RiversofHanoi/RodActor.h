@@ -37,9 +37,17 @@ public:
 	UPROPERTY(EditAnywhere)
 	ARiverActor* connectedRiver;
 
+	TArray<ARiverActor*> inputRivers;
+
+	UPROPERTY(EditAnywhere)
+	ARodActor* OtherRod;
+
 	FVector rodLocation;
 	FRotator discRot;
 	FString rodID;
+
+	UPROPERTY(EditAnywhere)
+	FString nodeID;
 
 	virtual void arrayChange(bool add, FString discName);
 	

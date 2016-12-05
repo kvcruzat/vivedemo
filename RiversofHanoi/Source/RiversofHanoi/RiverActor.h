@@ -3,6 +3,7 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
+//#include "NodeActor.h"
 #include "ProceduralMeshComponent.h"
 #include "RiverActor.generated.h"
 
@@ -32,10 +33,24 @@ public:
 	UMaterialInstanceDynamic* riverMaterialInstance;
 
 	UPROPERTY(EditAnywhere)
-	int32 flow;
+	float flow;
 
 	UPROPERTY(EditAnywhere)
 	FString riverID;
+
+	UPROPERTY(EditAnywhere)
+	FString nodeID;
+
+	/*UPROPERTY(EditAnywhere)
+	ANodeActor* outputNode;*/
+
+	UPROPERTY(EditAnywhere)
+	FString outputNode;
+
+	UPROPERTY(EditAnywhere)
+	TArray<ARiverActor*> overlappedRivers;
+	UPROPERTY(EditAnywhere)
+	TArray<ARiverActor*> outputRivers;
 
 	TArray<FString> riverConnections;
 
@@ -46,5 +61,6 @@ public:
 		UProceduralMeshComponent* riverMesh;
 	
 	virtual void createMesh(TArray<FVector> vertexData);
-	virtual void changeFlow(int32 value);
+	virtual void changeFlow(float value);
+	/*virtual void computeFlows();*/
 };

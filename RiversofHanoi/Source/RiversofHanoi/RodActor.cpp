@@ -199,16 +199,50 @@ void ARodActor::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimiti
 
 void ARodActor::arrayChange(bool add, FString discName) {
 	int32 containedSize = containedActors.Num();
+	
+	float incomingFlow = 0;
 
-	if (add) {
-		if (containedSize == 3) { connectedRiver->changeFlow(0); }
-		else if (discName.Contains(TEXT("Small"))) { this->connectedRiver->changeFlow(-1); }
-		else if (discName.Contains(TEXT("Medium"))) { this->connectedRiver->changeFlow(-2); }
-		else if (discName.Contains(TEXT("Large"))) { this->connectedRiver->changeFlow(-3); }
+	if (nodeID.Contains(TEXT("00"))) {
+		incomingFlow += 24;
 	}
 	else {
-		if (discName.Contains(TEXT("Small"))) { connectedRiver->changeFlow(1); }
-		else if (discName.Contains(TEXT("Medium"))) { this->connectedRiver->changeFlow(2); }
-		else if (discName.Contains(TEXT("Large"))) { this->connectedRiver->changeFlow(3); }
+		for (int riverIndex = 0; riverIndex < inputRivers.Num(); riverIndex++) {
+			incomingFlow += inputRivers[riverIndex]->flow;
+		}
+	}
+
+	incomingFlow = incomingFlow / 2;
+
+	float smallValue = incomingFlow * (1.0f / 6.0f);
+	float mediumValue = incomingFlow * (1.0f / 3.0f);
+	float largeValue = incomingFlow * (0.5);
+
+	if (add) {
+		if (discName.Contains(TEXT("Small"))) { 
+			connectedRiver->changeFlow(-smallValue); 
+			OtherRod->connectedRiver->changeFlow(smallValue);
+		}
+		else if (discName.Contains(TEXT("Medium"))) {
+			connectedRiver->changeFlow(-mediumValue);
+			OtherRod->connectedRiver->changeFlow(mediumValue);
+		}
+		else if (discName.Contains(TEXT("Large"))) {
+			connectedRiver->changeFlow(-largeValue);
+			OtherRod->connectedRiver->changeFlow(largeValue);
+		}
+	}
+	else {
+		if (discName.Contains(TEXT("Small"))) {
+			connectedRiver->changeFlow(smallValue);
+			OtherRod->connectedRiver->changeFlow(-smallValue);
+		}
+		else if (discName.Contains(TEXT("Medium"))) {
+			connectedRiver->changeFlow(mediumValue);
+			OtherRod->connectedRiver->changeFlow(-mediumValue);
+		}
+		else if (discName.Contains(TEXT("Large"))) {
+			connectedRiver->changeFlow(largeValue);
+			OtherRod->connectedRiver->changeFlow(-largeValue);
+		}
 	}
 }
