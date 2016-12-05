@@ -66,4 +66,10 @@ DerivedDataCache/*
 terrain.m
 RiversofHanoi/Content/models/terrain.m
 
-RiversofHanoi/Content/VirtualRealityBP/Maps/TerrainLevel.umap
+# Terrain Data
+Randomly\ Generate\ Graphs/heightmaps/graphHeightMap.txt
+RiversofHanoi/Content/models/nodes.txt
+RiversofHanoi/Content/models/rivers.txt
+RiversofHanoi/Content/models/rodIndex.txt
+RiversofHanoi/Content/models/rods.txt
+RiversofHanoi/Content/models/connections.txt
