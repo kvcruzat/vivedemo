@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.11.18)  29 NOV 2016 12:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.11.18)  5 DEC 2016 13:46
 entering extended mode
 **./fyp.tex
 (fyp.tex
@@ -538,37 +538,58 @@ Chapter 3.
 
  (Chapters/chapter4.tex
 Chapter 4.
+<images/GanttChart.png, id=71, 280.04625pt x 864.22874pt>
+File: images/GanttChart.png Graphic file (type png)
 
-Underfull \vbox (badness 2165) has occurred while \output is active []
+<use images/GanttChart.png>
+Package pdftex.def Info: images/GanttChart.png used on input line 9.
+(pdftex.def)             Requested size: 212.0639pt x 654.41338pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [13
 
 
 
-])
-[14]
+]
+Overfull \vbox (7.74823pt too high) has occurred while \output is active []
+
+
+[14 <./images/GanttChart.png>]) [15] [16]
 \openout2 = `./Chapters/chapter5.aux'.
 
  (Chapters/chapter5.tex
 Chapter 5.
 
-Underfull \vbox (badness 2165) has occurred while \output is active []
-
- [15
+LaTeX Warning: Citation `steamvr' on page 17 undefined on input line 5.
 
 
+LaTeX Warning: Citation `thelab' on page 17 undefined on input line 5.
 
-])
-[16]
-\openout2 = `./Chapters/chapter6.aux'.
 
- (Chapters/chapter6.tex
-Chapter 6.
+LaTeX Warning: Citation `spacepiratetrainer' on page 17 undefined on input line
+ 5.
+
+
+LaTeX Warning: Citation `elitedangerous' on page 17 undefined on input line 5.
+
+
+LaTeX Warning: Reference `' on page 17 undefined on input line 8.
+
 [17
 
 
 
 ]) [18]
+\openout2 = `./Chapters/chapter6.aux'.
+
+ (Chapters/chapter6.tex
+Chapter 6.
+[19
+
+
+
+]) [20]
 \openout2 = `./Chapters/chapter7.aux'.
 
  (Chapters/chapter7.tex
@@ -576,66 +597,69 @@ Chapter 7.
 
 Underfull \vbox (badness 2165) has occurred while \output is active []
 
- [19
+ [21
 
 
 
 ])
-[20]
+[22]
 \openout2 = `./Chapters/chapter8.aux'.
 
  (Chapters/chapter8.tex
 Chapter 8.
-) [21
+) [23
 
 
 
-] (fyp.bbl [22
+] (fyp.bbl [24
 
 
-]) [23]
+]) [25]
 \openout2 = `appendix.aux'.
 
- (appendix.tex [24
+ (appendix.tex [26
 
 
-] [25
+] [27
 
-] [26]
+] [28]
 Appendix A.
-[27
+[29
 
-] [28
+] [30
 
 ]
 Appendix B.
-) [29] (fyp.aux (prelude.aux) (Chapters/chapter1.aux) (Chapters/chapter2.aux)
+) [31] (fyp.aux (prelude.aux) (Chapters/chapter1.aux) (Chapters/chapter2.aux)
 (Chapters/chapter3.aux) (Chapters/chapter4.aux) (Chapters/chapter5.aux)
 (Chapters/chapter6.aux) (Chapters/chapter7.aux) (Chapters/chapter8.aux)
-(appendix.aux)) ) 
+(appendix.aux))
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 4692 strings out of 493333
- 65354 string characters out of 3139181
- 237929 words of memory out of 3000000
- 8042 multiletter control sequences out of 15000+200000
+ 4704 strings out of 493333
+ 65562 string characters out of 3139181
+ 237953 words of memory out of 3000000
+ 8053 multiletter control sequences out of 15000+200000
  14329 words of font info for 27 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,11n,64p,985b,404s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\
-jknappen\ec\dpi600\ecti1000.pk> <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fo
-nts\pk\ljfour\jknappen\ec\dpi600\ecbx2488.pk> <C:\Users\Flippisen\AppData\Local
-\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx2074.pk> <C:\Users\Flippisen
-\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk> <C:\U
-sers\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm
-1000.pk> <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
-ec\dpi600\ecbx1000.pk> <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\lj
-four\jknappen\ec\dpi600\ecbx1200.pk>{C:/Program Files/MiKTeX 2.9/fonts/enc/dvip
-s/base/8r.enc} <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jkn
-appen\ec\dpi600\ecbx1440.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/
-utmr8a.pfb>
-Output written on fyp.pdf (34 pages, 3291836 bytes).
+ <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi
+600\ecti1000.pk> <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\j
+knappen\ec\dpi600\ecbx2488.pk> <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fon
+ts\pk\ljfour\jknappen\ec\dpi600\ecbx2074.pk> <C:\Users\Flippisen\AppData\Local\
+MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk> <C:\Users\Flippisen\
+AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk> <C:\Us
+ers\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1
+000.pk> <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\e
+c\dpi600\ecbx1200.pk>{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc} 
+<C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
+\ecbx1440.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
+Output written on fyp.pdf (36 pages, 3322177 bytes).
 PDF statistics:
- 468 PDF objects out of 1000 (max. 8388607)
+ 480 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

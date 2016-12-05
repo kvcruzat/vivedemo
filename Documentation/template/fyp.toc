@@ -24,33 +24,34 @@
 \contentsline {subsubsection}{Hardware Requirements}{11}
 \contentsline {chapter}{\numberline {4}Project Management}{13}
 \contentsline {section}{\numberline {4.1}Methodology}{13}
-\contentsline {section}{\numberline {4.2}Schedule}{13}
-\contentsline {section}{\numberline {4.3}Version Control}{13}
-\contentsline {section}{\numberline {4.4}Risk Assessment}{14}
-\contentsline {chapter}{\numberline {5}Planning and Design}{15}
-\contentsline {section}{\numberline {5.1}Game Design Process}{15}
-\contentsline {section}{\numberline {5.2}Virtual Reality Features}{15}
-\contentsline {section}{\numberline {5.3}Random Generation of River Graphs}{15}
-\contentsline {section}{\numberline {5.4}Towers of Hanoi}{16}
-\contentsline {section}{\numberline {5.5}Plant Survival}{16}
-\contentsline {chapter}{\numberline {6}Implementation}{17}
-\contentsline {section}{\numberline {6.1}Development Environment}{17}
-\contentsline {subsection}{\numberline {6.1.1}Vive Hardware}{17}
-\contentsline {subsection}{\numberline {6.1.2}Game Engine}{17}
-\contentsline {subsection}{\numberline {6.1.3}Out of Engine Development}{17}
-\contentsline {section}{\numberline {6.2}Random Generation of Rivers and Terrain}{18}
-\contentsline {section}{\numberline {6.3}User Interactive Reverse Towers Of Hanoi}{18}
-\contentsline {section}{\numberline {6.4}Flow Dependant Flora}{18}
-\contentsline {chapter}{\numberline {7}Testing and Evaluation}{19}
-\contentsline {section}{\numberline {7.1}Testing Against Requirements}{19}
-\contentsline {section}{\numberline {7.2}Client Evaluation}{19}
-\contentsline {section}{\numberline {7.3}Result Evalutaion}{19}
-\contentsline {section}{\numberline {7.4}Project Evalutaion}{20}
-\contentsline {chapter}{\numberline {8}Conclusion}{21}
-\contentsline {section}{\numberline {8.1}Conclusion}{21}
-\contentsline {section}{\numberline {8.2}Future Work}{21}
-\contentsline {section}{\numberline {8.3}Personal Reflection}{21}
-\contentsline {chapter}{References}{22}
-\contentsline {chapter}{Appendices}{25}
-\contentsline {chapter}{\numberline {A}External Material}{27}
-\contentsline {chapter}{\numberline {B}Ethical Issues Addressed}{29}
+\contentsline {section}{\numberline {4.2}Schedule}{14}
+\contentsline {section}{\numberline {4.3}Version Control}{15}
+\contentsline {section}{\numberline {4.4}Risk Assessment}{15}
+\contentsline {subsection}{\numberline {4.4.1}Contingency Plan}{15}
+\contentsline {chapter}{\numberline {5}Planning and Design}{17}
+\contentsline {section}{\numberline {5.1}Game Design Process}{17}
+\contentsline {section}{\numberline {5.2}Virtual Reality Features}{17}
+\contentsline {section}{\numberline {5.3}Graph Flow}{18}
+\contentsline {section}{\numberline {5.4}Towers of Hanoi}{18}
+\contentsline {section}{\numberline {5.5}Plant Survival}{18}
+\contentsline {chapter}{\numberline {6}Implementation}{19}
+\contentsline {section}{\numberline {6.1}Development Environment}{19}
+\contentsline {subsection}{\numberline {6.1.1}Vive Hardware}{19}
+\contentsline {subsection}{\numberline {6.1.2}Game Engine}{19}
+\contentsline {subsection}{\numberline {6.1.3}Out of Engine Development}{19}
+\contentsline {section}{\numberline {6.2}Random Generation of Rivers and Terrain}{20}
+\contentsline {section}{\numberline {6.3}User Interactive Reverse Towers Of Hanoi}{20}
+\contentsline {section}{\numberline {6.4}Flow Dependant Flora}{20}
+\contentsline {chapter}{\numberline {7}Testing and Evaluation}{21}
+\contentsline {section}{\numberline {7.1}Testing Against Requirements}{21}
+\contentsline {section}{\numberline {7.2}Client Evaluation}{21}
+\contentsline {section}{\numberline {7.3}Result Evalutaion}{21}
+\contentsline {section}{\numberline {7.4}Project Evalutaion}{22}
+\contentsline {chapter}{\numberline {8}Conclusion}{23}
+\contentsline {section}{\numberline {8.1}Conclusion}{23}
+\contentsline {section}{\numberline {8.2}Future Work}{23}
+\contentsline {section}{\numberline {8.3}Personal Reflection}{23}
+\contentsline {chapter}{References}{24}
+\contentsline {chapter}{Appendices}{27}
+\contentsline {chapter}{\numberline {A}External Material}{29}
+\contentsline {chapter}{\numberline {B}Ethical Issues Addressed}{31}
