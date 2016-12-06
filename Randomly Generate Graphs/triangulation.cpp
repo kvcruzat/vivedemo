@@ -588,9 +588,17 @@ void findWeightMatrix(std::vector< std::vector<int> > *graphConnections, std::ve
 			// std::cout << (*connections)[99][0] << " " << (i * NUM_POINTS) + j << std::endl;
 			// std::cout << i << " connected to: " << (*connections)[99][0] << std::endl;
 			//Find manhattan distance between the points
+
+			float xWeighted = 1f;
+			float yWeighted = 1f;
+
 			int xSquared = (coordinates[i][0] - coordinates[connectionPoint][0]) * (coordinates[i][0] - coordinates[connectionPoint][0]);
 			int ySquared = (coordinates[i][1] - coordinates[connectionPoint][1]) * (coordinates[i][1] - coordinates[connectionPoint][1]);
-			float distance = std::sqrt(float(xSquared) + float(ySquared));
+
+			xWeighted = xWeighted * xSquared;
+			yWeighted = yWeighted * ySquared;
+
+			float distance = std::sqrt(float(xWeighted) + float(yWeighted));
 
 			float manhattanDist = (coordinates[i][0] - coordinates[connectionPoint][0]) + (coordinates[i][1] - coordinates[connectionPoint][1]);
 

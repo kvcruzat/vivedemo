@@ -46,7 +46,7 @@ void findConnections(std::vector<std::vector<int> >*, std::vector<int>, std::vec
 std::vector< std::vector< std::vector<int> > > dijkstra(std::vector< std::vector<int> >, std::vector< std::vector<float> >, std::vector<int>);
 void connectionsPrint(std::vector< std::vector< std::vector<int> > >, std::vector< int >, std::vector< std::vector<std::string> >, std::vector< std::vector<std::string> >);
 void printGraph(std::vector< std::vector< std::vector<int> > >, std::vector<std::vector<int> > , std::vector< std::vector<int> >, std::vector< int >, std::vector<std::vector<float> >*);
-void printHeightMap(std::vector< std::vector<int> > , std::vector< std::vector<int> >, std::vector<int>, std::vector<std::vector< std::vector<int > > >);
+void printHeightMap(std::vector< std::vector<int> > , std::vector< std::vector<int> >, std::vector<int>, std::vector<std::vector< std::vector<int > > >, std::vector<int>, std::vector<int>);
 // void drawLine(std::vector< std::vector<int> >*, std::vector<int>, std::vector<int>);
 void drawLine(std::vector< std::vector<float> >*, int, int, int, int, int, std::vector< std::vector<float> >*, std::vector< std::vector<int> >*, std::vector<std::vector<std::string> >*, int , int, std::vector<std::string>*);
 void makeDitches(std::vector< std::vector<float> >*);

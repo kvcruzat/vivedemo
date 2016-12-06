@@ -100,10 +100,38 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 	std::vector<std::string> startNodes;
 	std::vector<std::string> endNodes;
 
+	std::string point0River;
+
 	for (unsigned i = 0; i < riverNames.size(); i++)
 	{
 		startNodes.push_back(riverNames[i].substr(0,2));
 		endNodes.push_back(riverNames[i].substr(2,2));
+	}
+
+	bool point0Node = false;
+
+	for (unsigned i = 0; i < rodIndex.size(); i++)
+	{
+		for(unsigned j = 0; j < rodIndex[i].size(); j++)
+		{
+			if (rodIndex[i][j].substr(0,2) == "00")
+			{
+				point0Node = true;
+			}	
+		}
+	}
+
+	if(!point0Node)
+	{
+		for(unsigned i = 0; i < riverNames.size(); i++)
+		{
+			if (riverNames[i].substr(0,2) == "00")
+			{
+				startNodes.push_back("00");
+				endNodes.push_back(riverNames[i].substr(2,2));
+				point0River = riverNames[i];
+			}
+		}
 	}
 
 	std::vector<std::vector<std::string> > newShortestPaths;
@@ -114,6 +142,11 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 		{
 			newShortestPaths.push_back(greedyShortestPath(rodIndex[i][j], usedNodes, riverNames, startNodes, endNodes));
 		}
+	}
+
+	if(!point0Node)
+	{
+		newShortestPaths.push_back(greedyShortestPath(point0River, usedNodes, riverNames, startNodes, endNodes));
 	}
 
 	for (unsigned i = 0; i < newShortestPaths.size(); i++)
@@ -526,6 +559,79 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 		}
 	}
 
+
+	//Find if any nodes are either starting from somewhere they shouldn't
+	//Or ending somehwere they shouldn't
+	//Onyl want top left to start and bottom-right to end
+	std::vector<int> endNodes(NUM_POINTS * NUM_POINTS, 0);
+	std::vector<int> startNodes(NUM_POINTS * NUM_POINTS, 0);
+
+	for ( unsigned i = 0; i < connectionsUsed.size(); i++)
+	{
+		std::string startNode = connectionsUsed[i].substr(0, 2);
+		std::string endNode = connectionsUsed[i].substr(2, 2);
+
+		startNodes[std::stoi(startNode)]++;
+		endNodes[std::stoi(endNode)]++;
+	}
+
+	std::vector<int> removeStart;
+	std::vector<int> connectEnd;
+
+	for (unsigned i = 0; i < startNodes.size(); i++)
+	{
+		if (endNodes[i] == 0 && startNodes[i] > 0 || startNodes[i] == 0 && endNodes[i] > 0)
+		{
+			removeStart.push_back(i);
+			std::string startNode = std::to_string(i);
+			if (startNode.length() == 1)
+			{
+				startNode = "0" + startNode;
+			}
+
+			bool endFound = false;
+
+			while(!endFound)
+			{
+				int iter = 0;
+				for (unsigned j = 0; j < connectionsUsed.size(); j++)
+				{
+					std::string node1Connect = connectionsUsed[j].substr(0, 2);
+					std::string node2Connect = connectionsUsed[j].substr(2, 2);
+
+					if(startNode.compare(node1Connect) == 0 && node1Connect != "00")
+					{
+						// std::cout << node1Connect << std::endl;
+						if (startNodes[std::stoi(node1Connect)] == 1 &&  (std::find( removeStart.begin(), removeStart.end(), std::stoi(node2Connect)) == removeStart.end())) //endNodes[std::stoi(node2Connect)] == 1 &&
+						{
+							removeStart.push_back(std::stoi(node1Connect));
+							startNode = node2Connect;
+							iter = 0;
+						} else {
+							endFound = true;
+						}
+					}
+
+					iter++;
+				}
+
+				std::cout << iter << " " << connectionsUsed.size() <<  std::endl;
+
+				if (iter == connectionsUsed.size())
+				{
+					endFound = true;
+				}
+			}
+
+		}
+		if (endNodes[i] == 1 && startNodes[i] == 0)
+		{
+			connectEnd.push_back(i);
+		}
+	}
+
+
+
 	// std::cout <<"Before";
 
 	// std::cout << newNodes.size() << std::endl;
@@ -612,7 +718,7 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 	// }
 
 	//Print the height map
-	printHeightMap(connectionsMatrix, coordinates, newNodes, shortestPaths);//usedNodes);
+	printHeightMap(connectionsMatrix, coordinates, newNodes, shortestPaths, removeStart, connectEnd);//usedNodes);
 }
 
 /* Function that outputs the heightmap of the graph to a file
@@ -620,7 +726,7 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
  * connectionsMatrix -  Matrix that contains the information about which nodes are connected
  * coordinates - a vector that stores every nodes coordinates
  */
-void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vector< std::vector<int> > coordinates, std::vector<int> usedNodes, std::vector<std::vector< std::vector<int > > > shortestPaths)
+void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vector< std::vector<int> > coordinates, std::vector<int> usedNodes, std::vector<std::vector< std::vector<int > > > shortestPaths, std::vector<int> removeStart, std::vector<int> connectEnd)
 {
 	//Canal height map
 	//If 1 then canal is present
@@ -648,8 +754,15 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 					nodeIndex = std::find(usedNodes.begin(), usedNodes.end(), i) - usedNodes.begin();
 				}
 
-				//Bresenham's Line algorithm
-				drawLine(&heightMap, coordinates[i][0], coordinates[j][0], coordinates[i][1], coordinates[j][1], nodeIndex, &rodLocations, &riverLocations, &rodIndex, i, j, &riverNames);
+				//Check so i is not in the list that contains lines that should not be drawn
+				if ( std::find(removeStart.begin(), removeStart.end(), i) == removeStart.end() || i == 0)
+				{
+					//Bresenham's Line algorithm
+					drawLine(&heightMap, coordinates[i][0], coordinates[j][0], coordinates[i][1], coordinates[j][1], nodeIndex, &rodLocations, &riverLocations, &rodIndex, i, j, &riverNames);
+				} else {
+					bool test = (i == 0);
+					std::cout << i << " " << j << std::endl;
+				}
 			}
 		}
 	}
@@ -673,7 +786,6 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 	}
 
 	connectionsPrint(shortestPaths, usedNodes, rodIndex, riverNames);
-
 	terrainGen::generateTerrain(&heightMap, &usedNodes, &coordinates, &rodLocations, &riverLocations, SQUARE_SIZE, &rodIndex, &riverNames);
 }
 
@@ -894,7 +1006,7 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		    	if(i == 0)
 		    	{
 		    		riverLocation.push_back(y + RIVER_WIDTH);
-		    		riverLocation.push_back(x); //- RIVER_WIDTH);
+		    		riverLocation.push_back(x + 1); //- RIVER_WIDTH);
 
 		    		riverLocation.push_back(y - RIVER_WIDTH);
 		    		riverLocation.push_back(x); // - RIVER_WIDTH);
@@ -904,7 +1016,7 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		    	{
 
 		    		riverLocation.push_back(y - RIVER_WIDTH);
-		    		riverLocation.push_back(x); // + RIVER_WIDTH);
+		    		riverLocation.push_back(x + 1); // + RIVER_WIDTH);
 
 		    		riverLocation.push_back(y + RIVER_WIDTH);
 		    		riverLocation.push_back(x); // + RIVER_WIDTH);
@@ -930,7 +1042,7 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		        (*heightMap)[x][y] = 0;
 		    	if(i == 0)
 		    	{
-		    		riverLocation.push_back(x);  //- RIVER_WIDTH);
+		    		riverLocation.push_back(x + 1);  //- RIVER_WIDTH);
 		    		riverLocation.push_back(y - RIVER_WIDTH);
 
 		    		riverLocation.push_back(x); //- RIVER_WIDTH);
@@ -938,7 +1050,7 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		    	}
 		    	if(x == maxX - 1)
 		    	{
-		    		riverLocation.push_back(x); //+ RIVER_WIDTH);
+		    		riverLocation.push_back(x + 1); //+ RIVER_WIDTH);
 		    		riverLocation.push_back(y + RIVER_WIDTH);
 
 		    		riverLocation.push_back(x);// + RIVER_WIDTH);
@@ -1126,9 +1238,17 @@ void findWeightMatrix(std::vector< std::vector<int> > *graphConnections, std::ve
 			// std::cout << (*connections)[99][0] << " " << (i * NUM_POINTS) + j << std::endl;
 			// std::cout << i << " connected to: " << (*connections)[99][0] << std::endl;
 			//Find manhattan distance between the points
+
+			float xWeighted = 0.6f;
+			float yWeighted = 0.4f;
+
 			int xSquared = (coordinates[i][0] - coordinates[connectionPoint][0]) * (coordinates[i][0] - coordinates[connectionPoint][0]);
 			int ySquared = (coordinates[i][1] - coordinates[connectionPoint][1]) * (coordinates[i][1] - coordinates[connectionPoint][1]);
-			float distance = std::sqrt(float(xSquared) + float(ySquared));
+
+			xWeighted *= xSquared;
+			yWeighted *= ySquared;
+
+			float distance = std::sqrt(float(xWeighted) + float(yWeighted));
 
 			float manhattanDist = (coordinates[i][0] - coordinates[connectionPoint][0]) + (coordinates[i][1] - coordinates[connectionPoint][1]);
 
