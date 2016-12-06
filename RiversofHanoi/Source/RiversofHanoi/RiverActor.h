@@ -3,6 +3,7 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
+#include "FlowerActor.h"
 #include "ProceduralMeshComponent.h"
 #include "RiverActor.generated.h"
 
@@ -24,6 +25,9 @@ public:
 	TArray<FVector> vertices;
 	TArray<FVector> normals;
 	TArray<int32> Triangles;
+
+	bool initialSet;
+	float discStatus;
 
 	UPROPERTY(EditAnywhere)
 	UMaterial* riverMaterial;
@@ -52,6 +56,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TArray<ARiverActor*> connectedRivers;
+
+	UPROPERTY(EditAnywhere)
+	TArray<AFlowerActor*> flowerArray;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Mesh)
 		UProceduralMeshComponent* riverMesh;

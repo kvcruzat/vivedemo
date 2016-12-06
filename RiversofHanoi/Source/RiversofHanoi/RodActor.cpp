@@ -211,53 +211,67 @@ void ARodActor::arrayChange(bool add, FString discName) {
 		}
 	}
 
-	if (OtherRod->containedActors.Num() != 3) {
-		incomingFlow = incomingFlow / 2;
-	}
+	incomingFlow = incomingFlow / 2;
+
+	float flowDiff = 0;
 	
-
-	float smallValue = incomingFlow * (1.0f / 6.0f);
-	float mediumValue = incomingFlow * (1.0f / 3.0f);
-	float largeValue = incomingFlow * (0.5);
-
 	if (add) {
 		if (discName.Contains(TEXT("Small"))) { 
-			connectedRiver->changeFlow(-smallValue); 
-			if (OtherRod->containedActors.Num() != 3) {
-				OtherRod->connectedRiver->changeFlow(smallValue);
-			}
+			connectedRiver->discStatus += (-(1.0f / 6.0f));
+			flowDiff = (incomingFlow + (incomingFlow * connectedRiver->discStatus)) - connectedRiver->flow;
+			connectedRiver->changeFlow(flowDiff);
+
+			OtherRod->connectedRiver->discStatus += (1.0f / 6.0f);
+			flowDiff = (incomingFlow + (incomingFlow * OtherRod->connectedRiver->discStatus)) - OtherRod->connectedRiver->flow;
+			OtherRod->connectedRiver->changeFlow(flowDiff);
+			
 		}
 		else if (discName.Contains(TEXT("Medium"))) {
-			connectedRiver->changeFlow(-mediumValue);
-			if (OtherRod->containedActors.Num() != 3) {
-				OtherRod->connectedRiver->changeFlow(mediumValue);
-			}
+			connectedRiver->discStatus += (-(1.0f / 3.0f));
+			flowDiff = (incomingFlow + (incomingFlow * connectedRiver->discStatus)) - connectedRiver->flow;
+			connectedRiver->changeFlow(flowDiff);
+
+			OtherRod->connectedRiver->discStatus += (1.0f / 3.0f);
+			flowDiff = (incomingFlow + (incomingFlow * OtherRod->connectedRiver->discStatus)) - OtherRod->connectedRiver->flow;
+			OtherRod->connectedRiver->changeFlow(flowDiff);
 		}
 		else if (discName.Contains(TEXT("Large"))) {
-			connectedRiver->changeFlow(-largeValue);
-			if (OtherRod->containedActors.Num() != 3) {
-				OtherRod->connectedRiver->changeFlow(largeValue);
-			}
+			connectedRiver->discStatus += (-(1.0f / 2.0f));
+			flowDiff = (incomingFlow + (incomingFlow * connectedRiver->discStatus)) - connectedRiver->flow;
+			connectedRiver->changeFlow(flowDiff);
+
+			OtherRod->connectedRiver->discStatus += (1.0f / 2.0f);
+			flowDiff = (incomingFlow + (incomingFlow * OtherRod->connectedRiver->discStatus)) - OtherRod->connectedRiver->flow;
+			OtherRod->connectedRiver->changeFlow(flowDiff);
 		}
 	}
 	else {
 		if (discName.Contains(TEXT("Small"))) {
-			connectedRiver->changeFlow(smallValue);
-			if (OtherRod->containedActors.Num() != 3) {
-				OtherRod->connectedRiver->changeFlow(-smallValue);
-			}
+			connectedRiver->discStatus += ((1.0f / 6.0f));
+			flowDiff = (incomingFlow + (incomingFlow * connectedRiver->discStatus)) - connectedRiver->flow;
+			connectedRiver->changeFlow(flowDiff);
+
+			OtherRod->connectedRiver->discStatus += (-1.0f / 6.0f);
+			flowDiff = (incomingFlow + (incomingFlow * OtherRod->connectedRiver->discStatus)) - OtherRod->connectedRiver->flow;
+			OtherRod->connectedRiver->changeFlow(flowDiff);
 		}
 		else if (discName.Contains(TEXT("Medium"))) {
-			connectedRiver->changeFlow(mediumValue);
-			if (OtherRod->containedActors.Num() != 3) {
-				OtherRod->connectedRiver->changeFlow(-mediumValue);
-			}
+			connectedRiver->discStatus += ((1.0f / 3.0f));
+			flowDiff = (incomingFlow + (incomingFlow * connectedRiver->discStatus)) - connectedRiver->flow;
+			connectedRiver->changeFlow(flowDiff);
+
+			OtherRod->connectedRiver->discStatus += (-1.0f / 3.0f);
+			flowDiff = (incomingFlow + (incomingFlow * OtherRod->connectedRiver->discStatus)) - OtherRod->connectedRiver->flow;
+			OtherRod->connectedRiver->changeFlow(flowDiff);
 		}
 		else if (discName.Contains(TEXT("Large"))) {
-			connectedRiver->changeFlow(largeValue);
-			if (OtherRod->containedActors.Num() != 3) {
-				OtherRod->connectedRiver->changeFlow(-largeValue);
-			}
+			connectedRiver->discStatus += ((1.0f / 2.0f));
+			flowDiff = (incomingFlow + (incomingFlow * connectedRiver->discStatus)) - connectedRiver->flow;
+			connectedRiver->changeFlow(flowDiff);
+
+			OtherRod->connectedRiver->discStatus += (-1.0f / 2.0f);
+			flowDiff = (incomingFlow + (incomingFlow * OtherRod->connectedRiver->discStatus)) - OtherRod->connectedRiver->flow;
+			OtherRod->connectedRiver->changeFlow(flowDiff);
 		}
 	}
 }

@@ -38,9 +38,11 @@ public:
 	TArray<FVector> riverNorms;
 	TArray<ARiverActor*> riverArray;
 	TArray<ARodActor*> rodArray;
-	//TArray<AFlowerActor*> flowerArray;
+	TArray<AFlowerActor*> flowerArray;
 	TArray<FString>nodeIDs;
+	TArray<FString> rodRiverConnection;
 	TSubclassOf<class ARodActor> RodActor;
+	TSubclassOf<class AFlowerActor> FlowerActor;
 	float offset, scale, zOffset, zScale;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Mesh)
@@ -52,7 +54,7 @@ public:
     virtual void addRods();
 	virtual void setRodLocations();
 	virtual void addRivers();
-	//virtual void addFlowers();
+	virtual void addFlowers();
 	virtual void assignConnectionActors();
 	virtual void setFlows();
 

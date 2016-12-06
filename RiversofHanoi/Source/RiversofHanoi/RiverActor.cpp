@@ -13,6 +13,10 @@ ARiverActor::ARiverActor()
 
 	flow = 0;
 
+	discStatus = 0;
+
+	initialSet = true;
+
 	outputNode = TEXT("");
 
 	riverMesh = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("RiverMesh"));
@@ -62,23 +66,46 @@ void ARiverActor::changeFlow(float value) {
 
 	flow += value;
 
-	for (int Index = 0; Index < connectedRivers.Num(); Index++) {
-		
-		connectedRivers[Index]->changeFlow(value);
+	if (connectedRivers.Num() == 0) {
+		float totalFlow = flow;
 
-		if (Index == connectedRivers.Num() - 1 && !connectedRivers[Index]->outputNode.IsEmpty()) {
-			float totalFlow = connectedRivers[Index]->flow;
+		for (int river = 0; river < overlappedRivers.Num(); river++) {
+			totalFlow += overlappedRivers[river]->flow;
+		}
 
-			for (int river = 0; river < connectedRivers[Index]->overlappedRivers.Num(); river++) {
-				totalFlow += connectedRivers[Index]->overlappedRivers[river]->flow;
+		float incomingFlow = totalFlow / 2;
+
+		float flowDiff = 0;
+
+		for (int river = 0; river < outputRivers.Num(); river++) {
+			flowDiff = (incomingFlow + (incomingFlow * outputRivers[river]->discStatus)) - outputRivers[river]->flow;
+			outputRivers[river]->changeFlow(flowDiff);
+		}
+
+	}
+	else {
+		for (int Index = 0; Index < connectedRivers.Num(); Index++) {
+
+			connectedRivers[Index]->changeFlow(value);
+
+			if (Index == connectedRivers.Num() - 1 && !connectedRivers[Index]->outputNode.IsEmpty()) {
+				float totalFlow = connectedRivers[Index]->flow;
+
+				for (int river = 0; river < connectedRivers[Index]->overlappedRivers.Num(); river++) {
+					totalFlow += connectedRivers[Index]->overlappedRivers[river]->flow;
+				}
+
+				float incomingFlow = totalFlow / 2;
+
+				float flowDiff = 0;
+
+				for (int river = 0; river < connectedRivers[Index]->outputRivers.Num(); river++) {
+					flowDiff = (incomingFlow + (incomingFlow * connectedRivers[Index]->outputRivers[river]->discStatus)) - connectedRivers[Index]->outputRivers[river]->flow;
+					connectedRivers[Index]->outputRivers[river]->changeFlow(flowDiff);
+				}
+
 			}
 
-			totalFlow = totalFlow / 2;
-
-			for (int river = 0; river < connectedRivers[Index]->outputRivers.Num(); river++) {
-				float flowDiff = totalFlow - connectedRivers[Index]->outputRivers[river]->flow;
-				connectedRivers[Index]->outputRivers[river]->changeFlow(flowDiff);
-			}
 		}
 	}
 
