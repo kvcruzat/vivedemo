@@ -94,24 +94,24 @@ void ARiverActor::changeFlow(float value) {
 		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.7);
 	}
 	else if (flow > startFlow * 0.6) {
-		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.6);
+		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.65);
 	}
 	else if (flow > startFlow * 0.5) {
-		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.5);
+		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.6);
 	}
 	else if (flow > startFlow * 0.4) {
-		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.4);
+		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.55);
 	}
 	else if (flow > startFlow * 0.3) {
-		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.3);
+		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.5);
 	}
 	else if (flow > startFlow * 0.2) {
-		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.2);
+		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.45);
 	}
-	else if (flow > startFlow * 0.1) {
-		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.1);
+	else if (flow > 0.0f) {
+		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.4);
 	}
-	else {
+	else if (flow == 0.0f) {
 		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.0);
 	}
 	

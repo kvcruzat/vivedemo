@@ -24,14 +24,14 @@
 //Global variables, change if needed
 //SQUARE SIZE = number of coordiantes in each axis
 //Needs to be (2^n)+1
-const int SQUARE_SIZE = 2049;
+const int SQUARE_SIZE = 1025;
 const int MID_POINTS = SQUARE_SIZE / 500;
 //Num of nodes inserted into graph, increase for morecomplex rivers
 const int NUM_INSERT_POINTS = 100;
 //Number of nodes used in end graph, increase to make game more challenging
 const int NUM_NODES = 10;
 
-const int RIVER_WIDTH = 50;
+const int RIVER_WIDTH = 25;
 
 //Variables for 2nd method
 const int NUM_POINTS = 10;

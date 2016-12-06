@@ -37,6 +37,7 @@ public:
 	UPROPERTY(EditAnywhere)
 	ARiverActor* connectedRiver;
 
+	UPROPERTY(EditAnywhere)
 	TArray<ARiverActor*> inputRivers;
 
 	UPROPERTY(EditAnywhere)

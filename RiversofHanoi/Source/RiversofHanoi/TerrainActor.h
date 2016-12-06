@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "RodActor.h"
 #include "RiverActor.h"
+#include "FlowerActor.h"
 #include "ProceduralMeshComponent.h"
 #include "TerrainActor.generated.h"
 
@@ -37,6 +38,7 @@ public:
 	TArray<FVector> riverNorms;
 	TArray<ARiverActor*> riverArray;
 	TArray<ARodActor*> rodArray;
+	TArray<AFlowerActor*> flowerArray;
 	//TArray<ANodeActor*> nodeArray;
 	TArray<FString>nodeIDs;
 	TSubclassOf<class ARodActor> RodActor;
@@ -51,6 +53,7 @@ public:
     virtual void addRods();
 	virtual void setRodLocations();
 	virtual void addRivers();
+	virtual void addFlowers();
 	virtual void assignConnectionActors();
 	virtual void setFlows();
 

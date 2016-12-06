@@ -249,6 +249,51 @@ void ATerrainActor::addRivers() {
 
 }
 
+void ATerrainActor::addFlowers() {
+
+	const FBox rodBounds = rodArray[0]->GetComponentsBoundingBox(false); //All Components 
+
+	const FVector rodCenter = rodBounds.GetCenter();	//Center
+
+														//Extents
+	const FVector rodExtents = rodBounds.GetExtent();
+	TArray<FVector> transformedNodes = nodes;
+
+	for (int Index = 0; Index < transformedNodes.Num(); Index++) {
+		transformedNodes[Index] = transformCoord(transformedNodes[Index);
+	}
+
+	TArray<FVector> possibleLocs;
+	possibleLocs.Add(FVector(70, 0, 0));
+	possibleLocs.Add(FVector(50, 50, 0));
+	possibleLocs.Add(FVector(0, 70, 0));
+	possibleLocs.Add(FVector(-50, 50, 0));
+	possibleLocs.Add(FVector(-70, 0, 0));
+	possibleLocs.Add(FVector(-50, -50, 0));
+	possibleLocs.Add(FVector(0, -50, 0));
+	possibleLocs.Add(FVector(50, -50, 0));
+
+	UWorld* const World = GetWorld();
+	for (int32 Index = 2; Index < nodes.Num(); ++Index)
+	{
+		for (int locIndex = 0; locIndex < possibleLocs.Num(); locIndex++) {
+			int randNum = FMath::RandRange(0, 2);
+			if (World && randNum == 1)
+			{
+				FActorSpawnParameters SpawnParams;
+				SpawnParams.Owner = this;
+				SpawnParams.Instigator = Instigator;
+				AFlowerActor* Flower = World->SpawnActor<AFlowerActor>(transformedNodes[Index]+possibleLocs[locIndex], FRotator(0, 0, 0), SpawnParams);
+				Flower->SetOwner(this);
+				Flower->nodeID = FString::FromInt(Index - 2);
+				flowerArray.Add(Flower);
+			}
+
+		}
+	}
+	
+}
+
 
 void ATerrainActor::assignConnectionActors() {
 	for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
@@ -275,29 +320,7 @@ void ATerrainActor::assignConnectionActors() {
 
 	nodeIDs.Sort();
 
-	/*for (int nodeIndex = 0; nodeIndex < nodeIDs.Num(); nodeIndex++) {
-		if (World)
-		{
-			FActorSpawnParameters SpawnParams;
-			SpawnParams.Owner = this;
-			SpawnParams.Instigator = Instigator;
-			ANodeActor* Node = World->SpawnActor<ANodeActor>(FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
-			Node->SetOwner(this);
-			Node->nodeID = nodeIDs[nodeIndex];
-			nodeArray.Add(Node);
-		}
-	}*/
-
 	if (!nodeIDs.Contains(TEXT("00"))) {
-		/*if (World)
-		{
-			FActorSpawnParameters SpawnParams;
-			SpawnParams.Owner = this;
-			SpawnParams.Instigator = Instigator;
-			ANodeActor* Node = World->SpawnActor<ANodeActor>(FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
-			Node->SetOwner(this);
-			Node->nodeID = TEXT("00");
-			nodeArray.Insert(Node, 0);*/
 			nodeIDs.Insert(TEXT("00"),0);
 			for (int riverIndex = 0; riverIndex < riverArray.Num(); riverIndex++) {
 				if (riverArray[riverIndex]->riverID.Mid(0, 2).Contains(TEXT("00")) ) {
@@ -305,20 +328,9 @@ void ATerrainActor::assignConnectionActors() {
 					break;
 				}
 			}
-		//}
 	}
 	else if (!nodeIDs.Contains(TEXT("99"))) {
-		/*if (World)
-		{
-			FActorSpawnParameters SpawnParams;
-			SpawnParams.Owner = this;
-			SpawnParams.Instigator = Instigator;
-			ANodeActor* Node = World->SpawnActor<ANodeActor>(FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
-			Node->SetOwner(this);
-			Node->nodeID = TEXT("99");
-			nodeArray.Add(Node);*/
 			nodeIDs.Add(TEXT("99"));
-		//}
 	}
 
 	for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
@@ -369,79 +381,37 @@ void ATerrainActor::assignConnectionActors() {
 			}
 		}
 	}
-
-
-	//for (int nodeIndex = 0; nodeIndex < nodeArray.Num(); nodeIndex++) {
-	//	for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
-	//		if (nodeArray[nodeIndex]->nodeID.Contains(rodArray[rodIndex]->nodeID)) {
-	//			nodeArray[nodeIndex]->connectedRods.Add(rodArray[rodIndex]);
-	//		}
-	//	}
-	//}
 	
 }
 
 void ATerrainActor::setFlows() {
 
-	/*for (int nodeIndex = 0; nodeIndex < nodeIDs.Num(); nodeIndex++) {*/
-		float flow = 0;
-		int numRods = 0;
-		for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
-			if (nodeIDs[0].Contains(rodArray[rodIndex]->nodeID)) {
-				++numRods;
-			}
+	float flow = 0;
+	int numRods = 0;
+	for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
+		if (nodeIDs[0].Contains(rodArray[rodIndex]->nodeID)) {
+			++numRods;
 		}
+	}
 
-		for (int riverIndex = 0; riverIndex < riverArray.Num(); riverIndex++) {
-			if (nodeIDs[0].Contains(riverArray[riverIndex]->nodeID)) {
-				flow = 24;
-				if (numRods == 0) {
-					riverArray[riverIndex]->changeFlow(flow);
-				}
+	for (int riverIndex = 0; riverIndex < riverArray.Num(); riverIndex++) {
+		if (nodeIDs[0].Contains(riverArray[riverIndex]->nodeID)) {
+			flow = 24;
+			if (numRods == 0) {
+				riverArray[riverIndex]->changeFlow(flow);
+			}
 
-				if (numRods == 2) {
-					flow = flow / 2;
+			if (numRods == 2) {
+				flow = flow / 2;
 
-					for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
-						if (nodeIDs[0].Contains(rodArray[rodIndex]->nodeID)) {
-							float flowDiff = flow - rodArray[rodIndex]->connectedRiver->flow;
-							rodArray[rodIndex]->connectedRiver->changeFlow(flowDiff);
-						}
+				for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
+					if (nodeIDs[0].Contains(rodArray[rodIndex]->nodeID)) {
+						float flowDiff = flow - rodArray[rodIndex]->connectedRiver->flow;
+						rodArray[rodIndex]->connectedRiver->changeFlow(flowDiff);
 					}
 				}
-				break;
 			}
+			break;
 		}
-	//}
-
-	
-
-	/*for (int nodeIndex = 0; nodeIndex < nodeArray.Num(); nodeIndex++) {
-		nodeArray[nodeIndex]->computeFlows();
-	}*/
-
-	/*for (int nodeIndex = 0; nodeIndex < nodeArray.Num(); nodeIndex++) {
-		int flow = 0;
-
-		if (nodeIndex == 0) {
-			flow = 24;
-			if (nodeArray[nodeIndex]->connectedRods.Num() == 0) {
-				nodeArray[nodeIndex]->outputRiver->changeFlow(flow);
-			}
-		}
-		else {
-			for (int river = 0; river < nodeArray[nodeIndex]->inputRivers.Num(); river++) {
-				flow += nodeArray[nodeIndex]->inputRivers[river]->flow;
-			}
-		}	
-	
-		if (nodeArray[nodeIndex]->connectedRods.Num() == 2) {
-			flow = flow / 2;
-	
-			for (int rodIndex = 0; rodIndex < nodeArray[nodeIndex]->connectedRods.Num(); rodIndex++) {
-				int flowDiff = flow - nodeArray[nodeIndex]->connectedRods[rodIndex]->connectedRiver->flow;
-				nodeArray[nodeIndex]->connectedRods[rodIndex]->connectedRiver->changeFlow(flowDiff);
-			}
-		}
-	}*/
+	}
 }

@@ -913,7 +913,7 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 
 
 		    	}
-		    	if(i == 50)
+		    	if(i == 25)
 		    	{
 		    		if (nodeIndex != -1)
 		    		{
@@ -946,7 +946,7 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 
 		    		(*riverNames).push_back(rodIndexString);
 		    	}
-		    	if(i == 50)
+		    	if(i == 25)
 		    	{
 		    		if (nodeIndex != -1)
 		    		{

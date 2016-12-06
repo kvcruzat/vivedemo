@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{unrealfeatures}
 {Epic Games}.
@@ -8,6 +8,10 @@
 {Epic Games}.
 \newblock Engine features.
 
+\bibitem{elitedangerous}
+{Frontier Developments}.
+\newblock Elite dangerous.
+
 \bibitem{cardboarddev}
 Google.
 \newblock Google vr sdk for unity.
@@ -16,11 +20,23 @@ Google.
 C.~Hoffman.
 \newblock The htc vive and valve's steamvr don't yet support linux and steamos.
 
+\bibitem{spacepiratetrainer}
+{I-Illusions}.
+\newblock Space pirate trainer.
+
 \bibitem{parikh1980adaptive}
 D.~Parikh, N.~Ahmed, and S.~Stearns.
 \newblock An adaptive lattice algorithm for recursive filters.
 \newblock {\em Acoustics, Speech and Signal Processing, IEEE Transactions on},
   28(1):110--111, 1980.
+
+\bibitem{thelab}
+{Valve}.
+\newblock The lab.
+
+\bibitem{steamvr}
+{Valve}.
+\newblock Steamvr.
 
 \bibitem{vivehardware}
 {Valve Corp.}

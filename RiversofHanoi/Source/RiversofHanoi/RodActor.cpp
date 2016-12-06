@@ -211,7 +211,10 @@ void ARodActor::arrayChange(bool add, FString discName) {
 		}
 	}
 
-	incomingFlow = incomingFlow / 2;
+	if (OtherRod->containedActors.Num() != 3) {
+		incomingFlow = incomingFlow / 2;
+	}
+	
 
 	float smallValue = incomingFlow * (1.0f / 6.0f);
 	float mediumValue = incomingFlow * (1.0f / 3.0f);
@@ -220,29 +223,41 @@ void ARodActor::arrayChange(bool add, FString discName) {
 	if (add) {
 		if (discName.Contains(TEXT("Small"))) { 
 			connectedRiver->changeFlow(-smallValue); 
-			OtherRod->connectedRiver->changeFlow(smallValue);
+			if (OtherRod->containedActors.Num() != 3) {
+				OtherRod->connectedRiver->changeFlow(smallValue);
+			}
 		}
 		else if (discName.Contains(TEXT("Medium"))) {
 			connectedRiver->changeFlow(-mediumValue);
-			OtherRod->connectedRiver->changeFlow(mediumValue);
+			if (OtherRod->containedActors.Num() != 3) {
+				OtherRod->connectedRiver->changeFlow(mediumValue);
+			}
 		}
 		else if (discName.Contains(TEXT("Large"))) {
 			connectedRiver->changeFlow(-largeValue);
-			OtherRod->connectedRiver->changeFlow(largeValue);
+			if (OtherRod->containedActors.Num() != 3) {
+				OtherRod->connectedRiver->changeFlow(largeValue);
+			}
 		}
 	}
 	else {
 		if (discName.Contains(TEXT("Small"))) {
 			connectedRiver->changeFlow(smallValue);
-			OtherRod->connectedRiver->changeFlow(-smallValue);
+			if (OtherRod->containedActors.Num() != 3) {
+				OtherRod->connectedRiver->changeFlow(-smallValue);
+			}
 		}
 		else if (discName.Contains(TEXT("Medium"))) {
 			connectedRiver->changeFlow(mediumValue);
-			OtherRod->connectedRiver->changeFlow(-mediumValue);
+			if (OtherRod->containedActors.Num() != 3) {
+				OtherRod->connectedRiver->changeFlow(-mediumValue);
+			}
 		}
 		else if (discName.Contains(TEXT("Large"))) {
 			connectedRiver->changeFlow(largeValue);
-			OtherRod->connectedRiver->changeFlow(-largeValue);
+			if (OtherRod->containedActors.Num() != 3) {
+				OtherRod->connectedRiver->changeFlow(-largeValue);
+			}
 		}
 	}
 }
