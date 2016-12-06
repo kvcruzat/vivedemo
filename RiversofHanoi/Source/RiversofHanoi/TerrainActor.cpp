@@ -249,50 +249,50 @@ void ATerrainActor::addRivers() {
 
 }
 
-void ATerrainActor::addFlowers() {
-
-	const FBox rodBounds = rodArray[0]->GetComponentsBoundingBox(false); //All Components 
-
-	const FVector rodCenter = rodBounds.GetCenter();	//Center
-
-														//Extents
-	const FVector rodExtents = rodBounds.GetExtent();
-	TArray<FVector> transformedNodes = nodes;
-
-	for (int Index = 0; Index < transformedNodes.Num(); Index++) {
-		transformedNodes[Index] = transformCoord(transformedNodes[Index);
-	}
-
-	TArray<FVector> possibleLocs;
-	possibleLocs.Add(FVector(70, 0, 0));
-	possibleLocs.Add(FVector(50, 50, 0));
-	possibleLocs.Add(FVector(0, 70, 0));
-	possibleLocs.Add(FVector(-50, 50, 0));
-	possibleLocs.Add(FVector(-70, 0, 0));
-	possibleLocs.Add(FVector(-50, -50, 0));
-	possibleLocs.Add(FVector(0, -50, 0));
-	possibleLocs.Add(FVector(50, -50, 0));
-
-	UWorld* const World = GetWorld();
-	for (int32 Index = 2; Index < nodes.Num(); ++Index)
-	{
-		for (int locIndex = 0; locIndex < possibleLocs.Num(); locIndex++) {
-			int randNum = FMath::RandRange(0, 2);
-			if (World && randNum == 1)
-			{
-				FActorSpawnParameters SpawnParams;
-				SpawnParams.Owner = this;
-				SpawnParams.Instigator = Instigator;
-				AFlowerActor* Flower = World->SpawnActor<AFlowerActor>(transformedNodes[Index]+possibleLocs[locIndex], FRotator(0, 0, 0), SpawnParams);
-				Flower->SetOwner(this);
-				Flower->nodeID = FString::FromInt(Index - 2);
-				flowerArray.Add(Flower);
-			}
-
-		}
-	}
-	
-}
+//void ATerrainActor::addFlowers() {
+//
+//	const FBox rodBounds = rodArray[0]->GetComponentsBoundingBox(false); //All Components 
+//
+//	const FVector rodCenter = rodBounds.GetCenter();	//Center
+//
+//														//Extents
+//	const FVector rodExtents = rodBounds.GetExtent();
+//	TArray<FVector> transformedNodes = nodes;
+//
+//	for (int Index = 0; Index < transformedNodes.Num(); Index++) {
+//		transformedNodes[Index] = transformCoord(transformedNodes[Index);
+//	}
+//
+//	TArray<FVector> possibleLocs;
+//	possibleLocs.Add(FVector(70, 0, 0));
+//	possibleLocs.Add(FVector(50, 50, 0));
+//	possibleLocs.Add(FVector(0, 70, 0));
+//	possibleLocs.Add(FVector(-50, 50, 0));
+//	possibleLocs.Add(FVector(-70, 0, 0));
+//	possibleLocs.Add(FVector(-50, -50, 0));
+//	possibleLocs.Add(FVector(0, -50, 0));
+//	possibleLocs.Add(FVector(50, -50, 0));
+//
+//	UWorld* const World = GetWorld();
+//	for (int32 Index = 2; Index < nodes.Num(); ++Index)
+//	{
+//		for (int locIndex = 0; locIndex < possibleLocs.Num(); locIndex++) {
+//			int randNum = FMath::RandRange(0, 2);
+//			if (World && randNum == 1)
+//			{
+//				FActorSpawnParameters SpawnParams;
+//				SpawnParams.Owner = this;
+//				SpawnParams.Instigator = Instigator;
+//				AFlowerActor* Flower = World->SpawnActor<AFlowerActor>(transformedNodes[Index]+possibleLocs[locIndex], FRotator(0, 0, 0), SpawnParams);
+//				Flower->SetOwner(this);
+//				Flower->nodeID = FString::FromInt(Index - 2);
+//				flowerArray.Add(Flower);
+//			}
+//
+//		}
+//	}
+//	
+//}
 
 
 void ATerrainActor::assignConnectionActors() {

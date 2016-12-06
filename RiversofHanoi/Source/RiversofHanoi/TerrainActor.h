@@ -38,8 +38,7 @@ public:
 	TArray<FVector> riverNorms;
 	TArray<ARiverActor*> riverArray;
 	TArray<ARodActor*> rodArray;
-	TArray<AFlowerActor*> flowerArray;
-	//TArray<ANodeActor*> nodeArray;
+	//TArray<AFlowerActor*> flowerArray;
 	TArray<FString>nodeIDs;
 	TSubclassOf<class ARodActor> RodActor;
 	float offset, scale, zOffset, zScale;
@@ -53,7 +52,7 @@ public:
     virtual void addRods();
 	virtual void setRodLocations();
 	virtual void addRivers();
-	virtual void addFlowers();
+	//virtual void addFlowers();
 	virtual void assignConnectionActors();
 	virtual void setFlows();
 

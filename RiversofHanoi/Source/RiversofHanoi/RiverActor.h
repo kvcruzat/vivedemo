@@ -3,7 +3,6 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
-//#include "NodeActor.h"
 #include "ProceduralMeshComponent.h"
 #include "RiverActor.generated.h"
 
@@ -40,9 +39,6 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	FString nodeID;
-
-	/*UPROPERTY(EditAnywhere)
-	ANodeActor* outputNode;*/
 
 	UPROPERTY(EditAnywhere)
 	FString outputNode;
