@@ -215,3 +215,20 @@ void Util::readRodRiverData(FString fileName) {
 
 	}
 }
+
+void Util::readNodeConnectionsData(FString fileName) {
+	FString projectDir = FPaths::GameDir();
+	projectDir += "Content/models/" + fileName;
+
+	FString data = TEXT("");
+
+	FFileHelper::LoadFileToString(data, *projectDir);
+
+	TArray<FString> lines;
+
+	data.ParseIntoArray(lines, _T("\n"), true);
+
+	for (int32 Index = 2; Index < lines.Num(); ++Index) {
+		nodeRiverConnection.Add(lines[Index].TrimTrailing());
+	}
+}

@@ -23,8 +23,10 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Mesh)
 	class UStaticMeshComponent* flowerMesh;
 
+	UPROPERTY(EditAnywhere)
 	float requiredFlow;
 
+	UPROPERTY(EditAnywhere)
 	FString nodeID;
 
 	

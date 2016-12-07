@@ -74,6 +74,7 @@ void ATerrainActor::PostActorCreated()
 		addRods();
 		setRodLocations();
 		addRivers();
+		addFlowers();
 		assignConnectionActors();
 		setFlows();
 	}
@@ -255,47 +256,57 @@ void ATerrainActor::addRivers() {
 
 void ATerrainActor::addFlowers() {
 
-	TArray<FVector> transformedNodes = nodes;
+	Util* util = new Util();
+	util->readNodeConnectionsData("nodeConnections.txt");
+	TArray<FString> nodeRivers = util->nodeRiverConnection;
+	UE_LOG(LogTemp, Warning, TEXT("# num: %s"), *FString::FromInt(nodeRivers.Num()));
 
-	for (int Index = 0; Index < transformedNodes.Num(); Index++) {
-		transformedNodes[Index] = transformCoord(transformedNodes[Index]);
-	}
+	TArray<FVector> transformedNodes;
 
 	TArray<FVector> possibleLocs;
+	possibleLocs.Add(FVector(0, -70, 0));
+	possibleLocs.Add(FVector(50, -50, 0));
 	possibleLocs.Add(FVector(70, 0, 0));
 	possibleLocs.Add(FVector(50, 50, 0));
 	possibleLocs.Add(FVector(0, 70, 0));
 	possibleLocs.Add(FVector(-50, 50, 0));
 	possibleLocs.Add(FVector(-70, 0, 0));
 	possibleLocs.Add(FVector(-50, -50, 0));
-	possibleLocs.Add(FVector(0, -50, 0));
-	possibleLocs.Add(FVector(50, -50, 0));
 
 	TArray<FString> tempNodeIDs;
+	TArray<FString> sortedNodeRivers;
 	TArray<FVector> tempFlowerLocs;
 
 	for (int rodRiverIndex= 2; rodRiverIndex < rodRiverConnection.Num(); rodRiverIndex++) {
 		FString nodeID = rodRiverConnection[rodRiverIndex].Mid(0, 2);
 		if (!tempNodeIDs.Contains(nodeID)) {
 			tempNodeIDs.Add(nodeID);
+			sortedNodeRivers.Add(nodeRivers[(rodRiverIndex - 2) / 2]);
 		}
 	}
 
 	UWorld* const World = GetWorld();
 	for (int32 Index = 0; Index < tempNodeIDs.Num(); ++Index)
-	{
+	{	
+		transformedNodes.Add(transformCoord(nodes[Index+2]));
+
+		TArray<FString> usedRivers;
+
+		sortedNodeRivers[Index].ParseIntoArray(usedRivers, _T(" "), true);
 		for (int locIndex = 0; locIndex < possibleLocs.Num(); locIndex++) {
-			int randNum = FMath::RandRange(0, 2);
-			if (World && randNum == 1)
-			{
-				FActorSpawnParameters SpawnParams;
-				SpawnParams.Owner = this;
-				SpawnParams.Instigator = Instigator;
-				AFlowerActor* Flower = World->SpawnActor<AFlowerActor>(FlowerActor, FVector(0,0,0), FRotator(0, 0, 0), SpawnParams);
-				Flower->SetOwner(this);
-				Flower->nodeID = tempNodeIDs[Index];
-				flowerArray.Add(Flower);
-				tempFlowerLocs.Add(transformedNodes[Index] + possibleLocs[locIndex]);
+			if (!usedRivers.Contains(FString::FromInt(locIndex)) ){
+				int randNum = FMath::RandRange(0, 2);
+				if (World && randNum == 1)
+				{
+					FActorSpawnParameters SpawnParams;
+					SpawnParams.Owner = this;
+					SpawnParams.Instigator = Instigator;
+					AFlowerActor* Flower = World->SpawnActor<AFlowerActor>(FlowerActor, FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
+					Flower->SetOwner(this);
+					Flower->nodeID = tempNodeIDs[Index];
+					flowerArray.Add(Flower);
+					tempFlowerLocs.Add(transformedNodes[Index] + possibleLocs[locIndex]);
+				}
 			}
 		}
 	}
@@ -306,7 +317,7 @@ void ATerrainActor::addFlowers() {
 
 	for (int flowerIndex = 0; flowerIndex < flowerArray.Num(); flowerIndex++) {
 		FVector flowerLoc = tempFlowerLocs[flowerIndex];
-		flowerLoc.Z += flowerExtents.Z;
+		flowerLoc.Z += 25.0f + (flowerExtents.Z * 2);
 		flowerArray[flowerIndex]->SetActorLocation(flowerLoc);
 	}
 }
