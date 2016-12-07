@@ -90,10 +90,15 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 	std::ofstream connectionsFile;
 	connectionsFile.open("../../RiversofHanoi/Content/models/connections.txt");
 
+	std::ofstream nodeConnectionsFile;
+	nodeConnectionsFile.open("../../RiversofHanoi/Content/models/nodeConnections.txt");
+
 	//new strategy, loop trhough rodIndex array. Connection starts with rodIndex value. From second point find shortestPath to each other node, including bottom-left
 	//Then find shortest path of the paths found
 
 	// std::cout << usedNodes.size() << std::endl;
+
+	std::vector<std::vector<int> > nodeConnections(usedNodes.size(), std::vector<int>(0, 0));
 
 	int rodIndexSize;
 
@@ -149,6 +154,108 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 		newShortestPaths.push_back(greedyShortestPath(point0River, usedNodes, riverNames, startNodes, endNodes));
 	}
 
+
+	for (int i = 0; i < newShortestPaths.size(); i++)
+	{
+		// std::cout << "before crash" << std::endl;
+		int startNode = std::stoi(newShortestPaths[i][0].substr(0,2));
+		int startConnect = std::stoi(newShortestPaths[i][0].substr(2,2));
+		int endNode = std::stoi(newShortestPaths[i][newShortestPaths[i].size() - 1].substr(2,2));
+		int endConnect = std::stoi(newShortestPaths[i][newShortestPaths[i].size() - 1].substr(0,2));
+		// std::cout << "after crash" << std::endl;
+
+		int startIndex = std::find(usedNodes.begin(), usedNodes.end(), startNode) - usedNodes.begin();
+		int endIndex = std::find(usedNodes.begin(), usedNodes.end(), endNode) - usedNodes.begin();
+
+		if (startIndex < usedNodes.size())
+		{
+			// std::cout << startIndex << " " << startConnect << std::endl;
+			//North
+			if(startNode - 10 == startConnect) 
+			{
+				nodeConnections[startIndex].push_back(0);
+			}
+			//North-east
+			else if(startNode - 9 == startConnect)
+			{
+				nodeConnections[startIndex].push_back(1);
+			}
+			//East
+			else if(startNode + 1 == startConnect)
+			{
+				nodeConnections[startIndex].push_back(2);
+			}
+			//South-East
+			else if(startNode + 11 == startConnect)
+			{
+				nodeConnections[startIndex].push_back(3);
+			}
+			//South
+			else if(startNode + 10 == startConnect)
+			{
+				nodeConnections[startIndex].push_back(4);
+			}
+			//South-West
+			else if(startNode + 9 == startConnect)
+			{
+				nodeConnections[startIndex].push_back(5);
+			}
+			//West
+			else if(startNode - 1 == startConnect)
+			{
+				nodeConnections[startIndex].push_back(6);
+			}
+			//North-West
+			else if(startNode - 11 == startConnect)
+			{
+				nodeConnections[startIndex].push_back(7);
+			}
+		}
+		if (endIndex < usedNodes.size())
+		{
+			//North
+			if(endNode - 10 == endConnect) 
+			{
+				nodeConnections[endIndex].push_back(0);
+			}
+			//North-east
+			else if(endNode - 9 == endConnect)
+			{
+				nodeConnections[endIndex].push_back(1);
+			}
+			//East
+			else if(endNode + 1 == endConnect)
+			{
+				nodeConnections[endIndex].push_back(2);
+			}
+			//South-East
+			else if(endNode + 11 == endConnect)
+			{
+				nodeConnections[endIndex].push_back(3);
+			}
+			//South
+			else if(endNode + 10 == endConnect)
+			{
+				nodeConnections[endIndex].push_back(4);
+			}
+			//South-West
+			else if(endNode + 9 == endConnect)
+			{
+				nodeConnections[endIndex].push_back(5);
+			}
+			//West
+			else if(endNode - 1 == endConnect)
+			{
+				nodeConnections[endIndex].push_back(6);
+			}
+			//North-West
+			else if(endNode - 11 == endConnect)
+			{
+				nodeConnections[endIndex].push_back(7);
+			}
+		}
+	}
+
 	for (unsigned i = 0; i < newShortestPaths.size(); i++)
 	{
 		for (unsigned j = 0; j < newShortestPaths[i].size(); j++)
@@ -156,6 +263,23 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 			connectionsFile << newShortestPaths[i][j] << " ";
 		}
 		connectionsFile << std::endl;
+	}
+
+	//need to add two new lines at beginning for formatting
+	for(unsigned i = 0; i < 2; i++)
+	{
+		nodeConnectionsFile << std::endl;
+	}
+
+	for (unsigned i = 0; i < nodeConnections.size(); i++)
+	{
+		std::sort(nodeConnections[i].begin(), nodeConnections[i].end());
+		for (unsigned j = 0; j < nodeConnections[i].size(); j++)
+		{
+			nodeConnectionsFile << nodeConnections[i][j] << " ";
+		}
+
+		nodeConnectionsFile << std::endl;
 	}
 		
 
@@ -580,7 +704,7 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 
 	for (unsigned i = 0; i < startNodes.size(); i++)
 	{
-		if (endNodes[i] == 0 && startNodes[i] > 0 || startNodes[i] == 0 && endNodes[i] > 0)
+		if ((endNodes[i] == 0 && startNodes[i] > 0) || (startNodes[i] == 0 && endNodes[i] > 0))
 		{
 			removeStart.push_back(i);
 			std::string startNode = std::to_string(i);
