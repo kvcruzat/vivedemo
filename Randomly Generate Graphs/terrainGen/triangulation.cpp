@@ -701,7 +701,7 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 
 	std::vector<int> removeStart;
 	std::vector<int> connectEnd;
-	std::vector<int> nodeStack;
+	std::vector<std::string> nodeStack;
 
 	for (unsigned i = 0; i < startNodes.size(); i++)
 	{
@@ -734,6 +734,29 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 							{
 								removeStart.push_back(std::stoi(node1Connect));
 								startNode = node2Connect;
+								int numberConnections = 0;
+								for (unsigned x = 0; x < connectionsUsed.size(); x++)
+								{
+									if (connectionsUsed[x].substr(0,2) == node1Connect)
+									{
+										numberConnections++;
+									}
+									if (numberConnections > 1)
+									{
+										for (unsigned x = 0; x < connectionsUsed.size(); x++)
+										{
+											if (connectionsUsed[x].substr(0,2) == node1Connect)
+											{
+												//Check so it's not already in stack
+												if ((std::find( nodeStack.begin(), nodeStack.end(), connectionsUsed[x].substr(2,2)) == nodeStack.end()))
+												{
+													nodeStack.push_back(connectionsUsed[x].substr(2,2));
+													// std::cout << "NODE IN STACK " << nodeStack.back() << std::endl;
+												}
+											}
+										}
+									}
+								}
 								iter = 0;
 							}
 							else {
@@ -753,6 +776,14 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 				}
 
 				//Check if stack empty
+				if (nodeStack.size() == 0)
+				{
+					isStackEmpty = true;
+				} else {
+					startNode = nodeStack.back();
+					nodeStack.pop_back();
+					endFound = false;
+				}
 			}
 
 		}
@@ -766,37 +797,74 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 			}
 
 			bool endFound = false;
+			bool isStackEmpty = false;
 
-			while(!endFound)
+			while(!isStackEmpty)
 			{
-				int iter = 0;
-				for (unsigned j = 0; j < connectionsUsed.size(); j++)
-				{
-					std::string node1Connect = connectionsUsed[j].substr(0, 2);
-					std::string node2Connect = connectionsUsed[j].substr(2, 2);
 
-					if(startNode.compare(node2Connect) == 0 && node2Connect != "99")
+				while(!endFound)
+				{
+					int iter = 0;
+					for (unsigned j = 0; j < connectionsUsed.size(); j++)
 					{
-						std::cout << node1Connect << " & " << node2Connect << std::endl;
-						if ((!(startNodes[std::stoi(node2Connect)] 1)) && (std::find( removeStart.begin(), removeStart.end(), std::stoi(node1Connect)) == removeStart.end())) //endNodes[std::stoi(node2Connect)] == 1 &&
+						std::string node1Connect = connectionsUsed[j].substr(0, 2);
+						std::string node2Connect = connectionsUsed[j].substr(2, 2);
+
+						if(startNode.compare(node2Connect) == 0 && node2Connect != "99")
 						{
-							std::cout << node1Connect << " & " << node2Connect << std::endl;
-							removeStart.push_back(std::stoi(node2Connect));
-							startNode = node1Connect;
-							iter = 0;
-						} else {
-							endFound = true;
+							// std::cout << node1Connect << " & " << node2Connect << std::endl;
+							if ((!(startNodes[std::stoi(node2Connect)] > 1)) && (std::find( removeStart.begin(), removeStart.end(), std::stoi(node1Connect)) == removeStart.end())) //endNodes[std::stoi(node2Connect)] == 1 &&
+							{
+								// std::cout << node1Connect << " & " << node2Connect << std::endl;
+								removeStart.push_back(std::stoi(node2Connect));
+								startNode = node1Connect;
+								int numberConnections = 0;
+								for (unsigned x = 0; x < connectionsUsed.size(); x++)
+								{
+									if (connectionsUsed[x].substr(2,2) == node2Connect)
+									{
+										numberConnections++;
+									}
+									if (numberConnections > 1)
+									{
+										for (unsigned x = 0; x < connectionsUsed.size(); x++)
+										{
+											if (connectionsUsed[x].substr(2,2) == node2Connect)
+											{
+												//Check so it's not already in stack
+												if ((std::find( nodeStack.begin(), nodeStack.end(), connectionsUsed[x].substr(0,2)) == nodeStack.end()))
+												{
+													nodeStack.push_back(connectionsUsed[x].substr(0,2));
+													// std::cout << "NODE IN STACK " << nodeStack.back() << std::endl;
+												}
+											}
+										}
+									}
+								}
+								iter = 0;
+							} else {
+								endFound = true;
+							}
 						}
+
+						iter++;
 					}
 
-					iter++;
+					// std::cout << iter << " " << connectionsUsed.size() <<  std::endl;
+
+					if (iter == connectionsUsed.size())
+					{
+						endFound = true;
+					}
 				}
-
-				// std::cout << iter << " " << connectionsUsed.size() <<  std::endl;
-
-				if (iter == connectionsUsed.size())
+				//Check if stack empty
+				if (nodeStack.size() == 0)
 				{
-					endFound = true;
+					isStackEmpty = true;
+				} else {
+					startNode = nodeStack.back();
+					nodeStack.pop_back();
+					endFound = false;
 				}
 			}
 
@@ -947,20 +1015,20 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 	//Change the heightmap so that the "rivers" are not 1 pixel wide
 	makeDitches(&heightMap);
 
-	//Open an output file stream and point it to the height map file
-	std::ofstream graphHeightMap;
-	graphHeightMap.open("../heightmaps/graphHeightMap.txt");
+	// //Open an output file stream and point it to the height map file
+	// std::ofstream graphHeightMap;
+	// graphHeightMap.open("../heightmaps/graphHeightMap.txt");
 
-	//Print the heightmap to this file
-	for (unsigned i = 0; i < heightMap.size(); i++)
-	{
-		for (unsigned j = 0; j < heightMap[i].size(); j++)
-		{
-			graphHeightMap << heightMap[i][j] << " ";
-		}
+	// //Print the heightmap to this file
+	// for (unsigned i = 0; i < heightMap.size(); i++)
+	// {
+	// 	for (unsigned j = 0; j < heightMap[i].size(); j++)
+	// 	{
+	// 		graphHeightMap << heightMap[i][j] << " ";
+	// 	}
 
-		graphHeightMap << std::endl;
-	}
+	// 	graphHeightMap << std::endl;
+	// }
 
 	connectionsPrint(shortestPaths, usedNodes, rodIndex, riverNames);
 	terrainGen::generateTerrain(&heightMap, &usedNodes, &coordinates, &rodLocations, &riverLocations, SQUARE_SIZE, &rodIndex, &riverNames);
