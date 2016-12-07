@@ -17,6 +17,7 @@ AFlowerActor::AFlowerActor()
 	flowerMesh->SetupAttachment(SceneComponent);
 
 	RootComponent = SceneComponent;
+
 }
 
 // Called when the game starts or when spawned

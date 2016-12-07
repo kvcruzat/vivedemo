@@ -56,8 +56,9 @@ void ARiverActor::createMesh(TArray<FVector> vertexData) {
 	normals = util->findNormals(vertexData, triangles);
 
 	riverMesh->CreateMeshSection(0, vertexData, triangles, normals, TArray<FVector2D>(), TArray<FColor>(), TArray<FProcMeshTangent>(), false);
-
+	
 	riverMesh->SetMaterial(0, riverMaterial);
+	riverMesh->SetCollisionProfileName(FName(TEXT("OverlapAll")));
 	riverMaterialInstance = riverMesh->CreateDynamicMaterialInstance(0);
 	
 }
@@ -151,29 +152,10 @@ void ARiverActor::changeFlow(float value) {
 
 }
 
-//void ARiverActor::computeFlows() {
-//
-//	int nodeFlow = outputNode->flow;
-//
-//	if (outputNode->nodeID.Contains(TEXT("00"))) {
-//		nodeFlow = 24;
-//		if (outputNode->connectedRods.Num() == 0) {
-//			outputNode->outputRiver->changeFlow(nodeFlow);
-//		}
-//	}
-//	else {
-//		for (int river = 0; river < outputNode->inputRivers.Num(); river++) {
-//			nodeFlow += outputNode->inputRivers[river]->flow;
-//		}
-//	}	
-//
-//	if (outputNode->connectedRods.Num() == 2) {
-//		nodeFlow = nodeFlow / 2;
-//
-//		for (int rodIndex = 0; rodIndex < outputNode->connectedRods.Num(); rodIndex++) {
-//			int flowDiff = nodeFlow - outputNode->connectedRods[rodIndex]->connectedRiver->flow;
-//			outputNode->connectedRods[rodIndex]->connectedRiver->changeFlow(flowDiff);
-//		}
-//	}
-//	
-//}
+void ARiverActor::waterFlowers(float value) {
+
+	for (int flowerIndex = 0; flowerIndex < flowerArray.Num(); flowerIndex++) {
+		if (flowerArray[flowerIndex]->requiredFlow == value) {
+		}
+	}
+}
