@@ -701,10 +701,62 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 
 	std::vector<int> removeStart;
 	std::vector<int> connectEnd;
+	std::vector<int> nodeStack;
 
 	for (unsigned i = 0; i < startNodes.size(); i++)
 	{
-		if ((endNodes[i] == 0 && startNodes[i] > 0) || (startNodes[i] == 0 && endNodes[i] > 0))
+		if ((endNodes[i] == 0 && startNodes[i] > 0)) //|| (startNodes[i] == 0 && endNodes[i] > 0))
+		{
+			removeStart.push_back(i);
+			std::string startNode = std::to_string(i);
+			if (startNode.length() == 1)
+			{
+				startNode = "0" + startNode;
+			}
+
+			bool endFound = false;
+			bool isStackEmpty = false;
+
+			while(!isStackEmpty)
+			{
+				while(!endFound)
+				{
+					int iter = 0;
+					for (unsigned j = 0; j < connectionsUsed.size(); j++)
+					{
+						std::string node1Connect = connectionsUsed[j].substr(0, 2);
+						std::string node2Connect = connectionsUsed[j].substr(2, 2);
+
+						if(startNode.compare(node1Connect) == 0 && node1Connect != "00")
+						{
+							// std::cout << node1Connect << std::endl;
+							if (!(endNodes[std::stoi(node1Connect)] > 1) &&  (std::find( removeStart.begin(), removeStart.end(), std::stoi(node2Connect)) == removeStart.end())) //endNodes[std::stoi(node2Connect)] == 1 &&
+							{
+								removeStart.push_back(std::stoi(node1Connect));
+								startNode = node2Connect;
+								iter = 0;
+							}
+							else {
+								endFound = true;
+							}
+						}
+
+						iter++;
+					}
+
+					// std::cout << iter << " " << connectionsUsed.size() <<  std::endl;
+
+					if (iter == connectionsUsed.size())
+					{
+						endFound = true;
+					}
+				}
+
+				//Check if stack empty
+			}
+
+		}
+		if (startNodes[i] == 0 && endNodes[i] > 0)
 		{
 			removeStart.push_back(i);
 			std::string startNode = std::to_string(i);
@@ -723,13 +775,14 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 					std::string node1Connect = connectionsUsed[j].substr(0, 2);
 					std::string node2Connect = connectionsUsed[j].substr(2, 2);
 
-					if(startNode.compare(node1Connect) == 0 && node1Connect != "00")
+					if(startNode.compare(node2Connect) == 0 && node2Connect != "99")
 					{
-						// std::cout << node1Connect << std::endl;
-						if (startNodes[std::stoi(node1Connect)] == 1 &&  (std::find( removeStart.begin(), removeStart.end(), std::stoi(node2Connect)) == removeStart.end())) //endNodes[std::stoi(node2Connect)] == 1 &&
+						std::cout << node1Connect << " & " << node2Connect << std::endl;
+						if ((!(startNodes[std::stoi(node2Connect)] 1)) && (std::find( removeStart.begin(), removeStart.end(), std::stoi(node1Connect)) == removeStart.end())) //endNodes[std::stoi(node2Connect)] == 1 &&
 						{
-							removeStart.push_back(std::stoi(node1Connect));
-							startNode = node2Connect;
+							std::cout << node1Connect << " & " << node2Connect << std::endl;
+							removeStart.push_back(std::stoi(node2Connect));
+							startNode = node1Connect;
 							iter = 0;
 						} else {
 							endFound = true;
@@ -739,7 +792,7 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 					iter++;
 				}
 
-				std::cout << iter << " " << connectionsUsed.size() <<  std::endl;
+				// std::cout << iter << " " << connectionsUsed.size() <<  std::endl;
 
 				if (iter == connectionsUsed.size())
 				{
@@ -1130,7 +1183,7 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		    	if(i == 0)
 		    	{
 		    		riverLocation.push_back(y + RIVER_WIDTH);
-		    		riverLocation.push_back(x + 1); //- RIVER_WIDTH);
+		    		riverLocation.push_back(x); //- RIVER_WIDTH);
 
 		    		riverLocation.push_back(y - RIVER_WIDTH);
 		    		riverLocation.push_back(x); // - RIVER_WIDTH);
@@ -1143,7 +1196,7 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		    		riverLocation.push_back(x + 1); // + RIVER_WIDTH);
 
 		    		riverLocation.push_back(y + RIVER_WIDTH);
-		    		riverLocation.push_back(x); // + RIVER_WIDTH);
+		    		riverLocation.push_back(x + 1); // + RIVER_WIDTH);
 
 		    		(*riverNames).push_back(rodIndexString);
 
@@ -1166,7 +1219,7 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		        (*heightMap)[x][y] = 0;
 		    	if(i == 0)
 		    	{
-		    		riverLocation.push_back(x + 1);  //- RIVER_WIDTH);
+		    		riverLocation.push_back(x);  //- RIVER_WIDTH);
 		    		riverLocation.push_back(y - RIVER_WIDTH);
 
 		    		riverLocation.push_back(x); //- RIVER_WIDTH);
@@ -1177,7 +1230,7 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		    		riverLocation.push_back(x + 1); //+ RIVER_WIDTH);
 		    		riverLocation.push_back(y + RIVER_WIDTH);
 
-		    		riverLocation.push_back(x);// + RIVER_WIDTH);
+		    		riverLocation.push_back(x + 1);// + RIVER_WIDTH);
 		    		riverLocation.push_back(y - RIVER_WIDTH);
 
 		    		(*riverNames).push_back(rodIndexString);
