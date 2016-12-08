@@ -85,8 +85,6 @@ void Util::readNodeData(FString fileName, TArray<FVector> nodeData)
 
     int32 lineCount = data.ParseIntoArray(lines, _T("\n"), true);
 
-    UE_LOG(LogTemp, Warning, TEXT("# Lines: %s"), *FString::FromInt(lines.Num()));
-
     for (int32 Index = 0; Index < lines.Num(); ++Index) {
         lines[Index].ParseIntoArray(splitLines, _T(","), true);
         nodeData.Add(FVector(FCString::Atof(*splitLines[1]), FCString::Atof(*splitLines[0]), FCString::Atof(*splitLines[2])));
@@ -110,10 +108,13 @@ void Util::readRodData(FString fileName, TArray<FVector> rodData)
 
 	int32 lineCount = data.ParseIntoArray(lines, _T("\n"), true);
 
-	UE_LOG(LogTemp, Warning, TEXT("# Lines: %s"), *FString::FromInt(lines.Num()));
-
 	for (int32 Index = 0; Index < lines.Num(); ++Index) {
-		if (lines[Index].TrimTrailing().IsEmpty()){ rodData.Add(FVector(-1, -1, -1)); }
+		if (lines[Index].TrimTrailing().IsEmpty()){ 
+			rodData.Add(FVector(-1, -1, -1)); 
+			if (Index > 1) {
+				rodData.Add(FVector(-1, -1, -1));
+			}
+		}
 		else {
 			lines[Index].ParseIntoArray(rodsInNode, _T(" "), true);
 			for (int32 rodIndex = 0; rodIndex < rodsInNode.Num(); ++rodIndex) {
@@ -200,11 +201,14 @@ void Util::readRodRiverData(FString fileName) {
 
 	int32 lineCount = data.ParseIntoArray(lines, _T("\n"), true);
 
-	UE_LOG(LogTemp, Warning, TEXT("# Lines: %s"), *FString::FromInt(lines.Num()));
-
 	for (int32 Index = 0; Index < lines.Num(); ++Index) {
 		lines[Index] = lines[Index].TrimTrailing();
-		if (lines[Index].IsEmpty()) { rodRiverConnection.Add(TEXT("-1")); }
+		if (lines[Index].IsEmpty()) {
+			rodRiverConnection.Add(TEXT("-1"));
+			if (Index > 1) {
+				rodRiverConnection.Add(TEXT("-1"));
+			}
+		}
 		else {
 			lines[Index].ParseIntoArray(riverInRod, _T(" "), true);
 			for (int32 rodIndex = 0; rodIndex < riverInRod.Num(); ++rodIndex) {
@@ -229,6 +233,12 @@ void Util::readNodeConnectionsData(FString fileName) {
 	data.ParseIntoArray(lines, _T("\n"), true);
 
 	for (int32 Index = 2; Index < lines.Num(); ++Index) {
-		nodeRiverConnection.Add(lines[Index].TrimTrailing());
+		lines[Index] = lines[Index].TrimTrailing();
+		if (lines[Index].IsEmpty()) {
+			nodeRiverConnection.Add(TEXT("-1"));
+		}
+		else {
+			nodeRiverConnection.Add(lines[Index]);
+		}
 	}
 }

@@ -82,9 +82,6 @@ void ATerrainActor::PostActorCreated()
 
 void ATerrainActor::addRods()
 {
-	UE_LOG(LogTemp, Warning, TEXT("# RodNum: %s"), *FString::FromInt(rods.Num()));
-	UE_LOG(LogTemp, Warning, TEXT("# Rod0: %s"), *rods[0].ToString());
-	UE_LOG(LogTemp, Warning, TEXT("# Rod2: %s"), *rods[2].ToString());
 
 	Util *util = new Util();
 	util->readRodRiverData("rodIndex.txt");
@@ -143,7 +140,6 @@ void ATerrainActor::calculateScale() {
 
 	for (int i = 0; i < 8; ++i) {
 		FVector vertex = BoxCenter + (BoundsPointMapping[i] * BoxExtents);
-		UE_LOG(LogTemp, Warning, TEXT("# Vertex%s: %s"), *FString::FromInt(i), *vertex.ToString());
 	}
 
 
@@ -197,10 +193,6 @@ void ATerrainActor::addRivers() {
 	util->readRiverConnectionsData("connections.txt");
 	TArray<FString> connections = util->riverConnections;
 	TArray<FString> riverIDs = util->riverIDs;
-
-	UE_LOG(LogTemp, Warning, TEXT("# riverNum: %s"), *FString::FromInt(rivers.Num()));
-	UE_LOG(LogTemp, Warning, TEXT("# River0: %s"), *rivers[0].ToString());
-	UE_LOG(LogTemp, Warning, TEXT("# River2: %s"), *rivers[2].ToString());
 
 	for (int i = 0; i < rivers.Num(); i++) {
 		rivers[i] = transformCoord(rivers[i]);
@@ -259,7 +251,6 @@ void ATerrainActor::addFlowers() {
 	Util* util = new Util();
 	util->readNodeConnectionsData("nodeConnections.txt");
 	TArray<FString> nodeRivers = util->nodeRiverConnection;
-	UE_LOG(LogTemp, Warning, TEXT("# num: %s"), *FString::FromInt(nodeRivers.Num()));
 
 	TArray<FVector> transformedNodes;
 
@@ -277,18 +268,42 @@ void ATerrainActor::addFlowers() {
 	TArray<FString> sortedNodeRivers;
 	TArray<FVector> tempFlowerLocs;
 
+	int nodeIndex = 2;
+	bool prevEmpty = false;
 	for (int rodRiverIndex= 2; rodRiverIndex < rodRiverConnection.Num(); rodRiverIndex++) {
 		FString nodeID = rodRiverConnection[rodRiverIndex].Mid(0, 2);
-		if (!tempNodeIDs.Contains(nodeID)) {
-			tempNodeIDs.Add(nodeID);
-			sortedNodeRivers.Add(nodeRivers[(rodRiverIndex - 2) / 2]);
+		if (!tempNodeIDs.Contains(nodeID) ){
+			if (!nodeID.Contains(TEXT("-1")) ){
+				tempNodeIDs.Add(nodeID);
+				sortedNodeRivers.Add(nodeRivers[(rodRiverIndex - 2) / 2]);
+				transformedNodes.Add(transformCoord(nodes[nodeIndex]));
+			}
+			else if (prevEmpty) {
+				nodeIndex--;
+				prevEmpty = false;
+			}
+			else {
+				prevEmpty = true;
+			}
+			nodeIndex++;
 		}
+	}
+
+	for (int index = 0; index < tempNodeIDs.Num(); index++) {
+		UE_LOG(LogTemp, Warning, TEXT("# %s"), *tempNodeIDs[index]);
+	}
+
+	for (int index = 0; index < sortedNodeRivers.Num(); index++) {
+		UE_LOG(LogTemp, Warning, TEXT("# %s"), *sortedNodeRivers[index]);
+	}
+
+	for (int index = 0; index < transformedNodes.Num(); index++) {
+		UE_LOG(LogTemp, Warning, TEXT("# %s"), *transformedNodes[index].ToString());
 	}
 
 	UWorld* const World = GetWorld();
 	for (int32 Index = 0; Index < tempNodeIDs.Num(); ++Index)
 	{	
-		transformedNodes.Add(transformCoord(nodes[Index+2]));
 
 		TArray<FString> usedRivers;
 
@@ -383,6 +398,18 @@ void ATerrainActor::assignConnectionActors() {
 							riverArray[riverIndex]->outputRivers.Add(riverArray[river]);
 						}
 					}
+				}
+			}
+
+			for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
+				if (riverArray[riverIndex]->outputNode.Contains(rodArray[rodIndex]->nodeID)) {
+					rodArray[rodIndex]->inputRivers.Add(riverArray[riverIndex]);
+				}
+			}
+
+			for (int flowerIndex = 0; flowerIndex < flowerArray.Num(); flowerIndex++) {
+				if (riverArray[riverIndex]->outputNode.Contains(flowerArray[flowerIndex]->nodeID)) {
+					riverArray[riverIndex]->flowerArray.Add(flowerArray[flowerIndex]);
 				}
 			}
 		}
