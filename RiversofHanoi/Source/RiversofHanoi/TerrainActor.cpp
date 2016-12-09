@@ -209,39 +209,39 @@ void ATerrainActor::addRivers() {
 			FActorSpawnParameters SpawnParams;
 			SpawnParams.Owner = this;
 			SpawnParams.Instigator = Instigator;
-			ARiverActor* River = World->SpawnActor<ARiverActor>(FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
+ARiverActor* River = World->SpawnActor<ARiverActor>(FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
 
-			River->riverID = riverIDs[Index];
-			bool addNextRiver = false;
-			bool newConnection = true;
-			bool connectionFound = false;
-			for (int river = 0; river < connections.Num(); river++) {
-				if ((addNextRiver || connectionFound) && !connections[river].Contains(TEXT("-1"))) {
-					River->riverConnections.Add(connections[river]);
-					connectionFound = true;
-				}
-				else { connectionFound = false; }
+River->riverID = riverIDs[Index];
+bool addNextRiver = false;
+bool newConnection = true;
+bool connectionFound = false;
+for (int river = 0; river < connections.Num(); river++) {
+	if ((addNextRiver || connectionFound) && !connections[river].Contains(TEXT("-1"))) {
+		River->riverConnections.Add(connections[river]);
+		connectionFound = true;
+	}
+	else { connectionFound = false; }
 
-				if (newConnection && riverIDs[Index].Contains(connections[river]) ) {
-					addNextRiver = true;
-				}
-				else {
-					addNextRiver = false;
-				}
-				
-				if (connections[river].Contains(TEXT("-1"))) { newConnection = true; }
-				else { newConnection = false; }
-			}
+	if (newConnection && riverIDs[Index].Contains(connections[river])) {
+		addNextRiver = true;
+	}
+	else {
+		addNextRiver = false;
+	}
 
-			TArray<FVector> riverVertices;
-			riverVertices.Add(rivers[(Index * 4)]);
-			riverVertices.Add(rivers[(Index * 4) + 1]);
-			riverVertices.Add(rivers[(Index * 4) + 2]);
-			riverVertices.Add(rivers[(Index * 4) + 3]);
+	if (connections[river].Contains(TEXT("-1"))) { newConnection = true; }
+	else { newConnection = false; }
+}
 
-			River->createMesh(riverVertices);
-			River->SetOwner(this);
-			riverArray.Add(River);
+TArray<FVector> riverVertices;
+riverVertices.Add(rivers[(Index * 4)]);
+riverVertices.Add(rivers[(Index * 4) + 1]);
+riverVertices.Add(rivers[(Index * 4) + 2]);
+riverVertices.Add(rivers[(Index * 4) + 3]);
+
+River->createMesh(riverVertices);
+River->SetOwner(this);
+riverArray.Add(River);
 		}
 	}
 
@@ -271,10 +271,10 @@ void ATerrainActor::addFlowers() {
 
 	int nodeIndex = 2;
 	bool prevEmpty = false;
-	for (int rodRiverIndex= 2; rodRiverIndex < rodRiverConnection.Num(); rodRiverIndex++) {
+	for (int rodRiverIndex = 2; rodRiverIndex < rodRiverConnection.Num(); rodRiverIndex++) {
 		FString nodeID = rodRiverConnection[rodRiverIndex].Mid(0, 2);
-		if (!tempNodeIDs.Contains(nodeID) ){
-			if (!nodeID.Contains(TEXT("-1")) ){
+		if (!tempNodeIDs.Contains(nodeID)) {
+			if (!nodeID.Contains(TEXT("-1"))) {
 				tempNodeIDs.Add(nodeID);
 				sortedNodeRivers.Add(nodeRivers[(rodRiverIndex - 2) / 2]);
 				transformedNodes.Add(transformCoord(nodes[nodeIndex]));
@@ -296,24 +296,43 @@ void ATerrainActor::addFlowers() {
 
 	UWorld* const World = GetWorld();
 	for (int32 Index = 0; Index < tempNodeIDs.Num(); ++Index)
-	{	
+	{
 
 		TArray<FString> usedRivers;
 
 		sortedNodeRivers[Index].ParseIntoArray(usedRivers, _T(" "), true);
+
+		int freeRivers = 8 - usedRivers.Num();
 		for (int locIndex = 0; locIndex < possibleLocs.Num(); locIndex++) {
-			if (!usedRivers.Contains(FString::FromInt(locIndex)) ){
+			if (!usedRivers.Contains(FString::FromInt(locIndex))) {
 				int randNum = FMath::RandRange(0, 2);
-				if (World && randNum == 1)
+				if (World)
 				{
-					FActorSpawnParameters SpawnParams;
-					SpawnParams.Owner = this;
-					SpawnParams.Instigator = Instigator;
-					AFlowerActor* Flower = World->SpawnActor<AFlowerActor>(FlowerActor, FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
-					Flower->SetOwner(this);
-					Flower->nodeID = tempNodeIDs[Index];
-					flowerArray.Add(Flower);
-					tempFlowerLocs.Add(transformedNodes[Index] + possibleLocs[locIndex]);
+					if (freeRivers > possibleLocs.Num() - (locIndex + 1)) {
+						if (randNum == 1) {
+							FActorSpawnParameters SpawnParams;
+							SpawnParams.Owner = this;
+							SpawnParams.Instigator = Instigator;
+							AFlowerActor* Flower = World->SpawnActor<AFlowerActor>(FlowerActor, FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
+							Flower->SetOwner(this);
+							Flower->nodeID = tempNodeIDs[Index];
+							flowerArray.Add(Flower);
+							tempFlowerLocs.Add(transformedNodes[Index] + possibleLocs[locIndex]);
+							freeRivers--;
+						}
+					}
+					else {
+						FActorSpawnParameters SpawnParams;
+						SpawnParams.Owner = this;
+						SpawnParams.Instigator = Instigator;
+						AFlowerActor* Flower = World->SpawnActor<AFlowerActor>(FlowerActor, FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
+						Flower->SetOwner(this);
+						Flower->nodeID = tempNodeIDs[Index];
+						flowerArray.Add(Flower);
+						tempFlowerLocs.Add(transformedNodes[Index] + possibleLocs[locIndex]);
+						freeRivers--;
+					}
+					
 				}
 			}
 		}

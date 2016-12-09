@@ -83,8 +83,10 @@ void ARiverActor::changeFlow(float value) {
 			flowDiff = (incomingFlow + (incomingFlow * outputRivers[river]->discStatus)) - outputRivers[river]->flow;
 			outputRivers[river]->changeFlow(flowDiff);
 		}
-		
-		waterFlowers();
+
+		if (flowerArray.Num() > 0){
+			waterFlowers();
+		}
 
 	}
 	else {
@@ -108,7 +110,7 @@ void ARiverActor::changeFlow(float value) {
 					connectedRivers[Index]->outputRivers[river]->changeFlow(flowDiff);
 				}
 
-				connectedRivers[Index]->waterFlowers();
+				//connectedRivers[Index]->waterFlowers();
 			}
 
 		}
@@ -165,16 +167,20 @@ void ARiverActor::waterFlowers() {
 	for (int river = 0; river < overlappedRivers.Num(); river++) {
 		totalFlow += overlappedRivers[river]->flow;
 	}
-
+	UE_LOG(LogTemp, Warning, TEXT("# Node%s Flow: %s"), *nodeID, *FString::SanitizeFloat(totalFlow));
 	for (int flowerIndex = 0; flowerIndex < flowerArray.Num(); flowerIndex++) {
-		if (flowerArray[flowerIndex]->requiredFlow == totalFlow) {
+		UE_LOG(LogTemp, Warning, TEXT("# requird flow: %s"), *FString::SanitizeFloat(flowerArray[flowerIndex]->requiredFlow));
+		if ( FMath::IsNearlyEqual(totalFlow, flowerArray[flowerIndex]->requiredFlow, 0.01f) ) {
 			flowerArray[flowerIndex]->flowerMesh->SetMaterial(2, flowerArray[flowerIndex]->yellowRoseMat);
+			UE_LOG(LogTemp, Warning, TEXT("# ALIVE"));
 		}
 		else if ( totalFlow < flowerArray[flowerIndex]->requiredFlow){
 			flowerArray[flowerIndex]->flowerMesh->SetMaterial(2, flowerArray[flowerIndex]->deadRoseMat);
+			UE_LOG(LogTemp, Warning, TEXT("# THIRST"));
 		}
 		else if (totalFlow > flowerArray[flowerIndex]->requiredFlow) {
 			flowerArray[flowerIndex]->flowerMesh->SetMaterial(2, flowerArray[flowerIndex]->blueRoseMat);
+			UE_LOG(LogTemp, Warning, TEXT("# FLOOD"));
 		}
 	}
 }
