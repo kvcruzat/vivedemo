@@ -84,9 +84,7 @@ void ARiverActor::changeFlow(float value) {
 			outputRivers[river]->changeFlow(flowDiff);
 		}
 		
-		for (int flower = 0; flower < flowerArray.Num(); flower++) {
-			waterFlowers();
-		}
+		waterFlowers();
 
 	}
 	else {
@@ -110,9 +108,7 @@ void ARiverActor::changeFlow(float value) {
 					connectedRivers[Index]->outputRivers[river]->changeFlow(flowDiff);
 				}
 
-				for (int flower = 0; flower < connectedRivers[Index]->flowerArray.Num(); flower++) {
-					connectedRivers[Index]->waterFlowers();
-				}
+				connectedRivers[Index]->waterFlowers();
 			}
 
 		}
@@ -130,22 +126,25 @@ void ARiverActor::changeFlow(float value) {
 		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.7);
 	}
 	else if (flow > startFlow * 0.6) {
-		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.65);
-	}
-	else if (flow > startFlow * 0.5) {
 		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.6);
 	}
-	else if (flow > startFlow * 0.4) {
+	else if (flow > startFlow * 0.5) {
 		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.55);
 	}
-	else if (flow > startFlow * 0.3) {
+	else if (flow > startFlow * 0.4) {
 		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.5);
 	}
-	else if (flow > startFlow * 0.2) {
+	else if (flow > startFlow * 0.3) {
 		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.45);
 	}
-	else if (flow > 0.0f) {
+	else if (flow > startFlow * 0.2) {
 		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.4);
+	}
+	else if (flow > 0.1f) {
+		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.35);
+	}
+	else if (flow > 0.0f) {
+		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.3);
 	}
 	else if (flow == 0.0f) {
 		riverMaterialInstance->SetScalarParameterValue(TEXT("Opacity"), 0.0);
@@ -161,15 +160,20 @@ void ARiverActor::changeFlow(float value) {
 }
 
 void ARiverActor::waterFlowers() {
+	float totalFlow = flow;
+
+	for (int river = 0; river < overlappedRivers.Num(); river++) {
+		totalFlow += overlappedRivers[river]->flow;
+	}
 
 	for (int flowerIndex = 0; flowerIndex < flowerArray.Num(); flowerIndex++) {
-		if (flowerArray[flowerIndex]->requiredFlow == flow) {
+		if (flowerArray[flowerIndex]->requiredFlow == totalFlow) {
 			flowerArray[flowerIndex]->flowerMesh->SetMaterial(2, flowerArray[flowerIndex]->yellowRoseMat);
 		}
-		else if ( flow < flowerArray[flowerIndex]->requiredFlow){
+		else if ( totalFlow < flowerArray[flowerIndex]->requiredFlow){
 			flowerArray[flowerIndex]->flowerMesh->SetMaterial(2, flowerArray[flowerIndex]->deadRoseMat);
 		}
-		else if (flow > flowerArray[flowerIndex]->requiredFlow) {
+		else if (totalFlow > flowerArray[flowerIndex]->requiredFlow) {
 			flowerArray[flowerIndex]->flowerMesh->SetMaterial(2, flowerArray[flowerIndex]->blueRoseMat);
 		}
 	}
