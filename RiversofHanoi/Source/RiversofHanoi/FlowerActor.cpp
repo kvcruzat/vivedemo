@@ -18,6 +18,29 @@ AFlowerActor::AFlowerActor()
 
 	RootComponent = SceneComponent;
 
+	ConstructorHelpers::FObjectFinder<UMaterial> redMaterial(TEXT("Material'/Game/models/_Maroon_._Maroon_'"));
+
+	if (redMaterial.Object != NULL) {
+		redRoseMat = (UMaterial*)redMaterial.Object;
+	}
+
+	ConstructorHelpers::FObjectFinder<UMaterial> yellowMaterial(TEXT("Material'/Game/models/rose_red1.rose_red1'"));
+
+	if (yellowMaterial.Object != NULL) {
+		yellowRoseMat = (UMaterial*)yellowMaterial.Object;
+	}
+
+	ConstructorHelpers::FObjectFinder<UMaterialInstance> blueMaterial(TEXT("Material'/Game/VirtualReality/Materials/MI_SmallCubes.MI_SmallCubes'"));
+
+	if (blueMaterial.Object != NULL) {
+		blueRoseMat = (UMaterial*)blueMaterial.Object;
+	}
+
+	ConstructorHelpers::FObjectFinder<UMaterial> deadMaterial(TEXT("Material'/Game/models/skp_front_default.skp_front_default'"));
+
+	if (deadMaterial.Object != NULL) {
+		deadRoseMat = (UMaterial*)deadMaterial.Object;
+	}
 }
 
 // Called when the game starts or when spawned

@@ -29,5 +29,10 @@ public:
 	UPROPERTY(EditAnywhere)
 	FString nodeID;
 
+	UMaterial* redRoseMat;
+	UMaterial* yellowRoseMat;
+	UMaterial* blueRoseMat;
+	UMaterial* deadRoseMat;
+
 	
 };

@@ -59,6 +59,7 @@ void ARiverActor::createMesh(TArray<FVector> vertexData) {
 	
 	riverMesh->SetMaterial(0, riverMaterial);
 	riverMesh->SetCollisionProfileName(FName(TEXT("OverlapAll")));
+	riverMesh->SetCanEverAffectNavigation(false);
 	riverMaterialInstance = riverMesh->CreateDynamicMaterialInstance(0);
 	
 }
@@ -81,6 +82,10 @@ void ARiverActor::changeFlow(float value) {
 		for (int river = 0; river < outputRivers.Num(); river++) {
 			flowDiff = (incomingFlow + (incomingFlow * outputRivers[river]->discStatus)) - outputRivers[river]->flow;
 			outputRivers[river]->changeFlow(flowDiff);
+		}
+		
+		for (int flower = 0; flower < flowerArray.Num(); flower++) {
+			waterFlowers();
 		}
 
 	}
@@ -105,6 +110,9 @@ void ARiverActor::changeFlow(float value) {
 					connectedRivers[Index]->outputRivers[river]->changeFlow(flowDiff);
 				}
 
+				for (int flower = 0; flower < connectedRivers[Index]->flowerArray.Num(); flower++) {
+					connectedRivers[Index]->waterFlowers();
+				}
 			}
 
 		}
@@ -148,14 +156,21 @@ void ARiverActor::changeFlow(float value) {
 	float opacity;
 	riverMaterialInstance->GetScalarParameterValue(TEXT("Opacity"), opacity);
 	
-	UE_LOG(LogTemp, Warning, TEXT("# river%s: %s, %s"), *riverID, *FString::SanitizeFloat(flow), *FString::SanitizeFloat(opacity));
+	//UE_LOG(LogTemp, Warning, TEXT("# river%s: %s, %s"), *riverID, *FString::SanitizeFloat(flow), *FString::SanitizeFloat(opacity));
 
 }
 
-void ARiverActor::waterFlowers(float value) {
+void ARiverActor::waterFlowers() {
 
 	for (int flowerIndex = 0; flowerIndex < flowerArray.Num(); flowerIndex++) {
-		if (flowerArray[flowerIndex]->requiredFlow == value) {
+		if (flowerArray[flowerIndex]->requiredFlow == flow) {
+			flowerArray[flowerIndex]->flowerMesh->SetMaterial(2, flowerArray[flowerIndex]->yellowRoseMat);
+		}
+		else if ( flow < flowerArray[flowerIndex]->requiredFlow){
+			flowerArray[flowerIndex]->flowerMesh->SetMaterial(2, flowerArray[flowerIndex]->deadRoseMat);
+		}
+		else if (flow > flowerArray[flowerIndex]->requiredFlow) {
+			flowerArray[flowerIndex]->flowerMesh->SetMaterial(2, flowerArray[flowerIndex]->blueRoseMat);
 		}
 	}
 }
