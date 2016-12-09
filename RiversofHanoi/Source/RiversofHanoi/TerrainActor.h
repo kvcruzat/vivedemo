@@ -57,5 +57,6 @@ public:
 	virtual void addFlowers();
 	virtual void assignConnectionActors();
 	virtual void setFlows();
+	virtual void computeGoal();
 
 };

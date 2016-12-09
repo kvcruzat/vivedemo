@@ -76,6 +76,7 @@ void ATerrainActor::PostActorCreated()
 		addRivers();
 		addFlowers();
 		assignConnectionActors();
+		computeGoal();
 		setFlows();
 	}
 }
@@ -289,17 +290,9 @@ void ATerrainActor::addFlowers() {
 		}
 	}
 
-	for (int index = 0; index < tempNodeIDs.Num(); index++) {
-		UE_LOG(LogTemp, Warning, TEXT("# %s"), *tempNodeIDs[index]);
-	}
-
-	for (int index = 0; index < sortedNodeRivers.Num(); index++) {
-		UE_LOG(LogTemp, Warning, TEXT("# %s"), *sortedNodeRivers[index]);
-	}
-
-	for (int index = 0; index < transformedNodes.Num(); index++) {
-		UE_LOG(LogTemp, Warning, TEXT("# %s"), *transformedNodes[index].ToString());
-	}
+	tempNodeIDs.RemoveAt(0);
+	sortedNodeRivers.RemoveAt(0);
+	transformedNodes.RemoveAt(0);
 
 	UWorld* const World = GetWorld();
 	for (int32 Index = 0; Index < tempNodeIDs.Num(); ++Index)
@@ -332,7 +325,7 @@ void ATerrainActor::addFlowers() {
 
 	for (int flowerIndex = 0; flowerIndex < flowerArray.Num(); flowerIndex++) {
 		FVector flowerLoc = tempFlowerLocs[flowerIndex];
-		flowerLoc.Z += 25.0f + (flowerExtents.Z * 2);
+		flowerLoc.Z += 40.0f + (flowerExtents.Z * 2);
 		flowerArray[flowerIndex]->SetActorLocation(flowerLoc);
 	}
 }
@@ -422,30 +415,6 @@ void ATerrainActor::assignConnectionActors() {
 						break;
 					}
 				}
-				if (connection == riverConnections.Num() - 1) {
-					for (int nodeIndex = 0; nodeIndex < nodeIDs.Num(); nodeIndex++) {
-						if (riverArray[riverIndex]->connectedRivers[connection]->riverID.Mid(2, 2).Contains(nodeIDs[nodeIndex])) {
-							riverArray[riverIndex]->connectedRivers[connection]->outputNode = nodeIDs[nodeIndex];
-							for (int river = 0; river < riverArray.Num(); river++) {
-								if (riverArray[riverIndex]->connectedRivers[connection]->outputNode.Contains(riverArray[river]->nodeID)) {
-									riverArray[riverIndex]->connectedRivers[connection]->outputRivers.Add(riverArray[river]);
-								}
-							}
-						}
-					}
-					for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
-						if (riverArray[riverIndex]->connectedRivers[connection]->outputNode.Contains(rodArray[rodIndex]->nodeID)) {
-							rodArray[rodIndex]->inputRivers.Add(riverArray[riverIndex]->connectedRivers[connection]);
-						}
-					}
-
-					for (int flowerIndex = 0; flowerIndex < flowerArray.Num(); flowerIndex++) {
-						if (riverArray[riverIndex]->connectedRivers[connection]->outputNode.Contains(flowerArray[flowerIndex]->nodeID)) {
-							riverArray[riverIndex]->connectedRivers[connection]->flowerArray.Add(flowerArray[flowerIndex]);
-						}
-					}
-
-				}
 			}
 		}
 	}
@@ -489,5 +458,72 @@ void ATerrainActor::setFlows() {
 			}
 			break;
 		}
+	}
+}
+
+void ATerrainActor::computeGoal() {
+
+	float flow = 0;
+	int numRods = 0;
+	for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
+		if (nodeIDs[0].Contains(rodArray[rodIndex]->nodeID)) {
+			++numRods;
+		}
+	}
+
+	TArray<float> possibleDiscValues;
+	possibleDiscValues.Add(0);
+	possibleDiscValues.Add((-(1.0f / 6.0f)));
+	possibleDiscValues.Add((-(1.0f / 3.0f)));
+	possibleDiscValues.Add((-(1.0f / 2.0f)));
+	possibleDiscValues.Add((-(5.0f / 6.0f)));
+	possibleDiscValues.Add(-1);
+
+	for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
+		rodArray[rodIndex]->connectedRiver->discStatus += possibleDiscValues[FMath::RandRange(0,possibleDiscValues.Num() - 1)];
+		UE_LOG(LogTemp, Warning, TEXT("# Rod%s: %s"), *rodArray[rodIndex]->GetFName().ToString(), *FString::SanitizeFloat(rodArray[rodIndex]->connectedRiver->discStatus));
+	}
+
+	for (int riverIndex = 0; riverIndex < riverArray.Num(); riverIndex++) {
+		if (nodeIDs[0].Contains(riverArray[riverIndex]->nodeID)) {
+			flow = 24;
+			if (numRods == 0) {
+				riverArray[riverIndex]->changeFlow(flow);
+			}
+
+			if (numRods == 2) {
+				flow = flow / 2;
+
+				for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
+					if (nodeIDs[0].Contains(rodArray[rodIndex]->nodeID)) {
+						float flowDiff = (flow + (flow * rodArray[rodIndex]->connectedRiver->discStatus));
+						rodArray[rodIndex]->connectedRiver->changeFlow(flowDiff);
+					}
+				}
+			}
+			break;
+		}
+	}
+
+	for (int riverIndex = 0; riverIndex < riverArray.Num(); riverIndex++) {
+		if (nodeIDs.Contains(riverArray[riverIndex]->outputNode) && riverArray[riverIndex]->flowerArray.Num() != 0 ) {
+			float totalFlow = riverArray[riverIndex]->flow;
+			for (int overlappedIndex = 0; overlappedIndex < riverArray[riverIndex]->overlappedRivers.Num(); overlappedIndex++) {
+				totalFlow += riverArray[riverIndex]->overlappedRivers[overlappedIndex]->flow;
+			}
+			
+			for (int flowerIndex = 0; flowerIndex < riverArray[riverIndex]->flowerArray.Num(); flowerIndex++) {
+				riverArray[riverIndex]->flowerArray[flowerIndex]->requiredFlow = totalFlow;
+			}
+			UE_LOG(LogTemp, Warning, TEXT("# Node%s: %s"), *riverArray[riverIndex]->outputNode, *FString::SanitizeFloat(riverArray[riverIndex]->flowerArray[0]->requiredFlow));
+		}
+	}
+
+	for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
+		rodArray[rodIndex]->connectedRiver->discStatus = 0;
+	}
+
+	for (int riverIndex = 0; riverIndex < riverArray.Num(); riverIndex++) {
+		riverArray[riverIndex]->flow = 0;
 	}
 }

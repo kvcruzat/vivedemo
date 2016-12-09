@@ -68,11 +68,13 @@ void ARodActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Othe
 	if (!collidedActor.Contains(TEXT("BP_MotionController")) && !collidedActor.Contains(TEXT("BP_Rod")) && !collidedActor.Contains(TEXT("TerrainActor")) ) {
 		if (collidedComp == TEXT("ColComp2")) {
 			if (sizeCheck(OtherActor, containedActors)){
+				UE_LOG(LogTemp, Warning, TEXT("#%s CAN BE PLACED"), *collidedActor);
 				collisionComp->SetCollisionProfileName(FName(TEXT("OverlapAllDynamic")));
 				if (!containedActors.Contains(OtherActor)) {
 					containedActors.Add(OtherActor);
 					arrayChange(true, collidedActor);
 
+					UE_LOG(LogTemp, Warning, TEXT("#%s containedNUM: %s"), *FString::FromInt(FMath::RandRange(1, 10)), *FString::FromInt(containedActors.Num()));
 					for (int32 i = 0; i < containedActors.Num(); ++i) {
 						UE_LOG(LogTemp, Warning, TEXT("# %s"), *containedActors[i]->GetFName().ToString());
 					}
@@ -91,6 +93,31 @@ void ARodActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Othe
 						}
 					}
 				}
+				UE_LOG(LogTemp, Warning, TEXT("# %s ERROR CONTAINS"), *collidedActor);
+			}
+			else {
+				UE_LOG(LogTemp, Warning, TEXT("# %s CANT BE PLACED. TELEPORT%s"), *collidedActor);
+				bool isPickingUp;
+				if (collidedActor.Contains(TEXT("Small"))) {
+					ASmallDiscActor *actor = Cast<ASmallDiscActor>(OtherActor);
+					isPickingUp = actor->isPickingUp;
+				}
+				else if (collidedActor.Contains(TEXT("Medium"))) {
+					AMediumDiscActor* actor = Cast<AMediumDiscActor>(OtherActor);
+					isPickingUp = actor->isPickingUp;
+				}
+				else if (collidedActor.Contains(TEXT("Large"))) {
+					ALargeDiscActor* actor = Cast<ALargeDiscActor>(OtherActor);
+					isPickingUp = actor->isPickingUp;
+				}
+				if (!isPickingUp) {
+					OtherActor->SetActorRotation(discRot);
+					rodLocation.X += 40.0f;
+					FHitResult HitResult;
+					OtherActor->SetActorLocation(rodLocation, false, &HitResult, ETeleportType::None);
+					rodLocation.X -= 40.0f;
+				}
+				
 			}
 		}
 		else if (collidedComp == TEXT("ColComp")) {
@@ -185,11 +212,23 @@ void ARodActor::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimiti
 					isPickingUp = actor->isPickingUp;
 				}
 				if (!isPickingUp) {
-					OtherActor->SetActorRotation(discRot);
+					if (collidedActor.Contains(TEXT("Small"))) {
+						ASmallDiscActor *actor = Cast<ASmallDiscActor>(OtherActor);
+						actor->smallDiscMesh->AddForce(FVector(0, 0, 20000));
+					}
+					else if (collidedActor.Contains(TEXT("Medium"))) {
+						AMediumDiscActor* actor = Cast<AMediumDiscActor>(OtherActor);
+						actor->mediumDiscMesh->AddForce(FVector(0, 0, 20000));
+					}
+					else if (collidedActor.Contains(TEXT("Large"))) {
+						ALargeDiscActor* actor = Cast<ALargeDiscActor>(OtherActor);
+						actor->largeDiscMesh->AddForce(FVector(0, 0, 20000));
+					}
+					/*OtherActor->SetActorRotation(discRot);
 					rodLocation.X += 40.0f;
 					FHitResult HitResult;
 					OtherActor->SetActorLocation(rodLocation, false, &HitResult, ETeleportType::None);
-					rodLocation.X -= 40.0f;
+					rodLocation.X -= 40.0f;*/
 				}
 			}
 		}
@@ -213,6 +252,7 @@ void ARodActor::arrayChange(bool add, FString discName) {
 
 	incomingFlow = incomingFlow / 2;
 
+
 	float flowDiff = 0;
 	
 	if (add) {
@@ -221,28 +261,27 @@ void ARodActor::arrayChange(bool add, FString discName) {
 			flowDiff = (incomingFlow + (incomingFlow * connectedRiver->discStatus)) - connectedRiver->flow;
 			connectedRiver->changeFlow(flowDiff);
 
-			OtherRod->connectedRiver->discStatus += (1.0f / 6.0f);
+/*			OtherRod->connectedRiver->discStatus += (1.0f / 6.0f);
 			flowDiff = (incomingFlow + (incomingFlow * OtherRod->connectedRiver->discStatus)) - OtherRod->connectedRiver->flow;
-			OtherRod->connectedRiver->changeFlow(flowDiff);
-			
+			OtherRod->connectedRiver->changeFlow(flowDiff);		*/	
 		}
 		else if (discName.Contains(TEXT("Medium"))) {
 			connectedRiver->discStatus += (-(1.0f / 3.0f));
 			flowDiff = (incomingFlow + (incomingFlow * connectedRiver->discStatus)) - connectedRiver->flow;
 			connectedRiver->changeFlow(flowDiff);
 
-			OtherRod->connectedRiver->discStatus += (1.0f / 3.0f);
-			flowDiff = (incomingFlow + (incomingFlow * OtherRod->connectedRiver->discStatus)) - OtherRod->connectedRiver->flow;
-			OtherRod->connectedRiver->changeFlow(flowDiff);
+			//OtherRod->connectedRiver->discStatus += (1.0f / 3.0f);
+			//flowDiff = (incomingFlow + (incomingFlow * OtherRod->connectedRiver->discStatus)) - OtherRod->connectedRiver->flow;
+			//OtherRod->connectedRiver->changeFlow(flowDiff);
 		}
 		else if (discName.Contains(TEXT("Large"))) {
 			connectedRiver->discStatus += (-(1.0f / 2.0f));
 			flowDiff = (incomingFlow + (incomingFlow * connectedRiver->discStatus)) - connectedRiver->flow;
 			connectedRiver->changeFlow(flowDiff);
 
-			OtherRod->connectedRiver->discStatus += (1.0f / 2.0f);
-			flowDiff = (incomingFlow + (incomingFlow * OtherRod->connectedRiver->discStatus)) - OtherRod->connectedRiver->flow;
-			OtherRod->connectedRiver->changeFlow(flowDiff);
+			//OtherRod->connectedRiver->discStatus += (1.0f / 2.0f);
+			//flowDiff = (incomingFlow + (incomingFlow * OtherRod->connectedRiver->discStatus)) - OtherRod->connectedRiver->flow;
+			//OtherRod->connectedRiver->changeFlow(flowDiff);
 		}
 	}
 	else {
@@ -251,27 +290,27 @@ void ARodActor::arrayChange(bool add, FString discName) {
 			flowDiff = (incomingFlow + (incomingFlow * connectedRiver->discStatus)) - connectedRiver->flow;
 			connectedRiver->changeFlow(flowDiff);
 
-			OtherRod->connectedRiver->discStatus += (-1.0f / 6.0f);
-			flowDiff = (incomingFlow + (incomingFlow * OtherRod->connectedRiver->discStatus)) - OtherRod->connectedRiver->flow;
-			OtherRod->connectedRiver->changeFlow(flowDiff);
+			//OtherRod->connectedRiver->discStatus += (-1.0f / 6.0f);
+			//flowDiff = (incomingFlow + (incomingFlow * OtherRod->connectedRiver->discStatus)) - OtherRod->connectedRiver->flow;
+			//OtherRod->connectedRiver->changeFlow(flowDiff);
 		}
 		else if (discName.Contains(TEXT("Medium"))) {
 			connectedRiver->discStatus += ((1.0f / 3.0f));
 			flowDiff = (incomingFlow + (incomingFlow * connectedRiver->discStatus)) - connectedRiver->flow;
 			connectedRiver->changeFlow(flowDiff);
 
-			OtherRod->connectedRiver->discStatus += (-1.0f / 3.0f);
-			flowDiff = (incomingFlow + (incomingFlow * OtherRod->connectedRiver->discStatus)) - OtherRod->connectedRiver->flow;
-			OtherRod->connectedRiver->changeFlow(flowDiff);
+			//OtherRod->connectedRiver->discStatus += (-1.0f / 3.0f);
+			//flowDiff = (incomingFlow + (incomingFlow * OtherRod->connectedRiver->discStatus)) - OtherRod->connectedRiver->flow;
+			//OtherRod->connectedRiver->changeFlow(flowDiff);
 		}
 		else if (discName.Contains(TEXT("Large"))) {
 			connectedRiver->discStatus += ((1.0f / 2.0f));
 			flowDiff = (incomingFlow + (incomingFlow * connectedRiver->discStatus)) - connectedRiver->flow;
 			connectedRiver->changeFlow(flowDiff);
 
-			OtherRod->connectedRiver->discStatus += (-1.0f / 2.0f);
-			flowDiff = (incomingFlow + (incomingFlow * OtherRod->connectedRiver->discStatus)) - OtherRod->connectedRiver->flow;
-			OtherRod->connectedRiver->changeFlow(flowDiff);
+			//OtherRod->connectedRiver->discStatus += (-1.0f / 2.0f);
+			//flowDiff = (incomingFlow + (incomingFlow * OtherRod->connectedRiver->discStatus)) - OtherRod->connectedRiver->flow;
+			//OtherRod->connectedRiver->changeFlow(flowDiff);
 		}
 	}
 }
