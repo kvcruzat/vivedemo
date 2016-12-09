@@ -294,6 +294,10 @@ void ATerrainActor::addFlowers() {
 	sortedNodeRivers.RemoveAt(0);
 	transformedNodes.RemoveAt(0);
 
+	tempNodeIDs.Add(TEXT("99"));
+	sortedNodeRivers.Add(TEXT("0 1 2 3 4 5 6"));
+	transformedNodes.Add(transformCoord(FVector(2048, 2048, 0)));
+
 	UWorld* const World = GetWorld();
 	for (int32 Index = 0; Index < tempNodeIDs.Num(); ++Index)
 	{
@@ -336,6 +340,29 @@ void ATerrainActor::addFlowers() {
 				}
 			}
 		}
+	}
+
+	if (World){
+		FActorSpawnParameters SpawnParams;
+		SpawnParams.Owner = this;
+		SpawnParams.Instigator = Instigator;
+		AFlowerActor* Flower = World->SpawnActor<AFlowerActor>(FlowerActor, FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
+		Flower->SetOwner(this);
+		Flower->nodeID = TEXT("99");
+		flowerArray.Add(Flower);
+		tempFlowerLocs.Add(transformCoord(nodes[1]) + FVector(-50, -100, 0));
+
+		AFlowerActor* Flower2 = World->SpawnActor<AFlowerActor>(FlowerActor, FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
+		Flower2->SetOwner(this);
+		Flower2->nodeID = TEXT("99");
+		flowerArray.Add(Flower2);
+		tempFlowerLocs.Add(transformCoord(nodes[1]) + FVector(-40, -80, 0));
+
+		AFlowerActor* Flower3 = World->SpawnActor<AFlowerActor>(FlowerActor, FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
+		Flower3->SetOwner(this);
+		Flower3->nodeID = TEXT("99");
+		flowerArray.Add(Flower3);
+		tempFlowerLocs.Add(transformCoord(nodes[1]) + FVector(-45, -120, 0));
 	}
 
 	const FBox flowerBounds = flowerArray[0]->GetComponentsBoundingBox(false); //All Components 
@@ -411,6 +438,10 @@ void ATerrainActor::assignConnectionActors() {
 						}
 					}
 				}
+			}
+
+			if (riverArray[riverIndex]->riverID.Mid(2, 2).Contains(TEXT("99"))) {
+				riverArray[riverIndex]->outputNode = TEXT("99");
 			}
 
 			for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
@@ -535,6 +566,16 @@ void ATerrainActor::computeGoal() {
 				riverArray[riverIndex]->flowerArray[flowerIndex]->requiredFlow = totalFlow;
 			}
 			UE_LOG(LogTemp, Warning, TEXT("# Node%s: %s"), *riverArray[riverIndex]->outputNode, *FString::SanitizeFloat(riverArray[riverIndex]->flowerArray[0]->requiredFlow));
+		}
+		else if (riverArray[riverIndex]->outputNode.Contains(TEXT("99")) && riverArray[riverIndex]->flowerArray.Num() != 0) {
+			float totalFlow = riverArray[riverIndex]->flow;
+			for (int overlappedIndex = 0; overlappedIndex < riverArray[riverIndex]->overlappedRivers.Num(); overlappedIndex++) {
+				totalFlow += riverArray[riverIndex]->overlappedRivers[overlappedIndex]->flow;
+			}
+
+			for (int flowerIndex = 0; flowerIndex < riverArray[riverIndex]->flowerArray.Num(); flowerIndex++) {
+				riverArray[riverIndex]->flowerArray[flowerIndex]->requiredFlow = totalFlow;
+			}
 		}
 	}
 

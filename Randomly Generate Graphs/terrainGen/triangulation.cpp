@@ -98,7 +98,7 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 
 	// std::cout << usedNodes.size() << std::endl;
 
-	std::vector<std::vector<int> > nodeConnections(usedNodes.size(), std::vector<int>(0, 0));
+	std::vector<std::vector<int> > nodeConnections(usedNodes.size() + 1, std::vector<int>(0, 0));
 
 	int rodIndexSize;
 
@@ -164,8 +164,13 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 		int endConnect = std::stoi(newShortestPaths[i][newShortestPaths[i].size() - 1].substr(0,2));
 		// std::cout << "after crash" << std::endl;
 
-		int startIndex = std::find(usedNodes.begin(), usedNodes.end(), startNode) - usedNodes.begin();
-		int endIndex = std::find(usedNodes.begin(), usedNodes.end(), endNode) - usedNodes.begin();
+		int startIndex = std::find(usedNodes.begin(), usedNodes.end(), startNode) - usedNodes.begin() + 1;
+		int endIndex = std::find(usedNodes.begin(), usedNodes.end(), endNode) - usedNodes.begin() + 1;
+
+		if (startNode == 99)
+			startIndex = 0;
+		if (endNode == 99)
+			endIndex = 0;
 
 		if (startIndex < usedNodes.size())
 		{
@@ -266,7 +271,7 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 	}
 
 	//need to add two new lines at beginning for formatting
-	for(unsigned i = 0; i < 2; i++)
+	for(unsigned i = 0; i < 1; i++)
 	{
 		nodeConnectionsFile << std::endl;
 	}
