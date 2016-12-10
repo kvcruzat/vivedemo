@@ -6,6 +6,7 @@
 #include "RodActor.h"
 #include "RiverActor.h"
 #include "FlowerActor.h"
+#include "LevelStartWidget.h"
 #include "ProceduralMeshComponent.h"
 #include "TerrainActor.generated.h"
 
@@ -29,6 +30,8 @@ public:
 
     //Called after components are initialised
 
+	FString currentLevel;
+
 	TArray<FVector> vertices;
 	TArray<FVector> normals;
 	TArray<int32> Triangles;
@@ -45,12 +48,20 @@ public:
 	TSubclassOf<class AFlowerActor> FlowerActor;
 	float offset, scale, zOffset, zScale;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+		TSubclassOf<class UUserWidget> wTransition;
+
+	ULevelStartWidget* levelStart;
+
+	UMaterial* terrainMaterial;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Mesh)
 		UProceduralMeshComponent* terrainMesh;
 
 	virtual void calculateScale();
 	FVector transformCoord(FVector coord);
 
+	virtual void createTerrain();
     virtual void addRods();
 	virtual void setRodLocations();
 	virtual void addRivers();

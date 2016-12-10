@@ -3,6 +3,7 @@
 #include "RiversofHanoi.h"
 #include "RiverActor.h"
 #include "Util.h"
+#include "Blueprint/UserWidget.h"
 
 
 // Sets default values
@@ -25,6 +26,11 @@ ARiverActor::ARiverActor()
 
 	if (Material.Object != NULL) {
 		riverMaterial = (UMaterial*)Material.Object;
+	}
+
+	static ConstructorHelpers::FObjectFinder<UBlueprint> transitionBlueprint(TEXT("Blueprint'/Game/VirtualRealityBP/Blueprints/LevelTransition.LevelTransition'"));
+	if (transitionBlueprint.Object) {
+		wTransition = (UClass*)transitionBlueprint.Object->GeneratedClass;
 	}
 }
 
@@ -86,6 +92,7 @@ void ARiverActor::changeFlow(float value) {
 
 		if (flowerArray.Num() > 0){
 			waterFlowers();
+			checkLevelCompletion();
 		}
 
 	}
@@ -167,20 +174,57 @@ void ARiverActor::waterFlowers() {
 	for (int river = 0; river < overlappedRivers.Num(); river++) {
 		totalFlow += overlappedRivers[river]->flow;
 	}
-	UE_LOG(LogTemp, Warning, TEXT("# Node%s Flow: %s"), *nodeID, *FString::SanitizeFloat(totalFlow));
+
+	bool flowerAlive = false;
+
 	for (int flowerIndex = 0; flowerIndex < flowerArray.Num(); flowerIndex++) {
-		UE_LOG(LogTemp, Warning, TEXT("# requird flow: %s"), *FString::SanitizeFloat(flowerArray[flowerIndex]->requiredFlow));
 		if ( FMath::IsNearlyEqual(totalFlow, flowerArray[flowerIndex]->requiredFlow, 0.01f) ) {
 			flowerArray[flowerIndex]->flowerMesh->SetMaterial(2, flowerArray[flowerIndex]->yellowRoseMat);
-			UE_LOG(LogTemp, Warning, TEXT("# ALIVE"));
+			flowerAlive = true;
 		}
 		else if ( totalFlow < flowerArray[flowerIndex]->requiredFlow){
 			flowerArray[flowerIndex]->flowerMesh->SetMaterial(2, flowerArray[flowerIndex]->deadRoseMat);
-			UE_LOG(LogTemp, Warning, TEXT("# THIRST"));
 		}
 		else if (totalFlow > flowerArray[flowerIndex]->requiredFlow) {
 			flowerArray[flowerIndex]->flowerMesh->SetMaterial(2, flowerArray[flowerIndex]->blueRoseMat);
-			UE_LOG(LogTemp, Warning, TEXT("# FLOOD"));
 		}
+	}
+
+	for (int flowerNodeIndex = 0; flowerNodeIndex < finalNodeRiver->flowerNodeIDs.Num(); flowerNodeIndex++) {
+		if (outputNode.Contains(finalNodeRiver->flowerNodeIDs[flowerNodeIndex]) ) {
+			finalNodeRiver->nodeGoals[flowerNodeIndex] = flowerAlive;
+		}
+	}
+	
+}
+
+void ARiverActor::checkLevelCompletion() {
+	if (!finalNodeRiver->nodeGoals.Contains(false)) {
+		
+		if (wTransition) {
+			transitionLevel = CreateWidget<UTransitionWidget>(GetWorld(), wTransition);
+			transitionLevel->AddToViewport();
+			transitionLevel->PlayAnimation(transitionLevel->levelTransAnim);
+		}
+
+		FTimerHandle UnusedHandle;
+		GetWorldTimerManager().SetTimer(
+			UnusedHandle, this, &ARiverActor::changeLevel, 5.0f, false);
+	}
+}
+
+void ARiverActor::changeLevel() {
+	UWorld* TheWorld = GetWorld();
+
+	FString currentLevel = TheWorld->GetMapName();
+
+	if (currentLevel.Contains("Level1")) {
+		UGameplayStatics::OpenLevel(GetWorld(), "Level2");
+	}
+	else if (currentLevel.Contains("Level2")) {
+		UGameplayStatics::OpenLevel(GetWorld(), "Level3");
+	}
+	else if (currentLevel.Contains("Level3")) {
+		UGameplayStatics::OpenLevel(GetWorld(), "Level1");
 	}
 }

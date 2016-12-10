@@ -4,6 +4,7 @@
 
 #include "GameFramework/Actor.h"
 #include "FlowerActor.h"
+#include "TransitionWidget.h"
 #include "ProceduralMeshComponent.h"
 #include "RiverActor.generated.h"
 
@@ -60,10 +61,26 @@ public:
 	UPROPERTY(EditAnywhere)
 	TArray<AFlowerActor*> flowerArray;
 
+	UPROPERTY(EditAnywhere)
+	ARiverActor* finalNodeRiver;
+
+	UPROPERTY(EditAnywhere)
+	TArray<bool> nodeGoals;
+
+	UPROPERTY(EditAnywhere)
+	TArray<FString> flowerNodeIDs;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Mesh)
 		UProceduralMeshComponent* riverMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	TSubclassOf<class UUserWidget> wTransition;
+
+	UTransitionWidget* transitionLevel;
 	
 	virtual void createMesh(TArray<FVector> vertexData);
 	virtual void changeFlow(float value);
 	virtual void waterFlowers();
+	virtual void checkLevelCompletion();
+	virtual void changeLevel();
 };

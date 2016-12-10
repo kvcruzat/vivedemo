@@ -41,7 +41,7 @@ TArray<FVector> Util::findNormals(TArray<FVector> vertices, TArray<int32> Triang
 
 void Util::readData(FString fileName, TArray<FVector> vertices, TArray<int32> Triangles){
 	FString projectDir = FPaths::GameDir();
-	projectDir += "Content/models/" + fileName;
+	projectDir += "Content/Levels/data/" + fileName;
 
 	FString data = TEXT("");
 
@@ -74,7 +74,7 @@ void Util::readData(FString fileName, TArray<FVector> vertices, TArray<int32> Tr
 void Util::readNodeData(FString fileName, TArray<FVector> nodeData)
 {
     FString projectDir = FPaths::GameDir();
-    projectDir += "Content/models/" + fileName;
+    projectDir += "Content/Levels/data/" + fileName;
 
     FString data = TEXT("");
 
@@ -96,7 +96,7 @@ void Util::readNodeData(FString fileName, TArray<FVector> nodeData)
 void Util::readRodData(FString fileName, TArray<FVector> rodData)
 {
 	FString projectDir = FPaths::GameDir();
-	projectDir += "Content/models/" + fileName;
+	projectDir += "Content/Levels/data/" + fileName;
 
 	FString data = TEXT("");
 
@@ -131,7 +131,7 @@ void Util::readRodData(FString fileName, TArray<FVector> rodData)
 void Util::readRiverData(FString fileName, TArray<FVector> riverData)
 {
 	FString projectDir = FPaths::GameDir();
-	projectDir += "Content/models/" + fileName;;
+	projectDir += "Content/Levels/data/" + fileName;;
 
 	FString data = TEXT("");
 
@@ -165,7 +165,7 @@ void Util::readRiverData(FString fileName, TArray<FVector> riverData)
 
 void Util::readRiverConnectionsData(FString fileName) {
 	FString projectDir = FPaths::GameDir();
-	projectDir += "Content/models/" + fileName;
+	projectDir += "Content/Levels/data/" + fileName;
 
 	FString data = TEXT("");
 
@@ -190,7 +190,7 @@ void Util::readRiverConnectionsData(FString fileName) {
 void Util::readRodRiverData(FString fileName) {
 
 	FString projectDir = FPaths::GameDir();
-	projectDir += "Content/models/" + fileName;
+	projectDir += "Content/Levels/data/" + fileName;
 
 	FString data = TEXT("");
 
@@ -222,7 +222,7 @@ void Util::readRodRiverData(FString fileName) {
 
 void Util::readNodeConnectionsData(FString fileName) {
 	FString projectDir = FPaths::GameDir();
-	projectDir += "Content/models/" + fileName;
+	projectDir += "Content/Levels/data/" + fileName;
 
 	FString data = TEXT("");
 
