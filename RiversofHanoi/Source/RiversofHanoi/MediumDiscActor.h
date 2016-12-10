@@ -12,7 +12,10 @@ class RIVERSOFHANOI_API AMediumDiscActor : public AActor
 	
 public:	
 	// Sets default values for this actor's properties
-	AMediumDiscActor();
+	AMediumDiscActor(const FObjectInitializer& ObjectInitializer);
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = collision, meta = (AllowPrivateAccess = "true"))
+        class UBoxComponent* collisionComp;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Mesh)
 		UStaticMeshComponent* mediumDiscMesh;
@@ -23,12 +26,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool isPickingUp = false;
 
+    UFUNCTION()
+        void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
 
-	
+    FVector teleportLocation;
 	
 };
