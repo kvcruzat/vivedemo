@@ -3,6 +3,7 @@
 #include "RiversofHanoi.h"
 #include "TerrainActor.h"
 #include "Util.h"
+#include "Blueprint/UserWidget.h"
 
 // Sets default values
 ATerrainActor::ATerrainActor()
@@ -10,25 +11,12 @@ ATerrainActor::ATerrainActor()
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	//PrimaryActorTick.bCanEverTick = true;
 
-	Util *util = new Util();
-	util->readData("terrain.m", vertices, Triangles);
-	vertices = util->verts;
-	normals = util->norms;
-	Triangles = util->triangs;
-
 	terrainMesh = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("TerrainMesh"));
-
-	UE_LOG(LogTemp, Warning, TEXT("# Vertices: %s"), *FString::FromInt(vertices.Num()));
-	UE_LOG(LogTemp, Warning, TEXT("# Faces: %s"), *FString::FromInt(Triangles.Num() / 3));
-	UE_LOG(LogTemp, Warning, TEXT("# Normals: %s"), *FString::FromInt(normals.Num()));
-
-	terrainMesh->CreateMeshSection(0, vertices, Triangles, normals, TArray<FVector2D>(), TArray<FColor>(), TArray<FProcMeshTangent>(), true);
 
 	static ConstructorHelpers::FObjectFinder<UMaterial> Material(TEXT("Material'/Game/StarterContent/Materials/M_Ground_Grass.M_Ground_Grass'"));
 
 	if (Material.Object != NULL) {
-		UMaterial* terrainMaterial = (UMaterial*)Material.Object;
-		terrainMesh->SetMaterial(0, terrainMaterial);
+		terrainMaterial = (UMaterial*)Material.Object;
 	}
 
 	static ConstructorHelpers::FObjectFinder<UBlueprint> rodBlueprint(TEXT("Blueprint'/Game/VirtualRealityBP/Blueprints/BP_Rod.BP_Rod'"));
@@ -41,12 +29,23 @@ ATerrainActor::ATerrainActor()
 		FlowerActor = (UClass*)flowerBlueprint.Object->GeneratedClass;
 	}
 
+	static ConstructorHelpers::FObjectFinder<UBlueprint> transitionBlueprint(TEXT("Blueprint'/Game/VirtualRealityBP/Blueprints/LevelStart.LevelStart'"));
+	if (transitionBlueprint.Object) {
+		wTransition = (UClass*)transitionBlueprint.Object->GeneratedClass;
+	}
+
 }
 
 // Called when the game starts or when spawned
 void ATerrainActor::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (wTransition) {
+		levelStart = CreateWidget<ULevelStartWidget>(GetWorld(), wTransition);
+		levelStart->AddToViewport();
+		levelStart->PlayAnimation(levelStart->levelStartAnim);
+	}
 
 }
 
@@ -55,19 +54,27 @@ void ATerrainActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+
+
 }
 
 void ATerrainActor::PostActorCreated()
 {	
 	Super::PostActorCreated();
 	if (!this->IsTemplate(RF_Transient)) {
+		UWorld* TheWorld = GetWorld();
+		currentLevel = TheWorld->GetMapName() + "/";
+		UE_LOG(LogTemp, Warning, TEXT("# Level: %s"), *currentLevel);
+
+		createTerrain();
+
 		this->SetActorScale3D(FVector(700, 700, 400));
 		this->SetActorLocation(FVector(0, 0, 0));
 
 		Util *util = new Util();
-		util->readNodeData("nodes.txt", nodes);
+		util->readNodeData(currentLevel + "nodes.txt", nodes);
 		nodes = util->nodes;
-		util->readRodData("rods.txt", rods);
+		util->readRodData(currentLevel + "rods.txt", rods);
 		rods = util->rods;
 
 		calculateScale();
@@ -81,11 +88,23 @@ void ATerrainActor::PostActorCreated()
 	}
 }
 
+void ATerrainActor::createTerrain() {
+	Util *util = new Util();
+	util->readData(currentLevel + "terrain.m", vertices, Triangles);
+	vertices = util->verts;
+	normals = util->norms;
+	Triangles = util->triangs;
+
+	terrainMesh->CreateMeshSection(0, vertices, Triangles, normals, TArray<FVector2D>(), TArray<FColor>(), TArray<FProcMeshTangent>(), true);
+
+	terrainMesh->SetMaterial(0, terrainMaterial);
+}
+
 void ATerrainActor::addRods()
 {
 
 	Util *util = new Util();
-	util->readRodRiverData("rodIndex.txt");
+	util->readRodRiverData(currentLevel + "rodIndex.txt");
 
 	rodRiverConnection = util->rodRiverConnection;
 
@@ -189,9 +208,9 @@ void ATerrainActor::setRodLocations() {
 void ATerrainActor::addRivers() {
 
 	Util *util = new Util();
-	util->readRiverData("rivers.txt", rivers);
+	util->readRiverData(currentLevel + "rivers.txt", rivers);
 	rivers = util->rivers;
-	util->readRiverConnectionsData("connections.txt");
+	util->readRiverConnectionsData(currentLevel + "connections.txt");
 	TArray<FString> connections = util->riverConnections;
 	TArray<FString> riverIDs = util->riverIDs;
 
@@ -250,7 +269,7 @@ riverArray.Add(River);
 void ATerrainActor::addFlowers() {
 
 	Util* util = new Util();
-	util->readNodeConnectionsData("nodeConnections.txt");
+	util->readNodeConnectionsData(currentLevel + "nodeConnections.txt");
 	TArray<FString> nodeRivers = util->nodeRiverConnection;
 
 	TArray<FVector> transformedNodes;
@@ -350,19 +369,19 @@ void ATerrainActor::addFlowers() {
 		Flower->SetOwner(this);
 		Flower->nodeID = TEXT("99");
 		flowerArray.Add(Flower);
-		tempFlowerLocs.Add(transformCoord(nodes[1]) + FVector(-50, -100, 0));
+		tempFlowerLocs.Add(transformCoord(nodes[1]) + FVector(-50, -200, 0));
 
 		AFlowerActor* Flower2 = World->SpawnActor<AFlowerActor>(FlowerActor, FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
 		Flower2->SetOwner(this);
 		Flower2->nodeID = TEXT("99");
 		flowerArray.Add(Flower2);
-		tempFlowerLocs.Add(transformCoord(nodes[1]) + FVector(-40, -80, 0));
+		tempFlowerLocs.Add(transformCoord(nodes[1]) + FVector(-20, -150, 0));
 
 		AFlowerActor* Flower3 = World->SpawnActor<AFlowerActor>(FlowerActor, FVector(0, 0, 0), FRotator(0, 0, 0), SpawnParams);
 		Flower3->SetOwner(this);
 		Flower3->nodeID = TEXT("99");
 		flowerArray.Add(Flower3);
-		tempFlowerLocs.Add(transformCoord(nodes[1]) + FVector(-45, -120, 0));
+		tempFlowerLocs.Add(transformCoord(nodes[1]) + FVector(-35, -230, 0));
 	}
 
 	const FBox flowerBounds = flowerArray[0]->GetComponentsBoundingBox(false); //All Components 
@@ -390,8 +409,6 @@ void ATerrainActor::assignConnectionActors() {
 			}
 		}
 	}
-
-	UWorld* const World = GetWorld();
 
 	for (int rodIndex = 0; rodIndex < rodArray.Num(); rodIndex++) {
 		FString rodNode = rodArray[rodIndex]->nodeID;
@@ -424,6 +441,8 @@ void ATerrainActor::assignConnectionActors() {
 			}
 		}
 	}
+
+	TArray<FString> flowerNodeIDs;
 
 	for (int riverIndex = 0; riverIndex < riverArray.Num(); riverIndex++) {
 		TArray<FString> riverConnections = riverArray[riverIndex]->riverConnections;
@@ -467,6 +486,16 @@ void ATerrainActor::assignConnectionActors() {
 				}
 			}
 		}
+
+		
+		if (riverArray[riverIndex]->flowerArray.Num() > 0) {
+			if (!flowerNodeIDs.Contains(riverArray[riverIndex]->outputNode)) {
+				riverArray.Top()->nodeGoals.Add(false);
+				riverArray.Top()->flowerNodeIDs.Add(riverArray[riverIndex]->outputNode);
+				flowerNodeIDs.Add(riverArray[riverIndex]->outputNode);
+			}
+		}
+
 	}
 
 	for (int riverIndex = 0; riverIndex < riverArray.Num(); riverIndex++) {
@@ -475,6 +504,10 @@ void ATerrainActor::assignConnectionActors() {
 				&& !riverArray[riverIndex]->overlappedRivers.Contains(riverArray[riverIndex2]) ) {
 				riverArray[riverIndex]->overlappedRivers.Add(riverArray[riverIndex2]);
 			}
+		}
+
+		if (riverArray[riverIndex]->flowerArray.Num() > 0) {
+			riverArray[riverIndex]->finalNodeRiver = riverArray.Top();
 		}
 	}
 	
