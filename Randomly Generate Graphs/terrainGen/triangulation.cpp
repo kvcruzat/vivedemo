@@ -176,12 +176,12 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 		{
 			// std::cout << startIndex << " " << startConnect << std::endl;
 			//North
-			if(startNode - 10 == startConnect) 
+			if(startNode - NUM_POINTS == startConnect) 
 			{
 				nodeConnections[startIndex].push_back(0);
 			}
 			//North-east
-			else if(startNode - 9 == startConnect)
+			else if(startNode - (NUM_POINTS - 1) == startConnect)
 			{
 				nodeConnections[startIndex].push_back(1);
 			}
@@ -191,17 +191,17 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 				nodeConnections[startIndex].push_back(2);
 			}
 			//South-East
-			else if(startNode + 11 == startConnect)
+			else if(startNode + (NUM_POINTS + 1) == startConnect)
 			{
 				nodeConnections[startIndex].push_back(3);
 			}
 			//South
-			else if(startNode + 10 == startConnect)
+			else if(startNode + NUM_POINTS == startConnect)
 			{
 				nodeConnections[startIndex].push_back(4);
 			}
 			//South-West
-			else if(startNode + 9 == startConnect)
+			else if(startNode + (NUM_POINTS - 1) == startConnect)
 			{
 				nodeConnections[startIndex].push_back(5);
 			}
@@ -211,7 +211,7 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 				nodeConnections[startIndex].push_back(6);
 			}
 			//North-West
-			else if(startNode - 11 == startConnect)
+			else if(startNode - (NUM_POINTS + 1) == startConnect)
 			{
 				nodeConnections[startIndex].push_back(7);
 			}
@@ -219,12 +219,12 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 		if (endIndex < usedNodes.size())
 		{
 			//North
-			if(endNode - 10 == endConnect) 
+			if(endNode - NUM_POINTS == endConnect) 
 			{
 				nodeConnections[endIndex].push_back(0);
 			}
 			//North-east
-			else if(endNode - 9 == endConnect)
+			else if(endNode - (NUM_POINTS - 1) == endConnect)
 			{
 				nodeConnections[endIndex].push_back(1);
 			}
@@ -234,17 +234,17 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 				nodeConnections[endIndex].push_back(2);
 			}
 			//South-East
-			else if(endNode + 11 == endConnect)
+			else if(endNode + (NUM_POINTS + 1) == endConnect)
 			{
 				nodeConnections[endIndex].push_back(3);
 			}
 			//South
-			else if(endNode + 10 == endConnect)
+			else if(endNode + NUM_POINTS == endConnect)
 			{
 				nodeConnections[endIndex].push_back(4);
 			}
 			//South-West
-			else if(endNode + 9 == endConnect)
+			else if(endNode + (NUM_POINTS - 1) == endConnect)
 			{
 				nodeConnections[endIndex].push_back(5);
 			}
@@ -254,7 +254,7 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 				nodeConnections[endIndex].push_back(6);
 			}
 			//North-West
-			else if(endNode - 11 == endConnect)
+			else if(endNode - (NUM_POINTS + 1) == endConnect)
 			{
 				nodeConnections[endIndex].push_back(7);
 			}
@@ -638,11 +638,25 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 					std::string point1 = std::to_string((*ptrShortPath)[k]);
 					std::string point2 = std::to_string((*ptrShortPath)[k+1]);
 
-					if (point1.length() == 1)
+					int addPoints1 = 0;
+					int addPoints2 = 0;
+
+					if (point1.length() != std::to_string(NUM_POINTS).length());
+					{
+						addPoints1 = (std::to_string(NUM_POINTS).length()) - (point1.length());
+						//point1 = "0" + point1;
+					}
+					if (point2.length() == 1)
+					{
+						addPoints2 = (std::to_string(NUM_POINTS).length()) - (point2.length());
+						//point2 = "0" + point2;
+					}
+
+					for (int z = 0; z < addPoints1; z++)
 					{
 						point1 = "0" + point1;
 					}
-					if (point2.length() == 1)
+					for (int z = 0; z < addPoints2; z++)
 					{
 						point2 = "0" + point2;
 					}
@@ -714,7 +728,15 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 		{
 			removeStart.push_back(i);
 			std::string startNode = std::to_string(i);
-			if (startNode.length() == 1)
+
+			int addStartNode = 0;
+
+			if (startNode.length() != std::to_string(NUM_POINTS).length())
+			{
+				addStartNode = (std::to_string(NUM_POINTS).length()) - (startNode.length());
+			}
+
+			for (int z = 0; z < addStartNode; z++)
 			{
 				startNode = "0" + startNode;
 			}
@@ -796,7 +818,14 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 		{
 			removeStart.push_back(i);
 			std::string startNode = std::to_string(i);
-			if (startNode.length() == 1)
+			int addStartNode = 0;
+
+			if (startNode.length() != std::to_string(NUM_POINTS).length())
+			{
+				addStartNode = (std::to_string(NUM_POINTS).length()) - (startNode.length());
+			}
+
+			for (int z = 0; z < addStartNode; z++)
 			{
 				startNode = "0" + startNode;
 			}
@@ -879,7 +908,6 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 			connectEnd.push_back(i);
 		}
 	}
-
 
 
 	// std::cout <<"Before";
@@ -1197,11 +1225,24 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 	std::string rodIndexString1 = std::to_string(node1); // + std::to_string(node2);
 	std::string rodIndexString2 = std::to_string(node2);
 
-	if (rodIndexString1.length() == 1)
+	int addRodIndexString1 = 0;
+	int addRodIndexString2 = 0;
+
+	if (rodIndexString1.length() != std::to_string(NUM_POINTS).length())
+	{
+		addRodIndexString1 = (std::to_string(NUM_POINTS).length()) - (rodIndexString1.length());
+	}
+
+	if (rodIndexString2.length() != std::to_string(NUM_POINTS).length())
+	{
+		addRodIndexString2 = (std::to_string(NUM_POINTS).length()) - (rodIndexString2.length());
+	}
+
+	for (int z = 0; z < addRodIndexString1; z++)
 	{
 		rodIndexString1 = "0" + rodIndexString1;
 	}
-	if (rodIndexString2.length() == 1)
+	for (int z = 0; z < addRodIndexString2; z++)
 	{
 		rodIndexString2 = "0" + rodIndexString2;
 	}
