@@ -38,20 +38,24 @@
 \contentsline {section}{\numberline {6.1}Development Environment}{19}
 \contentsline {subsection}{\numberline {6.1.1}Vive Hardware}{19}
 \contentsline {subsection}{\numberline {6.1.2}Game Engine}{19}
-\contentsline {subsection}{\numberline {6.1.3}Out of Engine Development}{19}
-\contentsline {section}{\numberline {6.2}Random Generation of Rivers and Terrain}{20}
+\contentsline {subsection}{\numberline {6.1.3}Visual Studio}{19}
+\contentsline {subsection}{\numberline {6.1.4}Windows}{19}
+\contentsline {subsection}{\numberline {6.1.5}Out of Engine Development}{19}
+\contentsline {section}{\numberline {6.2}Random Generation of Graphs, Rivers and Terrain}{20}
+\contentsline {subsection}{\numberline {6.2.1}}{20}
 \contentsline {section}{\numberline {6.3}User Interactive Reverse Towers Of Hanoi}{20}
-\contentsline {section}{\numberline {6.4}Flow Dependant Flora}{20}
-\contentsline {chapter}{\numberline {7}Testing and Evaluation}{21}
-\contentsline {section}{\numberline {7.1}Testing Against Requirements}{21}
-\contentsline {section}{\numberline {7.2}Client Evaluation}{21}
-\contentsline {section}{\numberline {7.3}Result Evalutaion}{21}
-\contentsline {section}{\numberline {7.4}Project Evalutaion}{22}
-\contentsline {chapter}{\numberline {8}Conclusion}{23}
-\contentsline {section}{\numberline {8.1}Conclusion}{23}
-\contentsline {section}{\numberline {8.2}Future Work}{23}
-\contentsline {section}{\numberline {8.3}Personal Reflection}{23}
-\contentsline {chapter}{References}{24}
-\contentsline {chapter}{Appendices}{27}
-\contentsline {chapter}{\numberline {A}External Material}{29}
-\contentsline {chapter}{\numberline {B}Ethical Issues Addressed}{31}
+\contentsline {section}{\numberline {6.4}River Graph Flow}{21}
+\contentsline {section}{\numberline {6.5}Flow Dependant Flora}{21}
+\contentsline {chapter}{\numberline {7}Testing and Evaluation}{23}
+\contentsline {section}{\numberline {7.1}Testing Against Requirements}{23}
+\contentsline {section}{\numberline {7.2}Client Evaluation}{23}
+\contentsline {section}{\numberline {7.3}Result Evalutaion}{23}
+\contentsline {section}{\numberline {7.4}Project Evalutaion}{24}
+\contentsline {chapter}{\numberline {8}Conclusion}{25}
+\contentsline {section}{\numberline {8.1}Conclusion}{25}
+\contentsline {section}{\numberline {8.2}Future Work}{25}
+\contentsline {section}{\numberline {8.3}Personal Reflection}{25}
+\contentsline {chapter}{References}{26}
+\contentsline {chapter}{Appendices}{29}
+\contentsline {chapter}{\numberline {A}External Material}{31}
+\contentsline {chapter}{\numberline {B}Ethical Issues Addressed}{33}
