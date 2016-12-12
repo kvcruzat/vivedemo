@@ -38,24 +38,28 @@
 \contentsline {section}{\numberline {6.1}Development Environment}{19}
 \contentsline {subsection}{\numberline {6.1.1}Vive Hardware}{19}
 \contentsline {subsection}{\numberline {6.1.2}Game Engine}{19}
-\contentsline {subsection}{\numberline {6.1.3}Visual Studio}{19}
-\contentsline {subsection}{\numberline {6.1.4}Windows}{19}
-\contentsline {subsection}{\numberline {6.1.5}Out of Engine Development}{19}
+\contentsline {subsection}{\numberline {6.1.3}Visual Studio}{20}
+\contentsline {subsection}{\numberline {6.1.4}Windows}{20}
+\contentsline {subsection}{\numberline {6.1.5}Out of Engine Development}{20}
 \contentsline {section}{\numberline {6.2}Random Generation of Graphs, Rivers and Terrain}{20}
-\contentsline {subsection}{\numberline {6.2.1}}{20}
-\contentsline {section}{\numberline {6.3}User Interactive Reverse Towers Of Hanoi}{20}
-\contentsline {section}{\numberline {6.4}River Graph Flow}{21}
-\contentsline {section}{\numberline {6.5}Flow Dependant Flora}{21}
-\contentsline {chapter}{\numberline {7}Testing and Evaluation}{23}
-\contentsline {section}{\numberline {7.1}Testing Against Requirements}{23}
-\contentsline {section}{\numberline {7.2}Client Evaluation}{23}
-\contentsline {section}{\numberline {7.3}Result Evalutaion}{23}
-\contentsline {section}{\numberline {7.4}Project Evalutaion}{24}
-\contentsline {chapter}{\numberline {8}Conclusion}{25}
-\contentsline {section}{\numberline {8.1}Conclusion}{25}
-\contentsline {section}{\numberline {8.2}Future Work}{25}
-\contentsline {section}{\numberline {8.3}Personal Reflection}{25}
-\contentsline {chapter}{References}{26}
-\contentsline {chapter}{Appendices}{29}
-\contentsline {chapter}{\numberline {A}External Material}{31}
-\contentsline {chapter}{\numberline {B}Ethical Issues Addressed}{33}
+\contentsline {subsection}{\numberline {6.2.1}Graph Generation Original Method}{20}
+\contentsline {subsubsection}{Point Insertion}{20}
+\contentsline {subsubsection}{Connections and Weight Matrix}{24}
+\contentsline {subsubsection}{Generating Rivers}{24}
+\contentsline {subsection}{\numberline {6.2.2}Terrain Generation}{24}
+\contentsline {section}{\numberline {6.3}User Interactive Reverse Towers Of Hanoi}{24}
+\contentsline {section}{\numberline {6.4}River Graph Flow}{25}
+\contentsline {section}{\numberline {6.5}Flow Dependant Flora}{26}
+\contentsline {chapter}{\numberline {7}Testing and Evaluation}{27}
+\contentsline {section}{\numberline {7.1}Testing Against Requirements}{27}
+\contentsline {section}{\numberline {7.2}Client Evaluation}{27}
+\contentsline {section}{\numberline {7.3}Result Evalutaion}{27}
+\contentsline {section}{\numberline {7.4}Project Evalutaion}{28}
+\contentsline {chapter}{\numberline {8}Conclusion}{29}
+\contentsline {section}{\numberline {8.1}Conclusion}{29}
+\contentsline {section}{\numberline {8.2}Future Work}{29}
+\contentsline {section}{\numberline {8.3}Personal Reflection}{29}
+\contentsline {chapter}{References}{30}
+\contentsline {chapter}{Appendices}{33}
+\contentsline {chapter}{\numberline {A}External Material}{35}
+\contentsline {chapter}{\numberline {B}Ethical Issues Addressed}{37}
