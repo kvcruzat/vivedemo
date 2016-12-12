@@ -13,7 +13,7 @@ ASmallDiscActor::ASmallDiscActor(const FObjectInitializer& ObjectInitializer)
 
     smallDiscMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SmallDiscMesh"));
 
-    collisionComp = ObjectInitializer.CreateDefaultSubobject<UBoxComponent>(this, TEXT("ColComp"));
+    collisionComp = ObjectInitializer.CreateDefaultSubobject<UBoxComponent>(this, TEXT("DiscColComp"));
     collisionComp->OnComponentBeginOverlap.AddDynamic(this, &ASmallDiscActor::OnOverlapBegin);
     
     collisionComp->SetupAttachment(smallDiscMesh);
@@ -40,7 +40,7 @@ void ASmallDiscActor::Tick( float DeltaTime )
 
 void ASmallDiscActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComponent, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) {
     FString collidedActor = OtherActor->GetFName().ToString();
-    FString collidedComp = OverlappedComp->GetFName().ToString();
+    FString collidedComp = OtherComponent->GetFName().ToString();
     UE_LOG(LogTemp, Warning, TEXT("#%s HIT"), *collidedActor);
 
     if (collidedActor.Contains((TEXT("TriggerVolume"))))

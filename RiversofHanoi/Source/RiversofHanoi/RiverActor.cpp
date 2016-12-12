@@ -28,10 +28,6 @@ ARiverActor::ARiverActor()
 		riverMaterial = (UMaterial*)Material.Object;
 	}
 
-	static ConstructorHelpers::FObjectFinder<UBlueprint> transitionBlueprint(TEXT("Blueprint'/Game/VirtualRealityBP/Blueprints/LevelTransition.LevelTransition'"));
-	if (transitionBlueprint.Object) {
-		wTransition = (UClass*)transitionBlueprint.Object->GeneratedClass;
-	}
 }
 
 // Called when the game starts or when spawned
@@ -201,15 +197,9 @@ void ARiverActor::waterFlowers() {
 void ARiverActor::checkLevelCompletion() {
 	if (!finalNodeRiver->nodeGoals.Contains(false)) {
 		
-		if (wTransition) {
-			transitionLevel = CreateWidget<UTransitionWidget>(GetWorld(), wTransition);
-			transitionLevel->AddToViewport();
-			transitionLevel->PlayAnimation(transitionLevel->levelTransAnim);
-		}
-
 		FTimerHandle UnusedHandle;
 		GetWorldTimerManager().SetTimer(
-			UnusedHandle, this, &ARiverActor::changeLevel, 5.0f, false);
+			UnusedHandle, this, &ARiverActor::changeLevel, 4.0f, false);
 	}
 }
 

@@ -68,7 +68,6 @@ void ARodActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Othe
 	if (!collidedActor.Contains(TEXT("BP_MotionController")) && !collidedActor.Contains(TEXT("BP_Rod")) && !collidedActor.Contains(TEXT("TerrainActor")) ) {
 		if (collidedComp == TEXT("ColComp2")) {
 			if (sizeCheck(OtherActor, containedActors)){
-				UE_LOG(LogTemp, Warning, TEXT("#%s CAN BE PLACED"), *collidedActor);
 				collisionComp->SetCollisionProfileName(FName(TEXT("OverlapAllDynamic")));
 				if (!containedActors.Contains(OtherActor)) {
 					containedActors.Add(OtherActor);
@@ -93,10 +92,8 @@ void ARodActor::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* Othe
 						}
 					}
 				}
-				UE_LOG(LogTemp, Warning, TEXT("# %s ERROR CONTAINS"), *collidedActor);
 			}
 			else {
-				UE_LOG(LogTemp, Warning, TEXT("# %s CANT BE PLACED. TELEPORT%s"), *collidedActor);
 				bool isPickingUp;
 				if (collidedActor.Contains(TEXT("Small"))) {
 					ASmallDiscActor *actor = Cast<ASmallDiscActor>(OtherActor);

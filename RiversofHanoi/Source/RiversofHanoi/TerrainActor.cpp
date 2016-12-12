@@ -3,7 +3,6 @@
 #include "RiversofHanoi.h"
 #include "TerrainActor.h"
 #include "Util.h"
-#include "Blueprint/UserWidget.h"
 
 // Sets default values
 ATerrainActor::ATerrainActor()
@@ -29,23 +28,12 @@ ATerrainActor::ATerrainActor()
 		FlowerActor = (UClass*)flowerBlueprint.Object->GeneratedClass;
 	}
 
-	static ConstructorHelpers::FObjectFinder<UBlueprint> transitionBlueprint(TEXT("Blueprint'/Game/VirtualRealityBP/Blueprints/LevelStart.LevelStart'"));
-	if (transitionBlueprint.Object) {
-		wTransition = (UClass*)transitionBlueprint.Object->GeneratedClass;
-	}
-
 }
 
 // Called when the game starts or when spawned
 void ATerrainActor::BeginPlay()
 {
 	Super::BeginPlay();
-
-	if (wTransition) {
-		levelStart = CreateWidget<ULevelStartWidget>(GetWorld(), wTransition);
-		levelStart->AddToViewport();
-		levelStart->PlayAnimation(levelStart->levelStartAnim);
-	}
 
 }
 
@@ -566,6 +554,7 @@ void ATerrainActor::computeGoal() {
 		rodArray[rodIndex]->connectedRiver->discStatus += possibleDiscValues[FMath::RandRange(0,possibleDiscValues.Num() - 1)];
 		UE_LOG(LogTemp, Warning, TEXT("# Rod%s: %s"), *rodArray[rodIndex]->GetFName().ToString(), *FString::SanitizeFloat(rodArray[rodIndex]->connectedRiver->discStatus));
 	}
+
 
 	for (int riverIndex = 0; riverIndex < riverArray.Num(); riverIndex++) {
 		if (nodeIDs[0].Contains(riverArray[riverIndex]->nodeID)) {
