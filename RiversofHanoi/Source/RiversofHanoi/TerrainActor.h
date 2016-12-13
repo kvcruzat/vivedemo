@@ -6,10 +6,8 @@
 #include "RodActor.h"
 #include "RiverActor.h"
 #include "FlowerActor.h"
-#include "LevelStartWidget.h"
 #include "ProceduralMeshComponent.h"
 #include "TerrainActor.generated.h"
-
 
 UCLASS()
 class RIVERSOFHANOI_API ATerrainActor : public AActor
@@ -47,11 +45,6 @@ public:
 	TSubclassOf<class ARodActor> RodActor;
 	TSubclassOf<class AFlowerActor> FlowerActor;
 	float offset, scale, zOffset, zScale;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
-		TSubclassOf<class UUserWidget> wTransition;
-
-	ULevelStartWidget* levelStart;
 
 	UMaterial* terrainMaterial;
 
