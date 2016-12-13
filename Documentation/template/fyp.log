@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.11.6)  13 DEC 2016 14:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.11.6)  13 DEC 2016 18:57
 entering extended mode
 **./fyp.tex
 (fyp.tex
@@ -802,10 +802,6 @@ Package pdftex.def Info: images/triangulation7.png used on input line 127.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [25]
-
-LaTeX Warning: Reference `subsec::GGOM' on page 26 undefined on input line 144.
-
-
 [26 <./images/triangulation7.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -820,10 +816,6 @@ Package pdftex.def Info: images/triangulation8.png used on input line 178.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [28]
-
-LaTeX Warning: Reference `fig:DiamondSqaure' on page 29 undefined on input line
- 195.
-
 <images/Diamond_Square.png, id=136, 1128.46594pt x 240.9pt>
 File: images/Diamond_Square.png Graphic file (type png)
 
@@ -898,10 +890,10 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 7580 strings out of 493334
- 121139 string characters out of 3143155
+ 7578 strings out of 493334
+ 121106 string characters out of 3143155
  343562 words of memory out of 3000000
- 10857 multiletter control sequences out of 15000+200000
+ 10855 multiletter control sequences out of 15000+200000
  14642 words of font info for 28 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,12n,64p,2082b,417s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -919,7 +911,7 @@ mmi10.pfb><D:/Programs/MimTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/Prog
 rams/MimTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/Programs/MimTex/fonts/t
 ype1/public/amsfonts/cm/cmsy10.pfb><D:/Programs/MimTex/fonts/type1/urw/times/ut
 mr8a.pfb>
-Output written on fyp.pdf (50 pages, 7646192 bytes).
+Output written on fyp.pdf (50 pages, 7646124 bytes).
 PDF statistics:
  561 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

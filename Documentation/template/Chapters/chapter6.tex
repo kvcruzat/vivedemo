@@ -141,7 +141,7 @@ $$Manhattan = (point1.x - point2.x) + (point1.y - point2.y)$$
 
 	%findConnections code snippet%
 
-	The next step in generating the rivers is to find the shortest path between the connected nodes. This is still done with Djikstra's algorithm, see the explanation in \ref{subsec::GGOM}.\\
+	The next step in generating the rivers is to find the shortest path between the connected nodes. This is still done with Djikstra's algorithm, see the explanation in \ref{subsec:GGOM}.\\
 	The coordinates are then updated so that the coordinates align with the size of the grid, instead of just being consecutive numbers. The coordinate updating is done by first getting the scale factor for the points. The scale factor is the size of terrain divide by the size of the starting matrix, rounded down. The coordinates are then looped over and each x and y coordinate are multiplied by the same scale factor, as the terrain is always square. The last point (the bottom-left point) is then set separately, as it should be set to the bottom-left of the terrain. \\
 
 	%update coordinates code snippet%
@@ -192,7 +192,7 @@ $$Manhattan = (point1.x - point2.x) + (point1.y - point2.y)$$
 
 		%Diamond code snippet%
 
-	The square step is performed by first calculating the possible values of the middle point of the squares. this is done in a for loop as the diamond step was. Then using the calculated coordinates, it will perform the square step on each coordinate. The square step involves taking the points at a distance of the size of the step taken in each of the cardinal directions. these points are then averaged and a random value is added to the value. This value is then placed in the height map at the coordinates that were found before. The square step is shown in the third and fifth step of \ref{fig:DiamondSqaure}.
+	The square step is performed by first calculating the possible values of the middle point of the squares. this is done in a for loop as the diamond step was. Then using the calculated coordinates, it will perform the square step on each coordinate. The square step involves taking the points at a distance of the size of the step taken in each of the cardinal directions. these points are then averaged and a random value is added to the value. This value is then placed in the height map at the coordinates that were found before. The square step is shown in the third and fifth step of \ref{fig:DiamondSquare}.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth]{Diamond_Square}
