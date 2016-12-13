@@ -5,7 +5,7 @@
 The development of this project was done in various environments, as there was many different aspects to this project.
 
 \subsection{Vive Hardware}
-	For this project, the Vive Hardware was set up in a dedicated room (The Virtual Reality Lab in the School of Computing). This allowed development to be done on the HTC Vive without having to set up the sensors and calibrate the hardware everytime that development had to be done, which maximised the amount of development time that was available.\\
+	For this project, the Vive Hardware was set up in a dedicated room (The Virtual Reality Lab in the School of Computing). This allowed development to be done on the HTC Vive without having to set up the sensors and calibrate the hardware every time that development had to be done, which maximised the amount of development time that was available.\\
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth]{VRRoom}
@@ -29,7 +29,7 @@ The development of this project was done in various environments, as there was m
 \section{Random Generation of Graphs, Rivers and Terrain}
 
 %Divide into sub sections as big topic
-\subsection{Graph Generation Original Method}
+\subsection{Graph Generation Original Method}\label{subsec:GGOM}
 \subsubsection{Point Insertion}
 	The original idea to do graph generation was to start with a square, using each corner as a node. These nodes would then be connected as shown in \ref{fig:triangulation1}.\\
 
@@ -66,7 +66,7 @@ The development of this project was done in various environments, as there was m
 \end{figure}
 	
 	This approach also did not work, as the addition of the extra node did not provide enough of relief for the connections between the two sides of the graph, and the connections would occasionally still go through the top-left or bottom-right node.
-The next approach was adding seveeral nodes along the diagonal and connecting them to the corners, similarly to how the middle node was added. The third approach can be seen in \ref{fig:triangulation5}.
+The next approach was adding several nodes along the diagonal and connecting them to the corners, similarly to how the middle node was added. The third approach can be seen in \ref{fig:triangulation5}.
 
 \begin{figure}[H]
 	\includegraphics[width=10cm]{triangulation5}
@@ -74,19 +74,149 @@ The next approach was adding seveeral nodes along the diagonal and connecting th
 	\caption{Image showing the third method's starting connections}
 	\label{fig:triangulation5}
 \end{figure}
+	
+	This approach also did not work as when the shortest paths between nodes were found, the paths tended to favour the path from the top-left to the top-right. This would make the graph just be a straight line, with a few edges going to the nodes that were used in the river graph, an example of this can be seen in \ref{fig:triangulation6}.
+
+\begin{figure}[H]
+	\includegraphics[width=10cm]{triangulation6}
+	\centering
+	\caption{Image showing an example of the third method's output}
+	\label{fig:triangulation6}
+\end{figure}
+
+	The next method that was developed was an entire overhaul of the system, and this will be outlined in \ref{subsec:graphGen}
 
 \subsubsection{Connections and Weight Matrix}
 	The connections were found by looping through the array that stored the triangles and finding the edges of the triangles. These edges were stored in a connection matrix, to be used when making the weight matrix.\\
-	The weight matrix was made using manhattan distance between the two connected points as the heuristic. The manhattan distance is the x distance between the two points plus the distance in the y direction. The manhattan distance was calculated using the following formula:\\
+	The weight matrix was made using Manhattan distance between the two connected points as the heuristic. The Manhattan distance is the x distance between the two points plus the distance in the y direction. The Manhattan distance was calculated using the following formula:\\
 
 $$Manhattan = (point1.x - point2.x) + (point1.y - point2.y)$$
 	
-	The manhattan distance then has to be checked to see whether it is positive or not. If it is positive the result is put in element of the matrix representing the first point to the second point, if the result is negative the result is instead placed in the element representing the second point to the first point. This is repeated for each connection in the connection matrix produced before.
+	The Manhattan distance then has to be checked to see whether it is positive or not. If it is positive the result is put in element of the matrix representing the first point to the second point, if the result is negative the result is instead placed in the element representing the second point to the first point. This is repeated for each connection in the connection matrix produced before.
 
 \subsubsection{Generating Rivers}
-	The river generation starts off with picking the start and end nodes for the rivers, this is done by randomly selecting a set amount of nodes, determined by a variable set in code. 
+	The river generation starts off with picking the start and end nodes for the rivers, this is done by randomly selecting a set amount of nodes, determined by a variable set in code. The top-left node and the bottom-right node are also selected, as they will be the input and output nodes for the graph. These nodes are then looped through one by one, and connected to two other nodes, that are closer to the bottom-right. Nodes are determined to be closer to the bottom-right by adding the x and y coordinate of each node together, and then comparing them. This value will be larger the closer to the bottom-right the node is.\\
+
+	After which nodes are connected has been determined, dijkstra's algorithm is used to find the shortest path between each pair of connected nodes.\\
+
+	%Code snippet for dijkstra's?%
+
+	Using the shortest paths generated by dijkstra's, a new connection matrix is made. This connection matrix is made by looping through each path made by dijkstra's algorithm and looking at each pair of nodes. These pairs would be the consecutive nodes in each path. After this connection matrix has been made it is time to map out the graph, so that it can be transferred to the terrain. Mapping out the graph is done by having a matrix of the same size as the terrain will be, this matrix is initialised to have all ones, as the lines will be modify the elements to be 0, as they will be ditches. Then by looping through the connection matrix made before, the connections will be drawn onto the matrix. The connections are drawn onto the matrix by first checking if the element in the connection matrix is 0 or 1, 1 being that there is a connection between the two nodes. If there is a connection then the line between these two points should be drawn onto the height map matrix. This line is calculated by using a modified Bresenham's Line Algorithm, the algorithm is modified so that it can be used in all eight octants of a graph, rather than just the octant that the line goes down and to the right. This modified algorithm is explained in more detail in the section below.
+
+	%Code snippet for drawing lines?%
+
+	After the lines have been drawn, it is time to expand them on the height map, this has to be done so that the connections look more like rivers in the demo. This widening is done by taking a copy of the height map and using the copy to modify the original. The copy of the height map is then looped through, checking each element of the height map. If the original height map is equal to zero, meaning that a line has been drawn in the element, then the algorithm will try to change the value of the pixels in set distance away from this pixel in both the x and y direction, this distance is set as a global variable. The algorithm changes the values of the elements of the copy height map within the range depending on how far away the elements are. Within a third of the distance away the value is set to zero, within two-thirds of the distance then the value is set to $0.33$ and just within the distance it sets the element to $0.66$, this is done as in the game the Towers of Hanoi discs will need to fit inside the rivers, and have their own platform to rest against, and as there are three discs, the distance is split into thirds. The original height map is then replaced by the copy of the height map.\\
+
+	%Code snippet for making ditches
+
+	The generated height map with the rivers on it is then sent to be merged with the randomly generated terrain.
+
+\subsubsection{Bresenham's Line Algorithm}
+	Bresenham's Line Algorithm is a rasterisation algorithm, it works using error checking for the y coordinate. The original Bresenham's Line algorithm works by finding the absolute value of the gradient, then it loops through each point in the x direction of the line segment. At each iteration through the line it adds the gradient to an error value, when this error value ticks over the value $1$, it will increment the y value of the coordinate for the rest of the iterations. At each iteration of the algorithm, it will plot the point of the current x and y coordinate onto the height map.\\
+	The modified Bresenham's Line Algorithm that is used in this project does the same thing, but it lets the algorithm work for lines that are not sloping down and to the right. The modified version does this by first checking the gradient and if the gradient is over $1$ or under $-1$, then the algorithm will swap the x for the y values and the y values for the x values, so that the gradient is less than $1$ and greater than $-1$. The algorithm will then check if the line is sloping to the left or right, the check is comparing the x value of the first point to the x value of the second point and seeing which is bigger. If the line is sloping to the left, the algorithm will swap the points, so that the first point becomes the second point, and the second point becomes the first point. The last step the algorithm takes to ensure that it will work, is that it will check whether the line is sloping upwards, or downwards. If the line is sloping upwards, it will set the change in y to be $-1$, so that it subtracts from the y value, rather than adding it.
+
+	%Code snippet for line drawing%
+
+\subsection{Graph Generation}\label{subsec:graphGen}
+	As the original method did not work, parts of the original algorithm were reworked, in order to give a better result for the river generation.
+
+\subsubsection{Start Point Generation}
+	The reworked method to generate the starting graph was to start with an empty matrix of nodes, of a size determined by a global variable. These nodes are then all connected using 8-connectedness. This means each node is connected to the eight nodes around it. This makes a graph that looks similar to \ref{fig:triangulation7}.
+
+\begin{figure}[H]
+	\includegraphics[width=10cm]{triangulation7}
+	\centering
+	\caption{Image showing an example of the new method of connection the nodes, where the starting matrix is 5x5.}
+	\label{fig:triangulation7}
+\end{figure}
+
+	This produces a connected graph which contains several edges for the connections between nodes to use.\\
+
+\subsubsection{Connections and Weight Matrix}
+	The starting set of nodes is found in the same way as before, which is selecting the top-left and the bottom-right point as starting nodes, and then randomly selecting others until the amount of nodes selected is the same as the variable stating how many nodes should be selected, and the way that the connections between nodes were found has already been described.
+	The weight matrix is also determined in the same way as before, as described in \ref{subsec:GGOM}.
+
+\subsubsection{Generating Rivers}
+	To generate the rivers the algorithm must first decide which nodes should have rivers running between them. It does this by first finding the distance from the top-left to each of the selected nodes. It then loops through the selected nodes and tries to find two connections where the flow is going downwards. It makes sure the flow is going towards the bottom-right by checking the distances, and if the distance is larger on the node it is trying to connect to, then the river is flowing to the bottom-right. There is a for-loop that will loop through each node, in the order of smallest distance from top-left to largest distance from top-left, looping in this order gives the benefit that the closest nodes to the current will always be selected to connect.\\
+
+	%findConnections code snippet%
+
+	The next step in generating the rivers is to find the shortest path between the connected nodes. This is still done with Djikstra's algorithm, see the explanation in \ref{subsec::GGOM}.\\
+	The coordinates are then updated so that the coordinates align with the size of the grid, instead of just being consecutive numbers. The coordinate updating is done by first getting the scale factor for the points. The scale factor is the size of terrain divide by the size of the starting matrix, rounded down. The coordinates are then looped over and each x and y coordinate are multiplied by the same scale factor, as the terrain is always square. The last point (the bottom-left point) is then set separately, as it should be set to the bottom-left of the terrain. \\
+
+	%update coordinates code snippet%
+
+	After the coordinates have been updated it is time to generate the connections matrix, this is done the same as before, by looping over the shortest paths and setting each element in the matrix, that represents the consecutive pairs in the shortest path, to be connected. While the generation code is doing this, it also is determining which nodes should be the "new" nodes. These "new" nodes are where the intersections are in the graph, as the previous nodes are not always guaranteed to be at an intersection. These "new" nodes are used later on in the program in order to decide where to place the rods in the game.\\
+	The program determines which nodes by checking which nodes have been used two times or more. It does this during the for loop when it generates the connection matrix, whenever a element in the connection matrix is set to be connected, then it loops over the array that stores all the connections that have already been used, and checks if the first point of the used connection is the same as the first point in the connection that has just been stored in the connection matrix, it also checks to make sure the second points are different. If the two first points are the same and the two second points are different, then an intersection has been found. The algorithm will then check the array of already found "new" nodes, to make sure that the node doesn't already exist in the array. If it does not exist in the array, it is added to the array, the used connection is then added the array storing all the used connections.\\
+
+	%printGraph snippet%
+
+	After the previous step comes removing edges from the graph that either act as either a sink for the graph, i.e. there are no connections after it, or it acts as a source for the graph, i.e. there are no connections leading to it, as the graph should only have one source, the top-left, and one sink, the bottom-right. The first step in this algorithm is to determine how many times each node has been used as a starting node (being used as the first point in a connection), and how many times it's been used as an end node (being used as the last point in a connection). This is done by looping over the used connections array from the previous step, from each element of this array the start node and end node is extracted. The corresponding nodes then have their respective values incremented in an array for both start nodes and end nodes.\\
+	One of the two cases that are being removed is when a node is not used as an end node, but it is used a start node one or more times. In this case the node would be a source node. This node is then placed in an array of nodes that are removed the graph, and should not be included in it. Now the algorithm needs to look at the nodes that the removed node was connected too, and see if they should be removed. This is done by implementing a stack. The nodes that are connected to the removed node are placed in the stack. This is implemented by having two while loops. One of the while loops is checking to see if the stack is empty, the other is checking if the end of the path has been reached, this being the inner while loop. The end is found when the algorithm can not remove any more nodes from that path. Inside the while loops there is a for loop, looping over the used connections array. For each iteration of this for loop, the start and end node are extracted. The start node is then compared against the node that is being looked at by the algorithm, if they are the same it then checks if there is more than one end node and if the node does not exist in the removed array. If these are both true then the algorithm adds the node to the removed array. The algorithm then needs to find the nodes that are connected to the node that was just removed. The number of connections is found by looping through the connections array and extracting the start node of each element, and incrementing a counter every time the start node matches the removed node. If only one connection is found then the inner while loop carries on, but the current node is now the second point in the connection that was being looked at when the node was removed. If there is more than one connection then every connection found after the first one will have the end node extracted and added to the stack. The end of the inner while loop can also be found if it completes one full cycle of the used connections array without finding any node to remove.\\
+	Once the end of the path has been found, the algorithm will check the size of the stack, if there is nothing inside of the stack, the algorithm will stop. If there is something inside of the stack, the algorithm will use the top value to start its search for nodes to remove, and then remove it from the stack.\\
+	To find the sink nodes the algorithm uses the same method, but instead of using the first node in the connections, it will use the last node of the connections, and whenever the last node was used in this previous part, it will used the first node.\\
+	
+	%printGraph snippet%
+
+	The next step of the algorithm is generating the height map for the graph. This is done similarly to the previous method, but with a few notable differences. These differences are in regards to output. In this version of the code, the algorithm needs to output where the rivers and rods are located on the terrain. These are found by first checking if the first node of the connection is a selected node, if it is the line drawing will also record the place that the rod should go. At the first iteration of the line draw algorithm, it records the x and y position of the river for the first side of the river. The x and y coordinates depend on how steep the line is. If the line is 45 degrees or more then the x coordinate is the line's x coordinate plus the river width for one side and minus the river width for the other side. The y coordinate remains the same. If the line is less than 45 degree, then it is the y coordinate which changes with the river width. The same is done for the last iteration of the line draw algorithm. The name of the river is also stored in an array, the name is simply the two nodes that it is connected too. If the line came from a selected node, then a rod needs to be placed. The location of the rod is the same as the line on a set iteration.\\
+
+	%code snippet%
+
+	The rivers are then widened in the same way as before.\\
+	The program then needs to recalculate the shortest paths between the nodes, as it needs to output connections between the "new" nodes. This is done using a greedy algorithm, this algorithm will be given a starting river, then in a while loop it will first check if the end node of the river is one of the other "new" nodes, or if the end node is the bottom-right node. If either of these are true, then it will break the while loop. If they are both false, then the greedy algorithm will find the first river that connects to the end node, set the new river as the current river and then the while loop will start again, and it will carry on until it reaches an end node. The algorithm will then return the path it found to the next node.\\
+
+	%greedy snippet%
+
+	Once all the new shortest paths have been found, these will be output to a file that will be used by the game, so that the game knows the route that the rivers take.\\
+	The next step of the program is determining which directions the rivers are flowing into a node, and flowing out of a node. This directions must be found as the game will use this information in order to know where not to place flowers on the terrain. This is done by looping through the new paths and extracting the start and end node from th paths. The algorithm will then search through the array and see if either the start node or the end node is one of the selected nodes. If the node is one of the new selected nodes, then it will check which direction the river came from by comparing the start and end node of the river to eachother. As each direction has a distinct amount of difference between them, the direction it is going can be determined. These directions are then output to a file for the game to read in.\\
+
+	%directions snippet%
+
+	At the end of this program the output will look like \ref{fig:triangulation8}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{triangulation8}
+	\centering
+	\caption{Image showing the output without any randomly generated terrrain.}
+	\label{fig:triangulation8}
+\end{figure}
+
 
 \subsection{Terrain Generation}
+	To randomly generate the terrain, the Diamond-square algorithm was used. This algorithm takes four values, to be used as the corners of the terrain, and then generates the rest of the terrain. it does this by alternating between the diamond step and the square step. The algorithm is a recursive algorithm, with each iteration running on a smaller grid.\\
+	The Diamond-square algorithm first takes in an input, which is the size of the step taken in each iteration, to begin with this value is the size of the terrain. This value is halved at each iteration.\\
+
+	%Running code snippet%
+
+	The diamond steps in the algorithm are performed by iterating over all the possible y values in the grid, and at each iteration of that a for loop that iterates over all the possible x points is called. These for loops calculate every possible coordinate to perform the diamond step. The diamond step involves taking four values from the points that are at a distance of the size of the step taken away, and then averaging them and adding a random value. This step is shown in the second step and fourth step of \ref{fig:DiamondSquare}.\\
+
+		%Diamond code snippet%
+
+	The square step is performed by first calculating the possible values of the middle point of the squares. this is done in a for loop as the diamond step was. Then using the calculated coordinates, it will perform the square step on each coordinate. The square step involves taking the points at a distance of the size of the step taken in each of the cardinal directions. these points are then averaged and a random value is added to the value. This value is then placed in the height map at the coordinates that were found before. The square step is shown in the third and fifth step of \ref{fig:DiamondSqaure}.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Diamond_Square}
+	\centering
+	\caption{Image showing the steps of the Diamond-square algorithm. Image created by Christopher Ewin.}
+	\label{fig:DiamondSquare}
+\end{figure}
+
+	After the Diamond-square algorithm has been perform and has outputted the height map, the program will then use the heightmap output from the graph generation and the height map from diamond square and combine them into one height map. The equation for doing this is:\\
+
+	$$combinedHeightMap(x, y) =  diamondSquare(x, y) - (0.05 * (1 - graphHeightMap(x, y)))$$
+
+	This formula was determined as the graph height map needs to be subtracted from the diamond square height map in order for the rivers to show up in the terrain. The graph height map is multiplied by $0.05$ so that the rivers are not too deep on the terrain. The graph height map has to be subtracted from one as the rivers in the graph height map have the height 0, and the top of the terrain has the value of 1. This would mean if it is not subtracted from zero, the rivers would show up as mountains on the terrain.\\
+
+\subsection{Final Terrain}
+	After these steps have all been performed the program will output the terrain as a model file, as well as many text files including data about where the rivers are, where the rods should be and the route the rivers take. When the model file is imported into the game it looks like \ref{fig:finalTerrain}.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{finalTerrain}
+	\centering
+	\caption{Image showing the final output of the terrain and river generation.}
+	\label{fig:finalTerrain}
+\end{figure}
+
 
 \section{User Interactive Reverse Towers Of Hanoi}
 \lipsum[1-1] \cite{parikh1980adaptive}

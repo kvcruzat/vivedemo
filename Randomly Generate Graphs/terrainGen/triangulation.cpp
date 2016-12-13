@@ -903,10 +903,10 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 			}
 
 		}
-		if (endNodes[i] == 1 && startNodes[i] == 0)
-		{
-			connectEnd.push_back(i);
-		}
+		// if (endNodes[i] == 1 && startNodes[i] == 0)
+		// {
+		// 	connectEnd.push_back(i);
+		// }
 	}
 
 
@@ -1653,7 +1653,7 @@ void findConnections(std::vector<std::vector<int> > *connections, std::vector<in
 				// numConnections[randConn]++;
 			}
 		}
-		//ADd the new connections to the total vector
+		//Add the new connections to the total vector
 		(*connections).push_back(nodeConnections);
 
 	}

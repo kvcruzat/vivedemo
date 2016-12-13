@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.11.18)  12 DEC 2016 13:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.11.18)  13 DEC 2016 12:41
 entering extended mode
 **./fyp.tex
 (fyp.tex
@@ -762,11 +762,72 @@ Package pdftex.def Info: images/triangulation5.png used on input line 72.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [23 <./images/triangulation4.png>] [24 <./images/triangulation5.png>]) [25]
+ [23 <./images/triangulation4.png>]
+<images/triangulation6.png, id=114, 301.8778pt x 303.38344pt>
+File: images/triangulation6.png Graphic file (type png)
+
+<use images/triangulation6.png>
+Package pdftex.def Info: images/triangulation6.png used on input line 81.
+(pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
+ [24 <./images/triangulation5.png> <./images/triangulation6.png>] [25]
+<images/triangulation7.png, id=124, 301.8778pt x 303.38344pt>
+File: images/triangulation7.png Graphic file (type png)
+
+<use images/triangulation7.png>
+Package pdftex.def Info: images/triangulation7.png used on input line 127.
+(pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [26]
+
+LaTeX Warning: Reference `subsec::GGOM' on page 27 undefined on input line 144.
+
+
+[27 <./images/triangulation7.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [28]
+<images/triangulation8.png, id=135, 866.48718pt x 618.05907pt>
+File: images/triangulation8.png Graphic file (type png)
+
+<use images/triangulation8.png>
+Package pdftex.def Info: images/triangulation8.png used on input line 178.
+(pdftex.def)             Requested size: 455.24411pt x 324.72163pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [29]
+
+LaTeX Warning: Reference `fig:DiamondSqaure' on page 30 undefined on input line
+ 195.
+
+<images/Diamond_Square.png, id=139, 1128.46594pt x 240.9pt>
+File: images/Diamond_Square.png Graphic file (type png)
+
+<use images/Diamond_Square.png>
+Package pdftex.def Info: images/Diamond_Square.png used on input line 198.
+(pdftex.def)             Requested size: 455.24411pt x 97.18535pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [30 <./images/triangulation8.png>]
+<images/finalTerrain.png, id=143, 589.4522pt x 578.91281pt>
+File: images/finalTerrain.png Graphic file (type png)
+
+<use images/finalTerrain.png>
+Package pdftex.def Info: images/finalTerrain.png used on input line 214.
+(pdftex.def)             Requested size: 455.24411pt x 447.10693pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [31 <./images/Diamond_Square.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [32 <./images/finalTerrain.png>]) [33]
 \openout2 = `./Chapters/chapter7.aux'.
 
-
-(Chapters/chapter7.tex [26
+ (Chapters/chapter7.tex [34
 
 
 
@@ -775,36 +836,36 @@ Chapter 7.
 
 Underfull \vbox (badness 2165) has occurred while \output is active []
 
- [27])
-[28]
+ [35])
+[36]
 \openout2 = `./Chapters/chapter8.aux'.
 
  (Chapters/chapter8.tex
 Chapter 8.
-) [29
+) [37
 
 
 
-] (fyp.bbl [30
+] (fyp.bbl [38
 
 
-]) [31]
+]) [39]
 \openout2 = `appendix.aux'.
 
- (appendix.tex [32
+ (appendix.tex [40
 
 
-] [33
+] [41
 
-] [34]
+] [42]
 Appendix A.
-[35
+[43
 
-] [36
+] [44
 
 ]
 Appendix B.
-) [37] (fyp.aux (prelude.aux) (Chapters/chapter1.aux) (Chapters/chapter2.aux)
+) [45] (fyp.aux (prelude.aux) (Chapters/chapter1.aux) (Chapters/chapter2.aux)
 (Chapters/chapter3.aux) (Chapters/chapter4.aux) (Chapters/chapter5.aux)
 (Chapters/chapter6.aux) (Chapters/chapter7.aux) (Chapters/chapter8.aux)
 (appendix.aux))
@@ -813,13 +874,13 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 7547 strings out of 493333
- 121877 string characters out of 3139181
- 343560 words of memory out of 3000000
- 10828 multiletter control sequences out of 15000+200000
+ 7581 strings out of 493333
+ 122712 string characters out of 3139181
+ 343644 words of memory out of 3000000
+ 10857 multiletter control sequences out of 15000+200000
  14642 words of font info for 28 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,12n,64p,985b,417s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,12n,64p,2082b,417s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi
 600\ecti1000.pk> <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\j
 knappen\ec\dpi600\ecbx2488.pk> <C:\Users\Flippisen\AppData\Local\MiKTeX\2.9\fon
@@ -834,9 +895,9 @@ c\dpi600\ecbx1200.pk>{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}
 .pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/
 Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program 
 Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
-Output written on fyp.pdf (42 pages, 5768027 bytes).
+Output written on fyp.pdf (50 pages, 7633214 bytes).
 PDF statistics:
- 524 PDF objects out of 1000 (max. 8388607)
+ 557 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
 
