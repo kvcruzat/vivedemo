@@ -8,17 +8,17 @@
 UCLASS()
 class RIVERSOFHANOI_API AMediumDiscActor : public AActor
 {
-	GENERATED_BODY()
+	GENERATED_UCLASS_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AMediumDiscActor(const FObjectInitializer& ObjectInitializer);
+	//AMediumDiscActor(const FObjectInitializer& ObjectInitializer);
 
     UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = collision, meta = (AllowPrivateAccess = "true"))
         class UBoxComponent* collisionComp;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Mesh)
-		UStaticMeshComponent* mediumDiscMesh;
+		class UStaticMeshComponent* mediumDiscMesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 		bool canPickUp = true;

@@ -167,12 +167,12 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 		int startIndex = std::find(usedNodes.begin(), usedNodes.end(), startNode) - usedNodes.begin() + 1;
 		int endIndex = std::find(usedNodes.begin(), usedNodes.end(), endNode) - usedNodes.begin() + 1;
 
-		if (startNode == 99)
+		if (startNode == ((NUM_POINTS * NUM_POINTS) - 1))
 			startIndex = 0;
-		if (endNode == 99)
+		if (endNode == ((NUM_POINTS * NUM_POINTS) - 1))
 			endIndex = 0;
 
-		if (startIndex < usedNodes.size())
+		if (startIndex <= usedNodes.size())
 		{
 			// std::cout << startIndex << " " << startConnect << std::endl;
 			//North
@@ -275,6 +275,8 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 	{
 		nodeConnectionsFile << std::endl;
 	}
+
+	std::cout << "SIZE!!!" << nodeConnections.size() << std::endl;
 
 	for (unsigned i = 0; i < nodeConnections.size(); i++)
 	{
@@ -903,10 +905,10 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 			}
 
 		}
-		if (endNodes[i] == 1 && startNodes[i] == 0)
-		{
-			connectEnd.push_back(i);
-		}
+		// if (endNodes[i] == 1 && startNodes[i] == 0)
+		// {
+		// 	connectEnd.push_back(i);
+		// }
 	}
 
 
@@ -1653,7 +1655,7 @@ void findConnections(std::vector<std::vector<int> > *connections, std::vector<in
 				// numConnections[randConn]++;
 			}
 		}
-		//ADd the new connections to the total vector
+		//Add the new connections to the total vector
 		(*connections).push_back(nodeConnections);
 
 	}
