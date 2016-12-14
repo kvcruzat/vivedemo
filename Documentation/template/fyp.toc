@@ -55,18 +55,18 @@
 \contentsline {subsection}{\numberline {6.2.4}Final Terrain}{30}
 \contentsline {section}{\numberline {6.3}User Interactive Reverse Towers Of Hanoi}{31}
 \contentsline {section}{\numberline {6.4}River Graph Flow}{32}
-\contentsline {section}{\numberline {6.5}Flow Dependant Flora}{33}
-\contentsline {section}{\numberline {6.6}Game Goal Computation}{33}
-\contentsline {chapter}{\numberline {7}Testing and Evaluation}{35}
-\contentsline {section}{\numberline {7.1}Testing Against Requirements}{35}
-\contentsline {section}{\numberline {7.2}Client Evaluation}{35}
-\contentsline {section}{\numberline {7.3}Result Evalutaion}{35}
-\contentsline {section}{\numberline {7.4}Project Evalutaion}{36}
-\contentsline {chapter}{\numberline {8}Conclusion}{37}
-\contentsline {section}{\numberline {8.1}Conclusion}{37}
-\contentsline {section}{\numberline {8.2}Future Work}{37}
-\contentsline {section}{\numberline {8.3}Personal Reflection}{37}
-\contentsline {chapter}{References}{38}
-\contentsline {chapter}{Appendices}{41}
-\contentsline {chapter}{\numberline {A}External Material}{43}
-\contentsline {chapter}{\numberline {B}Ethical Issues Addressed}{45}
+\contentsline {section}{\numberline {6.5}Flow Dependant Flora}{34}
+\contentsline {section}{\numberline {6.6}Game Goal Computation}{35}
+\contentsline {chapter}{\numberline {7}Testing and Evaluation}{37}
+\contentsline {section}{\numberline {7.1}Testing Against Requirements}{37}
+\contentsline {section}{\numberline {7.2}Client Evaluation}{37}
+\contentsline {section}{\numberline {7.3}Result Evalutaion}{37}
+\contentsline {section}{\numberline {7.4}Project Evalutaion}{38}
+\contentsline {chapter}{\numberline {8}Conclusion}{39}
+\contentsline {section}{\numberline {8.1}Conclusion}{39}
+\contentsline {section}{\numberline {8.2}Future Work}{39}
+\contentsline {section}{\numberline {8.3}Personal Reflection}{39}
+\contentsline {chapter}{References}{40}
+\contentsline {chapter}{Appendices}{43}
+\contentsline {chapter}{\numberline {A}External Material}{45}
+\contentsline {chapter}{\numberline {B}Ethical Issues Addressed}{47}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.11.6)  13 DEC 2016 18:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.11.6)  14 DEC 2016 18:43
 entering extended mode
 **./fyp.tex
 (fyp.tex
@@ -835,50 +835,66 @@ Package pdftex.def Info: images/finalTerrain.png used on input line 214.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [30 <./images/Diamond_Square.png>] [31 <./images/finalTerrain.png>] [32]) [33]
- [34]
+ [30 <./images/Diamond_Square.png>] [31 <./images/finalTerrain.png>]
+<images/coordtransform.png, id=148, 1298.02588pt x 1001.8606pt>
+File: images/coordtransform.png Graphic file (type png)
+
+<use images/coordtransform.png>
+Package pdftex.def Info: images/coordtransform.png used on input line 242.
+(pdftex.def)             Requested size: 455.24411pt x 351.37495pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [32]
+<images/bounds.png, id=153, 699.36281pt x 425.33907pt>
+File: images/bounds.png Graphic file (type png)
+ <use images/bounds.png>
+Package pdftex.def Info: images/bounds.png used on input line 253.
+(pdftex.def)             Requested size: 341.43306pt x 207.65211pt.
+
+[33 <./images/coordtransform.png> <./images/bounds.png>] [34]) [35]
 \openout2 = `./Chapters/chapter7.aux'.
 
 
-(Chapters/chapter7.tex
+(Chapters/chapter7.tex [36
+
+
+
+]
 Chapter 7.
 
 Underfull \vbox (badness 2165) has occurred while \output is active []
 
- [35
-
-
-
-])
-[36]
+ [37])
+[38]
 \openout2 = `./Chapters/chapter8.aux'.
 
  (Chapters/chapter8.tex
 Chapter 8.
-) [37
+) [39
 
 
 
-] (fyp.bbl [38
+] (fyp.bbl [40
 
 
-]) [39]
+]) [41]
 \openout2 = `appendix.aux'.
 
- (appendix.tex [40
+ (appendix.tex [42
 
 
-] [41
+] [43
 
-] [42]
+] [44]
 Appendix A.
-[43
+[45
 
-] [44
+] [46
 
 ]
 Appendix B.
-) [45] (fyp.aux (prelude.aux) (Chapters/chapter1.aux) (Chapters/chapter2.aux)
+) [47] (fyp.aux (prelude.aux) (Chapters/chapter1.aux) (Chapters/chapter2.aux)
 (Chapters/chapter3.aux) (Chapters/chapter4.aux) (Chapters/chapter5.aux)
 (Chapters/chapter6.aux) (Chapters/chapter7.aux) (Chapters/chapter8.aux)
 (appendix.aux))
@@ -890,10 +906,10 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 7578 strings out of 493334
- 121106 string characters out of 3143155
- 343562 words of memory out of 3000000
- 10855 multiletter control sequences out of 15000+200000
+ 7590 strings out of 493334
+ 121379 string characters out of 3143155
+ 343586 words of memory out of 3000000
+ 10865 multiletter control sequences out of 15000+200000
  14642 words of font info for 28 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,12n,64p,2082b,417s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -911,9 +927,9 @@ mmi10.pfb><D:/Programs/MimTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/Prog
 rams/MimTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/Programs/MimTex/fonts/t
 ype1/public/amsfonts/cm/cmsy10.pfb><D:/Programs/MimTex/fonts/type1/urw/times/ut
 mr8a.pfb>
-Output written on fyp.pdf (50 pages, 7646124 bytes).
+Output written on fyp.pdf (52 pages, 7904298 bytes).
 PDF statistics:
- 561 PDF objects out of 1000 (max. 8388607)
+ 572 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 86 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 96 words of extra memory for PDF output out of 10000 (max. 10000000)
 

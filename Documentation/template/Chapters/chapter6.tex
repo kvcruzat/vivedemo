@@ -234,8 +234,35 @@ A bonus feature to help with placing the discs was implemented with the `snap to
 Graph flow logic was implemented by using information generated with the terrain such as the nodes, IDs of rivers and knowing which rivers are connected to which. An actor for each river is created with a mesh using the UProceduralMeshComponent and the vertices supplied in the rivers.txt file. Each river is given an ID with the first part of the 2 numbers of the ID as the node the river is connected to and the last two numbers as the other node the other end of the river is connected to. This means that a series of river connections have the last two numbers of a river ID identical to the first two numbers of the next river in the connection.
 \newline
 \par
-The river actors are placed in the game world by transforming the coordinates of the vertices for the river mesh generation. Since the coordinate system used for the terrain generation is different to the one used by the Unreal Engine, coordinates produced needs to be transformed so they are correctly placed in the game world. To calculate the transformation, a bounding box surrounding the terrain mesh is created and place it in the centre of the world at (0, 0, 0). The following formula is then used:
-\[(coord - \frac{1}{2}terrainMax) * \frac{coordMax}{terrainMax}\]
+The river actors are placed in the game world by transforming the coordinates of the vertices for the river mesh generation. Since the coordinate system used for the terrain generation is different to the one used by the Unreal Engine, coordinates produced needs to be transformed so they are correctly placed in the game world as seen in Figure \ref{fig:coordinatesystem}. The X axis is shown in red, Y in green and Z in blue. The top shows the difference in coordinate systems with the coordinate system used to generate the terrain and its output on the left and the Unreal coordinate system on the right. The bottom shows a top view of the terrain ignoring the Z axis since it is the same for both coordinate systems. (0,0) for the terrain file starts at the top left corner where as in Unreal the terrain mesh is placed at the middle of the world at (0, 0, 0). It shows an example of a terrain size used of (1024, 1024) and since the terrain mesh is placed at (0, 0) in Unreal, the centre of terrain becomes (0, 0).
+\newline
+\par
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{coordtransform}
+	\centering
+	\caption{Image showing how terrain coordinates are different to Unreal Engine coordinate system}
+	\label{fig:coordinatesystem}
+\end{figure}
+
+To calculate the transformation, a bounding box surrounding the terrain mesh is created as seen in Figure \ref{fig:boundingbox}. The vertices of this box is used to compute the scale.
+\newline
+\par
+
+\begin{figure}[H]
+	\includegraphics[width=13cm]{bounds}
+	\centering
+	\caption{Image showing bounding box surrounding terrain mesh}
+	\label{fig:boundingbox}
+\end{figure}
+
+The following formula is then used for the X and Y coordinates since they are of the same length due to the map being square:
+\[transformedCoord = (coord - \frac{1}{2}terrainMax) * \frac{worldCoordMax}{terrainMax}\]
+
+The value of \(coord\) is the coordinate given in the output file from the terrain generation using the origin coordinate system. \(terrainMax\) is the max size of the terrain given by the terrain output so with the example in Figure \ref{fig:coordinatesystem}, this would be 1024. Half of this is subtracted as the offset to make the coordinate in the same position but instead in the bottom left corner instead of top left to fit with the coordinate system. Now this is scaled by computing the scale factor using the bounding box coordinate of a vertex but doubled as \(worldCoordMax\) to get the length of X (Y is the same) divided by \(terrainMax\).
+\newline
+\par
+The Z transformation is similar but the only transformation needed is a scale which is just the height of the bounding box. This is computed by subtracting the Z coordinate of an upper corner of a bounding box with the Z coordinate of a lower corner. The \(terrainMax\) is not used because it would always be 1 since the Z coordinates of the terrain are between 1 and 0 with 1 as the highest point and 0 as the lowest.
 \newline
 \par
 This method is then used to place the rods in their right places in the world so where there is a split in a river, a rod is placed on each of the rivers that branch out. The position of the rods are read in through the rods.txt file output from the terrain generation process. Each rod is given information regarding its own node ID and the river actor which it is connected to.

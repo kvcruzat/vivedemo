@@ -153,7 +153,7 @@ void ATerrainActor::calculateScale() {
 
 	float maxHeight = (BoxCenter + (BoundsPointMapping[0] * BoxExtents)).Z;
 	float minHeight = (BoxCenter + (BoundsPointMapping[1] * BoxExtents)).Z;
-	float height = maxHeight + minHeight;
+	float height = maxHeight - minHeight;
 	float terrainMax = nodes[1].X;
 	float coordMax = bottomLeftCorner.X * 2.0;
 
@@ -184,7 +184,7 @@ void ATerrainActor::setRodLocations() {
 		if (rods[i] != FVector(-1, -1, -1)) {
 			rods[i].X = (rods[i].X - offset) * scale;
 			rods[i].Y = (rods[i].Y - offset) * scale;
-			rods[i].Z = ((rods[i].Z - zOffset) * zScale) + rodExtents.Z;
+			rods[i].Z = ((rods[i].Z - zOffset) * zScale);
 			rodArray[rodIndex]->SetActorLocation(rods[i], false);
 			rodIndex++;
 		}
@@ -204,7 +204,7 @@ void ATerrainActor::addRivers() {
 
 	for (int i = 0; i < rivers.Num(); i++) {
 		rivers[i] = transformCoord(rivers[i]);
-		rivers[i].Z += 25.0f;
+		//rivers[i].Z += 25.0f;
 	}
 
 
@@ -303,7 +303,7 @@ void ATerrainActor::addFlowers() {
 
 	tempNodeIDs.Add(TEXT("99"));
 	sortedNodeRivers.Add(TEXT("0 1 2 3 4 5 6"));
-	transformedNodes.Add(transformCoord(FVector(2048, 2048, 0)));
+	transformedNodes.Add(transformCoord(FVector(nodes[1].X, nodes[1].Y, 0)));
 
 	UWorld* const World = GetWorld();
 	for (int32 Index = 0; Index < tempNodeIDs.Num(); ++Index)
@@ -378,7 +378,8 @@ void ATerrainActor::addFlowers() {
 
 	for (int flowerIndex = 0; flowerIndex < flowerArray.Num(); flowerIndex++) {
 		FVector flowerLoc = tempFlowerLocs[flowerIndex];
-		flowerLoc.Z += 40.0f + (flowerExtents.Z * 2);
+		flowerLoc.Z += flowerExtents.Z;
+		//flowerLoc.Z += 40.0f + (flowerExtents.Z * 2);
 		flowerArray[flowerIndex]->SetActorLocation(flowerLoc);
 	}
 }
