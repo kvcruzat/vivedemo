@@ -64,9 +64,8 @@
 \contentsline {section}{\numberline {7.4}Project Evalutaion}{38}
 \contentsline {chapter}{\numberline {8}Conclusion}{39}
 \contentsline {section}{\numberline {8.1}Conclusion}{39}
-\contentsline {section}{\numberline {8.2}Future Work}{39}
-\contentsline {section}{\numberline {8.3}Personal Reflection}{39}
-\contentsline {chapter}{References}{40}
+\contentsline {section}{\numberline {8.2}Future Work}{40}
+\contentsline {chapter}{References}{41}
 \contentsline {chapter}{Appendices}{43}
 \contentsline {chapter}{\numberline {A}External Material}{45}
 \contentsline {chapter}{\numberline {B}Ethical Issues Addressed}{47}

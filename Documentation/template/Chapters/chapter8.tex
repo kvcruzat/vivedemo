@@ -2,11 +2,38 @@
 \label{chapter8}
 
 \section{Conclusion}
-\lipsum[1-1] \cite{parikh1980adaptive}
+For this project, the problem that was undertaken was that the School of Computing at the University of Leeds have been using off the shelf demos for the HTC Vive virtual reality hardware. These demos are shown mainly during applicant days for potential University of Leeds students to spark interest in computing and technology. The problem was that there was no demo developed by University of Leeds students. Producing a solution for this would provide the School of Computing with software that can demonstrate what taking a computing course at University of Leeds can teach you and what the skills learnt can help you produce.
+\newline
+\par
+In order to provide a solution, background research as well as a demo requirements investigation with the client was conducted so the problem can be specified and narrowed down to a size where the project can be undertaken within the time constraints. This consisted of brainstorming possible ideas to what the technical demo could include whilst taking in to account the limitations and requirements such as short gameplay and related to the University of Leeds. A feasibility research was also needed to make sure that all hardware and other requirements can be met for development to happen.
+\newline
+\par
+A game was designed which included computer science aspects Towers of Hanoi and graph logic. The development of the game included random generation of terrain with randomly generated graphs as rivers using multiple algorithms such as the Diamond-square algorithm for the terrain. These are ouputted as a model file and txt files which have information where the rivers are, the nodes of the river graphs and the locations of the rods for the Towers of Hanoi logic. New terrain and river graphs can be generated easily by executing the terrain generation program again.
+\newline
+\par
+The game portion included developing reverse Towers of Hanoi logic which means discs that larger than the discs already on the rod can be placed on top. Players have the ability to navigate around the terrain using the motion controllers to teleport and also grab the discs and drop them on the rods. River flow is affected depending on the size of the discs on the rod and how many of them there are as they are blocking the flow of the river. Flowers are placed at each node in the river with required flow values and act as visual indicators for the game progress. The player must match all the required flows for each node to make the flowers' petals orange to complete the level and advance to the next one.
+\newline
+\par
+A skybox was created which used the Google Photo Sphere camera technology that takes multiple pictures and stitches them up to create a 360 degree picture. A cubemap was created with this to make the skybox that surrounds the player in the world. Skyboxes made with pictures taken around the University of Leeds campus was used for each of the different levels. This makes the demo meet the requirement of having the University of Leeds be part of it making it suited for demos during applicant days.
+\newline
+\par
+With the solution produced, it was concluded that the requirements set out to meet was achieved and the problem was solved. A technical demo was designed and developed that provided a puzzle game that uses computer science concepts and included the University of Leeds. The project was a success and deadlines set in the plan were met consistently with very few minor delays.
 
 \section{Future Work}
-\lipsum[1-1] \cite{parikh1980adaptive}
+With the time constraint imposed, it was clear that further features could have been implemented to improve the gaming experience if more time was available and a few of these are outlined in this section.
+\newline
+\par
+One of the improvements that could be made is to develop better loading screens to transition between each level. With the current solution, the transition between levels is made with a simple delayed fade out to black then fade in to the next level. A loading screen which congratulates the player on completing the level would help the player know that they have completed the puzzle for that level. A title/loading screen to appear at the start of the game which provides information on the game such as instructions is another improvement that could be developed. Instructions can include how the puzzle game works and what the goal is as well as information on the game controls for teleporting and grabbing.
+\newline
+\par
+Another possible improvement is to improve the aesthetics of the game. This includes using or creating a proper water material for the rivers that is animated with river flow. The flow of the river will be more visible and a change of the flow with a disc change will be more evident to the player instead of just changing the opacity of the river material depending on the flow. Background scenery could also be improved which could be made with adding trees, plants and ambient creatures. The trees and plants can be generated using procedural generation with Lindemayer systems.
+\newline
+\par
+Optimisations can be made to improve the performance of the game. If high resolution map sizes were generated, it has a negative affect with the game performance due to the higher number of vertices that has to be read in to Unreal and rendered. This means the map resolution is limited, so optimisng this can lead to higher resolution maps. Another optimisation that could be implemented is with the use of culling. The terrain could be split in to smaller chunks and only render the terrain chunk and actors on that chunk that the player is currently on. This could mean scaling the map to a bigger size for more complex river graphs and a larger world.
+\newline
+\par
+A gameplay improvement that can be made is with the Towers of Hanoi discs. Currently, a set number of discs are placed around the world and the player must teleport and find these discs. This improvement is inspired by SteamVR's Vive tutorial which uses the different sections of the touchpad to spawn a different coloured balloon out of the motion controller. The game could take this idea and have the ability to spawn different sized discs using the motion controller which would make the game better for the player.
 
-% Maybe move to own page, as will be different for each of us?
-\section{Personal Reflection}
-\lipsum[1-1] \cite{parikh1980adaptive}
+% % Maybe move to own page, as will be different for each of us?
+% \section{Personal Reflection}
+% \lipsum[1-1] \cite{parikh1980adaptive}
