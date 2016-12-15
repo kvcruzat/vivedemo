@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.11.6)  15 DEC 2016 01:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.11.6)  15 DEC 2016 12:45
 entering extended mode
 **./fyp.tex
 (fyp.tex
@@ -665,30 +665,26 @@ Package pdftex.def Info: images/stereoscope.jpg used on input line 12.
 File: images/cardboardscreen.png Graphic file (type png)
 
 <use images/cardboardscreen.png>
-Package pdftex.def Info: images/cardboardscreen.png used on input line 31.
+Package pdftex.def Info: images/cardboardscreen.png used on input line 35.
 (pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
  [6 <./images/cardboardscreen.png>]
 <images/gearscreen.jpg, id=49, 1204.5pt x 658.46pt>
 File: images/gearscreen.jpg Graphic file (type jpg)
 
 <use images/gearscreen.jpg>
-Package pdftex.def Info: images/gearscreen.jpg used on input line 50.
+Package pdftex.def Info: images/gearscreen.jpg used on input line 58.
 (pdftex.def)             Requested size: 455.24411pt x 248.87106pt.
 
 <images/gearcontrols.png, id=50, 1226.5825pt x 653.44125pt>
 File: images/gearcontrols.png Graphic file (type png)
 
 <use images/gearcontrols.png>
-Package pdftex.def Info: images/gearcontrols.png used on input line 65.
+Package pdftex.def Info: images/gearcontrols.png used on input line 73.
 (pdftex.def)             Requested size: 455.24411pt x 242.51727pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [7 <./images/gearscreen.jpg>] [8 <./images/gearcontrols.png>] [9]) [10]
 \openout2 = `./Chapters/chapter3.aux'.
 
-
-(Chapters/chapter3.tex
+ (Chapters/chapter3.tex
 Chapter 3.
 [11
 
@@ -699,7 +695,11 @@ Chapter 3.
 
  (Chapters/chapter4.tex
 Chapter 4.
-<images/GanttChart.png, id=71, 280.04625pt x 864.22874pt>
+[13
+
+
+
+] <images/GanttChart.png, id=74, 280.04625pt x 864.22874pt>
 File: images/GanttChart.png Graphic file (type png)
 
 <use images/GanttChart.png>
@@ -708,212 +708,227 @@ Package pdftex.def Info: images/GanttChart.png used on input line 9.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [13
-
-
+ [14
 
 ]
 Overfull \vbox (7.74823pt too high) has occurred while \output is active []
 
 
-[14 <./images/GanttChart.png>]) [15] [16]
+[15 <./images/GanttChart.png>] [16
+
+]) [17]
 \openout2 = `./Chapters/chapter5.aux'.
 
- (Chapters/chapter5.tex
+ (Chapters/chapter5.tex [18
+
+
+
+]
 Chapter 5.
+<images/brainstorm.jpg, id=92, 3585.395pt x 2999.205pt>
+File: images/brainstorm.jpg Graphic file (type jpg)
 
-LaTeX Warning: Reference `' on page 17 undefined on input line 8.
+<use images/brainstorm.jpg>
+Package pdftex.def Info: images/brainstorm.jpg used on input line 11.
+(pdftex.def)             Requested size: 455.24411pt x 380.80328pt.
 
-[17
+<images/brainstormtable.png, id=93, 862.72313pt x 324.46219pt>
+File: images/brainstormtable.png Graphic file (type png)
 
+<use images/brainstormtable.png>
+Package pdftex.def Info: images/brainstormtable.png used on input line 18.
+(pdftex.def)             Requested size: 455.24411pt x 171.2116pt.
+ [19 <./images/brainstorm.jpg>] [20 <./images/brainstormtable.png>]
+<images/narrowedtable.png, id=102, 782.925pt x 1014.79124pt>
+File: images/narrowedtable.png Graphic file (type png)
 
+<use images/narrowedtable.png>
+Package pdftex.def Info: images/narrowedtable.png used on input line 28.
+(pdftex.def)             Requested size: 341.43306pt x 442.54552pt.
+ [21
 
-]) [18]
+ <./images/narrowedtable.png>]) [22]
 \openout2 = `./Chapters/chapter6.aux'.
 
- (Chapters/chapter6.tex
+
+(Chapters/chapter6.tex
 Chapter 6.
-<images/VRRoom.jpg, id=92, 4175.6pt x 3131.7pt>
+<images/VRRoom.jpg, id=109, 4175.6pt x 3131.7pt>
 File: images/VRRoom.jpg Graphic file (type jpg)
  <use images/VRRoom.jpg>
 Package pdftex.def Info: images/VRRoom.jpg used on input line 11.
 (pdftex.def)             Requested size: 455.24411pt x 341.42978pt.
 
-[19
+Underfull \vbox (badness 3108) has occurred while \output is active []
+
+ [23
 
 
 
- <./images/VRRoom.jpg>]
-<images/triangulation1.png, id=96, 301.8778pt x 303.38344pt>
+ <./images/VRRoom.jpg>] <images/triangulation1.png, id=113, 301.8778pt x 303.38
+344pt>
 File: images/triangulation1.png Graphic file (type png)
 
 <use images/triangulation1.png>
-Package pdftex.def Info: images/triangulation1.png used on input line 37.
+Package pdftex.def Info: images/triangulation1.png used on input line 39.
 (pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
- [20 <./images/triangulation1.png>]
-<images/triangulation2.png, id=101, 301.8778pt x 303.38344pt>
+
+Underfull \vbox (badness 2293) has occurred while \output is active []
+
+ [24]
+<images/triangulation2.png, id=117, 301.8778pt x 303.38344pt>
 File: images/triangulation2.png Graphic file (type png)
 
 <use images/triangulation2.png>
-Package pdftex.def Info: images/triangulation2.png used on input line 46.
+Package pdftex.def Info: images/triangulation2.png used on input line 48.
 (pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
 
-<images/triangulation3.png, id=102, 301.8778pt x 303.38344pt>
+<images/triangulation3.png, id=118, 301.8778pt x 303.38344pt>
 File: images/triangulation3.png Graphic file (type png)
 
 <use images/triangulation3.png>
-Package pdftex.def Info: images/triangulation3.png used on input line 53.
+Package pdftex.def Info: images/triangulation3.png used on input line 55.
 (pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
-
-Underfull \vbox (badness 1147) has occurred while \output is active []
-
- [21 <./images/triangulation2.png> <./images/triangulation3.png>]
-<images/triangulation4.png, id=106, 301.8778pt x 303.38344pt>
+ [25 <./images/triangulation1.png> <./images/triangulation2.png>]
+<images/triangulation4.png, id=122, 301.8778pt x 303.38344pt>
 File: images/triangulation4.png Graphic file (type png)
 
 <use images/triangulation4.png>
-Package pdftex.def Info: images/triangulation4.png used on input line 62.
+Package pdftex.def Info: images/triangulation4.png used on input line 64.
 (pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
 
-<images/triangulation5.png, id=107, 301.8778pt x 303.38344pt>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [26 <./images/triangulation3.png>]
+<images/triangulation5.png, id=127, 301.8778pt x 303.38344pt>
 File: images/triangulation5.png Graphic file (type png)
 
 <use images/triangulation5.png>
-Package pdftex.def Info: images/triangulation5.png used on input line 72.
+Package pdftex.def Info: images/triangulation5.png used on input line 74.
 (pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [22 <./images/triangulation4.png>]
-<images/triangulation6.png, id=111, 301.8778pt x 303.38344pt>
+ [27 <./images/triangulation4.png>]
+<images/triangulation6.png, id=131, 301.8778pt x 303.38344pt>
 File: images/triangulation6.png Graphic file (type png)
 
 <use images/triangulation6.png>
-Package pdftex.def Info: images/triangulation6.png used on input line 81.
+Package pdftex.def Info: images/triangulation6.png used on input line 83.
 (pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
- [23 <./images/triangulation5.png> <./images/triangulation6.png>] [24]
-<images/triangulation7.png, id=121, 301.8778pt x 303.38344pt>
+ [28 <./images/triangulation5.png> <./images/triangulation6.png>] [29]
+<images/triangulation7.png, id=141, 301.8778pt x 303.38344pt>
 File: images/triangulation7.png Graphic file (type png)
 
 <use images/triangulation7.png>
-Package pdftex.def Info: images/triangulation7.png used on input line 127.
+Package pdftex.def Info: images/triangulation7.png used on input line 131.
 (pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [25]
-[26 <./images/triangulation7.png>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [27]
-<images/triangulation8.png, id=132, 866.48718pt x 618.05907pt>
+ [30]
+[31 <./images/triangulation7.png>] [32]
+<images/triangulation8.png, id=152, 866.48718pt x 618.05907pt>
 File: images/triangulation8.png Graphic file (type png)
 
 <use images/triangulation8.png>
-Package pdftex.def Info: images/triangulation8.png used on input line 178.
+Package pdftex.def Info: images/triangulation8.png used on input line 194.
 (pdftex.def)             Requested size: 455.24411pt x 324.72163pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [28]
-<images/Diamond_Square.png, id=136, 1128.46594pt x 240.9pt>
+ [33]
+<images/Diamond_Square.png, id=156, 1128.46594pt x 240.9pt>
 File: images/Diamond_Square.png Graphic file (type png)
 
 <use images/Diamond_Square.png>
-Package pdftex.def Info: images/Diamond_Square.png used on input line 198.
+Package pdftex.def Info: images/Diamond_Square.png used on input line 216.
 (pdftex.def)             Requested size: 455.24411pt x 97.18535pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [29 <./images/triangulation8.png>]
-<images/finalTerrain.png, id=140, 589.4522pt x 578.91281pt>
+ [34 <./images/triangulation8.png>]
+<images/finalTerrain.png, id=160, 589.4522pt x 578.91281pt>
 File: images/finalTerrain.png Graphic file (type png)
 
 <use images/finalTerrain.png>
-Package pdftex.def Info: images/finalTerrain.png used on input line 214.
+Package pdftex.def Info: images/finalTerrain.png used on input line 232.
 (pdftex.def)             Requested size: 455.24411pt x 447.10693pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [30 <./images/Diamond_Square.png>] [31 <./images/finalTerrain.png>]
-<images/coordtransform.png, id=148, 1298.02588pt x 1001.8606pt>
+ [35 <./images/Diamond_Square.png>] [36 <./images/finalTerrain.png>]
+<images/coordtransform.png, id=168, 1298.02588pt x 1001.8606pt>
 File: images/coordtransform.png Graphic file (type png)
 
 <use images/coordtransform.png>
-Package pdftex.def Info: images/coordtransform.png used on input line 242.
+Package pdftex.def Info: images/coordtransform.png used on input line 260.
 (pdftex.def)             Requested size: 455.24411pt x 351.37495pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [32]
-<images/bounds.png, id=153, 699.36281pt x 425.33907pt>
+ [37]
+<images/bounds.png, id=172, 699.36281pt x 425.33907pt>
 File: images/bounds.png Graphic file (type png)
  <use images/bounds.png>
-Package pdftex.def Info: images/bounds.png used on input line 253.
+Package pdftex.def Info: images/bounds.png used on input line 271.
 (pdftex.def)             Requested size: 369.88582pt x 224.96133pt.
 
 Underfull \vbox (badness 3780) has occurred while \output is active []
 
- [33 <./images/coordtransform.png> <./images/bounds.png>] [34]) [35]
+ [38 <./images/coordtransform.png> <./images/bounds.png>] [39]) [40]
 \openout2 = `./Chapters/chapter7.aux'.
 
- (Chapters/chapter7.tex [36
-
-
-
-]
+ (Chapters/chapter7.tex
 Chapter 7.
+[41
 
-Underfull \vbox (badness 2165) has occurred while \output is active []
 
- [37])
-[38]
+
+]) [42]
 \openout2 = `./Chapters/chapter8.aux'.
 
  (Chapters/chapter8.tex
 Chapter 8.
-[39
+[43
 
 
 
-]) [40] (fyp.bbl) [41
+]) [44] (fyp.bbl) [45
 
 
 ]
 \openout2 = `appendix.aux'.
 
- (appendix.tex [42
+ (appendix.tex [46
 
 
-] [43
+] [47
 
-] [44]
+] [48]
 Appendix A.
-[45
+[49
 
-] [46
+] [50
 
 ]
 Appendix B.
-) [47] (fyp.aux (prelude.aux) (Chapters/chapter1.aux) (Chapters/chapter2.aux)
+) [51] (fyp.aux (prelude.aux) (Chapters/chapter1.aux) (Chapters/chapter2.aux)
 (Chapters/chapter3.aux) (Chapters/chapter4.aux) (Chapters/chapter5.aux)
 (Chapters/chapter6.aux) (Chapters/chapter7.aux) (Chapters/chapter8.aux)
 (appendix.aux))
-
-LaTeX Warning: There were undefined references.
-
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 7590 strings out of 493334
- 121379 string characters out of 3143155
- 343586 words of memory out of 3000000
- 10865 multiletter control sequences out of 15000+200000
+ 7607 strings out of 493334
+ 121824 string characters out of 3143155
+ 343621 words of memory out of 3000000
+ 10879 multiletter control sequences out of 15000+200000
  14642 words of font info for 28 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,12n,64p,2082b,417s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,12n,64p,2080b,417s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ect
 i1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi
 600\ecbx2488.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen
@@ -928,9 +943,9 @@ mmi10.pfb><D:/Programs/MimTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/Prog
 rams/MimTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/Programs/MimTex/fonts/t
 ype1/public/amsfonts/cm/cmsy10.pfb><D:/Programs/MimTex/fonts/type1/urw/times/ut
 mr8a.pfb>
-Output written on fyp.pdf (52 pages, 7907029 bytes).
+Output written on fyp.pdf (56 pages, 13723366 bytes).
 PDF statistics:
- 570 PDF objects out of 1000 (max. 8388607)
+ 589 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 96 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 111 words of extra memory for PDF output out of 10000 (max. 10000000)
 

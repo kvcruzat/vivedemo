@@ -5,7 +5,7 @@
 The development of this project was done in various environments, as there was many different aspects to this project.
 
 \subsection{Vive Hardware}
-	For this project, the Vive Hardware was set up in a dedicated room (The Virtual Reality Lab in the School of Computing). This allowed development to be done on the HTC Vive without having to set up the sensors and calibrate the hardware every time that development had to be done, which maximised the amount of development time that was available.\\
+For this project, the Vive Hardware was set up in a dedicated room (The Virtual Reality Lab in the School of Computing). This allowed development to be done on the HTC Vive without having to set up the sensors and calibrate the hardware every time that development had to be done, which maximised the amount of development time that was available.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth]{VRRoom}
@@ -14,17 +14,19 @@ The development of this project was done in various environments, as there was m
 	\label{fig:VRRoom}
 \end{figure}
 
-	This room was chosen as it was unused and met the space requirements for the HTC Vive.
+This room was chosen as it was unused and met the space requirements for the HTC Vive. Approximate room space available resulted in 2.9m x 2.9m which is more than sufficient.
 
 \subsection{Game Engine}
-\lipsum[1-1] \cite{parikh1980adaptive}
+ The chosen game engine used for development as stated in chapter 2 is Unreal Engine. The latest version as of the time of development was used which was Unreal Engine 4.13.2. This decision was made to make sure bugs that may have appeared in previous versions were fixed and also for new features to be taken advantage. Since virtual reality is bleeding edge technology, new features and ways to use VR in development are being implemented rapidly. When development started an older version was being used and new updates were being rolled out, the group decided to update the developement environment when a new update was released. It was made sure that everyone in the group was using the same version of Unreal to avoid backward compatibility issues.
 
 \subsection{Visual Studio}
+When developing in Unreal Engine, the editor used was Visual Studio. Unreal Engine was designed to integrate smoothly with Visual Studio so code changes can be built in Visual Studio and then can be quickly seen in the Unreal Editor. It also provides a debugging tool to help solve code problems and bugs due to the fact that it has knowledge of the Unreal API. Visual Studio's Intellisense feature has the ability to list members, methods and parameter information when coding. This helped with learning the API, making it easier to detect syntax errors before compiling. The version used was Visual Studio 2015 since Unreal Engine verisions 4.10 or later must use this version and not the older 2013 version.
 
 \subsection{Windows}
+The operating system used was Windows 10 since the SteamVR software that powers the HTC Vive is only compatible on Windows operating system as of the time of development. Windows 10 was the version that was the latest version and the personal systems the group members owned that were used to develop was already running Windows 10 which made it more convenient to use.
 
 \subsection{Out of Engine Development}
-	The out of engine development was done in C++, using Sublime Text as an editor, this decision was made out of familiarity with the software.
+The out of engine development was done in C++, using Sublime Text as an editor, this decision was made out of familiarity with the software. Some C++11 functions and types were used in the development of the graphs, rivers and terrain. The generation for these was done without the use of the Unreal Engine as it outputs files that are then read in with the Unreal code to help generate the game terrain, objects and logic.
 
 \section{Random Generation of Graphs, Rivers and Terrain}
 
@@ -49,7 +51,7 @@ The development of this project was done in various environments, as there was m
 	\label{fig:triangulation2}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h]
 	\includegraphics[width=10cm]{triangulation3}
 	\centering
 	\caption{Example of running the point insertion algorithm for four iterations}
@@ -87,7 +89,9 @@ The next approach was adding several nodes along the diagonal and connecting the
 	The next method that was developed was an entire overhaul of the system, and this will be outlined in \ref{subsec:graphGen}
 
 \subsubsection{Connections and Weight Matrix}
-	The connections were found by looping through the array that stored the triangles and finding the edges of the triangles. These edges were stored in a connection matrix, to be used when making the weight matrix.\\
+	The connections were found by looping through the array that stored the triangles and finding the edges of the triangles. These edges were stored in a connection matrix, to be used when making the weight matrix.
+	\newline
+	\par
 	The weight matrix was made using Manhattan distance between the two connected points as the heuristic. The Manhattan distance is the x distance between the two points plus the distance in the y direction. The Manhattan distance was calculated using the following formula:\\
 
 $$Manhattan = (point1.x - point2.x) + (point1.y - point2.y)$$
@@ -146,19 +150,31 @@ $$Manhattan = (point1.x - point2.x) + (point1.y - point2.y)$$
 
 	%update coordinates code snippet%
 
-	After the coordinates have been updated it is time to generate the connections matrix, this is done the same as before, by looping over the shortest paths and setting each element in the matrix, that represents the consecutive pairs in the shortest path, to be connected. While the generation code is doing this, it also is determining which nodes should be the "new" nodes. These "new" nodes are where the intersections are in the graph, as the previous nodes are not always guaranteed to be at an intersection. These "new" nodes are used later on in the program in order to decide where to place the rods in the game.\\
+	After the coordinates have been updated it is time to generate the connections matrix, this is done the same as before, by looping over the shortest paths and setting each element in the matrix, that represents the consecutive pairs in the shortest path, to be connected. While the generation code is doing this, it also is determining which nodes should be the "new" nodes. These "new" nodes are where the intersections are in the graph, as the previous nodes are not always guaranteed to be at an intersection. These "new" nodes are used later on in the program in order to decide where to place the rods in the game.
+	\newline
+	\par
 	The program determines which nodes by checking which nodes have been used two times or more. It does this during the for loop when it generates the connection matrix, whenever a element in the connection matrix is set to be connected, then it loops over the array that stores all the connections that have already been used, and checks if the first point of the used connection is the same as the first point in the connection that has just been stored in the connection matrix, it also checks to make sure the second points are different. If the two first points are the same and the two second points are different, then an intersection has been found. The algorithm will then check the array of already found "new" nodes, to make sure that the node doesn't already exist in the array. If it does not exist in the array, it is added to the array, the used connection is then added the array storing all the used connections.\\
 
 	%printGraph snippet%
 
-	After the previous step comes removing edges from the graph that either act as either a sink for the graph, i.e. there are no connections after it, or it acts as a source for the graph, i.e. there are no connections leading to it, as the graph should only have one source, the top-left, and one sink, the bottom-right. The first step in this algorithm is to determine how many times each node has been used as a starting node (being used as the first point in a connection), and how many times it's been used as an end node (being used as the last point in a connection). This is done by looping over the used connections array from the previous step, from each element of this array the start node and end node is extracted. The corresponding nodes then have their respective values incremented in an array for both start nodes and end nodes.\\
-	One of the two cases that are being removed is when a node is not used as an end node, but it is used a start node one or more times. In this case the node would be a source node. This node is then placed in an array of nodes that are removed the graph, and should not be included in it. Now the algorithm needs to look at the nodes that the removed node was connected too, and see if they should be removed. This is done by implementing a stack. The nodes that are connected to the removed node are placed in the stack. This is implemented by having two while loops. One of the while loops is checking to see if the stack is empty, the other is checking if the end of the path has been reached, this being the inner while loop. The end is found when the algorithm can not remove any more nodes from that path. Inside the while loops there is a for loop, looping over the used connections array. For each iteration of this for loop, the start and end node are extracted. The start node is then compared against the node that is being looked at by the algorithm, if they are the same it then checks if there is more than one end node and if the node does not exist in the removed array. If these are both true then the algorithm adds the node to the removed array. The algorithm then needs to find the nodes that are connected to the node that was just removed. The number of connections is found by looping through the connections array and extracting the start node of each element, and incrementing a counter every time the start node matches the removed node. If only one connection is found then the inner while loop carries on, but the current node is now the second point in the connection that was being looked at when the node was removed. If there is more than one connection then every connection found after the first one will have the end node extracted and added to the stack. The end of the inner while loop can also be found if it completes one full cycle of the used connections array without finding any node to remove.\\
-	Once the end of the path has been found, the algorithm will check the size of the stack, if there is nothing inside of the stack, the algorithm will stop. If there is something inside of the stack, the algorithm will use the top value to start its search for nodes to remove, and then remove it from the stack.\\
-	To find the sink nodes the algorithm uses the same method, but instead of using the first node in the connections, it will use the last node of the connections, and whenever the last node was used in this previous part, it will used the first node.\\
+	After the previous step comes removing edges from the graph that either act as either a sink for the graph, i.e. there are no connections after it, or it acts as a source for the graph, i.e. there are no connections leading to it, as the graph should only have one source, the top-left, and one sink, the bottom-right. The first step in this algorithm is to determine how many times each node has been used as a starting node (being used as the first point in a connection), and how many times it's been used as an end node (being used as the last point in a connection). This is done by looping over the used connections array from the previous step, from each element of this array the start node and end node is extracted. The corresponding nodes then have their respective values incremented in an array for both start nodes and end nodes.
+	\newline
+	\par
+	One of the two cases that are being removed is when a node is not used as an end node, but it is used a start node one or more times. In this case the node would be a source node. This node is then placed in an array of nodes that are removed the graph, and should not be included in it. Now the algorithm needs to look at the nodes that the removed node was connected too, and see if they should be removed. This is done by implementing a stack. The nodes that are connected to the removed node are placed in the stack. This is implemented by having two while loops. One of the while loops is checking to see if the stack is empty, the other is checking if the end of the path has been reached, this being the inner while loop. The end is found when the algorithm can not remove any more nodes from that path. Inside the while loops there is a for loop, looping over the used connections array. For each iteration of this for loop, the start and end node are extracted. The start node is then compared against the node that is being looked at by the algorithm, if they are the same it then checks if there is more than one end node and if the node does not exist in the removed array. If these are both true then the algorithm adds the node to the removed array. The algorithm then needs to find the nodes that are connected to the node that was just removed. The number of connections is found by looping through the connections array and extracting the start node of each element, and incrementing a counter every time the start node matches the removed node. If only one connection is found then the inner while loop carries on, but the current node is now the second point in the connection that was being looked at when the node was removed. If there is more than one connection then every connection found after the first one will have the end node extracted and added to the stack. The end of the inner while loop can also be found if it completes one full cycle of the used connections array without finding any node to remove.
+	\newline
+	\par
+	Once the end of the path has been found, the algorithm will check the size of the stack, if there is nothing inside of the stack, the algorithm will stop. If there is something inside of the stack, the algorithm will use the top value to start its search for nodes to remove, and then remove it from the stack.
+	\newline
+	\par
+	To find the sink nodes the algorithm uses the same method, but instead of using the first node in the connections, it will use the last node of the connections, and whenever the last node was used in this previous part, it will used the first node.
+	\newline
+	\par
 	
 	%printGraph snippet%
 
-	The next step of the algorithm is generating the height map for the graph. This is done similarly to the previous method, but with a few notable differences. These differences are in regards to output. In this version of the code, the algorithm needs to output where the rivers and rods are located on the terrain. These are found by first checking if the first node of the connection is a selected node, if it is the line drawing will also record the place that the rod should go. At the first iteration of the line draw algorithm, it records the x and y position of the river for the first side of the river. The x and y coordinates depend on how steep the line is. If the line is 45 degrees or more then the x coordinate is the line's x coordinate plus the river width for one side and minus the river width for the other side. The y coordinate remains the same. If the line is less than 45 degree, then it is the y coordinate which changes with the river width. The same is done for the last iteration of the line draw algorithm. The name of the river is also stored in an array, the name is simply the two nodes that it is connected too. If the line came from a selected node, then a rod needs to be placed. The location of the rod is the same as the line on a set iteration.\\
+	The next step of the algorithm is generating the height map for the graph. This is done similarly to the previous method, but with a few notable differences. These differences are in regards to output. In this version of the code, the algorithm needs to output where the rivers and rods are located on the terrain. These are found by first checking if the first node of the connection is a selected node, if it is the line drawing will also record the place that the rod should go. At the first iteration of the line draw algorithm, it records the x and y position of the river for the first side of the river. The x and y coordinates depend on how steep the line is. If the line is 45 degrees or more then the x coordinate is the line's x coordinate plus the river width for one side and minus the river width for the other side. The y coordinate remains the same. If the line is less than 45 degree, then it is the y coordinate which changes with the river width. The same is done for the last iteration of the line draw algorithm. The name of the river is also stored in an array, the name is simply the two nodes that it is connected too. If the line came from a selected node, then a rod needs to be placed. The location of the rod is the same as the line on a set iteration.
+	\newline
+	\par
 
 	%code snippet%
 
@@ -183,7 +199,9 @@ $$Manhattan = (point1.x - point2.x) + (point1.y - point2.y)$$
 
 
 \subsection{Terrain Generation}
-	To randomly generate the terrain, the Diamond-square algorithm was used. This algorithm takes four values, to be used as the corners of the terrain, and then generates the rest of the terrain. it does this by alternating between the diamond step and the square step. The algorithm is a recursive algorithm, with each iteration running on a smaller grid.\\
+	To randomly generate the terrain, the Diamond-square algorithm was used. This algorithm takes four values, to be used as the corners of the terrain, and then generates the rest of the terrain. it does this by alternating between the diamond step and the square step. The algorithm is a recursive algorithm, with each iteration running on a smaller grid.
+	\newline
+	\par
 	The Diamond-square algorithm first takes in an input, which is the size of the step taken in each iteration, to begin with this value is the size of the terrain. This value is halved at each iteration.\\
 
 	%Running code snippet%
