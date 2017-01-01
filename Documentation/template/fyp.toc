@@ -42,23 +42,22 @@
 \contentsline {subsection}{\numberline {6.1.4}Windows}{24}
 \contentsline {subsection}{\numberline {6.1.5}Out of Engine Development}{24}
 \contentsline {section}{\numberline {6.2}Random Generation of Graphs, Rivers and Terrain}{24}
-\contentsline {subsection}{\numberline {6.2.1}Graph Generation Original Method}{24}
-\contentsline {subsubsection}{Point Insertion}{24}
-\contentsline {subsubsection}{Connections and Weight Matrix}{29}
-\contentsline {subsubsection}{Generating Rivers}{29}
-\contentsline {subsubsection}{Bresenham's Line Algorithm}{30}
-\contentsline {subsection}{\numberline {6.2.2}Graph Generation}{30}
-\contentsline {subsubsection}{Start Point Generation}{30}
-\contentsline {subsubsection}{Connections and Weight Matrix}{31}
-\contentsline {subsubsection}{Generating Rivers}{31}
+\contentsline {subsection}{\numberline {6.2.1}Graph Generation}{24}
+\contentsline {subsubsection}{Start Point Generation}{24}
+\contentsline {subsubsection}{Connections and Weight Matrix}{25}
+\contentsline {subsubsection}{Generating Rivers}{25}
+\contentsline {subsubsection}{Bresenham's Line Algorithm}{29}
+\contentsline {subsection}{\numberline {6.2.2}Graph Generation Original Method}{29}
+\contentsline {subsubsection}{Point Insertion}{30}
 \contentsline {subsection}{\numberline {6.2.3}Terrain Generation}{34}
 \contentsline {subsection}{\numberline {6.2.4}Final Terrain}{35}
-\contentsline {section}{\numberline {6.3}User Interactive Reverse Towers Of Hanoi}{36}
-\contentsline {section}{\numberline {6.4}River Graph Flow}{37}
-\contentsline {section}{\numberline {6.5}Flow Dependant Flora}{39}
-\contentsline {section}{\numberline {6.6}Game Goal Computation}{40}
+\contentsline {section}{\numberline {6.3}User Interactive Reverse Towers Of Hanoi}{35}
+\contentsline {section}{\numberline {6.4}River Graph Flow}{36}
+\contentsline {section}{\numberline {6.5}Flow Dependant Flora}{38}
+\contentsline {section}{\numberline {6.6}Game Goal Computation}{39}
 \contentsline {chapter}{\numberline {7}Testing and Evaluation}{41}
 \contentsline {section}{\numberline {7.1}Testing Against Requirements}{41}
+\contentsline {subsection}{\numberline {7.1.1}Student Testing Plan}{41}
 \contentsline {section}{\numberline {7.2}Client Evaluation}{41}
 \contentsline {section}{\numberline {7.3}Project Evaluation}{41}
 \contentsline {subsection}{\numberline {7.3.1}Schedule}{41}
