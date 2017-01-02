@@ -1,10 +1,18 @@
 \begin{thebibliography}{10}
 
+\bibitem{aerotwist}
+Aerotwist.
+\newblock Create your own environment maps.
+
 \bibitem{flowermodel}
 {cgtrader: xhable}.
 \newblock Royalty free 3d flower model.
 \newblock [Online]. Available from:
   https://www.cgtrader.com/free-3d-models/plant-tree/flower/single-rose-flower.
+
+\bibitem{unrealCubeMaps}
+U.~Engine.
+\newblock Creating cube maps.
 
 \bibitem{unrealfeatures}
 {Epic Games}.
@@ -21,7 +29,6 @@
 \bibitem{elitedangerous}
 {Frontier Developments}.
 \newblock Elite dangerous.
-\newblock [Online]. Available from: http://store.steampowered.com/app/359320/.
 
 \bibitem{cardboarddev}
 Google.

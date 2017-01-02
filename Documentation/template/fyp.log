@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.11.6)  15 DEC 2016 13:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=latex 2016.11.5)  2 JAN 2017 18:22
 entering extended mode
 **./fyp.tex
 (fyp.tex
@@ -99,18 +99,10 @@ Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 (D:\Programs\MimTex\tex\latex\00miktex\graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 99.
+Package graphics Info: Driver file: dvips.def on input line 99.
 
-(D:\Programs\MimTex\tex\latex\graphics-def\pdftex.def
-File: pdftex.def 2016/07/10 v0.06j Graphics/color for pdfTeX
-
-(D:\Programs\MimTex\tex\generic\oberdiek\infwarerr.sty
-Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
-)
-(D:\Programs\MimTex\tex\generic\oberdiek\ltxcmds.sty
-Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
-)
-\Gread@gobject=\count96
+(D:\Programs\MimTex\tex\latex\graphics-def\dvips.def
+File: dvips.def 2016/07/10 v3.1a Driver-dependent file (DPC,SPQR)
 ))
 \Gin@req@height=\dimen111
 \Gin@req@width=\dimen112
@@ -123,10 +115,10 @@ Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
 \tc@lly=\dimen114
 \tc@urx=\dimen115
 \tc@ury=\dimen116
-Package trimclip Info: Using driver 'tc-pdftex.def'.
+Package trimclip Info: Using driver 'tc-dvips.def'.
 
-(D:\Programs\MimTex\tex\latex\adjustbox\tc-pdftex.def
-File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
+(D:\Programs\MimTex\tex\latex\adjustbox\tc-dvips.def
+File: tc-dvips.def 2012/05/13 v1.0 Clipping driver for dvips
 ))
 \adjbox@Width=\dimen117
 \adjbox@Height=\dimen118
@@ -135,12 +127,12 @@ File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
 
 (D:\Programs\MimTex\tex\latex\ifoddpage\ifoddpage.sty
 Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
-\c@checkoddpage=\count97
+\c@checkoddpage=\count96
 )
 (D:\Programs\MimTex\tex\latex\ltxmisc\varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box27
-\sift@deathcycles=\count98
+\sift@deathcycles=\count97
 \@vwid@loff=\dimen121
 \@vwid@roff=\dimen122
 ))
@@ -264,11 +256,11 @@ Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
 )
 (D:\Programs\MimTex\tex\latex\etoolbox\etoolbox.sty
 Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count99
+\etb@tempcnta=\count98
 )
 (D:\Programs\MimTex\tex\latex\float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count100
+\c@float@type=\count99
 \float@exts=\toks19
 \float@box=\box29
 \@float@everytoks=\toks20
@@ -280,9 +272,15 @@ Package: minted 2016/10/31 v2.4.1 Yet another Pygments shim for LaTeX
 (D:\Programs\MimTex\tex\latex\oberdiek\kvoptions.sty
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 
+(D:\Programs\MimTex\tex\generic\oberdiek\ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)
 (D:\Programs\MimTex\tex\generic\oberdiek\kvsetkeys.sty
 Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
 
+(D:\Programs\MimTex\tex\generic\oberdiek\infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
 (D:\Programs\MimTex\tex\generic\oberdiek\etexcmds.sty
 Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 
@@ -307,11 +305,11 @@ Package: fancyvrb 2008/02/07
 
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
 <2008/02/07> (tvz)
-\FV@CodeLineNo=\count101
+\FV@CodeLineNo=\count100
 \FV@InFile=\read1
 \FV@TabBox=\box31
-\c@FancyVerbLine=\count102
-\FV@StepNumber=\count103
+\c@FancyVerbLine=\count101
+\FV@StepNumber=\count102
 \FV@OutFile=\write3
 ) (D:\Programs\MimTex\tex\latex\upquote\upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
@@ -319,28 +317,28 @@ tim
 )
 (D:\Programs\MimTex\tex\latex\lineno\lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
-\linenopenalty=\count104
+\linenopenalty=\count103
 \output=\toks21
-\linenoprevgraf=\count105
+\linenoprevgraf=\count104
 \linenumbersep=\dimen130
 \linenumberwidth=\dimen131
-\c@linenumber=\count106
-\c@pagewiselinenumber=\count107
-\c@LN@truepage=\count108
-\c@internallinenumber=\count109
-\c@internallinenumbers=\count110
+\c@linenumber=\count105
+\c@pagewiselinenumber=\count106
+\c@LN@truepage=\count107
+\c@internallinenumber=\count108
+\c@internallinenumbers=\count109
 \quotelinenumbersep=\dimen132
 \bframerule=\dimen133
 \bframesep=\dimen134
 \bframebox=\box32
 LaTeX Info: Redefining \\ on input line 3056.
 )
-\c@FV@TrueTabGroupLevel=\count111
-\c@FV@TrueTabCounter=\count112
+\c@FV@TrueTabGroupLevel=\count110
+\c@FV@TrueTabCounter=\count111
 \FV@TabBox@Group=\box33
 \FV@TmpLength=\skip54
-\c@FV@HighlightLinesStart=\count113
-\c@FV@HighlightLinesStop=\count114
+\c@FV@HighlightLinesStart=\count112
+\c@FV@HighlightLinesStop=\count113
 \FV@BreakIndent=\dimen135
 \FV@BreakSymbolSepLeft=\dimen136
 \FV@BreakSymbolSepRight=\dimen137
@@ -352,21 +350,21 @@ LaTeX Font Info:    Try loading font information for T1+cmtt on input line 562.
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 \FV@BreakSymbolIndentRight=\dimen139
-\c@FancyVerbLineBreakLast=\count115
+\c@FancyVerbLineBreakLast=\count114
 \FV@LineBox=\box34
 \FV@LineIndentBox=\box35
 )
 (D:\Programs\MimTex\tex\latex\tools\calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count116
-\calc@Bcount=\count117
+\calc@Acount=\count115
+\calc@Bcount=\count116
 \calc@Adimen=\dimen140
 \calc@Bdimen=\dimen141
 \calc@Askip=\skip55
 \calc@Bskip=\skip56
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count118
+\calc@Ccount=\count117
 \calc@Cskip=\skip57
 )
 (D:\Programs\MimTex\tex\latex\tools\shellesc.sty
@@ -382,7 +380,7 @@ Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
+Package pdftexcmds Info: \pdfdraftmode is ignored in DVI mode.
 )
 (D:\Programs\MimTex\tex\generic\oberdiek\catchfile.sty
 Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
@@ -394,8 +392,8 @@ Package ifplatform Warning:
 ) (D:\Programs\MimTex\tex\latex\xstring\xstring.sty
 (D:\Programs\MimTex\tex\generic\xstring\xstring.tex
 \@xs@message=\write4
-\integerpart=\count119
-\decimalpart=\count120
+\integerpart=\count118
+\decimalpart=\count119
 )
 Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
 )
@@ -410,10 +408,10 @@ Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \minted@appexistsfile=\read2
 \minted@bgbox=\box36
 \minted@code=\write5
-\c@minted@FancyVerbLineTemp=\count121
-\c@minted@pygmentizecounter=\count122
+\c@minted@FancyVerbLineTemp=\count120
+\c@minted@pygmentizecounter=\count121
 \@float@every@listing=\toks22
-\c@listing=\count123
+\c@listing=\count122
 )
 runsystem(if not exist _minted-fyp mkdir _minted-fyp)...disabled (restricted).
 
@@ -442,9 +440,8 @@ Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 (D:\Programs\MimTex\tex\latex\00miktex\color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Driver file: dvips.def on input line 225.
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
 Package xcolor Info: Model `RGB' extended on input line 1364.
 Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
 Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
@@ -495,9 +492,9 @@ File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    ... okay on input line 9.
 
 *geometry* driver: auto-detecting
-*geometry* detected driver: pdftex
+*geometry* detected driver: dvips
 *geometry* verbose mode - [ preamble ] result:
-* driver: pdftex
+* driver: dvips
 * paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -528,40 +525,11 @@ LaTeX Font Info:    ... okay on input line 9.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(D:\Programs\MimTex\tex\context\base\supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count124
-\scratchdimen=\dimen146
-\scratchbox=\box37
-\nofMPsegments=\count125
-\nofMParguments=\count126
-\everyMPshowfont=\toks23
-\MPscratchCnt=\count127
-\MPscratchDim=\dimen147
-\MPnumerator=\count128
-\makeMPintoPDFobject=\count129
-\everyMPtoPDFconversion=\toks24
-) (D:\Programs\MimTex\tex\latex\oberdiek\epstopdf-base.sty
-Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
-
-(D:\Programs\MimTex\tex\latex\oberdiek\grfext.sty
-Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
-
-(D:\Programs\MimTex\tex\generic\oberdiek\kvdefinekeys.sty
-Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-))
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-38.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 456.
-)
 \openout2 = `prelude.aux'.
 
- (prelude.tex
+(prelude.tex
 *geometry* verbose mode - [ newgeometry ] result:
-* driver: pdftex
+* driver: dvips
 * paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -593,21 +561,27 @@ G,.JBIG2,.JB2,.eps]
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 LaTeX Font Info:    Try loading font information for T1+ptm on input line 2.
-
-(D:\Programs\MimTex\tex\latex\psnfss\t1ptm.fd
+ (D:\Programs\MimTex\tex\latex\psnfss\t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
-<logo_black.png, id=1, 770.88pt x 219.82124pt>
-File: logo_black.png Graphic file (type png)
- <use logo_black.png>
-Package pdftex.def Info: logo_black.png used on input line 2.
-(pdftex.def)             Requested size: 154.17326pt x 43.96346pt.
- [1
+
+! LaTeX Error: Cannot determine size of graphic in logo_black.png (no BoundingB
+ox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.2 \frontcover
+               
+? 
+File: logo_black.png Graphic file (type eps)
+<logo_black.png> [1
 
 
 
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <./logo_black.png>]
+]
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 8.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -650,47 +624,61 @@ Chapter 1.
 
  (Chapters/chapter2.tex
 Chapter 2.
-<images/stereoscope.jpg, id=41, 20.06767pt x 20.03273pt>
-File: images/stereoscope.jpg Graphic file (type jpg)
 
-<use images/stereoscope.jpg>
-Package pdftex.def Info: images/stereoscope.jpg used on input line 12.
-(pdftex.def)             Requested size: 284.52756pt x 284.10414pt.
- [5
+! LaTeX Error: File `stereoscope' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.12 	\includegraphics[width=10cm]{stereoscope}
+                                               
+? 
+
+! LaTeX Error: File `cardboardscreen' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.35 ...raphics[width=\textwidth]{cardboardscreen}
+                                                  
+? 
+[5
 
 
 
- <./images/stereoscope.jpg>]
-<images/cardboardscreen.png, id=45, 1927.2pt x 1084.05pt>
-File: images/cardboardscreen.png Graphic file (type png)
+]
 
-<use images/cardboardscreen.png>
-Package pdftex.def Info: images/cardboardscreen.png used on input line 35.
-(pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
- [6 <./images/cardboardscreen.png>]
-<images/gearscreen.jpg, id=49, 1204.5pt x 658.46pt>
-File: images/gearscreen.jpg Graphic file (type jpg)
+! LaTeX Error: File `gearscreen' not found.
 
-<use images/gearscreen.jpg>
-Package pdftex.def Info: images/gearscreen.jpg used on input line 58.
-(pdftex.def)             Requested size: 455.24411pt x 248.87106pt.
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.58 ...ludegraphics[width=\textwidth]{gearscreen}
+                                                  
+? 
 
-<images/gearcontrols.png, id=50, 1226.5825pt x 653.44125pt>
-File: images/gearcontrols.png Graphic file (type png)
+! LaTeX Error: File `gearcontrols' not found.
 
-<use images/gearcontrols.png>
-Package pdftex.def Info: images/gearcontrols.png used on input line 73.
-(pdftex.def)             Requested size: 455.24411pt x 242.51727pt.
- [7 <./images/gearscreen.jpg>] [8 <./images/gearcontrols.png>] [9]) [10]
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.73 ...degraphics[width=\textwidth]{gearcontrols}
+                                                  
+? 
+[6] [7]) [8] [9]
 \openout2 = `./Chapters/chapter3.aux'.
 
- (Chapters/chapter3.tex
+ (Chapters/chapter3.tex [10
+
+
+
+]
 Chapter 3.
-[11
-
-
-
-]) [12]
+[11]) [12]
 \openout2 = `./Chapters/chapter4.aux'.
 
  (Chapters/chapter4.tex
@@ -699,275 +687,368 @@ Chapter 4.
 
 
 
-] <images/GanttChart.png, id=74, 280.04625pt x 864.22874pt>
-File: images/GanttChart.png Graphic file (type png)
-
-<use images/GanttChart.png>
-Package pdftex.def Info: images/GanttChart.png used on input line 9.
-(pdftex.def)             Requested size: 212.0639pt x 654.41338pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14
-
 ]
-Overfull \vbox (7.74823pt too high) has occurred while \output is active []
 
+! LaTeX Error: File `GanttChart' not found.
 
-[15 <./images/GanttChart.png>] [16
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.9 	\includegraphics[height=23cm]{GanttChart}
+                                              
+? 
+[14
 
-]) [17]
+] [15
+
+]) [16]
 \openout2 = `./Chapters/chapter5.aux'.
 
- (Chapters/chapter5.tex [18
+ (Chapters/chapter5.tex
+Chapter 5.
+
+! LaTeX Error: File `brainstorm' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.11 ...ludegraphics[width=\textwidth]{brainstorm}
+                                                  
+? 
+
+! LaTeX Error: File `brainstormtable' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.18 ...raphics[width=\textwidth]{brainstormtable}
+                                                  
+? 
+[17
 
 
 
 ]
-Chapter 5.
-<images/brainstorm.jpg, id=92, 3585.395pt x 2999.205pt>
-File: images/brainstorm.jpg Graphic file (type jpg)
 
-<use images/brainstorm.jpg>
-Package pdftex.def Info: images/brainstorm.jpg used on input line 11.
-(pdftex.def)             Requested size: 455.24411pt x 380.80328pt.
+! LaTeX Error: File `narrowedtable' not found.
 
-<images/brainstormtable.png, id=93, 862.72313pt x 324.46219pt>
-File: images/brainstormtable.png Graphic file (type png)
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.28 	\includegraphics[width=12cm]{narrowedtable}
+                                                 
+? 
+[18
 
-<use images/brainstormtable.png>
-Package pdftex.def Info: images/brainstormtable.png used on input line 18.
-(pdftex.def)             Requested size: 455.24411pt x 171.2116pt.
- [19 <./images/brainstorm.jpg>] [20 <./images/brainstormtable.png>]
-<images/narrowedtable.png, id=102, 782.925pt x 1014.79124pt>
-File: images/narrowedtable.png Graphic file (type png)
-
-<use images/narrowedtable.png>
-Package pdftex.def Info: images/narrowedtable.png used on input line 28.
-(pdftex.def)             Requested size: 341.43306pt x 442.54552pt.
- [21
-
- <./images/narrowedtable.png>]) [22]
+]) [19]
 \openout2 = `./Chapters/chapter6.aux'.
 
-
-(Chapters/chapter6.tex
-Chapter 6.
-<images/VRRoom.jpg, id=109, 4175.6pt x 3131.7pt>
-File: images/VRRoom.jpg Graphic file (type jpg)
- <use images/VRRoom.jpg>
-Package pdftex.def Info: images/VRRoom.jpg used on input line 11.
-(pdftex.def)             Requested size: 455.24411pt x 341.42978pt.
-
-Underfull \vbox (badness 3108) has occurred while \output is active []
-
- [23
-
-
-
- <./images/VRRoom.jpg>] <images/triangulation1.png, id=113, 301.8778pt x 303.38
-344pt>
-File: images/triangulation1.png Graphic file (type png)
-
-<use images/triangulation1.png>
-Package pdftex.def Info: images/triangulation1.png used on input line 39.
-(pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
-
-Underfull \vbox (badness 2293) has occurred while \output is active []
-
- [24]
-<images/triangulation2.png, id=117, 301.8778pt x 303.38344pt>
-File: images/triangulation2.png Graphic file (type png)
-
-<use images/triangulation2.png>
-Package pdftex.def Info: images/triangulation2.png used on input line 48.
-(pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
-
-<images/triangulation3.png, id=118, 301.8778pt x 303.38344pt>
-File: images/triangulation3.png Graphic file (type png)
-
-<use images/triangulation3.png>
-Package pdftex.def Info: images/triangulation3.png used on input line 55.
-(pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
- [25 <./images/triangulation1.png> <./images/triangulation2.png>]
-<images/triangulation4.png, id=122, 301.8778pt x 303.38344pt>
-File: images/triangulation4.png Graphic file (type png)
-
-<use images/triangulation4.png>
-Package pdftex.def Info: images/triangulation4.png used on input line 64.
-(pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [26 <./images/triangulation3.png>]
-<images/triangulation5.png, id=127, 301.8778pt x 303.38344pt>
-File: images/triangulation5.png Graphic file (type png)
-
-<use images/triangulation5.png>
-Package pdftex.def Info: images/triangulation5.png used on input line 74.
-(pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [27 <./images/triangulation4.png>]
-<images/triangulation6.png, id=131, 301.8778pt x 303.38344pt>
-File: images/triangulation6.png Graphic file (type png)
-
-<use images/triangulation6.png>
-Package pdftex.def Info: images/triangulation6.png used on input line 83.
-(pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
- [28 <./images/triangulation5.png> <./images/triangulation6.png>] [29]
-<images/triangulation7.png, id=141, 301.8778pt x 303.38344pt>
-File: images/triangulation7.png Graphic file (type png)
-
-<use images/triangulation7.png>
-Package pdftex.def Info: images/triangulation7.png used on input line 131.
-(pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [30]
-[31 <./images/triangulation7.png>] [32]
-<images/triangulation8.png, id=152, 866.48718pt x 618.05907pt>
-File: images/triangulation8.png Graphic file (type png)
-
-<use images/triangulation8.png>
-Package pdftex.def Info: images/triangulation8.png used on input line 194.
-(pdftex.def)             Requested size: 455.24411pt x 324.72163pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [33]
-<images/Diamond_Square.png, id=156, 1128.46594pt x 240.9pt>
-File: images/Diamond_Square.png Graphic file (type png)
-
-<use images/Diamond_Square.png>
-Package pdftex.def Info: images/Diamond_Square.png used on input line 216.
-(pdftex.def)             Requested size: 455.24411pt x 97.18535pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [34 <./images/triangulation8.png>]
-<images/finalTerrain.png, id=160, 589.4522pt x 578.91281pt>
-File: images/finalTerrain.png Graphic file (type png)
-
-<use images/finalTerrain.png>
-Package pdftex.def Info: images/finalTerrain.png used on input line 232.
-(pdftex.def)             Requested size: 455.24411pt x 447.10693pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [35 <./images/Diamond_Square.png>] [36 <./images/finalTerrain.png>]
-<images/coordtransform.png, id=168, 1298.02588pt x 1001.8606pt>
-File: images/coordtransform.png Graphic file (type png)
-
-<use images/coordtransform.png>
-Package pdftex.def Info: images/coordtransform.png used on input line 260.
-(pdftex.def)             Requested size: 455.24411pt x 351.37495pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [37]
-<images/bounds.png, id=172, 699.36281pt x 425.33907pt>
-File: images/bounds.png Graphic file (type png)
- <use images/bounds.png>
-Package pdftex.def Info: images/bounds.png used on input line 271.
-(pdftex.def)             Requested size: 369.88582pt x 224.96133pt.
-
-Underfull \vbox (badness 3780) has occurred while \output is active []
-
- [38 <./images/coordtransform.png> <./images/bounds.png>] [39]
-<images/greathallsphere.jpg, id=182, 5396.16pt x 2698.08pt>
-File: images/greathallsphere.jpg Graphic file (type jpg)
-
-<use images/greathallsphere.jpg>
-Package pdftex.def Info: images/greathallsphere.jpg used on input line 316.
-(pdftex.def)             Requested size: 455.24411pt x 227.58408pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<images/greathallcube.png, id=183, 6167.04pt x 1027.84pt>
-File: images/greathallcube.png Graphic file (type png)
-
-<use images/greathallcube.png>
-Package pdftex.def Info: images/greathallcube.png used on input line 325.
-(pdftex.def)             Requested size: 455.24411pt x 75.86134pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) [40] [41 <./images/greathallsphere.jpg> <./images/greathallcube.png>]
-\openout2 = `./Chapters/chapter7.aux'.
-
-
-(Chapters/chapter7.tex [42
+ (Chapters/chapter6.tex [20
 
 
 
 ]
+Chapter 6.
+
+! LaTeX Error: File `VRRoom' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.11 	\includegraphics[width=\textwidth]{VRRoom}
+                                                
+? 
+[21]
+
+! LaTeX Error: File `triangulation7' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.41 	\includegraphics[width=10cm]{triangulation7}
+                                                  
+? 
+[22] [23] [24]
+
+! LaTeX Error: File `triangulation8' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.125 ...raphics[width=\textwidth]{triangulation8}
+                                                  
+? 
+[25]
+
+! LaTeX Error: File `triangulation1' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.145 ...cludegraphics[width=10cm]{triangulation1}
+                                                  
+? 
+
+! LaTeX Error: File `triangulation2' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.154 ...cludegraphics[width=10cm]{triangulation2}
+                                                  
+? 
+
+! LaTeX Error: File `triangulation3' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.161 ...cludegraphics[width=10cm]{triangulation3}
+                                                  
+? 
+
+! LaTeX Error: File `triangulation4' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.170 ...cludegraphics[width=10cm]{triangulation4}
+                                                  
+? 
+
+! LaTeX Error: File `triangulation5' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.180 ...cludegraphics[width=10cm]{triangulation5}
+                                                  
+? 
+
+! LaTeX Error: File `triangulation6' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.189 ...cludegraphics[width=10cm]{triangulation6}
+                                                  
+? 
+[26]
+
+! LaTeX Error: File `Diamond_Square' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.214 ...raphics[width=\textwidth]{Diamond_Square}
+                                                  
+? 
+
+! LaTeX Error: File `finalTerrain' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.230 ...egraphics[width=\textwidth]{finalTerrain}
+                                                  
+? 
+[27] [28]
+
+! LaTeX Error: File `coordtransform' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.258 ...raphics[width=\textwidth]{coordtransform}
+                                                  
+? 
+
+! LaTeX Error: File `bounds' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.269 	\includegraphics[width=13cm]{bounds}
+                                           
+? 
+[29] [30]
+
+LaTeX Warning: Reference `fig:level2backdrop' on page 31 undefined on input lin
+e 311.
+
+
+! LaTeX Error: File `level1Backdrop' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.315 ...cludegraphics[width=13cm]{level1Backdrop}
+                                                  
+? 
+
+! LaTeX Error: File `level2Backdrop' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.322 ...cludegraphics[width=13cm]{level2Backdrop}
+                                                  
+? 
+
+! LaTeX Error: File `level3Backdrop' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.329 ...cludegraphics[width=13cm]{level3Backdrop}
+                                                  
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.335 \newline
+              
+? 
+
+! LaTeX Error: File `RogerStevens' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.340 	\includegraphics[width=13cm]{RogerStevens}
+                                                 
+? 
+
+! LaTeX Error: File `GreatHall' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.347 	\includegraphics[width=13cm]{GreatHall}
+                                              
+? 
+
+! LaTeX Error: File `Union' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.354 	\includegraphics[width=13cm]{Union}
+                                          
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.359 \newline
+              
+? 
+
+LaTeX Warning: Reference `greatHallPre' on page 31 undefined on input line 361.
+
+
+
+! LaTeX Error: File `GreatHallPre' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.364 	\includegraphics[width=13cm]{GreatHallPre}
+                                                 
+? 
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.370 \newline
+              
+? 
+) [31] [32]
+\openout2 = `./Chapters/chapter7.aux'.
+
+ (Chapters/chapter7.tex
 Chapter 7.
-[43]) [44]
+[33
+
+
+
+]) [34]
 \openout2 = `./Chapters/chapter8.aux'.
 
  (Chapters/chapter8.tex
 Chapter 8.
-[45
+[35
 
 
 
-]) [46] (fyp.bbl) [47
+]) [36] (fyp.bbl) [37
 
 
 ]
 \openout2 = `appendix.aux'.
 
- (appendix.tex [48
+ (appendix.tex [38
 
 
-] [49
+] [39
 
-] [50]
+] [40]
 Appendix A.
-[51
+[41
 
-] [52
+] [42
 
 ]
 Appendix B.
-) [53] (fyp.aux (prelude.aux) (Chapters/chapter1.aux) (Chapters/chapter2.aux)
+) [43] (fyp.aux (prelude.aux) (Chapters/chapter1.aux) (Chapters/chapter2.aux)
 (Chapters/chapter3.aux) (Chapters/chapter4.aux) (Chapters/chapter5.aux)
 (Chapters/chapter6.aux) (Chapters/chapter7.aux) (Chapters/chapter8.aux)
 (appendix.aux))
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 7619 strings out of 493334
- 122131 string characters out of 3143155
- 343645 words of memory out of 3000000
- 10889 multiletter control sequences out of 15000+200000
- 14642 words of font info for 28 fonts, out of 3000000 for 9000
+ 7064 strings out of 493335
+ 112768 string characters out of 3143181
+ 331178 words of memory out of 3000000
+ 10287 multiletter control sequences out of 15000+200000
+ 13564 words of font info for 27 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,12n,64p,2080b,417s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ect
-i1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi
-600\ecbx2488.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen
-\ec\dpi600\ecbx2074.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\j
-knappen\ec\dpi600\tcrm1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\l
-jfour\jknappen\ec\dpi600\ecrm1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fon
-ts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\
-2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk>{D:/Programs/MimTex/fonts/en
-c/dvips/base/8r.enc} <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jkna
-ppen\ec\dpi600\ecbx1440.pk><D:/Programs/MimTex/fonts/type1/public/amsfonts/cm/c
-mmi10.pfb><D:/Programs/MimTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/Prog
-rams/MimTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/Programs/MimTex/fonts/t
-ype1/public/amsfonts/cm/cmsy10.pfb><D:/Programs/MimTex/fonts/type1/urw/times/ut
-mr8a.pfb>
-Output written on fyp.pdf (58 pages, 34118405 bytes).
-PDF statistics:
- 591 PDF objects out of 1000 (max. 8388607)
- 0 named destinations out of 1000 (max. 500000)
- 121 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 40i,12n,64p,2093b,463s stack positions out of 5000i,500n,10000p,200000b,50000s
 
+Output written on fyp.dvi (48 pages, 146552 bytes).
