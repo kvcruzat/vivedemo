@@ -21,60 +21,61 @@ public:
 	
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
-
+	
+	// arrays used for river mesh creation
 	TArray<FVector> vertices;
 	TArray<FVector> normals;
 	TArray<int32> Triangles;
 
-	bool initialSet;
-	float discStatus;
+	bool initialSet;	// to check if it's the first time to set the flow
+	float discStatus;	// disc status corresponds to how discs in connected rod
 
 	UPROPERTY(EditAnywhere)
-	UMaterial* riverMaterial;
+	UMaterial* riverMaterial;	// water material
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere)	// instance to change programmatically
 	UMaterialInstanceDynamic* riverMaterialInstance;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere)	// current flow
 	float flow;
 
 	UPROPERTY(EditAnywhere)
 	FString riverID;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere)	// ID of node taking in as input if available
 	FString nodeID;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere)	// ID of node output if available
 	FString outputNode;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere)	// array of all rivers overlapping for use in the output node if any
 	TArray<ARiverActor*> overlappedRivers;
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere)	// rivers that the river will be outputting to in the node
 	TArray<ARiverActor*> outputRivers;
 
-	TArray<FString> riverConnections;
+	TArray<FString> riverConnections;	// array of all river IDs between two nodes this river affects
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere)	// array of all river actors between two nodes this river affects
 	TArray<ARiverActor*> connectedRivers;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere)	// array of flower actors this river is affecting if any
 	TArray<AFlowerActor*> flowerArray;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere)	// the final river actor that outputs to the last node in the level
 	ARiverActor* finalNodeRiver;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere)	// used by last river actor to check goal completion
 	TArray<bool> nodeGoals;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere)	// array of node IDs which have flowers
 	TArray<FString> flowerNodeIDs;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Mesh)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Mesh)	// river mesh
 		UProceduralMeshComponent* riverMesh;
 	
-	virtual void createMesh(TArray<FVector> vertexData);
-	virtual void changeFlow(float value);
-	virtual void waterFlowers();
-	virtual void checkLevelCompletion();
-	virtual void changeLevel();
+	virtual void createMesh(TArray<FVector> vertexData);	// mesh creation
+	virtual void changeFlow(float value);	// update flow of current river actor and affecting rivers
+	virtual void waterFlowers();	// update the status of flowers
+	virtual void checkLevelCompletion();	// check if all flower goals are completed
+	virtual void changeLevel();		// transition to next level
 };

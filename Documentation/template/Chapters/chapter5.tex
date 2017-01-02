@@ -34,14 +34,14 @@ The brainstorm was then categorised in a separate table, combining the ideas tha
 Then using the updated table of ideas, the ideas were narrowed down until one that could feasibly done was chosen out of all the ideas on the white-board. This idea was to combine the Towers of Hanoi and Graph Flow in a puzzle game. These two ideas were combined in order to make a technology demonstration that is very specific to the School of Computing in the University of Leeds, as these are both topics of study during the Computer Science course in the university of Leeds.
 \newline
 \par
-A goal for the game then had to be designed. The goal of the game was decided to be having the right amount of flow run down to set nodes, where flowers would be. If these flowers have too much water flow they would look dead, and if they had too little water flow they would also look dead. They would only look alive if the water flow was the correct amount. The game is won when all the flowers are "alive" at the same time.
+A goal for the game then had to be designed. The goal of the game was decided to be having the right amount of flow run down to set nodes, where flowers would be. If these flowers have too much water flow they would look dead, and if they had too little water flow they would also look dead. They would only look alive if the water flow was the correct amount. The game level is won when all the flowers are "alive" at the same time.
 \newline
 \par
 This idea would implement many non-trivial features in the Unreal Engine, such as:
 \begin{itemize}
-	\item Randomly generating a graph
-	\item Generating a terrain based on the graph
-	\item Towers of Hanoi logic for flow control
+	\item Procedural random generation of graphs as river canals
+	\item Procedural random generation of terrain
+	\item Reverse Towers of Hanoi logic for flow control
 	\item Having plants being affected by the water flow
 	\item Changing the appearance of the water, based on the flow of that edge of the graph
 \end{itemize}
@@ -56,10 +56,10 @@ The Virtual reality Features that will be used are:
 \end{itemize}
 
 \section{Graph Flow}
-Graph Flow will be used in this technical demonstration as the main objective of the game. The objective of the game will be to get the flow to match the goal flow. This will be done by blocking off certain rivers to redirect flow from one river into another. The goal flow will be calculated in development, and each level that is created will also have a goal state completed.
+Graph Flow will be used in this technical demonstration as the main objective of the game. The objective of the game will be to get the flow to match the goal flow. This will be done by blocking off certain rivers to remove a flow for a rive canal or partial blockage to reduce flow for a river. The goal flow will be calculated in development, and each level that is created will also have a goal state to be completed by the player.
 
 \section{Towers of Hanoi}
-Towers of Hanoi will be used in the demo to block off the graph flow from nodes to other nodes. This will be done by having rods in the river at each split in the graph. These will be placed at the output of each split in the river. The Towers of Hanoi disks will then be placed on top of these rods if the flow needs to be blocked. The Towers of Hanoi disks will only be allowed to be placed in the opposite order compared to the way the normally are. This would mean that a larger disk can only be placed on top of a smaller disk. This order had to be inverted to the standard as rivers are narrower at the bottom, compared to the top of the river ditch. 
+Towers of Hanoi will be used in the demo to block or partially block off the graph flow from nodes to other nodes. This will be done by having rods in the river at each split in the graph. These will be placed at the output of each split in the river. The Towers of Hanoi discs will then be placed on top of these rods if the flow needs to be blocked. The Towers of Hanoi disks will only be allowed to be placed in the opposite order compared to the way they normally are. This would mean that a larger disc can only be placed on top of a smaller disc. This order had to be inverted to the standard as rivers are narrower at the bottom, compared to the top of the river ditch. 
 
 \section{Plant Survival}
-The Plant Survival will be used as a measure for the player to determine how close he is to solving the puzzle. This will be the indicator to the player if the flow at that node matches the pre-determined flow for the level
+The Plant Survival will be used as a measure for the player to determine how close he is to solving the puzzle. This will be the indicator to the player if the flow at that node matches the pre-determined flow for the level.

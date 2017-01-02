@@ -295,7 +295,7 @@ With the case of rods with discs in them, the flow is then affected depending on
 In order for the player to easily distinguish a difference in the flow of a river when changing them with the discs, the opacity of the material used on the river will change depending on the flow value as a percentage of the original flow value at the source.
 
 \section{Flow Dependant Flora}
-Flower models are spawned around each of the nodes with rods. The first node with rods do not have flowers as the flows of the river that will act as input to this node are the same value as the flow at the source due to the fact that it has yet to be split. These flowers will act as indicators to the player whether or not they are getting closer to the goal.
+Flower models are spawned around each of the nodes with rods. Flower model is royalty free and taken from cgtrader\cite{flowermodel}. The first node with rods do not have flowers as the flows of the river that will act as input to this node are the same value as the flow at the source due to the fact that it has yet to be split. These flowers will act as indicators to the player whether or not they are getting closer to the goal.
 \newline
 \par
 The position of the flower models are computed by using the coordinates of the nodes found in the nodes.txt file output through the terrain generation procedure. The coordinates are then transformed to be placed correctly in the world with the same process as before. Another file is used called nodeConnections.txt which shows information on directions of the rivers that node is connected to. This is used to place the flowers in places on the terrain where there is no river. Due to method used to generate the terrain a river can go in one direction out of a possible 8. These possible directions can be described using the points in a compass e.g. North, North-East, East and so forth. Using random number generation, a flower has a one in three chance of placing a flower on a free space but makes sure at least one flower is placed for each node.
@@ -308,3 +308,24 @@ In order for the game to provide a challenge to players such as University of Le
 \newline
 \par
 For each rod actor in the map, one of the many possible disc combinations is chosen out of random which includes no disc on that rod. Then the game is simulated with the river flow values which are then affected by the discs on each rod. The flow value for all the rivers that act as input to the ndoes are then accumulated and is saved as the required flow for that node. The simulation is ended and resets the game with no discs on every rod then resets all the flow values to be computed again. The player will then need to try figure out the correct disc combinations for each rod through trial and error to meet all the required flows for each node to make the flower petals turn to orange which means the goal has been met. When all flowers turn to orange, the level puzzle is completed so the game transports the player to the next level.
+
+\section{University of Leeds Campus Skyboxes}
+A bonus feature that was implemented was creating skyboxes that portray different locations around the University of Leeds campus. This was created by using Google's Photo Sphere technology in Android phones. It uses the gyroscope built in the phone to track the position of the phone and takes multiple photos around the camera then stitches them together for one continuous picture as seen in Figure \ref{fig:greathallsphere}. 360 degree pictures was taken around significant locations to be used in multiple levels. 
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth]{greathallsphere}
+	\centering
+	\caption{Image showing Photo Sphere picture of the Great Hall in University of Leeds}
+	\label{fig:greathallsphere}
+\end{figure}
+
+The picture was then edited in Adobe Photoshop and modelling software Blender to create a cube map which is an inside of a cube with each of the faces being a different part of the Photo Sphere location as seen in \ref{fig:greathallcube}. This is then created in to skysphere in Unreal with each different level being a different skysphere location.
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth]{greathallcube}
+	\centering
+	\caption{Image showing cubemap of the Great Hall in University of Leeds}
+	\label{fig:greathallcube}
+\end{figure}
+
+This meets the requirement of creating a tech demo that is unique to the University of Leeds through the use of campus of locations. It also means that prospective students trying the demo will then be able take a mini tour around the campus whilst playing the game making it useful and relevant during applicant days.

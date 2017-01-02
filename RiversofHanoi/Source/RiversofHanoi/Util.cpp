@@ -3,9 +3,14 @@
 #include "RiversofHanoi.h"
 #include "Util.h"
 
+/*
+ *	Utility class definition of commonly used methods
+ */
+
 Util::Util(){
 }
 
+// Method to normalise an array of vectors
 TArray<FVector> Util::normalise(TArray<FVector> normals) {
 
 	for (int i = 0; i < normals.Num(); ++i) {
@@ -15,6 +20,7 @@ TArray<FVector> Util::normalise(TArray<FVector> normals) {
 	return normals;
 }
 
+// Method to compute the normals of a mesh with given vertices and face arrays
 TArray<FVector> Util::findNormals(TArray<FVector> vertices, TArray<int32> Triangles) {
 	TArray<FVector> tempNorm;
 	tempNorm.Init(FVector(0, 0, 0), vertices.Num());
@@ -34,11 +40,10 @@ TArray<FVector> Util::findNormals(TArray<FVector> vertices, TArray<int32> Triang
 		tempNorm[Triangles[i + 2]] = tempNorm[Triangles[i + 2]] + FVector::CrossProduct(z, y);
 	}
 
-	tempNorm;
-
-	return normalise(tempNorm);
+	return normalise(tempNorm);	// normalise the normals
 }
 
+// Method to read in a model file and outputs the vertices, faces and normals as arrays
 void Util::readData(FString fileName, TArray<FVector> vertices, TArray<int32> Triangles){
 	FString projectDir = FPaths::GameDir();
 	projectDir += "Content/Levels/data/" + fileName;
@@ -68,9 +73,10 @@ void Util::readData(FString fileName, TArray<FVector> vertices, TArray<int32> Tr
 	verts = vertices;
 	triangs = Triangles;
 
-	norms = findNormals(vertices, Triangles);
+	norms = findNormals(vertices, Triangles); // compute normals
 }
 
+// Method to read in text file data of the coordinates of nodes
 void Util::readNodeData(FString fileName, TArray<FVector> nodeData)
 {
     FString projectDir = FPaths::GameDir();
@@ -93,6 +99,7 @@ void Util::readNodeData(FString fileName, TArray<FVector> nodeData)
     nodes = nodeData;
 }
 
+// Method to read in text file of the coordinates of the rods for each node
 void Util::readRodData(FString fileName, TArray<FVector> rodData)
 {
 	FString projectDir = FPaths::GameDir();
@@ -128,6 +135,7 @@ void Util::readRodData(FString fileName, TArray<FVector> rodData)
 	rods = rodData;
 }
 
+// Method to read in the vertices for each river actor
 void Util::readRiverData(FString fileName, TArray<FVector> riverData)
 {
 	FString projectDir = FPaths::GameDir();
@@ -146,23 +154,18 @@ void Util::readRiverData(FString fileName, TArray<FVector> riverData)
 	for (int32 Index = 0; Index < lines.Num(); ++Index) {
 		lines[Index] = lines[Index].TrimTrailing();
 		lines[Index].ParseIntoArray(riverVertices, _T(" "), true);
-		riverIDs.Add(riverVertices[4]);
+		riverIDs.Add(riverVertices[4]);	// Each river actor is assigned with a river ID
 		riverVertices.Pop();
 		for (int32 vertex = 0; vertex < riverVertices.Num(); ++vertex) {
 			riverVertices[vertex].ParseIntoArray(riverCoords, _T(","), true);
 			riverData.Add(FVector(FCString::Atof(*riverCoords[1]), FCString::Atof(*riverCoords[0]), FCString::Atof(*riverCoords[2])));
 		}
-		TArray<FVector> vertices;
-		vertices.Add(riverData[(Index * 4)]);
-		vertices.Add(riverData[(Index * 4) + 1]);
-		vertices.Add(riverData[(Index * 4) + 2]);
-		vertices.Add(riverData[(Index * 4) + 3]);
-
 	}
 
 	rivers = riverData;
 }
 
+// Method to read in a data text file that shows which river actors are connected to which rivers using their river IDs
 void Util::readRiverConnectionsData(FString fileName) {
 	FString projectDir = FPaths::GameDir();
 	projectDir += "Content/Levels/data/" + fileName;
@@ -187,6 +190,7 @@ void Util::readRiverConnectionsData(FString fileName) {
 	}
 }
 
+// Method to read in data file containing which river each rod is connected to
 void Util::readRodRiverData(FString fileName) {
 
 	FString projectDir = FPaths::GameDir();
@@ -220,6 +224,8 @@ void Util::readRodRiverData(FString fileName) {
 	}
 }
 
+// Method to read in data file that shows the directions the rivers take at each node
+// This is to avoid placing a flower on top of a river
 void Util::readNodeConnectionsData(FString fileName) {
 	FString projectDir = FPaths::GameDir();
 	projectDir += "Content/Levels/data/" + fileName;
