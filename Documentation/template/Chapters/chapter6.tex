@@ -332,8 +332,6 @@ The textures for the three levels are from various places around the University 
 	\label{fig:level3Backdrop}
 \end{figure}
 
-\newline
-\par
 These textures were made by first using Google's Photosphere software to create a 360 degree image of the location, this image was then flipped horizontally so that they would appear the correct way in the game. These are shown in \ref{fig:rogerStevens}, \ref{fig:greatHall}, and \ref{fig:union}. 
 
 \begin{figure}[H]
@@ -356,8 +354,7 @@ These textures were made by first using Google's Photosphere software to create 
 	\caption{Image showing the 360 degree image by the Student Union}
 	\label{fig:union}
 \end{figure}
-\newline
-\par
+
 These images were then separated into six images using a blender file obtained from "Aerotwist.com" \cite{aerotwist}. Using these separate images they were then arranged in the order specified by Unreal in order to create a cube map using the nVidia Texture Tools \cite{unrealCubeMaps}, an example of the image ready to be exported by nVidia texture tools is shown in \ref{greatHallPre}.
 
 \begin{figure}[H]
@@ -367,8 +364,6 @@ These images were then separated into six images using a blender file obtained f
 	\label{fig:greatHallPre}
 \end{figure}
 
-\newline
-\par
 This image is then processed by nVidia Texture Tools and exported as a .dds file, a file type that is supported by Unreal Engine. This file is then imported into the Unreal project and a material is created from the file. This material is then modified slightly so that it works as a spherical texture, and then it is set as the texture for the Sky Sphere.
 
 \section{Disc Respawning}
