@@ -1,7 +1,7 @@
 \begin{thebibliography}{10}
 
 \bibitem{aerotwist}
-Aerotwist.
+{Aerotwist}.
 \newblock Create your own environment maps.
 
 \bibitem{flowermodel}
@@ -9,10 +9,6 @@ Aerotwist.
 \newblock Royalty free 3d flower model.
 \newblock [Online]. Available from:
   https://www.cgtrader.com/free-3d-models/plant-tree/flower/single-rose-flower.
-
-\bibitem{unrealCubeMaps}
-U.~Engine.
-\newblock Creating cube maps.
 
 \bibitem{unrealfeatures}
 {Epic Games}.
@@ -29,6 +25,11 @@ U.~Engine.
 \bibitem{elitedangerous}
 {Frontier Developments}.
 \newblock Elite dangerous.
+\newblock [Online]. Available from: http://store.steampowered.com/app/359320/.
+
+\bibitem{gearmenu}
+{Gadget Guy}.
+\newblock Samsung gear home menu.
 
 \bibitem{cardboarddev}
 Google.
@@ -45,6 +46,14 @@ C.~Hoffman.
 {I-Illusions}.
 \newblock Space pirate trainer.
 \newblock [Online]. Available from: http://store.steampowered.com/app/418650/.
+
+\bibitem{gearbuttons}
+{Phandroid}.
+\newblock Samsung gear side view.
+
+\bibitem{unrealCubeMaps}
+{Unreal Engine}.
+\newblock Creating cube maps.
 
 \bibitem{thelab}
 {Valve}.
@@ -70,5 +79,9 @@ C.~Wheatstone.
 \newblock Contributions to the physiology of vision. part the frist. on some
   remarkable, and hitherto unobserved, phenonmena of binocolur vision.
 \newblock {\em Philosophical Transactions}, 128:371--394, 1838.
+
+\bibitem{leedsstereoscopic}
+{Wikimedia}.
+\newblock General view of leeds stereoscopic image.
 
 \end{thebibliography}

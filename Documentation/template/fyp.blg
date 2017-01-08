@@ -11,8 +11,3 @@ A level-1 auxiliary file: ./Chapters/chapter7.aux
 A level-1 auxiliary file: ./Chapters/chapter8.aux
 A level-1 auxiliary file: appendix.aux
 Database file #1: refs.bib
-I was expecting an "="---line 91 of file refs.bib
- : <<<<<<< 
- :         HEAD
-I'm skipping whatever remains of this entry
-(There was 1 error message)
