@@ -30,30 +30,34 @@ public:
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
 
+	// Method to check if the disc that is about to be placed on the rod is allowed to be
 	virtual bool sizeCheck(AActor* actor, TArray<AActor*> actorArray);
 
+	// Array of actors that is on the rod
 	TArray<AActor*> containedActors;
 
 	UPROPERTY(EditAnywhere)
-	ARiverActor* connectedRiver;
+	ARiverActor* connectedRiver;	// the river the rod outputs to
 
 	UPROPERTY(EditAnywhere)
-	TArray<ARiverActor*> inputRivers;
+	TArray<ARiverActor*> inputRivers;	// rivers that is used as input
 
 	UPROPERTY(EditAnywhere)
-	ARodActor* OtherRod;
+	ARodActor* OtherRod;	// the other rod in the node
 
-	FVector rodLocation;
-	FRotator discRot;
+	FVector rodLocation;	// the location of the rod in the world
+	FRotator discRot;		// original disc rotation
 	FString rodID;
 
 	UPROPERTY(EditAnywhere)
-	FString nodeID;
+	FString nodeID;		// node ID the rod belongs to
 
+	// Method that is called when the a disc is added or removed to change the flows that is affected by the change
 	virtual void arrayChange(bool add, FString discName);
 	
-	FString riverConnection;
+	FString riverConnection;	// connected river ID
 
+	// Different collision box triggers
 	UFUNCTION()
 		void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 	UFUNCTION()

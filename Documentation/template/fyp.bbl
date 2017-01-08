@@ -1,12 +1,30 @@
 \begin{thebibliography}{10}
 
+\bibitem{aerotwist}
+Aerotwist.
+\newblock Create your own environment maps.
+
+\bibitem{flowermodel}
+{cgtrader: xhable}.
+\newblock Royalty free 3d flower model.
+\newblock [Online]. Available from:
+  https://www.cgtrader.com/free-3d-models/plant-tree/flower/single-rose-flower.
+
+\bibitem{unrealCubeMaps}
+U.~Engine.
+\newblock Creating cube maps.
+
 \bibitem{unrealfeatures}
 {Epic Games}.
 \newblock About unreal engine 4.
+\newblock [Online]. Available from:
+  https://www.unrealengine.com/unreal-engine-4.
 
 \bibitem{unrealfeaturelist}
 {Epic Games}.
 \newblock Engine features.
+\newblock [Online]. Available from:
+  https://docs.unrealengine.com/latest/INT/Engine/.
 
 \bibitem{elitedangerous}
 {Frontier Developments}.
@@ -15,20 +33,18 @@
 \bibitem{cardboarddev}
 Google.
 \newblock Google vr sdk for unity.
+\newblock [Online]. Available from: https://developers.google.com/vr/unity/.
 
 \bibitem{vivenolinux}
 C.~Hoffman.
 \newblock The htc vive and valve's steamvr don't yet support linux and steamos.
+\newblock [Online]. Available from:
+  http://www.pcworld.com/article/3053527/linux/the-htc-vive-and-valves-steamvr-dont-yet-support-linux-and-steamos.html.
 
 \bibitem{spacepiratetrainer}
 {I-Illusions}.
 \newblock Space pirate trainer.
-
-\bibitem{parikh1980adaptive}
-D.~Parikh, N.~Ahmed, and S.~Stearns.
-\newblock An adaptive lattice algorithm for recursive filters.
-\newblock {\em Acoustics, Speech and Signal Processing, IEEE Transactions on},
-  28(1):110--111, 1980.
+\newblock [Online]. Available from: http://store.steampowered.com/app/418650/.
 
 \bibitem{thelab}
 {Valve}.
@@ -37,14 +53,17 @@ D.~Parikh, N.~Ahmed, and S.~Stearns.
 \bibitem{steamvr}
 {Valve}.
 \newblock Steamvr.
+\newblock [Online]. Available from: http://store.steampowered.com/steamvr.
 
 \bibitem{vivehardware}
 {Valve Corp.}
 \newblock Htc vive.
+\newblock [Online]. Available from: http://store.steampowered.com/app/358040/.
 
 \bibitem{vivetechnology}
 {Valve Corp.}
 \newblock Steamvr tracking.
+\newblock [Online]. Available from: https://partner.steamgames.com/vrtracking/.
 
 \bibitem{stereoscopy}
 C.~Wheatstone.

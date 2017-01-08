@@ -9,7 +9,7 @@
 \contentsline {section}{\numberline {2.1}Virtual Reality}{5}
 \contentsline {subsection}{\numberline {2.1.1}Mobile VR}{6}
 \contentsline {subsubsection}{Google Cardboard}{6}
-\contentsline {subsubsection}{Samsung Gear VR}{6}
+\contentsline {subsubsection}{Samsung Gear VR}{7}
 \contentsline {subsection}{\numberline {2.1.2}Oculus Rift}{8}
 \contentsline {subsection}{\numberline {2.1.3}HTC Vive}{8}
 \contentsline {section}{\numberline {2.2}Development Environments}{9}
@@ -24,70 +24,52 @@
 \contentsline {subsubsection}{Hardware Requirements}{11}
 \contentsline {chapter}{\numberline {4}Project Management}{13}
 \contentsline {section}{\numberline {4.1}Methodology}{13}
-\contentsline {section}{\numberline {4.2}Schedule}{14}
-\contentsline {section}{\numberline {4.3}Version Control}{15}
-\contentsline {section}{\numberline {4.4}Risk Assessment}{15}
-\contentsline {subsection}{\numberline {4.4.1}Contingency Plan}{15}
-\contentsline {chapter}{\numberline {5}Planning and Design}{17}
-\contentsline {section}{\numberline {5.1}Game Design Process}{17}
-\contentsline {section}{\numberline {5.2}Virtual Reality Features}{17}
-\contentsline {section}{\numberline {5.3}Graph Flow}{18}
-\contentsline {section}{\numberline {5.4}Towers of Hanoi}{18}
-\contentsline {section}{\numberline {5.5}Plant Survival}{18}
-\contentsline {chapter}{\numberline {6}Implementation}{19}
-\contentsline {section}{\numberline {6.1}Development Environment}{19}
-\contentsline {subsection}{\numberline {6.1.1}Vive Hardware}{19}
-\contentsline {subsection}{\numberline {6.1.2}Game Engine}{19}
-\contentsline {subsection}{\numberline {6.1.3}Visual Studio}{20}
-\contentsline {subsection}{\numberline {6.1.4}Windows}{20}
-\contentsline {subsection}{\numberline {6.1.5}Out of Engine Development}{20}
-\contentsline {section}{\numberline {6.2}Random Generation of Graphs, Rivers and Terrain}{20}
-\contentsline {subsection}{\numberline {6.2.1}Graph Generation Original Method}{20}
-\contentsline {subsubsection}{Point Insertion}{20}
-<<<<<<< HEAD
+\contentsline {section}{\numberline {4.2}Schedule}{15}
+\contentsline {section}{\numberline {4.3}Version Control}{16}
+\contentsline {section}{\numberline {4.4}Risk Assessment}{16}
+\contentsline {subsection}{\numberline {4.4.1}Contingency Plan}{16}
+\contentsline {chapter}{\numberline {5}Planning and Design}{19}
+\contentsline {section}{\numberline {5.1}Game Design Process}{19}
+\contentsline {section}{\numberline {5.2}Virtual Reality Features}{22}
+\contentsline {section}{\numberline {5.3}Graph Flow}{22}
+\contentsline {section}{\numberline {5.4}Towers of Hanoi}{22}
+\contentsline {section}{\numberline {5.5}Plant Survival}{22}
+\contentsline {chapter}{\numberline {6}Implementation}{23}
+\contentsline {section}{\numberline {6.1}Development Environment}{23}
+\contentsline {subsection}{\numberline {6.1.1}Vive Hardware}{23}
+\contentsline {subsection}{\numberline {6.1.2}Game Engine}{24}
+\contentsline {subsection}{\numberline {6.1.3}Visual Studio}{24}
+\contentsline {subsection}{\numberline {6.1.4}Windows}{24}
+\contentsline {subsection}{\numberline {6.1.5}Out of Engine Development}{24}
+\contentsline {section}{\numberline {6.2}Random Generation of Graphs, Rivers and Terrain}{24}
+\contentsline {subsection}{\numberline {6.2.1}Graph Generation}{24}
+\contentsline {subsubsection}{Start Point Generation}{24}
 \contentsline {subsubsection}{Connections and Weight Matrix}{25}
 \contentsline {subsubsection}{Generating Rivers}{25}
-\contentsline {subsubsection}{Bresenham's Line Algorithm}{26}
-\contentsline {subsection}{\numberline {6.2.2}Graph Generation}{26}
-\contentsline {subsubsection}{Start Point Generation}{26}
-\contentsline {subsubsection}{Connections and Weight Matrix}{27}
-\contentsline {subsubsection}{Generating Rivers}{27}
-\contentsline {subsection}{\numberline {6.2.3}Terrain Generation}{30}
-\contentsline {subsection}{\numberline {6.2.4}Final Terrain}{31}
-\contentsline {section}{\numberline {6.3}User Interactive Reverse Towers Of Hanoi}{32}
-\contentsline {section}{\numberline {6.4}Graph Flow}{33}
-\contentsline {section}{\numberline {6.5}Flow Dependant Flora}{33}
-\contentsline {chapter}{\numberline {7}Testing and Evaluation}{35}
-\contentsline {section}{\numberline {7.1}Testing Against Requirements}{35}
-\contentsline {section}{\numberline {7.2}Client Evaluation}{35}
-\contentsline {section}{\numberline {7.3}Result Evalutaion}{35}
-\contentsline {section}{\numberline {7.4}Project Evalutaion}{36}
-\contentsline {chapter}{\numberline {8}Conclusion}{37}
-\contentsline {section}{\numberline {8.1}Conclusion}{37}
-\contentsline {section}{\numberline {8.2}Future Work}{37}
-\contentsline {section}{\numberline {8.3}Personal Reflection}{37}
-\contentsline {chapter}{References}{38}
-\contentsline {chapter}{Appendices}{41}
-\contentsline {chapter}{\numberline {A}External Material}{43}
-\contentsline {chapter}{\numberline {B}Ethical Issues Addressed}{45}
-=======
-\contentsline {subsubsection}{Connections and Weight Matrix}{24}
-\contentsline {subsubsection}{Generating Rivers}{24}
-\contentsline {subsection}{\numberline {6.2.2}Terrain Generation}{24}
-\contentsline {section}{\numberline {6.3}User Interactive Reverse Towers Of Hanoi}{24}
-\contentsline {section}{\numberline {6.4}River Graph Flow}{25}
-\contentsline {section}{\numberline {6.5}Flow Dependant Flora}{26}
-\contentsline {chapter}{\numberline {7}Testing and Evaluation}{27}
-\contentsline {section}{\numberline {7.1}Testing Against Requirements}{27}
-\contentsline {section}{\numberline {7.2}Client Evaluation}{27}
-\contentsline {section}{\numberline {7.3}Result Evalutaion}{27}
-\contentsline {section}{\numberline {7.4}Project Evalutaion}{28}
-\contentsline {chapter}{\numberline {8}Conclusion}{29}
-\contentsline {section}{\numberline {8.1}Conclusion}{29}
-\contentsline {section}{\numberline {8.2}Future Work}{29}
-\contentsline {section}{\numberline {8.3}Personal Reflection}{29}
-\contentsline {chapter}{References}{30}
-\contentsline {chapter}{Appendices}{33}
-\contentsline {chapter}{\numberline {A}External Material}{35}
-\contentsline {chapter}{\numberline {B}Ethical Issues Addressed}{37}
->>>>>>> 932e67e0b2ec1937d6eb3d03313bd9276a989d9e
+\contentsline {subsubsection}{Bresenham's Line Algorithm}{29}
+\contentsline {subsection}{\numberline {6.2.2}Graph Generation Original Method}{29}
+\contentsline {subsubsection}{Point Insertion}{30}
+\contentsline {subsection}{\numberline {6.2.3}Terrain Generation}{34}
+\contentsline {subsection}{\numberline {6.2.4}Final Terrain}{35}
+\contentsline {section}{\numberline {6.3}User Interactive Reverse Towers Of Hanoi}{35}
+\contentsline {section}{\numberline {6.4}River Graph Flow}{36}
+\contentsline {section}{\numberline {6.5}Flow Dependant Flora}{38}
+\contentsline {section}{\numberline {6.6}Game Goal Computation}{39}
+\contentsline {section}{\numberline {6.7}Sky Textures}{39}
+\contentsline {section}{\numberline {6.8}Disc Respawning}{41}
+\contentsline {chapter}{\numberline {7}Testing and Evaluation}{43}
+\contentsline {section}{\numberline {7.1}Testing Against Requirements}{43}
+\contentsline {subsection}{\numberline {7.1.1}Student Testing Plan}{43}
+\contentsline {section}{\numberline {7.2}Client Evaluation}{43}
+\contentsline {section}{\numberline {7.3}Project Evaluation}{43}
+\contentsline {subsection}{\numberline {7.3.1}Schedule}{43}
+\contentsline {subsection}{\numberline {7.3.2}Additional Features}{44}
+\contentsline {subsection}{\numberline {7.3.3}Difficulties with the Project}{44}
+\contentsline {subsection}{\numberline {7.3.4}Meetings}{44}
+\contentsline {chapter}{\numberline {8}Conclusion}{45}
+\contentsline {section}{\numberline {8.1}Conclusion}{45}
+\contentsline {section}{\numberline {8.2}Future Work}{46}
+\contentsline {chapter}{References}{47}
+\contentsline {chapter}{Appendices}{49}
+\contentsline {chapter}{\numberline {A}External Material}{51}
+\contentsline {chapter}{\numberline {B}Ethical Issues Addressed}{53}

@@ -21,14 +21,15 @@ public:
 	virtual void Tick( float DeltaSeconds ) override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Mesh)
-	class UStaticMeshComponent* flowerMesh;
+	class UStaticMeshComponent* flowerMesh;		// flower mesh
 
 	UPROPERTY(EditAnywhere)
-	float requiredFlow;
+	float requiredFlow;	// flow required to make flower alive
 
 	UPROPERTY(EditAnywhere)
 	FString nodeID;
 
+	// materials used for flower petals
 	UMaterial* redRoseMat;
 	UMaterial* yellowRoseMat;
 	UMaterial* blueRoseMat;
