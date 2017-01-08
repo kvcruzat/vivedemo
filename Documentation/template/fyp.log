@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.11.6)  8 JAN 2017 23:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.11.6)  8 JAN 2017 23:34
 entering extended mode
 **./fyp.tex
 (fyp.tex
@@ -881,83 +881,69 @@ Package pdftex.def Info: images/bounds.png used on input line 269.
 Underfull \vbox (badness 3780) has occurred while \output is active []
 
  [39 <./images/coordtransform.png> <./images/bounds.png>] [40]
+<images/level1Backdrop.png, id=188, 1212.02812pt x 558.58687pt>
+File: images/level1Backdrop.png Graphic file (type png)
 
-LaTeX Warning: Reference `fig:level2backdrop' on page 41 undefined on input lin
-e 311.
+<use images/level1Backdrop.png>
+Package pdftex.def Info: images/level1Backdrop.png used on input line 315.
+(pdftex.def)             Requested size: 369.88582pt x 170.46677pt.
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-! LaTeX Error: File `level1Backdrop' not found.
+ [41]
+<images/level2Backdrop.png, id=192, 1208.26407pt x 588.69937pt>
+File: images/level2Backdrop.png Graphic file (type png)
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.315 ...cludegraphics[width=13cm]{level1Backdrop}
-                                                  
-? 
+<use images/level2Backdrop.png>
+Package pdftex.def Info: images/level2Backdrop.png used on input line 322.
+(pdftex.def)             Requested size: 369.88582pt x 180.21327pt.
 
-! LaTeX Error: File `level2Backdrop' not found.
+<images/level3Backdrop.png, id=193, 1204.5pt x 560.0925pt>
+File: images/level3Backdrop.png Graphic file (type png)
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.322 ...cludegraphics[width=13cm]{level2Backdrop}
-                                                  
-? 
+<use images/level3Backdrop.png>
+Package pdftex.def Info: images/level3Backdrop.png used on input line 329.
+(pdftex.def)             Requested size: 369.88582pt x 171.99452pt.
 
-! LaTeX Error: File `level3Backdrop' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.329 ...cludegraphics[width=13cm]{level3Backdrop}
-                                                  
-? 
-[41] <images/RogerStevens.jpg, id=191, 5396.16pt x 2698.08pt>
+<images/RogerStevens.jpg, id=194, 5396.16pt x 2698.08pt>
 File: images/RogerStevens.jpg Graphic file (type jpg)
 
 <use images/RogerStevens.jpg>
 Package pdftex.def Info: images/RogerStevens.jpg used on input line 338.
 (pdftex.def)             Requested size: 369.88582pt x 184.93263pt.
-
-<images/GreatHall.jpg, id=192, 5396.16pt x 2698.08pt>
+ [42 <./images/level1Backdrop.png> <./images/level2Backdrop.png> <./images/leve
+l3Backdrop.png>]
+<images/GreatHall.jpg, id=198, 5396.16pt x 2698.08pt>
 File: images/GreatHall.jpg Graphic file (type jpg)
 
 <use images/GreatHall.jpg>
 Package pdftex.def Info: images/GreatHall.jpg used on input line 345.
 (pdftex.def)             Requested size: 369.88582pt x 184.93263pt.
- <images/Union.jpg, id=193, 5396.16pt x 2698.08pt>
+ <images/Union.jpg, id=199, 5396.16pt x 2698.08pt>
 File: images/Union.jpg Graphic file (type jpg)
 
 <use images/Union.jpg>
 Package pdftex.def Info: images/Union.jpg used on input line 352.
 (pdftex.def)             Requested size: 369.88582pt x 184.93263pt.
+ [43 <./images/RogerStevens.jpg> <./images/GreatHall.jpg> <./images/Union.jpg>]
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [42 <./images/RogerStevens.jpg> <./images/GreatHall.jpg>]
-
-LaTeX Warning: Reference `greatHallPre' on page 43 undefined on input line 358.
-
-
-<images/GreatHallPre.png, id=197, 6167.04pt x 1027.84pt>
+<images/GreatHallPre.png, id=204, 6167.04pt x 1027.84pt>
 File: images/GreatHallPre.png Graphic file (type png)
 
 <use images/GreatHallPre.png>
 Package pdftex.def Info: images/GreatHallPre.png used on input line 361.
 (pdftex.def)             Requested size: 369.88582pt x 61.63637pt.
-) [43 <./images/Union.jpg> <./images/GreatHallPre.png>]
+) [44 <./images/GreatHallPre.png>]
 \openout2 = `./Chapters/chapter7.aux'.
 
- (Chapters/chapter7.tex [44
 
-
-
-]
+(Chapters/chapter7.tex
 Chapter 7.
-[45]) [46]
+[45
+
+
+
+]) [46]
 \openout2 = `./Chapters/chapter8.aux'.
 
  (Chapters/chapter8.tex
@@ -969,7 +955,13 @@ Chapter 8.
 ]) [48] (fyp.bbl [49
 
 
-]) [50]
+]
+Overfull \hbox (161.59259pt too wide) in paragraph at lines 133--137
+\T1/cmr/m/n/10 https://commons.wikimedia.org/wiki/File:General_view_of_Leeds,_f
+rom_Robert_N._Dennis_collection_of_stereoscopic_views.jpg.  
+ []
+
+) [50]
 \openout2 = `appendix.aux'.
 
  (appendix.tex [51
@@ -987,36 +979,32 @@ Appendix B.
 ) [55] (fyp.aux (prelude.aux) (Chapters/chapter1.aux) (Chapters/chapter2.aux)
 (Chapters/chapter3.aux) (Chapters/chapter4.aux) (Chapters/chapter5.aux)
 (Chapters/chapter6.aux) (Chapters/chapter7.aux) (Chapters/chapter8.aux)
-(appendix.aux))
-
-LaTeX Warning: There were undefined references.
-
- ) 
+(appendix.aux)) ) 
 Here is how much of TeX's memory you used:
- 7666 strings out of 493334
- 122712 string characters out of 3143155
- 344777 words of memory out of 3000000
- 10920 multiletter control sequences out of 15000+200000
+ 7668 strings out of 493334
+ 123039 string characters out of 3143155
+ 344789 words of memory out of 3000000
+ 10933 multiletter control sequences out of 15000+200000
  14642 words of font info for 28 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,15n,64p,2093b,417s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ect
-i1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi
-600\ecbx2488.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen
-\ec\dpi600\ecbx2074.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\j
-knappen\ec\dpi600\tcrm1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\l
-jfour\jknappen\ec\dpi600\ecrm1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fon
-ts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\
-2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk>{D:/Programs/MimTex/fonts/en
-c/dvips/base/8r.enc} <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jkna
-ppen\ec\dpi600\ecbx1440.pk><D:/Programs/MimTex/fonts/type1/public/amsfonts/cm/c
-mmi10.pfb><D:/Programs/MimTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/Prog
-rams/MimTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/Programs/MimTex/fonts/t
-ype1/public/amsfonts/cm/cmsy10.pfb><D:/Programs/MimTex/fonts/type1/urw/times/ut
-mr8a.pfb>
-Output written on fyp.pdf (61 pages, 44768263 bytes).
+ <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappe
+n\ec\dpi600\ecti1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\
+jknappen\ec\dpi600\ecbx2488.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\
+ljfour\jknappen\ec\dpi600\ecbx2074.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fo
+nts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk> <C:\Users\KV\AppData\Local\MiKTeX
+\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk> <C:\Users\KV\AppData\Local
+\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk> <C:\Users\KV\AppDat
+a\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk>{D:/Programs/
+MimTex/fonts/enc/dvips/base/8r.enc} <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts
+\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk><D:/Programs/MimTex/fonts/type1/publi
+c/amsfonts/cm/cmmi10.pfb><D:/Programs/MimTex/fonts/type1/public/amsfonts/cm/cmr
+10.pfb><D:/Programs/MimTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/Programs
+/MimTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/Programs/MimTex/fonts/typ
+e1/urw/times/utmr8a.pfb>
+Output written on fyp.pdf (61 pages, 51074388 bytes).
 PDF statistics:
- 611 PDF objects out of 1000 (max. 8388607)
+ 613 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 131 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 146 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,7 +1,7 @@
 \begin{thebibliography}{10}
 
 \bibitem{aerotwist}
-Aerotwist.
+{Aerotwist}.
 \newblock Create your own environment maps.
 
 \bibitem{flowermodel}
@@ -10,15 +10,11 @@ Aerotwist.
 \newblock [Online]. Available from:
   https://www.cgtrader.com/free-3d-models/plant-tree/flower/single-rose-flower.
 
-\bibitem{vivedev}
-H.~Corporation.
-\newblock Vive develop for vive and steam vr, 2016.
+\bibitem{oculusvive}
+{Digital Trends Staff}.
+\newblock Oculus rift vs. htc vive | spec comparison | digital trends, 2016.
 \newblock [Online]. Available from:
-  https://developer.viveport.com/us/develop\_portal/.
-
-\bibitem{unrealCubeMaps}
-U.~Engine.
-\newblock Creating cube maps.
+  http://www.digitaltrends.com/virtual-reality/oculus-rift-vs-htc-vive/.
 
 \bibitem{unrealfeatures}
 {Epic Games}.
@@ -32,16 +28,22 @@ U.~Engine.
 \newblock [Online]. Available from:
   https://docs.unrealengine.com/latest/INT/Engine/.
 
+\bibitem{whatisunreal}
+{Epic Games}.
+\newblock What is unreal engine 4, 2016.
+\newblock [Online]. Available from:
+  https://www.unrealengine.com/what-is-unreal-engine-4.
+
 \bibitem{elitedangerous}
 {Frontier Developments}.
 \newblock Elite dangerous.
 \newblock [Online]. Available from: http://store.steampowered.com/app/359320/.
 
-\bibitem{whatisunreal}
-E.~Games.
-\newblock What is unreal engine 4, 2016.
+\bibitem{gearmenu}
+{Gadget Guy}.
+\newblock Samsung gear home menu.
 \newblock [Online]. Available from:
-  https://www.unrealengine.com/what-is-unreal-engine-4.
+  http://www.gadgetguy.com.au/product/samsung-gear-vr-innovator-edition-for-galaxy-s6s6-edge/samsung-gs6-gear-vr-review-2015-screenshot-home-menu/.
 
 \bibitem{cardboarddev}
 Google.
@@ -64,6 +66,12 @@ C.~Hoffman.
 \newblock [Online]. Available from:
   http://www.pcworld.com/article/3053527/linux/the-htc-vive-and-valves-steamvr-dont-yet-support-linux-and-steamos.html.
 
+\bibitem{vivedev}
+{HTC Corporation}.
+\newblock Vive develop for vive and steam vr, 2016.
+\newblock [Online]. Available from:
+  https://developer.viveport.com/us/develop\_portal/.
+
 \bibitem{fov}
 C.~Hunt.
 \newblock Field of view face-off: Rift vs vive vs gear vr vs psvr, 2016.
@@ -81,16 +89,20 @@ M.~Masters.
 \newblock [Online]. Available from:
   http://blog.digitaltutors.com/unreal-engine-4-powering-next-generation-games/.
 
-\bibitem{oculusvive}
-D.~T. Staff.
-\newblock Oculus rift vs. htc vive | spec comparison | digital trends, 2016.
+\bibitem{gearbuttons}
+Phandroid.
+\newblock Samsung gear side view.
 \newblock [Online]. Available from:
-  http://www.digitaltrends.com/virtual-reality/oculus-rift-vs-htc-vive/.
+  http://phandroid.s3.amazonaws.com/wp-content/uploads/2016/08/Samsung-Gear-VR-2016-new-touchpad.png.
 
 \bibitem{unity3d}
-U.~Technologies.
+{Unity Technologies}.
 \newblock Unity - game engine, tools and multiplatform, 2016.
 \newblock [Online]. Available from: https://unity3d.com/unity.
+
+\bibitem{unrealCubeMaps}
+{Unreal Engine}.
+\newblock Creating cube maps.
 
 \bibitem{thelab}
 {Valve}.
@@ -116,6 +128,12 @@ C.~Wheatstone.
 \newblock Contributions to the physiology of vision. part the frist. on some
   remarkable, and hitherto unobserved, phenonmena of binocolur vision.
 \newblock {\em Philosophical Transactions}, 128:371--394, 1838.
+
+\bibitem{leedsstereoscopic}
+Wikimedia.
+\newblock General view of leeds stereoscopic image.
+\newblock [Online]. Available from:
+  https://commons.wikimedia.org/wiki/File:General\_view\_of\_Leeds,\_from\_Robert\_N.\_Dennis\_collection\_of\_stereoscopic\_views.jpg.
 
 \bibitem{unitywiki}
 Wikipedia.

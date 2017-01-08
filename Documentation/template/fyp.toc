@@ -59,7 +59,7 @@
 \contentsline {section}{\numberline {6.5}Flow Dependant Flora}{40}
 \contentsline {section}{\numberline {6.6}Game Goal Computation}{41}
 \contentsline {section}{\numberline {6.7}Sky Textures}{41}
-\contentsline {section}{\numberline {6.8}Disc Respawning}{43}
+\contentsline {section}{\numberline {6.8}Disc Respawning}{44}
 \contentsline {chapter}{\numberline {7}Testing and Evaluation}{45}
 \contentsline {section}{\numberline {7.1}Testing Against Requirements}{45}
 \contentsline {subsection}{\numberline {7.1.1}Student Testing Plan}{45}
