@@ -23,8 +23,8 @@
 \contentsline {subsection}{\numberline {3.1.1}Target Audience}{13}
 \contentsline {section}{\numberline {3.2}Feasibility Assessment}{13}
 \contentsline {subsection}{\numberline {3.2.1}Feasibility}{13}
-\contentsline {subsection}{\numberline {3.2.2}Technical Specifications}{13}
-\contentsline {subsubsection}{Hardware Requirements}{13}
+\contentsline {subsection}{\numberline {3.2.2}Technical Specifications}{14}
+\contentsline {subsubsection}{Hardware Requirements}{14}
 \contentsline {chapter}{\numberline {4}Project Management}{15}
 \contentsline {section}{\numberline {4.1}Methodology}{15}
 \contentsline {section}{\numberline {4.2}Schedule}{17}
@@ -55,24 +55,25 @@
 \contentsline {subsection}{\numberline {6.2.3}Terrain Generation}{36}
 \contentsline {subsection}{\numberline {6.2.4}Final Terrain}{37}
 \contentsline {section}{\numberline {6.3}User Interactive Reverse Towers Of Hanoi}{37}
-\contentsline {section}{\numberline {6.4}River Graph Flow}{38}
-\contentsline {section}{\numberline {6.5}Flow Dependant Flora}{40}
-\contentsline {section}{\numberline {6.6}Game Goal Computation}{41}
-\contentsline {section}{\numberline {6.7}Sky Textures}{41}
-\contentsline {section}{\numberline {6.8}Disc Respawning}{44}
-\contentsline {chapter}{\numberline {7}Testing and Evaluation}{45}
-\contentsline {section}{\numberline {7.1}Testing Against Requirements}{45}
-\contentsline {subsection}{\numberline {7.1.1}Student Testing Plan}{45}
-\contentsline {section}{\numberline {7.2}Client Evaluation}{45}
-\contentsline {section}{\numberline {7.3}Project Evaluation}{45}
-\contentsline {subsection}{\numberline {7.3.1}Schedule}{45}
-\contentsline {subsection}{\numberline {7.3.2}Additional Features}{46}
-\contentsline {subsection}{\numberline {7.3.3}Difficulties with the Project}{46}
-\contentsline {subsection}{\numberline {7.3.4}Meetings}{46}
-\contentsline {chapter}{\numberline {8}Conclusion}{47}
-\contentsline {section}{\numberline {8.1}Conclusion}{47}
-\contentsline {section}{\numberline {8.2}Future Work}{48}
-\contentsline {chapter}{References}{49}
-\contentsline {chapter}{Appendices}{51}
-\contentsline {chapter}{\numberline {A}External Material}{53}
-\contentsline {chapter}{\numberline {B}Ethical Issues Addressed}{55}
+\contentsline {section}{\numberline {6.4}River Graph Flow}{39}
+\contentsline {section}{\numberline {6.5}Flow Dependant Flora}{41}
+\contentsline {section}{\numberline {6.6}Game Goal Computation}{42}
+\contentsline {section}{\numberline {6.7}Sky Textures}{42}
+\contentsline {section}{\numberline {6.8}Disc Respawning}{45}
+\contentsline {chapter}{\numberline {7}Testing and Evaluation}{47}
+\contentsline {section}{\numberline {7.1}Regular Testing}{47}
+\contentsline {section}{\numberline {7.2}Testing Against Requirements}{47}
+\contentsline {subsection}{\numberline {7.2.1}Student Testing Plan}{48}
+\contentsline {section}{\numberline {7.3}Client Evaluation}{48}
+\contentsline {section}{\numberline {7.4}Project Evaluation}{48}
+\contentsline {subsection}{\numberline {7.4.1}Schedule}{48}
+\contentsline {subsection}{\numberline {7.4.2}Additional Features}{48}
+\contentsline {subsection}{\numberline {7.4.3}Difficulties with the Project}{49}
+\contentsline {subsection}{\numberline {7.4.4}Meetings}{49}
+\contentsline {chapter}{\numberline {8}Conclusion}{51}
+\contentsline {section}{\numberline {8.1}Conclusion}{51}
+\contentsline {section}{\numberline {8.2}Future Work}{52}
+\contentsline {chapter}{References}{53}
+\contentsline {chapter}{Appendices}{55}
+\contentsline {chapter}{\numberline {A}External Material}{57}
+\contentsline {chapter}{\numberline {B}Ethical Issues Addressed}{59}

@@ -4,6 +4,8 @@
 % \section{Problem Overview}
 % \lipsum[1-1] \cite{parikh1980adaptive}
 
+This section expands on the background the project is covering which is virtual reality. This research was conducted to understand the current state of virtual reality and what bleeding edge technology platforms can offer to be used in the development in this project.
+
 \section{Virtual Reality}
 	Virtual Reality is a technology that has been around since the early 19th century, although in a primitive form through the use of stereoscopic photos \cite{stereoscopy}. Stereoscopic photos work by using two photos that are taken of the same place but are slightly offset from each other, as can be seen in \ref{fig:stereoscope1}. This creates an illusion of depth for the person viewing the images, when viewed through a stereoscope. A stereoscope is a viewing device that only allows one eye to see one of the two images, so each eye sees a similar, yet different image, and this gives the illusion of depth. Stereoscopic vision is the same technology used in current Virtual Reality headsets although now the images are moving.
 
@@ -82,7 +84,7 @@ The Samsung Gear VR has a few extra features compared to the Google Cardboard, f
 \end{itemize}
 
 \begin{figure}[h]
-	\includegraphics[width=\textwidth]{gearcontrols}
+	\includegraphics[width=13cm]{gearcontrols}
 	\centering
 	\caption{Image showing the hardware controls on the Samsung Gear VR \cite{gearbuttons}}
 	\label{fig:gearcontrols}
@@ -94,7 +96,6 @@ The Samsung Gear VR will not be used for this project as again it has several dr
 	\item It only tracks rotational movement, not displacement, which makes it less immersive than the other options
 	\item The Samsung Gear VR has very primitive control, which are only the buttons and touchpad on the side of the headset
 \end{itemize}		
-
 
 \subsection{Oculus Rift}
 The Oculus Rift was the first of the two to be released and is inferior in terms of the level of immersion that can be achieved, as currently Oculus only supports interfacing with the virtual world through a third party traditional controller that simply uses buttons and joysticks. The Oculus Rift tracks by using the single camera to pick up infrared light that is emitted by points on the headset. These can be used to track the headset as they blink in a specific pattern, which the sensor knows, and it then uses that to determine the position the headset is in.
@@ -223,4 +224,9 @@ The Unreal Engine offers many features for people with little to no programming 
 	\end{itemize}
 \end{itemize}
 
-Unreal Engine's full list of features can be found on their documentation site \cite{unrealfeaturelist}
+Unreal Engine's full list of features can be found on their documentation site \cite{unrealfeaturelist}.
+
+As seen above, there are many features that are already built in the engine, but there are few that are not included which are not trivial to implement. An example feature is the procedural generation of terrain. Unreal has landscaping tool, but it does not have the ability to programmatically produce terrain procedurally. This feature can be used to generate terrain with certain features such as randomly generated rivers. The procedural terrain generation will need to take into account the river canals and build a terrain around them.
+\newline
+\par
+Other features that can be implemented which are not given by Unreal Engine are outlined in Chapter 5: Design such as river graph flow logic. This is where weighted directed graph logic is implemented on to rivers in a terrain as a river flows. As well as the implementation of Towers of Hanoi logic through the exploitation of collision triggers of Unreal.
