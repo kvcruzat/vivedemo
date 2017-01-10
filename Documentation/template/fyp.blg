@@ -1,4 +1,6 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: fyp.aux
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: fyp.aux
 The style file: abbrv.bst
 A level-1 auxiliary file: prelude.aux
 A level-1 auxiliary file: ./Chapters/chapter1.aux
@@ -11,3 +13,44 @@ A level-1 auxiliary file: ./Chapters/chapter7.aux
 A level-1 auxiliary file: ./Chapters/chapter8.aux
 A level-1 auxiliary file: appendix.aux
 Database file #1: refs.bib
+You've used 28 entries,
+            2118 wiz_defined-function locations,
+            617 strings with 7557 characters,
+and the built_in function-call counts, 5778 in all, are:
+= -- 520
+> -- 196
+< -- 0
++ -- 87
+- -- 56
+* -- 166
+:= -- 953
+add.period$ -- 80
+call.type$ -- 28
+change.case$ -- 112
+chr.to.int$ -- 0
+cite$ -- 28
+duplicate$ -- 200
+empty$ -- 621
+format.name$ -- 56
+if$ -- 1251
+int.to.chr$ -- 0
+int.to.str$ -- 28
+missing$ -- 1
+newline$ -- 139
+num.names$ -- 56
+pop$ -- 270
+preamble$ -- 1
+purify$ -- 84
+quote$ -- 0
+skip$ -- 191
+stack$ -- 0
+substring$ -- 168
+swap$ -- 28
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 112
+warning$ -- 0
+while$ -- 58
+width$ -- 30
+write$ -- 258

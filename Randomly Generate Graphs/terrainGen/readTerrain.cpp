@@ -129,49 +129,13 @@ int readTerrain::readTerrainFileAndOutputM(std::vector <std::vector<float> > ter
 
 					modelFile << "Face " << index + 1 << " " << p1Index << " " << 
 						p4Index << " " << p2Index << std::endl;  
-
-					//Add two faces for each square to indices vector
-					// indices.push_back(p1Index);
-					// indices.push_back(p3Index);
-					// indices.push_back(p4Index);
-
-					// indices.push_back(p1Index);
-					// indices.push_back(p4Index);
-					// indices.push_back(p2Index);
 				} catch (std::bad_alloc& ba)
 				{
 					std::cout << "Caught bad_alloc" << std::endl;
-					// std::cout << p1Index << std::endl;
-					// std::cout << p2Index << std::endl;
-					// std::cout << p3Index << std::endl;
-					// std::cout << p4Index << std::endl;
-					// std::cout << indices.size() << std::endl;
-					// std::cout << i << std::endl;
-					// std::cout << numLines << std::endl;
-					// std::cout << j << std::endl;
-					// std::cout << numCols << std::endl;
-					// return 0;
 				}
 			}
 		}
-
-		// std::cout << indices.size() / 3 << std::endl;
-		// std::cout << (numLines - 1) * (numCols - 1) * 2 << std::endl;
-
-		//Loop through and write indices to file
-		// for (int i = 0; i < indices.size() / 3; i++)
-		// {
-		// 	modelFile << "Face " << i << " " << indices[3 * i] << " " << 
-		// 	indices[(3 * i) + 1] << " " << indices[(3 * i) + 2]  << std::endl; 
-		// } 
 	}
 
 	return 1;
 }
-
-// int main (int argc, char *argv[])
-// {
-// 	readTerrainFileAndOutputM(argv[1]);
-
-// 	return 1;
-// }
