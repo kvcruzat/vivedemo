@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.6.28)  9 JAN 2017 13:43
 entering extended mode
  restricted \write18 enabled.
@@ -9,6 +10,17 @@ Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/base/book.cls
 Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/base/bk10.clo
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.11.6)  9 JAN 2017 03:10
+entering extended mode
+**./fyp.tex
+(fyp.tex
+LaTeX2e <2016/03/31> patch level 3
+Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
+(D:\Programs\MimTex\tex\latex\base\book.cls
+Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
+(D:\Programs\MimTex\tex\latex\base\bk10.clo
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 File: bk10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -23,6 +35,7 @@ File: bk10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
+<<<<<<< HEAD
 )
 (./config.tex
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/setspace/setspac
@@ -49,6 +62,27 @@ Package ifvtex Info: VTeX not detected.
 )
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/generic/ifxetex/ifxete
 x.sty
+=======
+) (config.tex
+(D:\Programs\MimTex\tex\latex\setspace\setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(D:\Programs\MimTex\tex\latex\geometry\geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(D:\Programs\MimTex\tex\latex\graphics\keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(D:\Programs\MimTex\tex\generic\oberdiek\ifpdf.sty
+Package: ifpdf 2016/05/14 v3.1 Provides the ifpdf switch
+)
+(D:\Programs\MimTex\tex\generic\oberdiek\ifvtex.sty
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(D:\Programs\MimTex\tex\generic\ifxetex\ifxetex.sty
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
 \Gm@cnth=\count88
@@ -63,14 +97,21 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layouthoffset=\dimen109
 \Gm@layoutvoffset=\dimen110
 \Gm@dimlist=\toks15
+<<<<<<< HEAD
 )
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/appendix/appendi
 x.sty
+=======
+
+(D:\Programs\MimTex\tex\latex\geometry\geometry.cfg))
+(D:\Programs\MimTex\tex\latex\appendix\appendix.sty
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 Package: appendix 2009/09/02 v1.2b extra appendix facilities
 \c@@pps=\count91
 \c@@ppsavesec=\count92
 \c@@ppsaveapp=\count93
 )
+<<<<<<< HEAD
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/lipsum/lipsum.st
 y
 Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
@@ -88,12 +129,27 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 l.tex
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/generic/xkeyval/xkvuti
 ls.tex
+=======
+(D:\Programs\MimTex\tex\latex\lipsum\lipsum.sty
+Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
+\c@lips@count=\count94
+)
+(D:\Programs\MimTex\tex\latex\adjustbox\adjustbox.sty
+Package: adjustbox 2012/05/21 v1.0 Adjusting TeX boxes (trim, clip, ...)
+
+(D:\Programs\MimTex\tex\latex\xkeyval\xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(D:\Programs\MimTex\tex\generic\xkeyval\xkeyval.tex
+(D:\Programs\MimTex\tex\generic\xkeyval\xkvutils.tex
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 \XKV@toks=\toks16
 \XKV@tempa@toks=\toks17
 )
 \XKV@depth=\count95
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
+<<<<<<< HEAD
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/adjustbox/adjcal
 c.sty
 Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
@@ -117,10 +173,30 @@ Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/graphics-cfg/gra
 phics.cfg
+=======
+(D:\Programs\MimTex\tex\latex\adjustbox\adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+(D:\Programs\MimTex\tex\latex\adjustbox\trimclip.sty
+Package: trimclip 2012/05/16 v1.0 Trim and clip general TeX material
+
+(D:\Programs\MimTex\tex\latex\graphics\graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(D:\Programs\MimTex\tex\latex\graphics\graphics.sty
+Package: graphics 2016/07/10 v1.0t Standard LaTeX Graphics (DPC,SPQR)
+
+(D:\Programs\MimTex\tex\latex\graphics\trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(D:\Programs\MimTex\tex\latex\00miktex\graphics.cfg
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
 
+<<<<<<< HEAD
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/pdftex-def/pdfte
 x.def
 File: pdftex.def 2016/06/17 v0.06h Graphics/color for pdfTeX
@@ -131,6 +207,15 @@ Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
 )
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/generic/oberdiek/ltxcm
 ds.sty
+=======
+(D:\Programs\MimTex\tex\latex\graphics-def\pdftex.def
+File: pdftex.def 2016/07/10 v0.06j Graphics/color for pdfTeX
+
+(D:\Programs\MimTex\tex\generic\oberdiek\infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(D:\Programs\MimTex\tex\generic\oberdiek\ltxcmds.sty
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count96
@@ -138,8 +223,12 @@ Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen111
 \Gin@req@width=\dimen112
 )
+<<<<<<< HEAD
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/collectbox/colle
 ctbox.sty
+=======
+(D:\Programs\MimTex\tex\latex\collectbox\collectbox.sty
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
 \collectedbox=\box26
 )
@@ -149,8 +238,12 @@ Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
 \tc@ury=\dimen116
 Package trimclip Info: Using driver 'tc-pdftex.def'.
 
+<<<<<<< HEAD
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/adjustbox/tc-pdf
 tex.def
+=======
+(D:\Programs\MimTex\tex\latex\adjustbox\tc-pdftex.def
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
 ))
 \adjbox@Width=\dimen117
@@ -158,6 +251,7 @@ File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
 \adjbox@Depth=\dimen119
 \adjbox@Totalheight=\dimen120
 
+<<<<<<< HEAD
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/ifoddpage/ifoddp
 age.sty
 Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
@@ -165,12 +259,20 @@ Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
 )
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/varwidth/varwidt
 h.sty
+=======
+(D:\Programs\MimTex\tex\latex\ifoddpage\ifoddpage.sty
+Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
+\c@checkoddpage=\count97
+)
+(D:\Programs\MimTex\tex\latex\ltxmisc\varwidth.sty
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box27
 \sift@deathcycles=\count98
 \@vwid@loff=\dimen121
 \@vwid@roff=\dimen122
 ))
+<<<<<<< HEAD
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2016/06/19 v1.99m Standard LaTeX package
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/base/t1enc.def
@@ -179,6 +281,16 @@ LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/base/textcomp.st
 y
+=======
+(D:\Programs\MimTex\tex\latex\base\fontenc.sty
+Package: fontenc 2016/06/19 v1.99m Standard LaTeX package
+
+(D:\Programs\MimTex\tex\latex\base\t1enc.def
+File: t1enc.def 2016/06/19 v1.99m Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+))
+(D:\Programs\MimTex\tex\latex\base\textcomp.sty
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 Package: textcomp 2016/06/19 v1.99m Standard LaTeX package
 Package textcomp Info: Sub-encoding information:
 (textcomp)               5 = only ISO-Adobe without \textcurrency
@@ -193,7 +305,11 @@ Package textcomp Info: Sub-encoding information:
 (textcomp)             See the documentation for details.
 Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
 
+<<<<<<< HEAD
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/base/ts1enc.def
+=======
+(D:\Programs\MimTex\tex\latex\base\ts1enc.def
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 )
 LaTeX Info: Redefining \oldstylenums on input line 334.
@@ -260,14 +376,22 @@ Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
 Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
 )
+<<<<<<< HEAD
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/graphics/epsfig.
 sty
+=======
+(D:\Programs\MimTex\tex\latex\graphics\epsfig.sty
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
 \epsfxsize=\dimen123
 \epsfysize=\dimen124
 )
+<<<<<<< HEAD
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/titlesec/titlese
 c.sty
+=======
+(D:\Programs\MimTex\tex\latex\titlesec\titlesec.sty
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
 \ttl@box=\box28
 \beforetitleunit=\skip43
@@ -279,8 +403,13 @@ Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
 \titlewidthlast=\dimen128
 \titlewidthfirst=\dimen129
 )
+<<<<<<< HEAD
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/fancyhdr/fancyhd
 r.sty
+=======
+(D:\Programs\MimTex\tex\latex\fancyhdr\fancyhdr.sty
+Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 \fancy@headwidth=\skip45
 \f@ncyO@elh=\skip46
 \f@ncyO@erh=\skip47
@@ -291,12 +420,20 @@ r.sty
 \f@ncyO@olf=\skip52
 \f@ncyO@orf=\skip53
 )
+<<<<<<< HEAD
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/etoolbox/etoolbo
 x.sty
 Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count99
 )
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/float/float.sty
+=======
+(D:\Programs\MimTex\tex\latex\etoolbox\etoolbox.sty
+Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count99
+)
+(D:\Programs\MimTex\tex\latex\float\float.sty
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count100
 \float@exts=\toks19
@@ -304,6 +441,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks20
 \@floatcapt=\box30
 )
+<<<<<<< HEAD
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/minted/minted.st
 y
 Package: minted 2016/06/21 v2.2.2 Yet another Pygments shim for LaTeX
@@ -322,6 +460,21 @@ Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/generic/oberdiek/iflua
 tex.sty
+=======
+(D:\Programs\MimTex\tex\latex\minted\minted.sty
+Package: minted 2016/10/31 v2.4.1 Yet another Pygments shim for LaTeX
+
+(D:\Programs\MimTex\tex\latex\oberdiek\kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(D:\Programs\MimTex\tex\generic\oberdiek\kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(D:\Programs\MimTex\tex\generic\oberdiek\etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+(D:\Programs\MimTex\tex\generic\oberdiek\ifluatex.sty
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )
@@ -330,8 +483,19 @@ Package etexcmds Info: Could not find \expanded.
 (etexcmds)             that some package has redefined \expanded.
 (etexcmds)             In the latter case, load this package earlier.
 )))
+<<<<<<< HEAD
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/fancyvrb/fancyvr
 b.sty
+=======
+(D:\Programs\MimTex\tex\latex\fvextra\fvextra.sty
+Package: fvextra 2016/09/02 v1.2.1 fvextra - extensions and patches for fancyvr
+b
+
+(D:\Programs\MimTex\tex\latex\base\ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(D:\Programs\MimTex\tex\latex\fancyvrb\fancyvrb.sty
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 Package: fancyvrb 2008/02/07
 
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
@@ -342,10 +506,57 @@ Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix
 \c@FancyVerbLine=\count102
 \FV@StepNumber=\count103
 \FV@OutFile=\write3
+<<<<<<< HEAD
 )
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 ) (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/tools/calc.sty
+=======
+) (D:\Programs\MimTex\tex\latex\upquote\upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+)
+(D:\Programs\MimTex\tex\latex\lineno\lineno.sty
+Package: lineno 2005/11/02 line numbers on paragraphs v4.41
+\linenopenalty=\count104
+\output=\toks21
+\linenoprevgraf=\count105
+\linenumbersep=\dimen130
+\linenumberwidth=\dimen131
+\c@linenumber=\count106
+\c@pagewiselinenumber=\count107
+\c@LN@truepage=\count108
+\c@internallinenumber=\count109
+\c@internallinenumbers=\count110
+\quotelinenumbersep=\dimen132
+\bframerule=\dimen133
+\bframesep=\dimen134
+\bframebox=\box32
+LaTeX Info: Redefining \\ on input line 3056.
+)
+\c@FV@TrueTabGroupLevel=\count111
+\c@FV@TrueTabCounter=\count112
+\FV@TabBox@Group=\box33
+\FV@TmpLength=\skip54
+\c@FV@HighlightLinesStart=\count113
+\c@FV@HighlightLinesStop=\count114
+\FV@BreakIndent=\dimen135
+\FV@BreakSymbolSepLeft=\dimen136
+\FV@BreakSymbolSepRight=\dimen137
+\FV@BreakSymbolIndentLeft=\dimen138
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 562.
+
+
+(D:\Programs\MimTex\tex\latex\base\t1cmtt.fd
+File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+\FV@BreakSymbolIndentRight=\dimen139
+\c@FancyVerbLineBreakLast=\count115
+\FV@LineBox=\box34
+\FV@LineIndentBox=\box35
+)
+(D:\Programs\MimTex\tex\latex\tools\calc.sty
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count104
 \calc@Bcount=\count105
@@ -358,6 +569,7 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count106
 \calc@Cskip=\skip56
 )
+<<<<<<< HEAD
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/tools/shellesc.s
 ty
 Package: shellesc 2016/06/07 v0.02a unified shell escape interface for LaTeX
@@ -369,6 +581,16 @@ Package: ifplatform 2010/10/22 v0.4 Testing for the operating system
 
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/generic/oberdiek/pdfte
 xcmds.sty
+=======
+(D:\Programs\MimTex\tex\latex\tools\shellesc.sty
+Package: shellesc 2016/06/07 v0.02a unified shell escape interface for LaTeX
+Package shellesc Info: Restricted shell escape enabled on input line 69.
+)
+(D:\Programs\MimTex\tex\latex\ifplatform\ifplatform.sty
+Package: ifplatform 2010/10/22 v0.4 Testing for the operating system
+
+(D:\Programs\MimTex\tex\generic\oberdiek\pdftexcmds.sty
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: LuaTeX not detected.
@@ -376,25 +598,35 @@ Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
+<<<<<<< HEAD
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/generic/oberdiek/catch
 file.sty
+=======
+(D:\Programs\MimTex\tex\generic\oberdiek\catchfile.sty
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
 )
 
 Package ifplatform Warning: 
     shell escape is disabled, so I can only detect \ifwindows.
 
+<<<<<<< HEAD
 )
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/generic/xstring/xstrin
 g.sty
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/generic/xstring/xstrin
 g.tex
+=======
+) (D:\Programs\MimTex\tex\latex\xstring\xstring.sty
+(D:\Programs\MimTex\tex\generic\xstring\xstring.tex
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 \@xs@message=\write4
 \integerpart=\count107
 \decimalpart=\count108
 )
 Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
 )
+<<<<<<< HEAD
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/lineno/lineno.st
 y
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
@@ -416,6 +648,9 @@ LaTeX Info: Redefining \\ on input line 3056.
 )
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/framed/framed.st
 y
+=======
+(D:\Programs\MimTex\tex\latex\framed\framed.sty
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \OuterFrameSep=\skip57
 \fb@frw=\dimen137
@@ -445,11 +680,20 @@ File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 \@float@every@listing=\toks22
 \c@listing=\count119
 )
+<<<<<<< HEAD
 runsystem(mkdir -p _minted-fyp)...disabled (restricted).
+=======
+runsystem(if not exist _minted-fyp mkdir _minted-fyp)...disabled (restricted).
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 
 
 ! Package minted Error: You must invoke LaTeX with the -shell-escape flag.
 
+<<<<<<< HEAD
+=======
+! Package minted Error: You must invoke LaTeX with the -shell-escape flag.
+
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 See the minted package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
@@ -465,10 +709,35 @@ Package geometry Warning: Over-specification in `h'-direction.
 Package geometry Warning: Over-specification in `v'-direction.
     `height' (845.04684pt) is ignored.
 
+<<<<<<< HEAD
 )
 runsystem(which pygmentize && touch fyp.aex)...disabled (restricted).
 
 
+=======
+) (D:\Programs\MimTex\tex\latex\xcolor\xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(D:\Programs\MimTex\tex\latex\00miktex\color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+runsystem(for ^%i in (pygmentize.exe pygmentize.bat pygmentize.cmd) do set > fy
+p.aex <nul: /p x=^%~$PATH:i>> fyp.aex)...disabled (restricted).
+
+
+\minted@apppathifexists=
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 
 ! Package minted Error: You must have `pygmentize' installed to use this packag
 e.
@@ -480,10 +749,17 @@ Type  H <return>  for immediate help.
 l.9 \begin{document}
                     
 ? 
+<<<<<<< HEAD
 (./fyp.aux (./prelude.aux) (./Chapters/chapter1.aux) (./Chapters/chapter2.aux)
 (./Chapters/chapter3.aux) (./Chapters/chapter4.aux) (./Chapters/chapter5.aux)
 (./Chapters/chapter6.aux) (./Chapters/chapter7.aux) (./Chapters/chapter8.aux)
 (./appendix.aux))
+=======
+(fyp.aux (prelude.aux) (Chapters/chapter1.aux) (Chapters/chapter2.aux)
+(Chapters/chapter3.aux) (Chapters/chapter4.aux) (Chapters/chapter5.aux)
+(Chapters/chapter6.aux) (Chapters/chapter7.aux) (Chapters/chapter8.aux)
+(appendix.aux))
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 \openout1 = `fyp.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
@@ -500,8 +776,12 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
 LaTeX Font Info:    ... okay on input line 9.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 9.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 9.
+<<<<<<< HEAD
 
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/base/ts1cmr.fd
+=======
+ (D:\Programs\MimTex\tex\latex\base\ts1cmr.fd
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 9.
@@ -540,9 +820,13 @@ LaTeX Font Info:    ... okay on input line 9.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+<<<<<<< HEAD
 
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/context/base/mkii/supp
 -pdf.mkii
+=======
+(D:\Programs\MimTex\tex\context\base\supp-pdf.mkii
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count120
 \scratchdimen=\dimen146
@@ -555,6 +839,7 @@ LaTeX Font Info:    ... okay on input line 9.
 \MPnumerator=\count124
 \makeMPintoPDFobject=\count125
 \everyMPtoPDFconversion=\toks24
+<<<<<<< HEAD
 )
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/oberdiek/epstopd
 f-base.sty
@@ -566,6 +851,15 @@ Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
 
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/generic/oberdiek/kvdef
 inekeys.sty
+=======
+) (D:\Programs\MimTex\tex\latex\oberdiek\epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(D:\Programs\MimTex\tex\latex\oberdiek\grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+(D:\Programs\MimTex\tex\generic\oberdiek\kvdefinekeys.sty
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
 ))
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -601,7 +895,11 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
 \openout2 = `prelude.aux'.
 
+<<<<<<< HEAD
  (./prelude.tex
+=======
+ (prelude.tex
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: a4paper
@@ -636,7 +934,11 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 
 LaTeX Font Info:    Try loading font information for T1+ptm on input line 2.
 
+<<<<<<< HEAD
 (/home/cserv1_a/apps/install/texlive/2016/texmf-dist/tex/latex/psnfss/t1ptm.fd
+=======
+(D:\Programs\MimTex\tex\latex\psnfss\t1ptm.fd
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 ) <logo_black.png, id=1, 770.88pt x 219.82124pt>
 File: logo_black.png Graphic file (type png)
@@ -681,7 +983,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--19
 \openout2 = `./Chapters/chapter1.aux'.
 
 
+<<<<<<< HEAD
 (./Chapters/chapter1.tex
+=======
+(Chapters/chapter1.tex
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 Chapter 1.
 [1
 
@@ -692,7 +998,11 @@ Chapter 1.
 
  (./Chapters/chapter2.tex
 Chapter 2.
+<<<<<<< HEAD
 <images/stereoscope.jpg, id=39, 20.06767pt x 20.03273pt>
+=======
+<images/stereoscope.jpg, id=38, 20.06767pt x 20.03273pt>
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 File: images/stereoscope.jpg Graphic file (type jpg)
 
 <use images/stereoscope.jpg>
@@ -703,21 +1013,33 @@ Package pdftex.def Info: images/stereoscope.jpg used on input line 13.
 
 
  <./images/stereoscope.jpg>] [4]
+<<<<<<< HEAD
 <images/cardboardscreen.png, id=46, 1927.2pt x 1084.05pt>
+=======
+<images/cardboardscreen.png, id=45, 1927.2pt x 1084.05pt>
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 File: images/cardboardscreen.png Graphic file (type png)
 
 <use images/cardboardscreen.png>
 Package pdftex.def Info: images/cardboardscreen.png used on input line 49.
 (pdftex.def)             Requested size: 455.24411pt x 256.07509pt.
 
+<<<<<<< HEAD
 <images/gearscreen.jpg, id=47, 1204.5pt x 658.46pt>
+=======
+<images/gearscreen.jpg, id=46, 1204.5pt x 658.46pt>
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 File: images/gearscreen.jpg Graphic file (type jpg)
 
 <use images/gearscreen.jpg>
 Package pdftex.def Info: images/gearscreen.jpg used on input line 72.
 (pdftex.def)             Requested size: 455.24411pt x 248.87106pt.
  [5 <./images/cardboardscreen.png>]
+<<<<<<< HEAD
 <images/gearcontrols.png, id=51, 1226.5825pt x 653.44125pt>
+=======
+<images/gearcontrols.png, id=50, 1226.5825pt x 653.44125pt>
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 File: images/gearcontrols.png Graphic file (type png)
 
 <use images/gearcontrols.png>
@@ -735,7 +1057,11 @@ Overfull \hbox (47.07957pt too wide) in paragraph at lines 129--141
 ] [10]) [11]
 \openout2 = `./Chapters/chapter3.aux'.
 
+<<<<<<< HEAD
  (./Chapters/chapter3.tex [12
+=======
+ (Chapters/chapter3.tex [12
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 
 
 
@@ -750,11 +1076,19 @@ Chapter 4.
 
 
 
+<<<<<<< HEAD
 ] <images/GanttChart.PNG, id=85, 280.04625pt x 864.22874pt>
 File: images/GanttChart.PNG Graphic file (type png)
 
 <use images/GanttChart.PNG>
 Package pdftex.def Info: images/GanttChart.PNG used on input line 17.
+=======
+] <images/GanttChart.png, id=84, 280.04625pt x 864.22874pt>
+File: images/GanttChart.png Graphic file (type png)
+
+<use images/GanttChart.png>
+Package pdftex.def Info: images/GanttChart.png used on input line 17.
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 (pdftex.def)             Requested size: 212.0639pt x 654.41338pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -765,24 +1099,37 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Overfull \vbox (7.74823pt too high) has occurred while \output is active []
 
 
+<<<<<<< HEAD
 [17 <./images/GanttChart.PNG>] [18
+=======
+[17 <./images/GanttChart.png>] [18
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 
 ]) [19]
 \openout2 = `./Chapters/chapter5.aux'.
 
+<<<<<<< HEAD
  (./Chapters/chapter5.tex [20
+=======
+ (Chapters/chapter5.tex [20
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 
 
 
 ]
 Chapter 5.
+<<<<<<< HEAD
 <images/brainstorm.jpg, id=103, 3585.395pt x 2999.205pt>
+=======
+<images/brainstorm.jpg, id=102, 3585.395pt x 2999.205pt>
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 File: images/brainstorm.jpg Graphic file (type jpg)
 
 <use images/brainstorm.jpg>
 Package pdftex.def Info: images/brainstorm.jpg used on input line 13.
 (pdftex.def)             Requested size: 455.24411pt x 380.80328pt.
 
+<<<<<<< HEAD
 <images/brainstormtable.PNG, id=104, 862.72313pt x 324.46219pt>
 File: images/brainstormtable.PNG Graphic file (type png)
 
@@ -791,6 +1138,16 @@ Package pdftex.def Info: images/brainstormtable.PNG used on input line 20.
 (pdftex.def)             Requested size: 455.24411pt x 171.2116pt.
  [21] [22 <./images/brainstorm.jpg> <./images/brainstormtable.PNG>]
 <images/narrowedtable.png, id=112, 782.925pt x 1014.79124pt>
+=======
+<images/brainstormtable.png, id=103, 862.72313pt x 324.46219pt>
+File: images/brainstormtable.png Graphic file (type png)
+
+<use images/brainstormtable.png>
+Package pdftex.def Info: images/brainstormtable.png used on input line 20.
+(pdftex.def)             Requested size: 455.24411pt x 171.2116pt.
+ [21] [22 <./images/brainstorm.jpg> <./images/brainstormtable.png>]
+<images/narrowedtable.png, id=111, 782.925pt x 1014.79124pt>
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 File: images/narrowedtable.png Graphic file (type png)
 
 <use images/narrowedtable.png>
@@ -804,7 +1161,11 @@ Package pdftex.def Info: images/narrowedtable.png used on input line 30.
 
 (./Chapters/chapter6.tex
 Chapter 6.
+<<<<<<< HEAD
 <images/VRRoom.jpg, id=119, 4175.6pt x 3131.7pt>
+=======
+<images/VRRoom.jpg, id=118, 4175.6pt x 3131.7pt>
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 File: images/VRRoom.jpg Graphic file (type jpg)
  <use images/VRRoom.jpg>
 Package pdftex.def Info: images/VRRoom.jpg used on input line 13.
@@ -815,13 +1176,18 @@ Package pdftex.def Info: images/VRRoom.jpg used on input line 13.
 
 
  <./images/VRRoom.jpg>]
+<<<<<<< HEAD
 <images/triangulation7.png, id=124, 301.8778pt x 303.38344pt>
+=======
+<images/triangulation7.png, id=123, 301.8778pt x 303.38344pt>
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 File: images/triangulation7.png Graphic file (type png)
 
 <use images/triangulation7.png>
 Package pdftex.def Info: images/triangulation7.png used on input line 43.
 (pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
  [26] [27 <./images/triangulation7.png>]
+<<<<<<< HEAD
 [28] [29] [30] <images/triangulation8.png, id=143, 866.48718pt x 618.05907pt>
 File: images/triangulation8.png Graphic file (type png)
 
@@ -920,11 +1286,105 @@ Package pdftex.def Info: images/coordtransform.png used on input line 271.
 File: images/bounds.PNG Graphic file (type png)
  <use images/bounds.PNG>
 Package pdftex.def Info: images/bounds.PNG used on input line 282.
+=======
+[28] [29] <images/triangulation8.png, id=139, 866.48718pt x 618.05907pt>
+File: images/triangulation8.png Graphic file (type png)
+
+<use images/triangulation8.png>
+Package pdftex.def Info: images/triangulation8.png used on input line 131.
+(pdftex.def)             Requested size: 455.24411pt x 324.72163pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [30]
+[31 <./images/triangulation8.png>]
+<images/triangulation1.png, id=147, 301.8778pt x 303.38344pt>
+File: images/triangulation1.png Graphic file (type png)
+
+<use images/triangulation1.png>
+Package pdftex.def Info: images/triangulation1.png used on input line 151.
+(pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
+
+<images/triangulation2.png, id=148, 301.8778pt x 303.38344pt>
+File: images/triangulation2.png Graphic file (type png)
+
+<use images/triangulation2.png>
+Package pdftex.def Info: images/triangulation2.png used on input line 160.
+(pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [32 <./images/triangulation1.png>]
+<images/triangulation3.png, id=152, 301.8778pt x 303.38344pt>
+File: images/triangulation3.png Graphic file (type png)
+
+<use images/triangulation3.png>
+Package pdftex.def Info: images/triangulation3.png used on input line 167.
+(pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
+ [33 <./images/triangulation2.png> <./images/triangulation3.png>]
+<images/triangulation4.png, id=156, 301.8778pt x 303.38344pt>
+File: images/triangulation4.png Graphic file (type png)
+
+<use images/triangulation4.png>
+Package pdftex.def Info: images/triangulation4.png used on input line 176.
+(pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
+
+<images/triangulation5.png, id=157, 301.8778pt x 303.38344pt>
+File: images/triangulation5.png Graphic file (type png)
+
+<use images/triangulation5.png>
+Package pdftex.def Info: images/triangulation5.png used on input line 186.
+(pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [34 <./images/triangulation4.png>]
+<images/triangulation6.png, id=161, 301.8778pt x 303.38344pt>
+File: images/triangulation6.png Graphic file (type png)
+
+<use images/triangulation6.png>
+Package pdftex.def Info: images/triangulation6.png used on input line 195.
+(pdftex.def)             Requested size: 284.52756pt x 285.94429pt.
+ [35 <./images/triangulation5.png> <./images/triangulation6.png>] <images/Diamo
+nd_Square.png, id=165, 1128.46594pt x 240.9pt>
+File: images/Diamond_Square.png Graphic file (type png)
+
+<use images/Diamond_Square.png>
+Package pdftex.def Info: images/Diamond_Square.png used on input line 224.
+(pdftex.def)             Requested size: 455.24411pt x 97.18535pt.
+ [36 <./images/Diamond_Square.png>]
+<images/finalTerrain.png, id=170, 589.4522pt x 578.91281pt>
+File: images/finalTerrain.png Graphic file (type png)
+
+<use images/finalTerrain.png>
+Package pdftex.def Info: images/finalTerrain.png used on input line 240.
+(pdftex.def)             Requested size: 455.24411pt x 447.10693pt.
+ [37 <./images/finalTerrain.png>]
+<images/rodcollision.png, id=175, 209.28188pt x 383.18156pt>
+File: images/rodcollision.png Graphic file (type png)
+
+<use images/rodcollision.png>
+Package pdftex.def Info: images/rodcollision.png used on input line 257.
+(pdftex.def)             Requested size: 142.26378pt x 260.4723pt.
+ [38 <./images/rodcollision.png>]
+<images/coordtransform.png, id=180, 1298.02588pt x 1001.8606pt>
+File: images/coordtransform.png Graphic file (type png)
+
+<use images/coordtransform.png>
+Package pdftex.def Info: images/coordtransform.png used on input line 274.
+(pdftex.def)             Requested size: 455.24411pt x 351.37495pt.
+
+<images/bounds.png, id=181, 699.36281pt x 425.33907pt>
+File: images/bounds.png Graphic file (type png)
+ <use images/bounds.png>
+Package pdftex.def Info: images/bounds.png used on input line 285.
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 (pdftex.def)             Requested size: 369.88582pt x 224.96133pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+<<<<<<< HEAD
 [37]
 Underfull \vbox (badness 1275) has occurred while \output is active []
 
@@ -992,21 +1452,105 @@ Package pdftex.def Info: images/GreatHallPre.png used on input line 383.
 
 
 (./Chapters/chapter7.tex [44
+=======
+[39]
+Underfull \vbox (badness 1275) has occurred while \output is active []
+
+ [40 <./images/coordtransform.png>]
+<images/flowerstates.png, id=189, 752.8125pt x 453.695pt>
+File: images/flowerstates.png Graphic file (type png)
+
+<use images/flowerstates.png>
+Package pdftex.def Info: images/flowerstates.png used on input line 321.
+(pdftex.def)             Requested size: 284.52756pt x 171.47823pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[41 <./images/bounds.png>] [42 <./images/flowerstates.png>]
+<images/level1Backdrop.png, id=197, 1212.02812pt x 558.58687pt>
+File: images/level1Backdrop.png Graphic file (type png)
+
+<use images/level1Backdrop.png>
+Package pdftex.def Info: images/level1Backdrop.png used on input line 340.
+(pdftex.def)             Requested size: 369.88582pt x 170.46677pt.
+
+<images/level2Backdrop.png, id=198, 1208.26407pt x 588.69937pt>
+File: images/level2Backdrop.png Graphic file (type png)
+
+<use images/level2Backdrop.png>
+Package pdftex.def Info: images/level2Backdrop.png used on input line 347.
+(pdftex.def)             Requested size: 369.88582pt x 180.21327pt.
+
+<images/level3Backdrop.png, id=199, 1204.5pt x 560.0925pt>
+File: images/level3Backdrop.png Graphic file (type png)
+
+<use images/level3Backdrop.png>
+Package pdftex.def Info: images/level3Backdrop.png used on input line 354.
+(pdftex.def)             Requested size: 369.88582pt x 171.99452pt.
+
+<images/RogerStevens.jpg, id=200, 5396.16pt x 2698.08pt>
+File: images/RogerStevens.jpg Graphic file (type jpg)
+
+<use images/RogerStevens.jpg>
+Package pdftex.def Info: images/RogerStevens.jpg used on input line 363.
+(pdftex.def)             Requested size: 369.88582pt x 184.93263pt.
+ [43
+
+ <./images/level1Backdrop.png> <./images/level2Backdrop.png> <./images/level3Ba
+ckdrop.png>]
+<images/GreatHall.jpg, id=205, 5396.16pt x 2698.08pt>
+File: images/GreatHall.jpg Graphic file (type jpg)
+
+<use images/GreatHall.jpg>
+Package pdftex.def Info: images/GreatHall.jpg used on input line 370.
+(pdftex.def)             Requested size: 369.88582pt x 184.93263pt.
+ <images/Union.jpg, id=206, 5396.16pt x 2698.08pt>
+File: images/Union.jpg Graphic file (type jpg)
+
+<use images/Union.jpg>
+Package pdftex.def Info: images/Union.jpg used on input line 377.
+(pdftex.def)             Requested size: 369.88582pt x 184.93263pt.
+ [44 <./images/RogerStevens.jpg> <./images/GreatHall.jpg> <./images/Union.jpg>]
+
+<images/GreatHallPre.png, id=210, 6167.04pt x 1027.84pt>
+File: images/GreatHallPre.png Graphic file (type png)
+
+<use images/GreatHallPre.png>
+Package pdftex.def Info: images/GreatHallPre.png used on input line 386.
+(pdftex.def)             Requested size: 369.88582pt x 61.63637pt.
+) [45 <./images/GreatHallPre.png>]
+\openout2 = `./Chapters/chapter7.aux'.
+
+
+(Chapters/chapter7.tex [46
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 
 
 
 ]
 Chapter 7.
+<<<<<<< HEAD
 [45] [46]) [47]
 \openout2 = `./Chapters/chapter8.aux'.
 
  (./Chapters/chapter8.tex [48
+=======
+[47] [48]) [49]
+\openout2 = `./Chapters/chapter8.aux'.
+
+ (Chapters/chapter8.tex [50
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 
 
 
 ]
 Chapter 8.
+<<<<<<< HEAD
 [49]) [50] (./fyp.bbl [51
+=======
+[51]) [52] (fyp.bbl [53
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 
 
 ]
@@ -1015,6 +1559,7 @@ Overfull \hbox (161.59259pt too wide) in paragraph at lines 133--137
 rom_Robert_N._Dennis_collection_of_stereoscopic_views.jpg.  
  []
 
+<<<<<<< HEAD
 ) [52]
 \openout2 = `appendix.aux'.
 
@@ -1071,6 +1616,52 @@ Output written on fyp.pdf (63 pages, 51652775 bytes).
 PDF statistics:
  301 PDF objects out of 1000 (max. 8388607)
  183 compressed objects within 2 object streams
+=======
+) [54]
+\openout2 = `appendix.aux'.
+
+ (appendix.tex [55
+
+
+
+] [56]
+Appendix A.
+[57
+
+] [58
+
+]
+Appendix B.
+) [59] (fyp.aux (prelude.aux) (Chapters/chapter1.aux) (Chapters/chapter2.aux)
+(Chapters/chapter3.aux) (Chapters/chapter4.aux) (Chapters/chapter5.aux)
+(Chapters/chapter6.aux) (Chapters/chapter7.aux) (Chapters/chapter8.aux)
+(appendix.aux)) ) 
+Here is how much of TeX's memory you used:
+ 7680 strings out of 493334
+ 123329 string characters out of 3143155
+ 344813 words of memory out of 3000000
+ 10943 multiletter control sequences out of 15000+200000
+ 14642 words of font info for 28 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 42i,15n,64p,2080b,417s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappe
+n\ec\dpi600\ecti1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\
+jknappen\ec\dpi600\ecbx2488.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\
+ljfour\jknappen\ec\dpi600\ecbx2074.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fo
+nts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk> <C:\Users\KV\AppData\Local\MiKTeX
+\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk> <C:\Users\KV\AppData\Local
+\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk> <C:\Users\KV\AppDat
+a\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk>{D:/Programs/
+MimTex/fonts/enc/dvips/base/8r.enc} <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts
+\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk><D:/Programs/MimTex/fonts/type1/publi
+c/amsfonts/cm/cmmi10.pfb><D:/Programs/MimTex/fonts/type1/public/amsfonts/cm/cmr
+10.pfb><D:/Programs/MimTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/Programs
+/MimTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/Programs/MimTex/fonts/typ
+e1/urw/times/utmr8a.pfb>
+Output written on fyp.pdf (65 pages, 51606851 bytes).
+PDF statistics:
+ 628 PDF objects out of 1000 (max. 8388607)
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
  0 named destinations out of 1000 (max. 500000)
  156 words of extra memory for PDF output out of 10000 (max. 10000000)
 

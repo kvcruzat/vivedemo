@@ -121,7 +121,14 @@ The out of engine development was done in C++. This decision was made out of fam
 	%greedy snippet%
 
 	Once all the new shortest paths have been found, these will be output to a file that will be used by the game, so that the game knows the route that the rivers take.\\
+<<<<<<< HEAD
 	The next step of the program is determining which directions the rivers are flowing into a node, and flowing out of a node. This directions must be found as the game will use this information in order to know where not to place flowers on the terrain. This is done by looping through the new paths and extracting the start and end node from th paths. The algorithm will then search through the array and see if either the start node or the end node is one of the selected nodes. If the node is one of the new selected nodes, then it will check which direction the river came from by comparing the start and end node of the river to each other. As each direction has a distinct amount of difference between them, the direction it is going can be determined. These directions are then output to a file for the game to read in.\\
+=======
+	The next step of the program is determining which directions the rivers are flowing into a node, and flowing out of a node. This directions must be found as the game will use this information in order to know where not to place flowers on the terrain. This is done by looping through the new paths and extracting the start and end node from th paths. The algorithm will then search through the array and see if either the start node or the end node is one of the selected nodes. If the node is one of the new selected nodes, then it will check which direction the river came from by comparing the start and end node of the river to each other. As each direction has a distinct amount of difference between them, the direction it is going can be determined. These directions are then output to a file for the game to read in.
+
+	%directions snippet%
+
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 	At the end of this program the output will look like \ref{fig:triangulation8}
 
 \newpage
@@ -206,6 +213,12 @@ The next approach was adding several nodes along the diagonal and connecting the
 	The Diamond-square algorithm first takes in an input, which is the size of the step taken in each iteration, to begin with this value is the size of the terrain. This value is halved at each iteration.
 	\newline
 	\par
+<<<<<<< HEAD
+=======
+	The Diamond-square algorithm first takes in an input, which is the size of the step taken in each iteration, to begin with this value is the size of the terrain. This value is halved at each iteration.
+	\newline
+	\par
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 
 	%Running code snippet%
 
@@ -231,7 +244,11 @@ The next approach was adding several nodes along the diagonal and connecting the
 	This formula was determined as the graph height map needs to be subtracted from the diamond square height map in order for the rivers to show up in the terrain. The graph height map is multiplied by $0.05$ so that the rivers are not too deep on the terrain. The graph height map has to be subtracted from one as the rivers in the graph height map have the height 0, and the top of the terrain has the value of 1. This would mean if it is not subtracted from zero, the rivers would show up as mountains on the terrain.\\
 
 \subsection{Final Terrain}
+<<<<<<< HEAD
 	After these steps have all been performed the program will output the terrain as a model file, as well as many text files including data about where the rivers are, where the rods should be and the route the rivers take. When the model file is imported into the game it looks like \ref{fig:finalTerrain}. Pre-computing and generating the terrain was done instead of using the built in landscaping tool of Unreal Engine due to the fact that programmatically generating terrain with river ditches is not supported in Unreal.
+=======
+	After these steps have all been performed the program will output the terrain as a model file, as well as many text files including data about where the rivers are, where the rods should be and the route the rivers take. When the model file is imported into the game it looks like \ref{fig:finalTerrain}. Precomputing and generating the terrain was done instead of using the built in landscaping tool of Unreal Engine due to the fact that programatically generating terrain with river ditches is not supported in Unreal.
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 
 \begin{figure}[H]
 	\includegraphics[width=12cm]{finalTerrain}
@@ -312,7 +329,11 @@ Flower models are spawned around each of the nodes with rods. Flower model is ro
 The position of the flower models are computed by using the coordinates of the nodes found in the nodes.txt file output through the terrain generation procedure. The coordinates are then transformed to be placed correctly in the world with the same process as before. Another file is used called nodeConnections.txt which shows information on directions of the rivers that node is connected to. This is used to place the flowers in places on the terrain where there is no river. Due to method used to generate the terrain a river can go in one direction out of a possible 8. These possible directions can be described using the points in a compass e.g. North, North-East, East and so forth. Using random number generation, a flower has a one in three chance of placing a flower on a free space but makes sure at least one flower is placed for each node. This randomness of the number of flowers spawned adds a little realism.
 \newline
 \par
+<<<<<<< HEAD
 When the player places a disc on a rod and changes the flow of the corresponding river and all the rivers affected by the change, all the river flows that serve as input in a node are accumulated and checks against the required flow to complete the goal for the node. This is because there could be multiple overlapping rivers that go into a node which needs to be accounted for. If the flow value is over the required flow, the material for the flower petals are changed to a blue colour. If the flow value is lower than the required flow, the petals then change to a white colour. When the required flow is met, the colour is changed to an orange colour. This visual indicator helps the player see their current progress and helps to solve the puzzle. Figure \ref{fig:flowerstates} shows the flowers around a node taking on the three different states.
+=======
+When the player places a disc on a rod and changes the flow of the corresponding river and all the rivers affected by the change, all the river flows that serve as input in a node are accumulated and checks against the required flow to complete the goal for the node. This is because there could be multiple ovarlapping rivers that go into a node which needs to be accounted for. If the flow value is over the required flow, the material for the flower petals are changed to a blue colour. If the flow value is lower than the required flow, the petals then change to a white colour. When the required flow is met, the colour is changed to an orange colour. This visual indicator helps the player see their current progress and helps to solve the puzzle. Figure \ref{fig:flowerstates} shows the flowers around a node taking on the three different states.
+>>>>>>> 7524012b1f509cff1c4e374fd07106dbad642479
 
 \begin{figure}[h]
 	\includegraphics[width=10cm]{flowerstates}
