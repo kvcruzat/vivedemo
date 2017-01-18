@@ -1,5 +1,69 @@
 \begin{appendices}
 \chapter{External Material}
+
+\section{Instruction Manual}
+
+	This section will go over how to install the project, how to compile, how to run it and how to create a new level.
+
+\subsection{Installing the Project}
+
+\begin{enumerate}
+	\item Download the project from GitHub. (https://github.com/kvcruzat/vivedemo)
+	\item Download and install Unreal Engine. (https://www.unrealengine.com/)
+	\item Launch Unreal Engine.
+	\item Click the Browse button in Unreal and navigate to ~/RiversofHanoi and open RiversofHanoi.uproject
+\end{enumerate}
+
+\subsection{Compiling the Project}
+
+\begin{enumerate}
+	\item Open up Level 1 by going to File->Open Level   and then selecting Level1 under the levels directory.
+	\item Make sure the terrain is in the level.
+	\begin{enumerate}
+	    \item If the terrain is not on the level then you must drag it in.
+		\item This is done under the modes tab, that will be on the left side of the window in the default Unreal layout.
+		\item Select the place tab if not selected, and then search for "Terrain Actor", this should produce one result.
+		\item Drag this result into the game screen and the terrain should place itself down.
+	\end{enumerate}
+	\item Repeat step 2 for every level.
+	\item To build the project go to File->Package Project->Windows->Windows (64-bit)
+	\item Choose where the project should build to.
+\end{enumerate}
+
+\subsection{Running the Game}
+
+\begin{enumerate}
+	\item To run the game navigate to the folder that it was built to.
+	\item Then there will be a file called RiversofHnaoi.exe, run this file.
+\end{enumerate}
+
+\subsection{Making a New Level}
+
+\begin{enumerate}
+	\item Navigate to ~/Randomly Generate Graphs/terrainGen
+	\item Open a command line window here
+	\item In the command line type "make", if no make utility is installed then install one, for example CMake (https://cmake.org/)
+	\item After the project is compiled then type "graphGen.exe".
+	\item This will produce the required files in ~/RiversofHanoi/Content/models
+	\item To make a new level, navigate to ~/RiversofHanoi/Content/Levels
+	\item Copy Level1.umap to a new file and rename it to next sequential level.
+	\item Navigate to ./data and then copy and rename the folder "Level1" to the same name.
+	\item Navigate to ~/RiversofHanoi/Content/models and copy the following files
+	\begin{itemize}
+		\item connections.txt
+		\item nodeConnections.txt
+		\item nodes.txt
+		\item rivers.txt
+		\item rodIndex.txt
+		\item rods.txt
+		\item terrain.m
+	\end{itemize}
+	\item Move these files to ~/RiversofHanoi/Content/Levels/data/levelx, where x is the number that it was renamed to before.
+	\item Open the level in Unreal Engine by going to File->Open Level and selecting the new level.
+	\item Check so that everything looks right and that the terrain model is in the game.
+\end{enumerate}
+
+
 \chapter{Ethical Issues Addressed}
 There were no ethical issues to address.
 \end{appendices}

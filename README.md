@@ -10,9 +10,9 @@ HTC Vive Tech Demo
 
 ## Compiling Project
 
-1. Open up Level 1 by going to File->Open Level   and then selecting Level1 under the lvels directory.
+1. Open up Level 1 by going to File->Open Level   and then selecting Level1 under the levels directory.
 2. Make sure the terrain is in the level.
-  1. If the terrain is not on the lvel then you must drag it in.
+  1. If the terrain is not on the level then you must drag it in.
   2. This is done under the modes tab, that will be on the left side of the window in the default Unreal layout.
   3. Select the place tab if not selected, and then search for "Terrain Actor", this should produce one result.
   4. Drag this result into the game screen and the terrain should place itself down.
@@ -25,7 +25,7 @@ HTC Vive Tech Demo
 1. To run the game navigate to the folder that it was built to.
 2. Then there will be a file called RiversofHnaoi.exe, run this file.
 
-## Make a new Level
+## Make a New Level
 
 1. Navigate to ~/Randomly Generate Graphs/terrainGen
 2. Open a command line window here
