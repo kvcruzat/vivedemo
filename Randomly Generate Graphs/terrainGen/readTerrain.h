@@ -23,7 +23,7 @@ public:
 	readTerrain();
 	static void removeEmptyStrings(std::vector<std::string>& strings);
 	static std::vector<std::string> split(std::string s, std::string delimiter);
-	static int readTerrainFileAndOutputM(std::vector <std::vector<float> >);
+	static int readTerrainFileAndOutputM(std::vector <std::vector<float> > terrainCoords);
 private:
 };
 

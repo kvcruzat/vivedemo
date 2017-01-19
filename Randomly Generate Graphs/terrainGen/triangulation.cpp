@@ -62,8 +62,6 @@ int main (int argc, char *argv[])
 	//Picks random points to use as nodes
 	findConnections(&connections, usedNodes, coordinates);
 
-	//TODO: CARRY ON HERE TOMORROW
-
 	//Use djikstra to find the shortest paths between each node
 	std::vector< std::vector< std::vector<int> > > shortestPaths = dijkstra(connections, weightMatrix, usedNodes);
 
@@ -73,20 +71,17 @@ int main (int argc, char *argv[])
 	//Output all information
 	// printToFile(triangles, coordinates, weightMatrix);
 	// connectionsPrint(shortestPaths, usedNodes, connections);
-	printGraph(shortestPaths, coordinates, connections, usedNodes, &weightMatrix);
+	findNewNodesAndRemoveEdges(shortestPaths, coordinates, connections, usedNodes, &weightMatrix);
 
 	// outputNodes(usedNodes, coordinates);
 }
 
 
-/* Function to print debugging info
- * Input - 
- * shortestPath - vector that contains the shortest paths from the used nodes to every other node
- * usedNodes - vector that contains the indices of the nodes used in the main graph
- * connections - matrix that shows which nodes are connected to the other nodes
+/* Function to output connection info
  */
 void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPaths, std::vector< int > usedNodes, std::vector< std::vector<std::string> > rodIndex, std::vector< std::string> riverNames)
 {
+	//Open output streams and connect them to correct files
 	std::ofstream connectionsFile;
 	connectionsFile.open("../../RiversofHanoi/Content/models/connections.txt");
 
@@ -98,8 +93,10 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 
 	// std::cout << usedNodes.size() << std::endl;
 
+	//Create a new 2D vector to store connections bewteen nodes in
 	std::vector<std::vector<int> > nodeConnections(usedNodes.size() + 1, std::vector<int>(0, 0));
 
+	//Create variables
 	int rodIndexSize;
 
 	std::vector<std::string> startNodes;
@@ -107,74 +104,101 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 
 	std::string point0River;
 
+	//Gets the length of the name of a node
+	int riverNameSize = std::to_string(NUM_POINTS).length();
+
+	//Loop through the rivers
 	for (unsigned i = 0; i < riverNames.size(); i++)
 	{
-		startNodes.push_back(riverNames[i].substr(0,2));
-		endNodes.push_back(riverNames[i].substr(2,2));
+		//Add the start node and the end node to correct array
+		startNodes.push_back(riverNames[i].substr(0, riverNameSize));
+		endNodes.push_back(riverNames[i].substr(riverNameSize, riverNameSize));
 	}
 
+	//Variable to store whether point 0 is a node or not
 	bool point0Node = false;
 
+	//Loop through the rod index array
 	for (unsigned i = 0; i < rodIndex.size(); i++)
 	{
 		for(unsigned j = 0; j < rodIndex[i].size(); j++)
 		{
-			if (rodIndex[i][j].substr(0,2) == "00")
+			//If it finds a rod on point 0 then it is a node
+			if (rodIndex[i][j].substr(0, riverNameSize) == "00")
 			{
 				point0Node = true;
 			}	
 		}
 	}
 
+	//If point 0 is not a node
 	if(!point0Node)
 	{
+		//Loop through the riverNames array
 		for(unsigned i = 0; i < riverNames.size(); i++)
 		{
-			if (riverNames[i].substr(0,2) == "00")
+			//For the river that starts at node 0
+			if (riverNames[i].substr(0,riverNameSize) == "00")
 			{
+				//Add the point to the start array and the end point to the end array
 				startNodes.push_back("00");
-				endNodes.push_back(riverNames[i].substr(2,2));
+				endNodes.push_back(riverNames[i].substr(riverNameSize,riverNameSize));
+				//Store which river is the first river
 				point0River = riverNames[i];
 			}
 		}
 	}
 
+	//Create a 2D array to store the shortest paths
 	std::vector<std::vector<std::string> > newShortestPaths;
 
+	//Loop through the rods to find all the rivers that come from a node
 	for(unsigned i = 0; i < rodIndex.size(); i++)
 	{
 		for(unsigned j = 0; j < rodIndex[i].size(); j++)
 		{
+			//Find the shortest path between the node and the next node in the graph
 			newShortestPaths.push_back(greedyShortestPath(rodIndex[i][j], usedNodes, riverNames, startNodes, endNodes));
 		}
 	}
 
+	//If point 0 is not a node, also find the shortest path between point 0 and the next node
 	if(!point0Node)
 	{
 		newShortestPaths.push_back(greedyShortestPath(point0River, usedNodes, riverNames, startNodes, endNodes));
 	}
 
 
+	//This is to find the diretions that the rivers are coming into and out of the node from.
+	//Loop over the paths
 	for (int i = 0; i < newShortestPaths.size(); i++)
 	{
-		// std::cout << "before crash" << std::endl;
-		int startNode = std::stoi(newShortestPaths[i][0].substr(0,2));
-		int startConnect = std::stoi(newShortestPaths[i][0].substr(2,2));
-		int endNode = std::stoi(newShortestPaths[i][newShortestPaths[i].size() - 1].substr(2,2));
-		int endConnect = std::stoi(newShortestPaths[i][newShortestPaths[i].size() - 1].substr(0,2));
-		// std::cout << "after crash" << std::endl;
-
+		//Initialise variables that will be needed
+		//The first node in the connection
+		int startNode = std::stoi(newShortestPaths[i][0].substr(0,riverNameSize));
+		//The 2nd point in the connection
+		int startConnect = std::stoi(newShortestPaths[i][0].substr(riverNameSize,riverNameSize));
+		//The end node in the connection
+		int endNode = std::stoi(newShortestPaths[i][newShortestPaths[i].size() - 1].substr(riverNameSize,riverNameSize));
+		//The 2nd to last node in the connection
+		int endConnect = std::stoi(newShortestPaths[i][newShortestPaths[i].size() - 1].substr(0,riverNameSize));
+		//The index of the start node in the usedNodes array
 		int startIndex = std::find(usedNodes.begin(), usedNodes.end(), startNode) - usedNodes.begin() + 1;
+		//The index of the start node in the usedNodes array
 		int endIndex = std::find(usedNodes.begin(), usedNodes.end(), endNode) - usedNodes.begin() + 1;
 
+		//Check if the start or end node is the last point in the graph (bottom-right)
 		if (startNode == ((NUM_POINTS * NUM_POINTS) - 1))
 			startIndex = 0;
 		if (endNode == ((NUM_POINTS * NUM_POINTS) - 1))
 			endIndex = 0;
 
+		//Check so the start index is a node
 		if (startIndex <= usedNodes.size())
 		{
-			// std::cout << startIndex << " " << startConnect << std::endl;
+			//Set of if statements to check where the river is coming from
+			//It doesn this by checking the name of the other point in the river, and comparing to the node name
+			//The node direction can be found by calculating the difference in these two numbers
 			//North
 			if(startNode - NUM_POINTS == startConnect) 
 			{
@@ -216,8 +240,13 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 				nodeConnections[startIndex].push_back(7);
 			}
 		}
+		//Check so the end index is a node
 		if (endIndex < usedNodes.size())
 		{
+			//Set of if statements to check where the river is coming from
+			//It doesn this by checking the name of the other point in the river, and comparing to the node name
+			//The node direction can be found by calculating the difference in these two numbers
+			//North
 			//North
 			if(endNode - NUM_POINTS == endConnect) 
 			{
@@ -261,6 +290,7 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 		}
 	}
 
+	//Print out the connections to a file
 	for (unsigned i = 0; i < newShortestPaths.size(); i++)
 	{
 		for (unsigned j = 0; j < newShortestPaths[i].size(); j++)
@@ -276,8 +306,7 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 		nodeConnectionsFile << std::endl;
 	}
 
-	std::cout << "SIZE!!!" << nodeConnections.size() << std::endl;
-
+	//Output the node connections to the file
 	for (unsigned i = 0; i < nodeConnections.size(); i++)
 	{
 		std::sort(nodeConnections[i].begin(), nodeConnections[i].end());
@@ -289,6 +318,8 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 		nodeConnectionsFile << std::endl;
 	}
 		
+
+	//LEGACY CODE
 
 	// for (unsigned i  = 0; i < rodIndex.size(); i++)
 	// {
@@ -598,15 +629,10 @@ void connectionsPrint(std::vector< std::vector< std::vector<int> > > shortestPat
 	// }
 }
 
-/* Function that prints the connection matrix and the coordinates of each point
- * Also changes the connection matrix from the main points to a connection matrix that includes the middle points
- * Input -
- * shortestPath - vector that contains the shortest paths from the used nodes to every other node
- * coordinates - a vector that stores every nodes coordinates
- * connections - matrix that shows which nodes are connected to the other nodes
- * usedNodes - vector that contains the indices of the nodes used in the main graph
+/* Function to find the new intersections in the graph and create the connections matrix
+ * and also to remove the edges that from a new source or sink node
  */
-void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, std::vector<std::vector<int> > coordinates, std::vector< std::vector<int> > connections, std::vector< int > usedNodes, std::vector<std::vector<float> >* weightMatrix)
+void findNewNodesAndRemoveEdges(std::vector< std::vector< std::vector<int> > > shortestPaths, std::vector<std::vector<int> > coordinates, std::vector< std::vector<int> > connections, std::vector< int > usedNodes, std::vector<std::vector<float> >* weightMatrix)
 {
 	//Open output file stream and direct it to correct file
 	// std::ofstream outputGraph;
@@ -618,6 +644,7 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 	//Initialise a matrix to be used to store all connections
 	std::vector<std::vector<int> > connectionsMatrix( shortestPaths[0].size(), std::vector<int> (shortestPaths[0].size(), 0));
 
+	//Create variables to be used
 	std::vector<int> newNodes;
 	std::vector<std::string> connectionsUsed;
 
@@ -637,23 +664,29 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 				if ((*ptrShortPath)[k] != -1)
 				{
 					connectionsMatrix[(*ptrShortPath)[k]][(*ptrShortPath)[k+1]] = 1;
+
+					//Get the two points that are connected as strings
 					std::string point1 = std::to_string((*ptrShortPath)[k]);
 					std::string point2 = std::to_string((*ptrShortPath)[k+1]);
 
+					//Variables to store how many zeroes should be added to beginning of name
 					int addPoints1 = 0;
 					int addPoints2 = 0;
 
+					//Make the point name the same length as the node names
 					if (point1.length() != std::to_string(NUM_POINTS).length());
 					{
 						addPoints1 = (std::to_string(NUM_POINTS).length()) - (point1.length());
 						//point1 = "0" + point1;
 					}
+					//Make the point name the same length as the node names
 					if (point2.length() == 1)
 					{
 						addPoints2 = (std::to_string(NUM_POINTS).length()) - (point2.length());
 						//point2 = "0" + point2;
 					}
 
+					//Add zeroes to beginning of name
 					for (int z = 0; z < addPoints1; z++)
 					{
 						point1 = "0" + point1;
@@ -663,22 +696,33 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 						point2 = "0" + point2;
 					}
 
+					//Create the river name by adding the two point names together
 					std::string connection = point1 + point2;
 
-					// connectionsFile << connection << " ";
+					//Get the length of the node name
+					int riverNameLength = std::to_string(NUM_POINTS).length();
 
 					newLineNeeded = true;
 
+					//Loop through the connections
 					for ( unsigned x = 0; x < connectionsUsed.size(); x++)
 					{
-						std::string node1Connect = connectionsUsed[x].substr(0, 2);
-						std::string node2Connect = connectionsUsed[x].substr(2, 2);
+						//Get the names of the nodes in the connections
+						std::string node1Connect = connectionsUsed[x].substr(0, riverNameLength);
+						std::string node2Connect = connectionsUsed[x].substr(riverNameLength, riverNameLength);
 
+						//Check if the first node is the same as the first node in the river
+						//And if the second node is different than the second node in the river
 						if (point1.compare(node1Connect) == 0 && point2.compare(node2Connect) != 0)
 						{	
-							// std::cout << "Found" << std::endl;
+							//If this is true then there is more than one river leaving the node
+							//Therefore it is an intersection node
+							//And should be a new node
+
+							//Check so that the node is not already in the array
 							if (std::find(newNodes.begin(), newNodes.end(), (*ptrShortPath)[k]) == newNodes.end())
 							{
+								//If it is not in the array then add it to the array.
 								newNodes.push_back((*ptrShortPath)[k]);
 							}
 						} // else {
@@ -686,10 +730,10 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 						// }
 					}
 
-
+					//Check so that the connection checked is not in the usedConnections list
 					if (std::find(connectionsUsed.begin(), connectionsUsed.end(), connection) == connectionsUsed.end())
 					{
-						// std::cout << "Here";
+						//Add it to the array if it is not already in the area
 						connectionsUsed.push_back(connection);
 					}
 					// 	newNodes.push_back((*ptrShortPath)[k]);
@@ -707,30 +751,45 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 
 	//Find if any nodes are either starting from somewhere they shouldn't
 	//Or ending somehwere they shouldn't
-	//Onyl want top left to start and bottom-right to end
+	//Only want top left to start and bottom-right to end
 	std::vector<int> endNodes(NUM_POINTS * NUM_POINTS, 0);
 	std::vector<int> startNodes(NUM_POINTS * NUM_POINTS, 0);
 
+	int riverNameLength = std::to_string(NUM_POINTS).length();
+
+	//Loop over the connections used
 	for ( unsigned i = 0; i < connectionsUsed.size(); i++)
 	{
-		std::string startNode = connectionsUsed[i].substr(0, 2);
-		std::string endNode = connectionsUsed[i].substr(2, 2);
+		//Find the name of the start and end node
+		std::string startNode = connectionsUsed[i].substr(0, riverNameLength);
+		std::string endNode = connectionsUsed[i].substr(riverNameLength, riverNameLength);
 
+		//These are used to count how many connections each point has
+		//Either as a start node of a river
 		startNodes[std::stoi(startNode)]++;
+		//Or as an end node of a river
 		endNodes[std::stoi(endNode)]++;
 	}
+
+	//This algorithm works by checking if a point is a start node of a river, but has no end nodes. This means it is a source and should be removed
+	// Or if it is an end node, but is not a start node. this would mean that it is a sink.
 
 	std::vector<int> removeStart;
 	std::vector<int> connectEnd;
 	std::vector<std::string> nodeStack;
 
+	//Loop through all the point
 	for (unsigned i = 0; i < startNodes.size(); i++)
 	{
+		//Check if the point is a start point fro a river, but not an end point for a river
 		if ((endNodes[i] == 0 && startNodes[i] > 0)) //|| (startNodes[i] == 0 && endNodes[i] > 0))
 		{
+			//Add the point to the array that contains the points that should not be added to the graph
 			removeStart.push_back(i);
+			//Get the name of the start node
 			std::string startNode = std::to_string(i);
 
+			//Add zeroes to the beginning of the name, so that it is the same length
 			int addStartNode = 0;
 
 			if (startNode.length() != std::to_string(NUM_POINTS).length())
@@ -743,42 +802,63 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 				startNode = "0" + startNode;
 			}
 
+			//Variables to check when to stop the algorithm
 			bool endFound = false;
 			bool isStackEmpty = false;
 
+			//While there is something is on the stack
+			//This is used to deal with intersections coming from the source node
 			while(!isStackEmpty)
 			{
+				//While the end of the river has not been found
 				while(!endFound)
 				{
+					//Variable to hold the number of iterations since the last river was found
 					int iter = 0;
+					//Loop through all the connections
 					for (unsigned j = 0; j < connectionsUsed.size(); j++)
 					{
+						//Get the names
 						std::string node1Connect = connectionsUsed[j].substr(0, 2);
 						std::string node2Connect = connectionsUsed[j].substr(2, 2);
 
+						//Compare the the two start nodes to make sure that they are the same
+						//And also check so that the point is not the top-left point
 						if(startNode.compare(node1Connect) == 0 && node1Connect != "00")
 						{
-							// std::cout << node1Connect << std::endl;
+							//Check so that the point is only the end node of the river being removed
+							// And check so that the point has not already been removed
 							if (!(endNodes[std::stoi(node1Connect)] > 1) &&  (std::find( removeStart.begin(), removeStart.end(), std::stoi(node2Connect)) == removeStart.end())) //endNodes[std::stoi(node2Connect)] == 1 &&
 							{
+								//Add the point to the array of points not being added to the graph
 								removeStart.push_back(std::stoi(node1Connect));
+								//Make the new start node the next point on the river
 								startNode = node2Connect;
+
+								//Variable to store how many connections there are from that point
 								int numberConnections = 0;
+								//Loop through all the connections
 								for (unsigned x = 0; x < connectionsUsed.size(); x++)
 								{
+									//If the start point of the connection is that same as the previous start point
 									if (connectionsUsed[x].substr(0,2) == node1Connect)
 									{
+										//Increment the variable
 										numberConnections++;
 									}
+									//If there is more than 1 connection
 									if (numberConnections > 1)
 									{
+										//Find the names of the connections
 										for (unsigned x = 0; x < connectionsUsed.size(); x++)
 										{
+											//If the start point of the connection is that same as the previous start point
 											if (connectionsUsed[x].substr(0,2) == node1Connect)
 											{
 												//Check so it's not already in stack
 												if ((std::find( nodeStack.begin(), nodeStack.end(), connectionsUsed[x].substr(2,2)) == nodeStack.end()))
 												{
+													//Add the node to the stack
 													nodeStack.push_back(connectionsUsed[x].substr(2,2));
 													// std::cout << "NODE IN STACK " << nodeStack.back() << std::endl;
 												}
@@ -786,9 +866,11 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 										}
 									}
 								}
+								//reset iter variable
 								iter = 0;
 							}
 							else {
+								//End found if the point is an end point for more than one river
 								endFound = true;
 							}
 						}
@@ -797,9 +879,10 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 					}
 
 					// std::cout << iter << " " << connectionsUsed.size() <<  std::endl;
-
+					//If the all the connections has been looped through since last time a river was removed
 					if (iter == connectionsUsed.size())
 					{
+						//Then the end has been found
 						endFound = true;
 					}
 				}
@@ -809,6 +892,7 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 				{
 					isStackEmpty = true;
 				} else {
+					//If the stack is not empty, then start from the next point in the stack
 					startNode = nodeStack.back();
 					nodeStack.pop_back();
 					endFound = false;
@@ -816,10 +900,15 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 			}
 
 		}
+		//Check if the point is a end point fro a river, but not an start point for a river
 		if (startNodes[i] == 0 && endNodes[i] > 0)
 		{
+			//Add the point to the array that contains the points that should not be added to the graph
 			removeStart.push_back(i);
+			//Get the name of the start node
 			std::string startNode = std::to_string(i);
+
+			//Add zeroes to the beginning of the name, so that it is the same length
 			int addStartNode = 0;
 
 			if (startNode.length() != std::to_string(NUM_POINTS).length())
@@ -832,44 +921,64 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 				startNode = "0" + startNode;
 			}
 
+			//Variables to check when to stop the algorithm
 			bool endFound = false;
 			bool isStackEmpty = false;
 
+			//While there is something is on the stack
+			//This is used to deal with intersections coming from the source node
 			while(!isStackEmpty)
 			{
-
+				//While the end of the river has not been found
 				while(!endFound)
 				{
+					//Variable to hold the number of iterations since the last river was found
 					int iter = 0;
+					//Loop through all the connections					
 					for (unsigned j = 0; j < connectionsUsed.size(); j++)
 					{
+						//Get the names
 						std::string node1Connect = connectionsUsed[j].substr(0, 2);
 						std::string node2Connect = connectionsUsed[j].substr(2, 2);
 
+
+						//Compare the the two end nodes to make sure that they are the same
+						//And also check so that the point is not the bottom-right point
 						if(startNode.compare(node2Connect) == 0 && node2Connect != "99")
 						{
-							// std::cout << node1Connect << " & " << node2Connect << std::endl;
+							//Check so that the point is only the start node of the river being removed
+							// And check so that the point has not already been removed
 							if ((!(startNodes[std::stoi(node2Connect)] > 1)) && (std::find( removeStart.begin(), removeStart.end(), std::stoi(node1Connect)) == removeStart.end())) //endNodes[std::stoi(node2Connect)] == 1 &&
 							{
-								// std::cout << node1Connect << " & " << node2Connect << std::endl;
+								//Add the point to the array of points not being added to the graph
 								removeStart.push_back(std::stoi(node2Connect));
+								//Make the new start node the previous point on the river
 								startNode = node1Connect;
+
+								//Variable to store how many connections there are from that point
 								int numberConnections = 0;
+								//Loop through all the connections
 								for (unsigned x = 0; x < connectionsUsed.size(); x++)
 								{
+									//If the end point of the connection is that same as the previous end point
 									if (connectionsUsed[x].substr(2,2) == node2Connect)
 									{
+										//Increment the variable
 										numberConnections++;
 									}
+									//If there is more than 1 connection
 									if (numberConnections > 1)
 									{
+										//Find the names of the connections
 										for (unsigned x = 0; x < connectionsUsed.size(); x++)
 										{
+											//If the end point of the connection is that same as the previous end point
 											if (connectionsUsed[x].substr(2,2) == node2Connect)
 											{
 												//Check so it's not already in stack
 												if ((std::find( nodeStack.begin(), nodeStack.end(), connectionsUsed[x].substr(0,2)) == nodeStack.end()))
 												{
+													//Add the found point to the stack
 													nodeStack.push_back(connectionsUsed[x].substr(0,2));
 													// std::cout << "NODE IN STACK " << nodeStack.back() << std::endl;
 												}
@@ -877,8 +986,10 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 										}
 									}
 								}
+								//If the all the connections has been looped through since last time a river was removed
 								iter = 0;
 							} else {
+								//End found if the point is an end point for more than one river
 								endFound = true;
 							}
 						}
@@ -887,7 +998,7 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 					}
 
 					// std::cout << iter << " " << connectionsUsed.size() <<  std::endl;
-
+					//If the all the connections has been looped through since last time a river was removed
 					if (iter == connectionsUsed.size())
 					{
 						endFound = true;
@@ -898,6 +1009,7 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 				{
 					isStackEmpty = true;
 				} else {
+					//If the stack is not empty, then start from the next point in the stack
 					startNode = nodeStack.back();
 					nodeStack.pop_back();
 					endFound = false;
@@ -911,6 +1023,8 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 		// }
 	}
 
+
+	//Legacy code
 
 	// std::cout <<"Before";
 
@@ -1001,17 +1115,14 @@ void printGraph(std::vector< std::vector< std::vector<int> > > shortestPaths, st
 	printHeightMap(connectionsMatrix, coordinates, newNodes, shortestPaths, removeStart, connectEnd);//usedNodes);
 }
 
-/* Function that outputs the heightmap of the graph to a file
- * Input -
- * connectionsMatrix -  Matrix that contains the information about which nodes are connected
- * coordinates - a vector that stores every nodes coordinates
+/* Function that draws the rivers onto a height map and sends all the information to be output
  */
 void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vector< std::vector<int> > coordinates, std::vector<int> usedNodes, std::vector<std::vector< std::vector<int > > > shortestPaths, std::vector<int> removeStart, std::vector<int> connectEnd)
 {
-	//Canal height map
-	//If 1 then canal is present
+	//Initialise a matrix of all 1, rivers will be drawn into this
 	std::vector< std::vector<float> > heightMap(SQUARE_SIZE, std::vector<float> (SQUARE_SIZE, 1));
 
+	//Initialise vectors of data that will be filled up as the rivers are drawn
 	std::vector< std::vector<float> > rodLocations(usedNodes.size(), std::vector<float> (0, 0));
 	std::vector< std::vector<int> > riverLocations;
 	std::vector< std::vector<std::string> > rodIndex(usedNodes.size(), std::vector<std::string>(0, ""));
@@ -1027,8 +1138,8 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 			//The "river" connecting them
 			if ( connectionsMatrix[i][j] != 0)
 			{
-				//Check if it is a node, if it is we place rod
 				int nodeIndex = -1;
+				//Check if it is a node, if it is we place rod
 				if(std::find(usedNodes.begin(), usedNodes.end(), i) != usedNodes.end())
 				{
 					nodeIndex = std::find(usedNodes.begin(), usedNodes.end(), i) - usedNodes.begin();
@@ -1040,8 +1151,7 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 					//Bresenham's Line algorithm
 					drawLine(&heightMap, coordinates[i][0], coordinates[j][0], coordinates[i][1], coordinates[j][1], nodeIndex, &rodLocations, &riverLocations, &rodIndex, i, j, &riverNames);
 				} else {
-					bool test = (i == 0);
-					std::cout << i << " " << j << std::endl;
+					//std::cout << i << " " << j << std::endl;
 				}
 			}
 		}
@@ -1065,7 +1175,9 @@ void printHeightMap(std::vector< std::vector<int> > connectionsMatrix, std::vect
 	// 	graphHeightMap << std::endl;
 	// }
 
+	//Find the directions that the rivers are coming from
 	connectionsPrint(shortestPaths, usedNodes, rodIndex, riverNames);
+	//Send all the data to be output
 	terrainGen::generateTerrain(&heightMap, &usedNodes, &coordinates, &rodLocations, &riverLocations, SQUARE_SIZE, &rodIndex, &riverNames);
 }
 
@@ -1100,11 +1212,9 @@ void makeDitches(std::vector< std::vector<float> > *oldHeightMap)
 					//Check so the coordinate is not out of bounds
 					if (j + k < SQUARE_SIZE)
 					{
-						//Adjust height
-						// if (heightMap[i][j + k] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared));
-						// {
-						// 	heightMap[i][j + k] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
-						// }
+						//Check how high the point should be made
+						// 3 steps of height
+						//the further away the point is for the centre of the river, the shallower the point will be
 						if ( k < interval)
 						{
 							if (heightMap[i][j+k] > 0)
@@ -1127,6 +1237,9 @@ void makeDitches(std::vector< std::vector<float> > *oldHeightMap)
 					//Check so the coordinate is not out of bounds
 					if (j - k > 0)
 					{
+						//Check how high the point should be made
+						// 3 steps of height
+						//the further away the point is for the centre of the river, the shallower the point will be
 						if ( k < interval)
 						{
 							if (heightMap[i][j-k] > 0)
@@ -1145,15 +1258,13 @@ void makeDitches(std::vector< std::vector<float> > *oldHeightMap)
 								heightMap[i][j-k] = 2*ditchHeight;
 							}
 						}
-						//Check so the coordinate is not out of bounds
-						// if (heightMap[i][j - k] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared))
-						// {
-						// 	heightMap[i][j - k] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
-						// }
 					}
 					//Check so the coordinate is not out of bounds
 					if (i + k < SQUARE_SIZE)
 					{
+						//Check how high the point should be made
+						// 3 steps of height
+						//the further away the point is for the centre of the river, the shallower the point will be
 						if ( k < interval)
 						{
 							if (heightMap[i+k][j] > 0)
@@ -1172,15 +1283,13 @@ void makeDitches(std::vector< std::vector<float> > *oldHeightMap)
 								heightMap[i+k][j] = 2*ditchHeight;
 							}
 						}
-						//Adjust height
-						// if (heightMap[i + k][j] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared));
-						// {
-						// 	heightMap[i + k][j] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
-						// }
 					}
 					//Check so the coordinate is not out of bounds
 					if (i - k > 0)
 					{
+						//Check how high the point should be made
+						// 3 steps of height
+						//the further away the point is for the centre of the river, the shallower the point will be
 						if ( k < interval)
 						{
 							if (heightMap[i-k][j] > 0)
@@ -1199,11 +1308,6 @@ void makeDitches(std::vector< std::vector<float> > *oldHeightMap)
 								heightMap[i-k][j] = 2*ditchHeight;
 							}
 						}
-						// //Check so the coordinate is not out of bounds
-						// if (heightMap[i - k][j] > (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared))
-						// {
-						// 	heightMap[i - k][j] = (((float)k * (float)k * (float)k * (float)k) / (float)kMaxSquared);
-						// }
 					}
 				}
 			}
@@ -1214,19 +1318,15 @@ void makeDitches(std::vector< std::vector<float> > *oldHeightMap)
 	(*oldHeightMap) = heightMap;
 }
 
-/* Function that uses Bresenham's line algorithm to find the line 
- * Input -
- * *heightMap - pointer to the graph heightmap
- * x1 - x coordinate of first point
- * x2 - x coordinate of second point
- * y1 - y coordinate of first point
- * y2 - y coordinate of second point
+/* Function that uses Bresenham's line algorithm to draw the river on the height map, and also finds the coordinates for the rivers and rods 
  */
 void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int y1, int y2, int nodeIndex, std::vector< std::vector< float> >* rodLocations, std::vector< std::vector<int> >* riverLocations, std::vector<std::vector<std::string> >* rodIndex, int node1, int node2, std::vector<std::string> *riverNames)
 {
+	//Get the name of the name of the river
 	std::string rodIndexString1 = std::to_string(node1); // + std::to_string(node2);
 	std::string rodIndexString2 = std::to_string(node2);
 
+	//Add zeros to string to make it the same length as the river names
 	int addRodIndexString1 = 0;
 	int addRodIndexString2 = 0;
 
@@ -1249,6 +1349,7 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		rodIndexString2 = "0" + rodIndexString2;
 	}
 
+	//Add strings together to get name of river
 	std::string rodIndexString = rodIndexString1 + rodIndexString2;
 
 	// Bresenham's line algorithm only works in one octant of a graph
@@ -1284,6 +1385,7 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 	//Set max x so it doesn't go past the last x
 	const int maxX = (int)x2;
 
+	//Vector hold river location
 	std::vector<int> riverLocation;
 	 
 	//Loop over x
@@ -1293,11 +1395,17 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		//Check so y isn't out of bounds
 		if(y < maxY)
 		{
+			//Check if the gradient was steep or not
+			//As this changes which order the y and x coordinates go
 		    if(steep)
 		    {
+		    	//Draw the point as a 0 on matrix
+		    	//As line goes here
 		    	(*heightMap)[y][x] = 0;
+		    	//If its first iteration then find river coordinates for one side
 		    	if(i == 0)
 		    	{
+					//Find river coordinates by adding values to x coordinate
 		    		riverLocation.push_back(y + RIVER_WIDTH);
 		    		riverLocation.push_back(x); //- RIVER_WIDTH);
 
@@ -1305,9 +1413,10 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		    		riverLocation.push_back(x); // - RIVER_WIDTH);
 
 		    	}
+		    	//If its the last iteration
 		    	if(x == maxX - 1)
 		    	{
-
+		    		//Find river coordinates by adding values to x coordinate
 		    		riverLocation.push_back(y - RIVER_WIDTH);
 		    		riverLocation.push_back(x + 1); // + RIVER_WIDTH);
 
@@ -1318,8 +1427,10 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 
 
 		    	}
+		    	//If its 25th iteration
 		    	if(i == 25)
 		    	{
+		    		//Get coordinates at this point, for rod placement, if the point is a node
 		    		if (nodeIndex != -1)
 		    		{
 		    			(*rodLocations)[nodeIndex].push_back(y);
@@ -1332,17 +1443,23 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		    }
 		    else
 		    {
+		    	//Draw the point as a 0 on matrix
+		    	//As line goes here
 		        (*heightMap)[x][y] = 0;
+		        //If its first iteration then find river coordinates for one side
 		    	if(i == 0)
 		    	{
+		    		//Find river coordinates by adding values to x coordinate
 		    		riverLocation.push_back(x);  //- RIVER_WIDTH);
 		    		riverLocation.push_back(y - RIVER_WIDTH);
 
 		    		riverLocation.push_back(x); //- RIVER_WIDTH);
 		    		riverLocation.push_back(y + RIVER_WIDTH);
 		    	}
+		    	//If its the last iteration
 		    	if(x == maxX - 1)
 		    	{
+		    		//Find river coordinates by adding values to x coordinate
 		    		riverLocation.push_back(x + 1); //+ RIVER_WIDTH);
 		    		riverLocation.push_back(y + RIVER_WIDTH);
 
@@ -1351,8 +1468,10 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 
 		    		(*riverNames).push_back(rodIndexString);
 		    	}
+		    	//If its 25th iteration
 		    	if(i == 25)
 		    	{
+		    		//Get coordinates at this point, for rod placement, if the point is a node
 		    		if (nodeIndex != -1)
 		    		{
 		    			(*rodLocations)[nodeIndex].push_back(x);
@@ -1376,6 +1495,7 @@ void drawLine(std::vector< std::vector<float> > *heightMap, int x1, int x2, int 
 		i++;
 	}
 
+	//Add river too array of rivers
 	if (riverLocation.size() != 0 )
 	{
 		(*riverLocations).push_back(riverLocation);	
@@ -1510,10 +1630,6 @@ void printToFile(std::vector< std::vector<int> > triangles, std::vector< std::ve
 }
 
 /* Function that finds the weights between each connected point
- * Input -
- * triangles - array containing which coordinates are the corners of each triangle
- * coordinates - array containing the coordinates of each point
- * weightMatrix - pointer to a matrix containing all the weights of each arc
  */
 void findWeightMatrix(std::vector< std::vector<int> > *graphConnections, std::vector< std::vector<int> > coordinates, std::vector< std::vector<float> > *weightMatrix)
 {
@@ -1530,19 +1646,23 @@ void findWeightMatrix(std::vector< std::vector<int> > *graphConnections, std::ve
 
 			// std::cout << (*connections)[99][0] << " " << (i * NUM_POINTS) + j << std::endl;
 			// std::cout << i << " connected to: " << (*connections)[99][0] << std::endl;
-			//Find manhattan distance between the points
 
+			//Changes weighting of directions, so that rivers behave more naturally, as top-right point is higher than bottom-left
 			float xWeighted = 0.6f;
 			float yWeighted = 0.4f;
 
+			//Find distances in x and y direction
 			int xSquared = (coordinates[i][0] - coordinates[connectionPoint][0]) * (coordinates[i][0] - coordinates[connectionPoint][0]);
 			int ySquared = (coordinates[i][1] - coordinates[connectionPoint][1]) * (coordinates[i][1] - coordinates[connectionPoint][1]);
 
+			//Times the values by the weightings
 			xWeighted *= xSquared;
 			yWeighted *= ySquared;
 
+			//Get the distance between the two points
 			float distance = std::sqrt(float(xWeighted) + float(yWeighted));
 
+			//Find the manhattan distance between the two points
 			float manhattanDist = (coordinates[i][0] - coordinates[connectionPoint][0]) + (coordinates[i][1] - coordinates[connectionPoint][1]);
 
 			//Set the weights in the matrix
@@ -1561,7 +1681,6 @@ void findWeightMatrix(std::vector< std::vector<int> > *graphConnections, std::ve
 }
 
 /* Function to determine which nodes are connected
- * Input - *connections - pointer to an array that connections whihc main nodes are connected
  */
 void findConnections(std::vector<std::vector<int> > *connections, std::vector<int> usedNodes, std::vector<std::vector<int> > coordinates)
 {
@@ -1576,6 +1695,7 @@ void findConnections(std::vector<std::vector<int> > *connections, std::vector<in
 	//Don't let it connect to nodes on the edge apart from top left and bottom right
 	std::vector<int> disallowedNodes;
 
+	//Find the nodes on the edges and add them to disallowed list
 	for (int i  = 0; i < NUM_POINTS; i++)
 	{
 		for (int j = 0; j < NUM_POINTS; j++)
@@ -1592,6 +1712,7 @@ void findConnections(std::vector<std::vector<int> > *connections, std::vector<in
 		}
 	}
 
+	//Loop through the used Nodes and find the distances between them
 	for (unsigned i = 0; i < usedNodes.size(); i++)
 	{
 		distances.push_back(coordinates[usedNodes[i]][0] + coordinates[usedNodes[i]][1]);
@@ -1599,14 +1720,18 @@ void findConnections(std::vector<std::vector<int> > *connections, std::vector<in
 		// std::cout << usedNodes[i] << std::endl;
 	}
 
+	//Sort one of the distance vectors
 	std::sort(distances.begin(), distances.end());
 
+	//Loop through the used nodes
 	for (unsigned i  = 0; i < usedNodes.size(); i++)
 	{
 		for (unsigned j = 0; j < usedNodes.size(); j++)
 		{
+			//Check which distances correspond to the other distance vector
 			if (distances[i] == distancesUnsorted[j] && std::find(order.begin(), order.end(),j)==order.end())
 			{
+				//Have a order vector to keep track of which node corresponds to which distance
 				order.push_back(j);
 				// std::cout << distances[i] << " " << j << std::endl;
 				break;
@@ -1633,26 +1758,24 @@ void findConnections(std::vector<std::vector<int> > *connections, std::vector<in
 				// 	randConn = (rand() % NUM_NODES);
 				// }
 
+				//Loop through nodes
 				for(unsigned k = 0; k < usedNodes.size(); k++)
 				{
+					//Check so node isn't comparing itself
+					// And make sure it is not already connected to the node
+					// And make sure it is not a disallowed node
 					if (i != order[k] && std::find(nodeConnections.begin(), nodeConnections.end(),order[k])==nodeConnections.end() && 
 						std::find(disallowedNodes.begin(), disallowedNodes.end(),usedNodes[order[k]])==disallowedNodes.end())
 					{
 						if (distances[k] > distancesUnsorted[i])
 						{
-							// std::cout << distances[k] << " > " << distancesUnsorted[i] << " " << order[k] << " > " << i << std::endl;;
 							nodeConnections.push_back(order[k]);
-							// numConnections[order[k]]++;
 							break;
 						}
 					}
 				}
 
-				//ADd it to the vector
-				// nodeConnections.push_back(randConn);
-
 				numConnections[i]++;
-				// numConnections[randConn]++;
 			}
 		}
 		//Add the new connections to the total vector
@@ -1780,16 +1903,21 @@ std::vector< std::vector< std::vector<int> > >  dijkstra(std::vector< std::vecto
 	return shortestPaths;
 }
 
+/* Function to add the connections to the intial start graph.
+ * these lines are added so each point is 8-conntected to the points around it
+ */
 std::vector< std::vector<int> > addLinesToGraph()
 {
+	//Vector to hold connections
 	std::vector < std::vector <int> > connections;
+	//Loop trhough all the points on the graph
 	for (int i = 0; i < NUM_POINTS; i++)
 	{
 		for (int j = 0; j < NUM_POINTS; j++)
 		{
 			std::vector<int> connectedness;
 			int currentPoint = (i * NUM_POINTS) + j;
-			//Find 8 connectedness
+			//Find 8 connectedness and add point to vector
 			//Left
 			if (!(j - 1 < 0))
 			{
@@ -1838,13 +1966,18 @@ std::vector< std::vector<int> > addLinesToGraph()
 	return connections;
 }
 
+/* Function to find the coordinates of each point
+ */
 std::vector<std::vector<int> > findNodes()
 {
+	//Vector to hold coordinates
 	std::vector< std::vector<int> > coordinates;
+	//Loop through each point
 	for (int i = 0; i < (NUM_POINTS); i++)
 	{
 		for (int j = 0; j < (NUM_POINTS); j++)
 		{
+			//Add the coordinates to the vector
 			coordinates.push_back(std::vector<int>{i, j});
 		}
 	}
@@ -1852,44 +1985,60 @@ std::vector<std::vector<int> > findNodes()
 	return coordinates;
 }
 
+/* Function to update the coordinates to the size of the terrain
+ */
 void updateCoordinates(std::vector< std::vector<int> > *coordinates)
 {
 	//int to hold the scale factor
 	int scale = SQUARE_SIZE / NUM_POINTS;
 
+	//Loop through coordinates
 	for (int i = 0; i < coordinates->size() - 1; i++)
 	{
+		//Multiply the coordinates by the scale factor
 		(*coordinates)[i][0] = (*coordinates)[i][0] * scale;
 		(*coordinates)[i][1] = (*coordinates)[i][1] * scale;
 	}
 
+	//Set last point to be in bottom-right corner
 	(*coordinates)[(coordinates->size()) - 1][0] = SQUARE_SIZE - 1;
 	(*coordinates)[(coordinates->size()) - 1][1] = SQUARE_SIZE - 1;
 }
 
+/* Function to output the coordinates of each node
+ */
 void outputNodes(std::vector<int> usedNodes, std::vector<std::vector<int> > coordinates)
 {
+	//Open the output stream at the correct file
 	std::ofstream nodeFile;
 	//Temporary Value
 	nodeFile.open("../../RiversofHanoi/Content/models/nodes.txt");
 
+	//Loop through each node
 	for (int i = 0; i < usedNodes.size(); i++)
 	{
+		//Output the coordinates of that node
 		nodeFile << coordinates[usedNodes[i]][0] << "," << coordinates[usedNodes[i]][1] << std::endl;
 	}
 }
 
 
 //Starts at 2nd node in connection
+/* Greedy algorithm to find the shortest paths from a node to the next node.
+ * this algorithm does not care which node it finds, as long as it finds one
+ */
 std::vector<std::string> greedyShortestPath(std::string startRiver, std::vector<int> nodes, std::vector<std::string> riverNames, std::vector<std::string> startNodes, std::vector<std::string> endNodes)
 {
+	//Variable to store whether it has found a node or not
 	bool endNodeReached = false;
 
+	//Vector to store the path
 	std::vector<std::string> shortPath;
 
 	//Add first river to path
 	shortPath.push_back(startRiver);
 
+	//String to hold the river name currently at
 	std::string currentConnection;
 	//Start with end node of the first river
 	std::string currentNode = startRiver.substr(2,2);
@@ -1897,32 +2046,43 @@ std::vector<std::string> greedyShortestPath(std::string startRiver, std::vector<
 	std::vector<std::string>::iterator iter = std::find(startNodes.begin(), startNodes.end(),currentNode);
 	int index = std::distance(startNodes.begin(), iter);
 
+	//While it has not found a node
 	while(!endNodeReached)
 	{
-		std::cout << riverNames[index] << std::endl;
-		std::cout << currentNode << std::endl;
+		// //
+		// std::cout << riverNames[index] << std::endl;
+		// std::cout << currentNode << std::endl;
+		//Check if the current point is a node or not, or if its the bottom-right corner
 		if(std::find(nodes.begin(), nodes.end(),std::stoi(currentNode)) != nodes.end() || std::stoi(currentNode) == 99)
 		{
 			// std::cout << "Found " << shortPath.size() << std::endl;
 			// std::cout << currentNode << std::endl;	
+
+			//If it is a node then set variable to true and break loop
 			endNodeReached = true;
 			break;
 		}
 
-		// std::cout << "Crash Before?" << std::endl;
+		//Change variables to next river
 		currentConnection = riverNames[index];
 		currentNode = endNodes[index];
+		//Add current river to the shortest path connection
 		shortPath.push_back(currentConnection);
+		//Check if node exists in the start Node array
 		std::vector<std::string>::iterator iter = std::find(startNodes.begin(), startNodes.end(),currentNode);
 		if (iter != startNodes.end())
 		{
+			//If it does find the index of the node
 			index = std::distance(startNodes.begin(), iter);
 			// std::cout << "Crash After?" << std::endl;
+			//Set the current node to the new point
 			currentNode = startNodes[index];
 		} else {
+			//If it is not found, then the next point must be bottom-right corner
 			currentNode = "99";
 		}
 	}
 
+	//Return the shortest path found
 	return shortPath;
 }
