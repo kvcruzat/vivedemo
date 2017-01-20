@@ -18,7 +18,7 @@
 
 \begin{enumerate}
 	\item Open up Level 1 by going to File->Open Level   and then selecting Level1 under the levels directory.
-	\item Make sure the terrain is in the level.
+	\item Make sure the terrain is in the level. (unzip terrain.m files in ~/RiversohHanoi/Content/Levels/data/LevelX/terrain.zip)
 	\begin{enumerate}
 	    \item If the terrain is not on the level then you must drag it in.
 		\item This is done under the modes tab, that will be on the left side of the window in the default Unreal layout.
@@ -28,13 +28,6 @@
 	\item Repeat step 2 for every level.
 	\item To build the project go to File->Package Project->Windows->Windows (64-bit)
 	\item Choose where the project should build to.
-\end{enumerate}
-
-\subsection{Running the Game}
-
-\begin{enumerate}
-	\item To run the game navigate to the folder that it was built to.
-	\item Then there will be a file called RiversofHnaoi.exe, run this file.
 \end{enumerate}
 
 \subsection{Making a New Level}
@@ -63,7 +56,45 @@
 	\item Check so that everything looks right and that the terrain model is in the game.
 \end{enumerate}
 
+\subsection{Running the Game}
 
+\begin{enumerate}
+	\item To run the game navigate to the folder that it was built to.
+	\item Then there will be a file called RiversofHnaoi.exe, run this file.
+\end{enumerate}
+
+\subsection{Playing the Game}
+
+\subsubsection{Controls}
+
+\begin{itemize}
+	\item Move head to look around the world.
+	\item Teleport: Press and hold on to the trackpad then use the motion controller to point to target destination.
+	\item Grab Discs: Press and hold trigger when hand is near a disc to grab.
+	\item Let Go Discs: Release the trigger to let go of held disc.
+\end{itemize}
+
+\subsubsection{Game Objective}
+
+\begin{itemize}
+	\item River starts at a source on a corner of the terrain at the highest point of the terrain.
+	\item River flow splits in to half at each split.
+	\item Flowers around nodes indicate status of flowers according adjacent river flow.
+	\begin{itemize}
+		\item White: Too little flow
+		\item Blue: Too much flow
+		\item Orange: Correct flow
+	\end{itemize}
+	\item Three different disc sizes when placed on a rod reduces flow of river:
+	\begin{itemize}
+		\item Small: Reduction of \(\frac{1}{6}\) of current flow
+		\item Medium: Reduction of \(\frac{1}{3}\) of current flow
+		\item Large: Reduction of \(\frac{1}{2}\) of current flow
+	\end{itemize}
+	\item Place discs on rods to change flow of rivers to make all flowers turn orange.
+	\item Only discs which are larger can be placed on top of smaller discs (Reverse Towers of Hanoi).
+	\item Hint: Start with rods closer to the source then work your way down the graph.
+\end{itemize}
 \chapter{Ethical Issues Addressed}
 There were no ethical issues to address.
 \end{appendices}

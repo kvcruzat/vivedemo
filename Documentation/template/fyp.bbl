@@ -45,6 +45,13 @@
 \newblock [Online]. Available from:
   http://www.gadgetguy.com.au/product/samsung-gear-vr-innovator-edition-for-galaxy-s6s6-edge/samsung-gs6-gear-vr-review-2015-screenshot-home-menu/.
 
+\bibitem{livelike}
+J.~Gaudiosi.
+\newblock Startup livelike vr wants to transport fans to virtual stadiums,
+  2015.
+\newblock [Online]. Available from:
+  http://fortune.com/2015/10/19/livelikevr-vr-sports-stadium/.
+
 \bibitem{cardboarddev}
 Google.
 \newblock Google vr sdk for unity.
@@ -66,6 +73,18 @@ C.~Hoffman.
 \newblock [Online]. Available from:
   http://www.pcworld.com/article/3053527/linux/the-htc-vive-and-valves-steamvr-dont-yet-support-linux-and-steamos.html.
 
+\bibitem{brainsim}
+E.~Howell.
+\newblock Virtual reality could hone brain surgery skills, 2013.
+\newblock [Online]. Available from:
+  http://www.livescience.com/37600-brain-surgery-simulator.html.
+
+\bibitem{militaryVR}
+J.~Hsu.
+\newblock For the u.s. military, video games get serious, 2010.
+\newblock [Online]. Avaiable from:
+  http://www.livescience.com/10022-military-video-games.html.
+
 \bibitem{vivedev}
 {HTC Corporation}.
 \newblock Vive develop for vive and steam vr, 2016.
@@ -83,6 +102,18 @@ C.~Hunt.
 \newblock Space pirate trainer.
 \newblock [Online]. Available from: http://store.steampowered.com/app/418650/.
 
+\bibitem{marriottVR}
+S.~Kramer.
+\newblock Marriott vr postcards: How to travel afar from your hotel room, 2015.
+\newblock [Online]. Available from:
+  http://www.forbes.com/sites/scottkramer/2015/09/18/marriott-vr-postcard-how-to-travel-afar-from-your-hotel-room/#4fd4d8dc53c1.
+
+\bibitem{livelikeimage}
+LiveLikeVR.
+\newblock Livelikevr manchester city, 2015.
+\newblock [Online]. Available from:
+  https://fortunedotcom.files.wordpress.com/2015/10/man-city-light.jpg?w=720.
+
 \bibitem{unreal4nextgen}
 M.~Masters.
 \newblock Unreal engine 4 | powering the next generation of games, 2014.
@@ -94,6 +125,12 @@ Phandroid.
 \newblock Samsung gear side view.
 \newblock [Online]. Available from:
   http://phandroid.s3.amazonaws.com/wp-content/uploads/2016/08/Samsung-Gear-VR-2016-new-touchpad.png.
+
+\bibitem{netflixvr}
+M.~Snider.
+\newblock Netflix vr comes to google daydream, 2016.
+\newblock ([Online]. Available from:
+  http://www.usatoday.com/story/tech/news/2016/12/12/netflix-vr-comes-google-daydream/95337184/.
 
 \bibitem{unity3d}
 {Unity Technologies}.
@@ -134,6 +171,12 @@ Wikimedia.
 \newblock General view of leeds stereoscopic image.
 \newblock [Online]. Available from:
   https://commons.wikimedia.org/wiki/File:General\_view\_of\_Leeds,\_from\_Robert\_N.\_Dennis\_collection\_of\_stereoscopic\_views.jpg.
+
+\bibitem{diamondsquare}
+{Wikipedia}.
+\newblock Diamond-square algoirthm.
+\newblock [Online]. Available from:
+  https://en.wikipedia.org/wiki/Diamond-square\_algorithm.
 
 \bibitem{unitywiki}
 Wikipedia.

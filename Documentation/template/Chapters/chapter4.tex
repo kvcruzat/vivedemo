@@ -7,14 +7,24 @@ This section describes how the project will be conducted throughout the project'
 The methodology that will be used for this project is the Waterfall methodology. This methodology was picked as it is the most suitable for this project as agile works better with more experienced people working on the project as waterfall makes the planning and designing stages of the project more straight forward, which helps inexperienced people complete these stages. Some aspects of agile methodology will be used however, for example a weekly stand up meeting will be held, in order to discuss the plan for the following week. 
 \newline
 \par
+Waterfall methodology was the chosen methodology for the development of the project due to the fact that we could completely design the demo using requirements agreed on at the start. Also with software deliverables being defined at the start it meant that planning and designing is more straight forward. This leads to progress being more easily measured since the fulle scope of the work is known in advance with tasks already set. The drawback with using Waterfall methodology is that it heavily requires on the effectiveness of the requirements. It must be made sure that the requirements is thorough so deveopment tasks can be made during the planning process because if requirements are changed throughout the development, then the schedule of tasks will be needed to be changed which will affect the progress of the project. Some aspects of agile methodology is used such as the client being heavily involved in the project due to the weekly meetings as this will give them many opportunities to see the work being delivered and to make decisions and changes throughout the development. These decisions must be small changes otherwise the project schedule will be heavily affected
+\newline
+\par
 As part of the project schedule, there are two prototypes that are demonstrated to the supervisor. These prototypes shows significant development progress and features implemented. The first prototype shows a working demo with simple randomly generated graphs on flat ground as well as virtual reality features implemented. The virtual reality features will be limited to head and motion controller tracking in the game world, interaction with objects and teleportation navigation around the world. The second prototype will include terrain generation and Towers of Hanoi logic with water flow based on them. Having these prototype schedules makes sure that at certain points in the development there is a working product with features to show.
 \newline
 \par
 The tasks outline in the project schedule in section 4.2 are evenly distributed for each member in the group. This is to maximise the amount of development that can be done so whilst someone is working on task, the other can work on a different task. This also helps with working on the project at the same time to avoid conflicts in code and development as each member is working on a different area.
-\section{Schedule}
+\section{Project Schedule}
+\begin{figure}[H]
+	\includegraphics[height=23cm]{GanttChart}
+	\centering
+	\caption{Gantt Chart showing the work that will be done each week.}
+	\label{fig:ganttChartPlan}
+\end{figure}
+
 \begin{tabular}{ |p{6cm}|p{3cm}| }
 	\hline
-	Writing Milestone & Date For
+	\textbf{Writing Milestone} & \textbf{Date For}
 	\\\hline
 	Layout Done & 14/11/2016
 	\\\hline
@@ -39,15 +49,9 @@ The tasks outline in the project schedule in section 4.2 are evenly distributed 
 	Report Finished & 23/12/2016
 	\\\hline
 \end{tabular}
-\begin{figure}[H]
-	\includegraphics[height=23cm]{GanttChart}
-	\centering
-	\caption{Gantt Chart showing the work that will be done each week.}
-	\label{fig:ganttChartPlan}
-\end{figure}
 
 \section{Version Control}
-The Version control for this project will be done on GitHub. Version control software will be used for the project in order to accurately document any and all changes that will be made to the code. GitHub is the chosen version control service since it is the de facto standard for version control. Members are comfortable and familiar with using Git version control as opposed to others such as Mercurial.
+This project uses version control and a GitHub repository was created for this. Version control software will be used for the project in order to accurately document any and all changes that will be made to the code and the report write up. GitHub is the chosen version control service since it is the de facto standard for version control. Members are comfortable and familiar with using Git version control as opposed to others such as Mercurial. Version control is important for this project especially since it is a group project with multiple working on it at the same time. This makes it easier for collaboration through the use of merging. Also, with the use of commit history it can act as backups since they are created regularly just in case some new code broke the implementation so and older version can be easily loaded back up. The repository is also hosted remotely so it can be accessed using multiple machines and not just on one machine. This protects against losing files accidentally if it was stored locally. The GitHUb public repository is hosted using the following link: \url{https://github.com/kvcruzat/vivedemo}.
 
 \section{Risk Assessment}
 A risk involved with this project is the availability of the HTC Vive headset as well as its peripherals. Since the tech demo will be making use of the Vive as the virtual reality hardware, it is essential that a Vive is at hand to be used for testing the demo. The school currently owns 2 Vive packages and since the school is currently only using them for demoing purposes of off the shelf demos and not for development, a Vive should be available for the development in this project. If there is no access to a HTC Vive headset, a contingency plan has been made, which is outlined in \ref{subsec:conPlan}.
@@ -58,7 +62,7 @@ Another risk that may occur is that the Vive has certain requirements for the sp
 \par
 One other factor that needs to be taken in to consideration is the availability of computer hardware that is powerful enough to run and develop on the HTC Vive. Since the HTC Vive has high minimum requirements to run it, finding a computer that is sufficient and can be used when needed can become an issue.
 
-\subsection{Contingency Plan}\label{subsec:conPlan}
+\subsection*{Contingency Plan}\label{subsec:conPlan}
 In the case that there is no access to a Vive headset for this project, due to the risks mentioned before, a contingency plan has been made. The plan would be to make a desktop application using the same premise, rather than being able to use the Vive for the game. This desktop application would have the same features as the Vive version, although without the VR features, i.e. looking around using the headset and interacting with objects using the controllers.
 \newline
 \par

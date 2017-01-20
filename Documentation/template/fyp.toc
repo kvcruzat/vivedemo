@@ -7,17 +7,18 @@
 \contentsline {section}{\numberline {1.6}Deliverables}{2}
 \contentsline {chapter}{\numberline {2}Background Research}{3}
 \contentsline {section}{\numberline {2.1}Virtual Reality}{3}
-\contentsline {subsection}{\numberline {2.1.1}Mobile VR}{4}
-\contentsline {subsubsection}{Google Cardboard}{4}
-\contentsline {subsubsection}{Samsung Gear VR}{5}
-\contentsline {subsection}{\numberline {2.1.2}Oculus Rift}{7}
-\contentsline {subsection}{\numberline {2.1.3}HTC Vive}{7}
-\contentsline {subsection}{\numberline {2.1.4}Summary of VR Solutions}{8}
-\contentsline {section}{\numberline {2.2}Development Environments}{9}
-\contentsline {subsection}{\numberline {2.2.1}Unity}{9}
-\contentsline {subsection}{\numberline {2.2.2}Unreal Engine}{9}
-\contentsline {subsection}{\numberline {2.2.3}Unreal Engine: Choice for development}{9}
-\contentsline {subsubsection}{Unreal Engine 4 Features}{10}
+\contentsline {subsection}{\numberline {2.1.1}Applications}{4}
+\contentsline {subsection}{\numberline {2.1.2}Mobile VR}{6}
+\contentsline {subsubsection}{Google Cardboard}{6}
+\contentsline {subsubsection}{Samsung Gear VR}{6}
+\contentsline {subsection}{\numberline {2.1.3}Oculus Rift}{8}
+\contentsline {subsection}{\numberline {2.1.4}HTC Vive}{8}
+\contentsline {subsection}{\numberline {2.1.5}Summary of VR Solutions}{9}
+\contentsline {section}{\numberline {2.2}Development Environments}{10}
+\contentsline {subsection}{\numberline {2.2.1}Unity}{10}
+\contentsline {subsection}{\numberline {2.2.2}Unreal Engine}{10}
+\contentsline {subsection}{\numberline {2.2.3}Unreal Engine: Choice for development}{10}
+\contentsline {subsubsection}{Unreal Engine 4 Features}{11}
 \contentsline {chapter}{\numberline {3}Requirements}{13}
 \contentsline {section}{\numberline {3.1}Client Requirements}{13}
 \contentsline {subsection}{\numberline {3.1.1}Target Audience}{13}
@@ -27,10 +28,9 @@
 \contentsline {subsubsection}{Hardware Requirements}{14}
 \contentsline {chapter}{\numberline {4}Project Management}{15}
 \contentsline {section}{\numberline {4.1}Methodology}{15}
-\contentsline {section}{\numberline {4.2}Schedule}{15}
+\contentsline {section}{\numberline {4.2}Project Schedule}{16}
 \contentsline {section}{\numberline {4.3}Version Control}{17}
 \contentsline {section}{\numberline {4.4}Risk Assessment}{17}
-\contentsline {subsection}{\numberline {4.4.1}Contingency Plan}{17}
 \contentsline {chapter}{\numberline {5}Planning and Design}{19}
 \contentsline {section}{\numberline {5.1}Game Design Process}{19}
 \contentsline {section}{\numberline {5.2}Virtual Reality Features}{22}
@@ -62,7 +62,7 @@
 \contentsline {subsubsection}{Point Insertion}{31}
 \contentsline {subsection}{\numberline {6.2.3}Terrain Generation}{33}
 \contentsline {subsection}{\numberline {6.2.4}Final Terrain}{34}
-\contentsline {section}{\numberline {6.3}User Interactive Reverse Towers Of Hanoi}{34}
+\contentsline {section}{\numberline {6.3}User Interactive Reverse Towers Of Hanoi}{35}
 \contentsline {section}{\numberline {6.4}River Graph Flow}{36}
 \contentsline {section}{\numberline {6.5}Flow Dependant Flora}{38}
 \contentsline {section}{\numberline {6.6}Game Goal Computation}{39}
@@ -87,6 +87,9 @@
 \contentsline {section}{\numberline {A.1}Instruction Manual}{53}
 \contentsline {subsection}{\numberline {A.1.1}Installing the Project}{53}
 \contentsline {subsection}{\numberline {A.1.2}Compiling the Project}{53}
-\contentsline {subsection}{\numberline {A.1.3}Running the Game}{53}
-\contentsline {subsection}{\numberline {A.1.4}Making a New Level}{53}
-\contentsline {chapter}{\numberline {B}Ethical Issues Addressed}{55}
+\contentsline {subsection}{\numberline {A.1.3}Making a New Level}{53}
+\contentsline {subsection}{\numberline {A.1.4}Running the Game}{54}
+\contentsline {subsection}{\numberline {A.1.5}Playing the Game}{54}
+\contentsline {subsubsection}{Controls}{54}
+\contentsline {subsubsection}{Game Objective}{54}
+\contentsline {chapter}{\numberline {B}Ethical Issues Addressed}{57}
