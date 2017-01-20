@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.11.6)  20 JAN 2017 03:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.11.6)  20 JAN 2017 10:29
 entering extended mode
 **./fyp.tex
 (fyp.tex
@@ -425,9 +425,13 @@ See the minted package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.15 
-     
+l.15 \usepackage
+                {url}
 ? 
+(D:\Programs\MimTex\tex\latex\url\url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
 
 Package geometry Warning: Over-specification in `h'-direction.
     `width' (597.50787pt) is ignored.
@@ -732,25 +736,19 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Overfull \vbox (7.74823pt too high) has occurred while \output is active []
 
 
-[16 <./images/GanttChart.png>]
-! Undefined control sequence.
-l.54 ...y is hosted using the following link: \url
-                                                  {https://github.com/kvcruz...
-
-? 
-[17]) [18]
+[16 <./images/GanttChart.png>] [17]) [18]
 \openout2 = `./Chapters/chapter5.aux'.
 
  (Chapters/chapter5.tex
 Chapter 5.
-<images/brainstorm.jpg, id=97, 3585.395pt x 2999.205pt>
+<images/brainstorm.jpg, id=98, 3585.395pt x 2999.205pt>
 File: images/brainstorm.jpg Graphic file (type jpg)
 
 <use images/brainstorm.jpg>
 Package pdftex.def Info: images/brainstorm.jpg used on input line 13.
 (pdftex.def)             Requested size: 455.24411pt x 380.80328pt.
 
-<images/brainstormtable.png, id=98, 862.72313pt x 324.46219pt>
+<images/brainstormtable.png, id=99, 862.72313pt x 324.46219pt>
 File: images/brainstormtable.png Graphic file (type png)
 
 <use images/brainstormtable.png>
@@ -761,7 +759,7 @@ Package pdftex.def Info: images/brainstormtable.png used on input line 20.
 
 
 ] [20 <./images/brainstorm.jpg> <./images/brainstormtable.png>]
-<images/narrowedtable.png, id=107, 782.925pt x 1014.79124pt>
+<images/narrowedtable.png, id=108, 782.925pt x 1014.79124pt>
 File: images/narrowedtable.png Graphic file (type png)
 
 <use images/narrowedtable.png>
@@ -775,7 +773,7 @@ Package pdftex.def Info: images/narrowedtable.png used on input line 30.
 
 (Chapters/chapter6.tex
 Chapter 6.
-<images/VRRoom.jpg, id=114, 4175.6pt x 3131.7pt>
+<images/VRRoom.jpg, id=115, 4175.6pt x 3131.7pt>
 File: images/VRRoom.jpg Graphic file (type jpg)
  <use images/VRRoom.jpg>
 Package pdftex.def Info: images/VRRoom.jpg used on input line 13.
@@ -786,7 +784,7 @@ Package pdftex.def Info: images/VRRoom.jpg used on input line 13.
 
 
  <./images/VRRoom.jpg>] [24]
-<images/triangulation7.png, id=121, 301.8778pt x 303.38344pt>
+<images/triangulation7.png, id=122, 301.8778pt x 303.38344pt>
 File: images/triangulation7.png Graphic file (type png)
 
 <use images/triangulation7.png>
@@ -796,28 +794,28 @@ Package pdftex.def Info: images/triangulation7.png used on input line 44.
 Underfull \vbox (badness 1178) has occurred while \output is active []
 
  [25 <./images/triangulation7.png>] [26] [27] [28] [29]
-<images/triangulation8.png, id=141, 866.48718pt x 618.05907pt>
+<images/triangulation8.png, id=142, 866.48718pt x 618.05907pt>
 File: images/triangulation8.png Graphic file (type png)
 
 <use images/triangulation8.png>
 Package pdftex.def Info: images/triangulation8.png used on input line 159.
 (pdftex.def)             Requested size: 455.24411pt x 324.72163pt.
  [30 <./images/triangulation8.png>]
-<images/triangulation1.png, id=145, 301.8778pt x 303.38344pt>
+<images/triangulation1.png, id=146, 301.8778pt x 303.38344pt>
 File: images/triangulation1.png Graphic file (type png)
 
 <use images/triangulation1.png>
 Package pdftex.def Info: images/triangulation1.png used on input line 179.
 (pdftex.def)             Requested size: 142.26378pt x 142.96983pt.
 
-<images/triangulation2.png, id=146, 301.8778pt x 303.38344pt>
+<images/triangulation2.png, id=147, 301.8778pt x 303.38344pt>
 File: images/triangulation2.png Graphic file (type png)
 
 <use images/triangulation2.png>
 Package pdftex.def Info: images/triangulation2.png used on input line 188.
 (pdftex.def)             Requested size: 142.26378pt x 142.96983pt.
 
-<images/triangulation3.png, id=147, 301.8778pt x 303.38344pt>
+<images/triangulation3.png, id=148, 301.8778pt x 303.38344pt>
 File: images/triangulation3.png Graphic file (type png)
 
 <use images/triangulation3.png>
@@ -825,21 +823,21 @@ Package pdftex.def Info: images/triangulation3.png used on input line 195.
 (pdftex.def)             Requested size: 142.26378pt x 142.96983pt.
  [31 <./images/triangulation1.png> <./images/triangulation2.png> <./images/tria
 ngulation3.png>]
-<images/triangulation4.png, id=152, 301.8778pt x 303.38344pt>
+<images/triangulation4.png, id=153, 301.8778pt x 303.38344pt>
 File: images/triangulation4.png Graphic file (type png)
 
 <use images/triangulation4.png>
 Package pdftex.def Info: images/triangulation4.png used on input line 204.
 (pdftex.def)             Requested size: 142.26378pt x 142.96983pt.
 
-<images/triangulation5.png, id=153, 301.8778pt x 303.38344pt>
+<images/triangulation5.png, id=154, 301.8778pt x 303.38344pt>
 File: images/triangulation5.png Graphic file (type png)
 
 <use images/triangulation5.png>
 Package pdftex.def Info: images/triangulation5.png used on input line 214.
 (pdftex.def)             Requested size: 142.26378pt x 142.96983pt.
 
-<images/triangulation6.png, id=154, 301.8778pt x 303.38344pt>
+<images/triangulation6.png, id=155, 301.8778pt x 303.38344pt>
 File: images/triangulation6.png Graphic file (type png)
 
 <use images/triangulation6.png>
@@ -849,21 +847,21 @@ Package pdftex.def Info: images/triangulation6.png used on input line 223.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [32 <./images/triangulation4.png> <./images/triangulation5.png>]
-<images/Diamond_Square.png, id=158, 1128.46594pt x 240.9pt>
+<images/Diamond_Square.png, id=159, 1128.46594pt x 240.9pt>
 File: images/Diamond_Square.png Graphic file (type png)
 
 <use images/Diamond_Square.png>
 Package pdftex.def Info: images/Diamond_Square.png used on input line 250.
 (pdftex.def)             Requested size: 455.24411pt x 97.18535pt.
  [33 <./images/triangulation6.png> <./images/Diamond_Square.png>] <images/final
-Terrain.png, id=163, 589.4522pt x 578.91281pt>
+Terrain.png, id=164, 589.4522pt x 578.91281pt>
 File: images/finalTerrain.png Graphic file (type png)
 
 <use images/finalTerrain.png>
 Package pdftex.def Info: images/finalTerrain.png used on input line 266.
 (pdftex.def)             Requested size: 341.43306pt x 335.32799pt.
  [34 <./images/finalTerrain.png>]
-<images/rodcollision.png, id=167, 209.28188pt x 383.18156pt>
+<images/rodcollision.png, id=168, 209.28188pt x 383.18156pt>
 File: images/rodcollision.png Graphic file (type png)
 
 <use images/rodcollision.png>
@@ -875,14 +873,14 @@ Underfull \vbox (badness 2894) has occurred while \output is active []
  [35
 
  <./images/rodcollision.png>]
-<images/coordtransform.png, id=172, 1298.02588pt x 1001.8606pt>
+<images/coordtransform.png, id=173, 1298.02588pt x 1001.8606pt>
 File: images/coordtransform.png Graphic file (type png)
 
 <use images/coordtransform.png>
 Package pdftex.def Info: images/coordtransform.png used on input line 300.
 (pdftex.def)             Requested size: 455.24411pt x 351.37495pt.
 
-<images/bounds.png, id=173, 699.36281pt x 425.33907pt>
+<images/bounds.png, id=174, 699.36281pt x 425.33907pt>
 File: images/bounds.png Graphic file (type png)
  <use images/bounds.png>
 Package pdftex.def Info: images/bounds.png used on input line 311.
@@ -895,35 +893,35 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 Underfull \vbox (badness 1275) has occurred while \output is active []
 
  [37 <./images/coordtransform.png>] [38 <./images/bounds.png>]
-<images/flowerstates.png, id=186, 752.8125pt x 453.695pt>
+<images/flowerstates.png, id=187, 752.8125pt x 453.695pt>
 File: images/flowerstates.png Graphic file (type png)
 
 <use images/flowerstates.png>
 Package pdftex.def Info: images/flowerstates.png used on input line 347.
 (pdftex.def)             Requested size: 284.52756pt x 171.47823pt.
  [39 <./images/flowerstates.png>]
-<images/level1Backdrop.png, id=190, 1212.02812pt x 558.58687pt>
+<images/level1Backdrop.png, id=191, 1212.02812pt x 558.58687pt>
 File: images/level1Backdrop.png Graphic file (type png)
 
 <use images/level1Backdrop.png>
 Package pdftex.def Info: images/level1Backdrop.png used on input line 366.
 (pdftex.def)             Requested size: 369.88582pt x 170.46677pt.
 
-<images/level2Backdrop.png, id=191, 1208.26407pt x 588.69937pt>
+<images/level2Backdrop.png, id=192, 1208.26407pt x 588.69937pt>
 File: images/level2Backdrop.png Graphic file (type png)
 
 <use images/level2Backdrop.png>
 Package pdftex.def Info: images/level2Backdrop.png used on input line 373.
 (pdftex.def)             Requested size: 369.88582pt x 180.21327pt.
 
-<images/level3Backdrop.png, id=192, 1204.5pt x 560.0925pt>
+<images/level3Backdrop.png, id=193, 1204.5pt x 560.0925pt>
 File: images/level3Backdrop.png Graphic file (type png)
 
 <use images/level3Backdrop.png>
 Package pdftex.def Info: images/level3Backdrop.png used on input line 380.
 (pdftex.def)             Requested size: 369.88582pt x 171.99452pt.
 
-<images/RogerStevens.jpg, id=193, 5396.16pt x 2698.08pt>
+<images/RogerStevens.jpg, id=194, 5396.16pt x 2698.08pt>
 File: images/RogerStevens.jpg Graphic file (type jpg)
 
 <use images/RogerStevens.jpg>
@@ -933,13 +931,13 @@ Package pdftex.def Info: images/RogerStevens.jpg used on input line 389.
 
  <./images/level1Backdrop.png> <./images/level2Backdrop.png> <./images/level3Ba
 ckdrop.png>]
-<images/GreatHall.jpg, id=197, 5396.16pt x 2698.08pt>
+<images/GreatHall.jpg, id=198, 5396.16pt x 2698.08pt>
 File: images/GreatHall.jpg Graphic file (type jpg)
 
 <use images/GreatHall.jpg>
 Package pdftex.def Info: images/GreatHall.jpg used on input line 396.
 (pdftex.def)             Requested size: 369.88582pt x 184.93263pt.
- <images/Union.jpg, id=198, 5396.16pt x 2698.08pt>
+ <images/Union.jpg, id=199, 5396.16pt x 2698.08pt>
 File: images/Union.jpg Graphic file (type jpg)
 
 <use images/Union.jpg>
@@ -947,7 +945,7 @@ Package pdftex.def Info: images/Union.jpg used on input line 403.
 (pdftex.def)             Requested size: 369.88582pt x 184.93263pt.
  [41 <./images/RogerStevens.jpg> <./images/GreatHall.jpg> <./images/Union.jpg>]
 
-<images/GreatHallPre.png, id=202, 6167.04pt x 1027.84pt>
+<images/GreatHallPre.png, id=203, 6167.04pt x 1027.84pt>
 File: images/GreatHallPre.png Graphic file (type png)
 
 <use images/GreatHallPre.png>
@@ -1010,30 +1008,31 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 7692 strings out of 493334
- 123531 string characters out of 3143155
- 344878 words of memory out of 3000000
- 10954 multiletter control sequences out of 15000+200000
+ 7764 strings out of 493334
+ 124375 string characters out of 3143155
+ 345965 words of memory out of 3000000
+ 11022 multiletter control sequences out of 15000+200000
  14642 words of font info for 28 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,15n,64p,2080b,427s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,15n,64p,2080b,419s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ect
-i1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi
-600\ecbx2488.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen
-\ec\dpi600\ecbx2074.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\j
-knappen\ec\dpi600\tcrm1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\l
-jfour\jknappen\ec\dpi600\ecrm1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fon
-ts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\
-2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk>{D:/Programs/MimTex/fonts/en
-c/dvips/base/8r.enc} <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jkna
-ppen\ec\dpi600\ecbx1440.pk><D:/Programs/MimTex/fonts/type1/public/amsfonts/cm/c
-mmi10.pfb><D:/Programs/MimTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/Prog
-rams/MimTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/Programs/MimTex/fonts/t
-ype1/public/amsfonts/cm/cmsy10.pfb><D:/Programs/MimTex/fonts/type1/urw/times/ut
-mr8a.pfb>
-Output written on fyp.pdf (63 pages, 51959758 bytes).
+t1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi
+600\ecti1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen
+\ec\dpi600\ecbx2488.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\j
+knappen\ec\dpi600\ecbx2074.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\l
+jfour\jknappen\ec\dpi600\tcrm1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\2.9\fon
+ts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk> <C:\Users\KV\AppData\Local\MiKTeX\
+2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk> <C:\Users\KV\AppData\Local\
+MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk>{D:/Programs/MimTex/f
+onts/enc/dvips/base/8r.enc} <C:\Users\KV\AppData\Local\MiKTeX\2.9\fonts\pk\ljfo
+ur\jknappen\ec\dpi600\ecbx1440.pk><D:/Programs/MimTex/fonts/type1/public/amsfon
+ts/cm/cmmi10.pfb><D:/Programs/MimTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><
+D:/Programs/MimTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/Programs/MimTex/
+fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/Programs/MimTex/fonts/type1/urw/t
+imes/utmr8a.pfb>
+Output written on fyp.pdf (63 pages, 51976961 bytes).
 PDF statistics:
- 630 PDF objects out of 1000 (max. 8388607)
+ 685 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  161 words of extra memory for PDF output out of 10000 (max. 10000000)
 
